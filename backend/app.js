@@ -22,17 +22,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(passport.initialize());
 
+// security middleware
+if (!isProduction) {
+  app.use(cors());
+}
+
+// needs to be after cors
 app.get("/recipes/:query", async (req, res) => {
   const response = await axios.get(
     `https://api.edamam.com/search?q=${req.params.query}&app_id=${process.env.APP_ID}&app_key=${process.env.APP_KEY}`
   );
   res.json(response.data.hits);
 });
-
-// security middleware
-if (!isProduction) {
-  app.use(cors());
-}
 
 app.use(
   csurf({

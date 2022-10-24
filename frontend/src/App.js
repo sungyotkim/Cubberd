@@ -3,6 +3,7 @@ import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
 import MainPage from "./components/MainPage/MainPage";
+import Cubberd from "./components/Cubberd/Cubberd";
 
 import { getCurrentUser } from "./store/session";
 import { useEffect, useState } from "react";
@@ -26,9 +27,9 @@ function App() {
     setRecipes(res.data);
   };
 
-  // useEffect(() => {
-  //   getRecipes();
-  // }, [query]);
+  useEffect(() => {
+    getRecipes();
+  }, [query]);
 
   return (
     loaded && (
@@ -39,6 +40,7 @@ function App() {
           <AuthRoute exact path="/signup" component={SignupForm} />
 
           {/* <ProtectedRoute exact path="/recipe" component={Recipe} /> */}
+          <ProtectedRoute exact path="/cubberd" component={Cubberd} />
         </Switch>
       </>
     )
