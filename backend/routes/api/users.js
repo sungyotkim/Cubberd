@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const { loginUser } = require('../../config/passport');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -43,7 +44,7 @@ router.post('/register', async (req, res, next) => {
       try {
         newUser.hashedPassword = hashedPassword;
         const user = await newUser.save();
-        return res.json({ user });
+        return res.json(await loginUser(user));
       }
       catch(err) {
         next(err);
