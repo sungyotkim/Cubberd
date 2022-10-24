@@ -9,6 +9,7 @@ const csurf = require("csurf");
 const { isProduction } = require("./config/keys");
 require("./models/User");
 require("./config/passport");
+require("./models/Ingredient")
 const passport = require("passport");
 
 const usersRouter = require("./routes/api/users");
