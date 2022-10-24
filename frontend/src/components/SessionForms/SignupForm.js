@@ -53,54 +53,57 @@ const SignupForm = () => {
   return (
     <>
       <form className="session-form" onSubmit={usernameSubmit}>
-        <h2>Sign Up Form</h2>
-        <div className="errors">{errors?.email}</div>
-        <label>
-          <span>Email</span>
+        <div className="session-form-header">
+          <h2>Sign Up</h2>
+        </div>
+        {errors && (
+          <div className="errors">
+            {errors?.email || errors?.username || errors?.password}
+          </div>
+        )}
+        {password !== password2 && (
+          <div className="errors">Confirm Password field must match</div>
+        )}
+        <div className="session-input-container">
           <input
             type="text"
             value={email}
             onChange={update("email")}
             placeholder="Email"
           />
-        </label>
-        <div className="errors">{errors?.username}</div>
-        <label>
-          <span>Username</span>
           <input
             type="text"
             value={username}
             onChange={update("username")}
             placeholder="Username"
           />
-        </label>
-        <div className="errors">{errors?.password}</div>
-        <label>
-          <span>Password</span>
           <input
             type="password"
             value={password}
             onChange={update("password")}
             placeholder="Password"
           />
-        </label>
-        <div className="errors">
-          {password !== password2 && "Confirm Password field must match"}
-        </div>
-        <label>
-          <span>Confirm Password</span>
           <input
             type="password"
             value={password2}
             onChange={update("password2")}
             placeholder="Confirm Password"
           />
-        </label>
-        <input
-          type="submit"
-          value="Sign Up"
-          disabled={!email || !username || !password || password !== password2}
-        />
+        </div>
+        <div className="session-form-btn">
+          <input
+            type="submit"
+            value="Sign Up"
+            disabled={
+              !email || !username || !password || password !== password2
+            }
+          />
+        </div>
+        <div className="session-form-redirect-container">
+          <div className="redirect-to-login-btn">
+            Already have an account? Log in
+          </div>
+        </div>
       </form>
     </>
   );

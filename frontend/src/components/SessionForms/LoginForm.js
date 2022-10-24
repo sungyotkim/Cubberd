@@ -53,7 +53,7 @@ const LoginForm = () => {
         </div>
         <div className="session-form-redirect-container">
           <div className="redirect-to-signup-btn">
-            Already have an account? Sign up
+            Don't have an account? Sign up
           </div>
         </div>
       </form>
