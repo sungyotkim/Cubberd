@@ -9,10 +9,6 @@ const ingredientSchema = Schema({
     type: {
       type: String,
       required: true
-    },
-    imageUrl: {
-      type: String,
-      required: true
     }
   }, {
     timestamps: true
