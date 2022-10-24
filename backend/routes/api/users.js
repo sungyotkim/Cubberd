@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-const { loginUser, restoreUser } = require('../../config/passport');
+const { loginUser, restoreUser, requireUser } = require('../../config/passport');
 const passport = require('passport');
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
@@ -87,6 +87,14 @@ router.get('/current', restoreUser, (req, res) => {
     username: req.user.username,
     email: req.user.email
   });
+});
+
+// Get Cubberd
+
+router.get('/:userId/cubberd', requireUser, async (req, res) => {
+  const ingredients = await User.findById( req.params.userId, 'cubberd');
+  // extracts the cubberd nested document from the user of userId
+  res.json(ingredients);
 });
 
 module.exports = router;
