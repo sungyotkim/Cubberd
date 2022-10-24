@@ -1,5 +1,57 @@
+#main-page {
+    width: 80%;
+    margin: auto;
+    border: 2px solid blue;
+    height: 800px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+
 .main-page-component {
     height: 100px;
     width: 100px;
-    border: 1px solid black;
+    margin: 0.5em;
+
 }
+
+#main-page-top {
+    height: 80%;
+    background-color: chartreuse;
+    margin: 0.5%;
+    display: flex;
+    flex-direction: row;
+}
+
+#main-page-bottom {
+    background-color: coral;
+    margin: 00.5%;
+    height: 20%;
+}
+
+#main-page-top-left {
+    height: 100%;
+}
+
+#main-page-top-right {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#navbar-container {
+    display: flex;
+    flex-direction: row;
+    background-color: darkcyan;
+
+}
+
+#main-page-top-right-bottom {
+    display: flex;
+    flex-direction: row;
+    background-color: cornflowerblue;
+    height: 100%;
+}
+
