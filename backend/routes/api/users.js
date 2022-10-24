@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Ingredient = mongoose.model('Ingredient')
-const { loginUser, restoreUser } = require('../../config/passport');
+const { loginUser, restoreUser, requireUser } = require('../../config/passport');
 const passport = require('passport');
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
@@ -89,5 +89,27 @@ router.get('/current', restoreUser, (req, res) => {
   });
 });
 
+// Get Cubberd
+router.get('/:userId/cubberd', requireUser, async (req, res) => {
+  const cubberd = await User.findById( req.params.userId, 'cubberd');
+  // extracts the cubberd nested document from the user of userId
+  res.json(cubberd);
+});
+
+router.post('/:userId/cubbered', restoreUser, requireUser, async (req, res) => {
+  const ingredientId = req.body;
+  const currentUserId = req.user._id;
+  User.updateOne({ _id: currentUserId}, { $push: { cubberd: ingredientId }});
+  const cubberd = await User.findById( req.params.userId, 'cubberd');
+  res.json(cubberd);
+})
+
+router.delete('/:userId/cubbered', restoreUser, requireUser, async (req, res) => {
+  const ingredientId = req.body;
+  const currentUserId = req.user._id;
+  User.updateOne({ _id: currentUserId}, { $pull: { cubberd: ingredientId }});
+  const cubberd = await User.findById( req.params.userId, 'cubberd');
+  res.json(cubberd);
+})
 
 module.exports = router;
