@@ -451,13 +451,147 @@ const seedIngredients = [
         type: 'vinegar',
         imageUrl: ''
     },
-    
-    
-
-
-
-    
-    
-    
-
+    {
+        name: 'dijon mustard',
+        type: 'condiments',
+        imageUrl: ''
+    }, 
+    {
+        name: 'chili paste',
+        type: 'condiments',
+        imageUrl: ''
+    }, 
+    {
+        name: 'black peppercorns',
+        type: 'spices',
+        imageUrl: ''
+    }, 
+    {
+        name: 'nutmeg',
+        type: 'spices',
+        imageUrl: ''
+    },
+    {
+        name: 'italian seasoning',
+        type: 'spices',
+        imageUrl: ''
+    },
+    {
+        name: 'chickpeas',
+        type: 'legumes',
+        imageUrl: ''
+    },
+    {
+        name: 'olives',
+        type: 'vegetables',
+        imageUrl: ''
+    },
+    {
+        name: 'peanut butter',
+        type: 'condiments',
+        imageUrl: ''
+    },
+    {
+        name: 'jelly',
+        type: 'condiments',
+        imageUrl: ''
+    },
+    {
+        name: 'salsa',
+        type: 'condiments',
+        imageUrl: ''
+    },
+    {
+        name: 'breadcrumbs',
+        type: 'baking',
+        imageUrl: ''
+    },
+    {
+        name: 'oats',
+        type: 'grains',
+        imageUrl: ''
+    },
+    {
+        name: 'baking soda',
+        type: 'baking',
+        imageUrl: ''
+    },
+    {
+        name: 'baking powder',
+        type: 'baking',
+        imageUrl: ''
+    }, 
+    {
+        name: 'yogurt',
+        type: 'dairy',
+        imageUrl: ''
+    },
+    {
+        name: 'apple',
+        type: 'fruit',
+        imageUrl: ''
+    },
+    {
+        name: 'banana',
+        type: 'fruit',
+        imageUrl: ''
+    },
+    {
+        name: 'peach',
+        type: 'fruit',
+        imageUrl: ''
+    },
+    {
+        name: 'nectarine',
+        type: 'fruit',
+        imageUrl: ''
+    },
+    {
+        name: 'kiwi',
+        type: 'fruit',
+        imageUrl: ''
+    },
+    {
+        name: 'date',
+        type: 'dried fruit',
+        imageUrl: ''
+    }, {
+        name: 'plum',
+        type: 'fruit',
+        imageUrl: ''
+    },
+    {
+        name: 'almonds',
+        type: 'nuts',
+        imageUrl: ''
+    },
+    {
+        name: 'cashews',
+        type: 'nuts',
+        imageUrl: ''
+    },
+    {
+        name: 'apricot',
+        type: 'fruit',
+        imageUrl: ''
+    },
+    {
+        name: 'dried apricot',
+        type: 'dried fruit',
+        imageUrl: ''
+    },
+    {
+        name: 'peanuts',
+        type: 'nuts',
+        imageUrl: ''
+    }
 ];
+
+const seedDB = async () => {
+    await Ingredient.deleteMany({});
+    await Ingredient.insertMany(seedIngredients);
+};
+
+seedDB().then(() => {
+    mongoose.connection.close();
+});
