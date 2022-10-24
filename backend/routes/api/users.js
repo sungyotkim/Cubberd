@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const { loginUser } = require('../../config/passport');
+const passport = require('passport');
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -12,6 +14,8 @@ router.get('/', function(req, res, next) {
   });
 });
 
+
+//POST /api/users/register
 router.post('/register', async (req, res, next) => {
   const user = await User.findOne({
     $or: [{email: req.body.email}, {username: req.body.username}]
@@ -31,7 +35,7 @@ router.post('/register', async (req, res, next) => {
     return next(err);
   }
 
-  const newUser = newUser ({
+  const newUser = new User ({
     username: req.body.username,
     email: req.body.email
   });
@@ -52,5 +56,20 @@ router.post('/register', async (req, res, next) => {
     })
   });
 });
+
+// POST /api/users/login
+router.post('/login', async (req, res, next) => {
+  passport.authenticate('local', async function(err, user) {
+    if (err) return next(err);
+    if (!user) {
+      const err = new Error('Invalid credentials');
+      err.statusCode = 400;
+      err.errors = { email: "Invalid credentials" };
+      return next(err);
+    }
+    return res.json({ user });
+  })(req, res, next);
+});
+
 
 module.exports = router;
