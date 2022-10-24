@@ -2,15 +2,17 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ingredientSchema = Schema({
-    name: {
+    food: {
       type: String,
       required: true
     },
-    type: {
-      type: String,
-      required: true
+    foodCategory: {
+      type: String
     },
-    imageUrl: {
+    image: {
+      type: String
+    },
+    foodId: {
       type: String,
       required: true
     }
