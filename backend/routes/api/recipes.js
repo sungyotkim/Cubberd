@@ -13,9 +13,17 @@ router.post('/', async (req, res, next) => {
         source: req.body.source,
         url: req.body.url,
         dietLabels: req.body.dietLabels,
-        label: req.body.label,
-        label: req.body.label,
-        label: req.body.label,
-        label: req.body.label,
+        healthLabels: req.body.healthLabels,
+        cautions: req.body.cautions,
+        ingredientLines: req.body.ingredientLines,
+        calories: req.body.calories,
+        totalWeight: req.body.totalWeight,
+        totalTime: req.body.totalTime,
+        cuisineType: req.body.cuisineType,
+        mealType: req.body.mealType,
+        dishType: req.body.dishType,
+        totalNutrients: req.body.totalNutrients,
+        totalDaily: req.body.totalDaily,
+        digest: req.body.digest
     })
 })
