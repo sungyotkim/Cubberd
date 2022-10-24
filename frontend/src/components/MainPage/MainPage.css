@@ -5,7 +5,7 @@
     height: 800px;
     margin-top: 50px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 
@@ -15,6 +15,19 @@
     margin: 0.5em;
 
 }
+
+#main-page-left {
+    width: 35em;
+    background-color: darkslateblue;
+}
+
+#main-page-right {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
 
 #main-page-top {
     height: 80%;
@@ -32,6 +45,8 @@
 
 #main-page-top-left {
     height: 100%;
+    width: 35em;
+    background-color: darkseagreen;
 }
 
 #main-page-top-right {
@@ -45,6 +60,8 @@
     display: flex;
     flex-direction: row;
     background-color: darkcyan;
+    margin: 0.5em 0;
+    width: 100%;
 
 }
 
@@ -55,3 +72,15 @@
     height: 100%;
 }
 
+
+#pot-container {
+    background-color: darkgray;
+    width: 70%;
+    height: calc(100% - 1em);
+}
+
+#shopping-list-container {
+    width: 30%;
+    background-color: darksalmon;
+    height: calc(100% - 1em);
+}
