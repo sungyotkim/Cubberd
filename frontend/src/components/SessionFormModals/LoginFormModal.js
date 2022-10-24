@@ -1,5 +1,5 @@
 import { Modal } from '../../context/Modal';
-import React from 'react';
+import React, { useState } from 'react';
 import LoginForm from '../SessionForms/LoginForm';
 
 
@@ -8,6 +8,14 @@ function LoginFormModal() {
 
     return (
         <>
+        <button onClick={setShowModal(true)}>Login</button>
+        {showModal && (
+            <Modal onClose={() => setShowModal(false)}>
+                <LoginForm />
+            </Modal>
+        )}
         </>
     )
 }
+
+export default LoginFormModal;

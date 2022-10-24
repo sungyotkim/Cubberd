@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState, useEffect } from 'react';
-import ReactDOM from 'react-node';
+import ReactDOM from 'react-dom';
 import './Modal.css';
 
 
@@ -8,7 +8,7 @@ const ModalContext = React.createContext();
 
 
 function ModalProvider({children}) {
-    const modalRed = useRef();
+    const modalRef = useRef();
     const [value, setValue] = useState();
 
     useEffect(() => {

@@ -1,9 +1,12 @@
 import "./MainPage.css";
 import { logout } from "../../store/session";
 import { useDispatch } from "react-redux";
+import LoginFormModal from "../SessionFormModals/LoginFormModal";
+
 
 
 function MainPage() {
+    debugger
     const dispatch = useDispatch();
 
 
@@ -20,7 +23,7 @@ function MainPage() {
                 <div id="main-page-top">
                     <div id="main-page-top-right">
                         <div id="navbar-container" className="main-page-component">
-                            <nav><button onClick={handleLogout}>Logout</button></nav>
+                            <nav><LoginFormModal /><button onClick={handleLogout}>Logout</button></nav>
                         </div>
                         <div id="main-page-top-right-bottom">
                             <div id="pot-container" className="main-page-component"></div>
