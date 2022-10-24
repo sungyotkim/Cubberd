@@ -1,4 +1,4 @@
-import { Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
@@ -29,10 +29,11 @@ function App() {
     setRecipes((oldArr) => [...oldArr, ...newRecipes]);
   };
 
+
   useEffect(() => {
     getRecipes();
   }, [query]);
-  console.log(recipes);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
