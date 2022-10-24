@@ -38,6 +38,7 @@
   border: none;
   padding: 10px;
   font-size: 16px;
+  font-weight: 500;
 }
 
 .session-form-btn {
@@ -55,6 +56,7 @@
   padding: 10px;
   font-size: 16px;
   background-color: aquamarine;
+  cursor: pointer;
 }
 
 .session-form-redirect-container {
@@ -65,5 +67,21 @@
 }
 
 .errors {
-  padding: 0 20px 10px;
+  padding: 5px 10px;
+  background-color: #fcd6d3;
+  display: flex;
+  align-items: center;
+  margin: 5px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.redirect-to-signup-btn {
+  cursor: pointer;
+  color: #7c43e3;
+}
+
+.redirect-to-signup-btn:hover {
+  text-decoration: underline;
 }
