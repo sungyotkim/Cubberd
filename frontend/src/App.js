@@ -19,21 +19,37 @@ function App() {
 
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("chicken");
+  const [query, setQuery] = useState("");
 
   const getRecipes = async () => {
     const res = await axios.get(`http://localhost:5000/recipes/${query}`);
-    console.log(res.data);
-    setRecipes(res.data);
+    // console.log(res.data);
+    let newRecipes = res.data;
+    setRecipes((oldArr) => [...oldArr, ...newRecipes]);
   };
 
-  useEffect(() => {
+  console.log(recipes);
+
+  // useEffect(() => {
+  //   getRecipes();
+  // }, [query]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     getRecipes();
-  }, [query]);
+  };
 
   return (
     loaded && (
       <>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <input type="submit" value="submit" />
+        </form>
         <Switch>
           <AuthRoute exact path="/" component={MainPage} />
           <AuthRoute exact path="/login" component={LoginForm} />
