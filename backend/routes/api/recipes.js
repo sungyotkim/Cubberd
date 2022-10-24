@@ -18,7 +18,7 @@ router.get('/', async (req, res, next) => {
 // });
 
 router.post('/', async (req, res) => {
-    const newRecipe = new Recipe( {
+    const newRecipe = new Recipe({
         uri: req.body.uri,
         label: req.body.label,
         image: req.body.image,
