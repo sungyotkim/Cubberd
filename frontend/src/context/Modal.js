@@ -7,7 +7,7 @@ import './Modal.css';
 const ModalContext = React.createContext();
 
 
-function ModalProvider({children}) {
+export function ModalProvider({children}) {
     const modalRef = useRef();
     const [value, setValue] = useState();
 
@@ -17,9 +17,9 @@ function ModalProvider({children}) {
 
     return (
         <>
-        <ModalContext.Proivder value={value}>
+        <ModalContext.Provider value={value}>
             {children}
-        </ModalContext.Proivder>
+        </ModalContext.Provider>
         <div ref={modalRef} />
         </>
     )

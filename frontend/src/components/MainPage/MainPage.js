@@ -6,7 +6,6 @@ import LoginFormModal from "../SessionFormModals/LoginFormModal";
 
 
 function MainPage() {
-    debugger
     const dispatch = useDispatch();
 
 
