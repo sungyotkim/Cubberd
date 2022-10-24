@@ -55,14 +55,7 @@ const recipeSchema = Schema({
     },
     totalNutrients: {
         type: Object
-    },
-    totalDaily: {
-        type: Object
-    },
-    digest: {
-        type: Array
     }
-    
 }, {
     timestamps: true
 });

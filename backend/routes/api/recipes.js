@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Recipe = mongoose.model('Recipe')
 
-router.post('/', async (req, res, next) => {
+router.post('/', async (req, res) => {
     const recipe = new Recipe( {
         uri: req.body.uri,
         label: req.body.label,
@@ -22,8 +22,7 @@ router.post('/', async (req, res, next) => {
         cuisineType: req.body.cuisineType,
         mealType: req.body.mealType,
         dishType: req.body.dishType,
-        totalNutrients: req.body.totalNutrients,
-        totalDaily: req.body.totalDaily,
-        digest: req.body.digest
+        totalNutrients: req.body.totalNutrients
     })
+    return res.json(recipe)
 })
