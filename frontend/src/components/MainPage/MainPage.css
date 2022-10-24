@@ -1,5 +1,100 @@
+#main-page {
+    width: 80%;
+    margin: auto;
+    border: 2px solid black;
+    box-sizing: border-box;
+    height: 800px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+
 .main-page-component {
     height: 100px;
     width: 100px;
+    margin: 0.5em;
     border: 1px solid black;
+    box-sizing: border-box;
+
+}
+
+#main-page-left {
+    width: 35em;
+}
+
+#main-page-right {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+
+#main-page-top {
+    height: 80%;
+    margin: 0.5%;
+    display: flex;
+    flex-direction: row;
+}
+
+#main-page-bottom {
+    margin: 00.5%;
+    height: 20%;
+}
+
+#main-page-top-left {
+    height: 100%;
+    width: 35em;
+}
+
+#main-page-top-right {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#navbar-container {
+    display: flex;
+    flex-direction: row;
+    margin: 0.5em 0.5em;
+    width: calc(100% - 1em);
+
+}
+
+#main-page-top-right-bottom {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+
+#pot-container {
+    width: 70%;
+    height: calc(100% - 1em);
+}
+
+#shopping-list-container {
+    width: 30%;
+    height: calc(100% - 1em);
+}
+
+#cubberd-search-container {
+    height: calc(100% - 1em);
+    width: calc(100% - 1em);
+}
+
+#current-cubberd-container {
+    height: calc(100% - 1em);
+    width: calc(100% - 1em);
+}
+
+#navbar-container nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    width: 100%;
+    padding: 1em;
 }
