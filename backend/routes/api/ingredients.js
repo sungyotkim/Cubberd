@@ -1,0 +1,9 @@
+const express = require('express');
+const router = express.Router();
+const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
+const { loginUser } = require('../../config/passport');
+const passport = require('passport');
+const validateRegisterInput = require('../../validations/register');
+const validateLoginInput = require('../../validations/login');

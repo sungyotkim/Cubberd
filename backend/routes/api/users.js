@@ -3,11 +3,11 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-const { loginUser } = require('../../config/passport');
+const { loginUser, restoreUser } = require('../../config/passport');
 const passport = require('passport');
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
-
+const { isProduction } = require('../../config/keys');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -71,6 +71,22 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
     }
     return res.json(await loginUser(user));
   })(req, res, next);
+});
+
+router.get('/current', restoreUser, (req, res) => {
+  if (!isProduction) {
+    // In development, allow React server to gain access to the CSRF token
+    // whenever the current user information is first loaded into the
+    // React application
+    const csrfToken = req.csrfToken();
+    res.cookie("CSRF-TOKEN", csrfToken);
+  }
+  if (!req.user) return res.json(null);
+  res.json({
+    _id: req.user._id,
+    username: req.user.username,
+    email: req.user.email
+  });
 });
 
 module.exports = router;
