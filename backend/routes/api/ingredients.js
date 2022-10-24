@@ -10,8 +10,14 @@ router.get('/', async (req, res, next) => {
 })
 
 // By name
-router.get('/:ingredientName'), async (req, res, next) => {
+router.get('/byName/:ingredientName'), async (req, res, next) => {
   const ingredients = await Ingredient.find({ name: req.params.ingredientName });
+  return res.json(ingredients);
+}
+
+// By id
+router.get('/:id'), async (req, res, next) => {
+  const ingredients = await Ingredient.find({ name: req.params.id });
   return res.json(ingredients);
 }
 
