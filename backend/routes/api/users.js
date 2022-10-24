@@ -90,11 +90,26 @@ router.get('/current', restoreUser, (req, res) => {
 });
 
 // Get Cubberd
-
 router.get('/:userId/cubberd', requireUser, async (req, res) => {
-  const ingredients = await User.findById( req.params.userId, 'cubberd');
+  const cubberd = await User.findById( req.params.userId, 'cubberd');
   // extracts the cubberd nested document from the user of userId
-  res.json(ingredients);
+  res.json(cubberd);
 });
+
+router.post('/:userId/cubbered', restoreUser, requireUser, async (req, res) => {
+  const ingredientId = req.body;
+  const currentUserId = req.user._id;
+  User.updateOne({ _id: currentUserId}, { $push: { cubberd: ingredientId }});
+  const cubberd = await User.findById( req.params.userId, 'cubberd');
+  res.json(cubberd);
+})
+
+router.delete('/:userId/cubbered', restoreUser, requireUser, async (req, res) => {
+  const ingredientId = req.body;
+  const currentUserId = req.user._id;
+  User.updateOne({ _id: currentUserId}, { $pull: { cubberd: ingredientId }});
+  const cubberd = await User.findById( req.params.userId, 'cubberd');
+  res.json(cubberd);
+})
 
 module.exports = router;

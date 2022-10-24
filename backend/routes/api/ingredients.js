@@ -14,3 +14,5 @@ router.get('/:ingredientName'), async (req, res, next) => {
   const ingredients = await Ingredient.find({ name: req.params.ingredientName });
   return res.json(ingredients);
 }
+
+module.exports = router;

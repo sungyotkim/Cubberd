@@ -13,6 +13,7 @@ const passport = require("passport");
 
 const usersRouter = require("./routes/api/users");
 const csrfRouter = require("./routes/api/csrf");
+const ingredientsRouter = require("./routes/api/ingredients");
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use(
 
 app.use("/api/users", usersRouter);
 app.use("/api/csrf", csrfRouter);
+app.use("/api/ingredients", ingredientsRouter);
 
 // Express custom middleware for catching all unmatched requests and formatting
 // a 404 error to be sent as the response.
