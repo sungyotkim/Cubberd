@@ -3,11 +3,11 @@ import "./MainPage.css";
 function MainPage() {
   return (
     <div id="Main-page">
-      <div id="navbar-container"></div>
-      <div id="cubberd-search-container"></div>
-      <div id="pot-container"></div>
-      <div id="current-cubberd-container"></div>
-      <div id="shopping-list-container"></div>
+      <div id="navbar-container" className="main-page-component"></div>
+      <div id="cubberd-search-container" className="main-page-component"></div>
+      <div id="pot-container" className="main-page-component"></div>
+      <div id="current-cubberd-container" className="main-page-component"></div>
+      <div id="shopping-list-container" className="main-page-component"></div>
     </div>
   );
 }
