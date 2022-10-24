@@ -1,7 +1,6 @@
 import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-//return route to the component if no one is logged in, return to tweets index otherwise
 export const AuthRoute = ({ component: Component, path, exact }) => {
   const loggedIn = useSelector((state) => !!state.session.user);
 
@@ -10,7 +9,7 @@ export const AuthRoute = ({ component: Component, path, exact }) => {
       path={path}
       exact={exact}
       render={(props) =>
-        !loggedIn ? <Component {...props} /> : <Redirect to="/tweets" />
+        !loggedIn ? <Component {...props} /> : <Redirect to="/" />
       }
     />
   );
