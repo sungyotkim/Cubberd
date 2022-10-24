@@ -89,3 +89,12 @@
     height: calc(100% - 1em);
     width: calc(100% - 1em);
 }
+
+#navbar-container nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    width: 100%;
+    padding: 1em;
+}

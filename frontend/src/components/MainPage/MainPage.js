@@ -1,6 +1,16 @@
 import "./MainPage.css";
+import { logout } from "../../store/session";
+import { useDispatch } from "react-redux";
+
 
 function MainPage() {
+    const dispatch = useDispatch();
+
+
+    const handleLogout = () => {
+        dispatch(logout())
+    }
+
     return (
         <div id="main-page">
             <div id="main-page-left">
@@ -9,7 +19,9 @@ function MainPage() {
             <div id="main-page-right">
                 <div id="main-page-top">
                     <div id="main-page-top-right">
-                        <div id="navbar-container" className="main-page-component"></div>
+                        <div id="navbar-container" className="main-page-component">
+                            <nav><button onClick={handleLogout}>Logout</button></nav>
+                        </div>
                         <div id="main-page-top-right-bottom">
                             <div id="pot-container" className="main-page-component"></div>
                             <div id="shopping-list-container" className="main-page-component"></div>
