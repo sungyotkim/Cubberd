@@ -28,28 +28,33 @@ const LoginForm = () => {
   return (
     <>
       <form className="session-form" onSubmit={handleSubmit}>
-        <h2 className="session-form-header">Log In</h2>
+        <div className="session-form-header">
+          <h2>Log In</h2>
+        </div>
         <div className="errors">{errors?.email}</div>
         <div className="errors">{errors?.password}</div>
-        <label>
-          <span>Email</span>
+        <div className="session-input-container">
           <input
             type="text"
             value={email}
             onChange={update("email")}
             placeholder="Email"
           />
-        </label>
-        <label>
-          <span>Password</span>
           <input
             type="password"
             value={password}
             onChange={update("password")}
             placeholder="Password"
           />
-        </label>
-        <input type="submit" value="Log In" disabled={!email || !password} />
+        </div>
+        <div className="session-form-btn">
+          <input type="submit" value="Login" disabled={!email || !password} />
+        </div>
+        <div className="session-form-redirect-container">
+          <div className="redirect-to-signup-btn">
+            Already have an account? Sign up
+          </div>
+        </div>
       </form>
     </>
   );
