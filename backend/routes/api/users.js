@@ -69,9 +69,8 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
       err.errors = { email: "Invalid credentials" };
       return next(err);
     }
-    return res.json({ user });
+    return res.json(await loginUser(user));
   })(req, res, next);
 });
-
 
 module.exports = router;

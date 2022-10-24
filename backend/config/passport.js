@@ -21,7 +21,7 @@ passport.use(new LocalStrategy({
     done(null, false);
 }));
 
-export async function loginUser(user) {
+exports.loginUser = async function(user) {
   const userInfo = {
     _id: user._id,
     username: user.username,
