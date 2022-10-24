@@ -4,8 +4,6 @@ import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
 import MainPage from "./components/MainPage/MainPage";
 import Cubberd from "./components/Cubberd/Cubberd";
-import { Route } from "react-router-dom";
-
 import { getCurrentUser } from "./store/session";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
