@@ -3,6 +3,7 @@ import LoginFormModal from "../SessionFormModals/LoginFormModal";
 import { getCurrentUser, logout } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import SignupFormModal from "../SessionFormModals/SignupFormModal";
 
 function MainPage() {
     const dispatch = useDispatch();
@@ -23,7 +24,7 @@ function MainPage() {
                 <div id="main-page-top">
                     <div id="main-page-top-right">
                         <div id="navbar-container" className="main-page-component">
-                           <nav>{sessionUser ? <span>Logged in as {sessionUser.username} <button onClick={handleLogout}>Logout</button> </span> : <LoginFormModal />}</nav>  
+                           <nav>{sessionUser ? <span>Logged in as {sessionUser.username} <button onClick={handleLogout}>Logout</button> </span> : <span><LoginFormModal /> <SignupFormModal /></span>}</nav>  
                         </div>
                         <div id="main-page-top-right-bottom">
                             <div id="pot-container" className="main-page-component"></div>
