@@ -28,11 +28,10 @@ function App() {
     setRecipes((oldArr) => [...oldArr, ...newRecipes]);
   };
 
+  useEffect(() => {
+    getRecipes();
+  }, [query]);
   console.log(recipes);
-
-  // useEffect(() => {
-  //   getRecipes();
-  // }, [query]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

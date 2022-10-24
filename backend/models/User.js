@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Ingredient = require('./Ingredient');
 const Schema = mongoose.Schema;
 
 const userSchema = Schema({
@@ -14,9 +15,14 @@ const userSchema = Schema({
       type: String,
       required: true
     },
-    cubberd: [
-      
-    ]
+    cubberd: ['Ingredient']
+    // cubberd: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Ingredient'
+    //   }
+    // ]
+    // ['Ingredient']
   }, {
     timestamps: true
   });
