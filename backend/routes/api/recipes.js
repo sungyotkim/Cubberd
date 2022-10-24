@@ -1,7 +1,21 @@
 const express = require('express');
+const { body } = require('express-validator');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Recipe = mongoose.model('Recipe')
+
+router.get('/', async (req, res, next) => {
+    const allRecipes = await Recipe.find()
+    return res.json(allRecipes)
+});
+
+// get by ingredients
+// router.get('/', async (req, res, next) => {
+//     let recipes;
+//     try {
+//         recipes = Recipe.find({"ingredients": {$in: [req.body]}})
+//     }
+// });
 
 router.post('/', async (req, res) => {
     const newRecipe = new Recipe( {
@@ -11,11 +25,12 @@ router.post('/', async (req, res) => {
         source: req.body.source,
         url: req.body.url,
         source: req.body.source,
-        url: req.body.url,
+        yield: req.body.yield,
         dietLabels: req.body.dietLabels,
         healthLabels: req.body.healthLabels,
         cautions: req.body.cautions,
         ingredientLines: req.body.ingredientLines,
+        ingredients: req.body.ingredients,
         calories: req.body.calories,
         totalWeight: req.body.totalWeight,
         totalTime: req.body.totalTime,
