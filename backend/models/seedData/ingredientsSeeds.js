@@ -1,16 +1,28 @@
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 const Ingredient = require('../Ingredient');
+const {mongoURI: db} = require('../../config/keys.js');
 
+mongoose
+.connect(db, { useNewUrlParser: true, useUnifiedTopology: true})
+.then (() => {
+    console.log("Connected to mongoDB successfully")
+    })
+    .catch (err => {
+        console.log(err)
+    }) 
+    
 const seedIngredients = [
     {
         name: 'salt',
         type: 'spices',
-        imageUrl: ""
+        imageUrl: ''
     },
     { 
         name: 'pepper',
         type: 'spices',
-        imageUrl: ""
+        imageUrl: ''
     },
     {
         name: 'olive oil',

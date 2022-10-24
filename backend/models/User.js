@@ -13,7 +13,10 @@ const userSchema = Schema({
     hashedPassword: {
       type: String,
       required: true
-    }
+    },
+    cubberd: [
+      
+    ]
   }, {
     timestamps: true
   });
