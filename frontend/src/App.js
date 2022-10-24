@@ -1,9 +1,10 @@
-import { Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
 import MainPage from "./components/MainPage/MainPage";
 import Cubberd from "./components/Cubberd/Cubberd";
+import { Route } from "react-router-dom";
 
 import { getCurrentUser } from "./store/session";
 import { useEffect, useState } from "react";
@@ -28,10 +29,11 @@ function App() {
     setRecipes((oldArr) => [...oldArr, ...newRecipes]);
   };
 
+
   useEffect(() => {
     getRecipes();
   }, [query]);
-  console.log(recipes);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,7 +52,7 @@ function App() {
           <input type="submit" value="submit" />
         </form>
         <Switch>
-          <AuthRoute exact path="/" component={MainPage} />
+          <Route exact path="/" component={MainPage} />
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />
 
