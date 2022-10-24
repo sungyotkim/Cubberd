@@ -73,13 +73,6 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
   })(req, res, next);
 });
 
-
-//DELETE /api/users/logout
-router.delete('/logout', async (req, res, next) => {
-  
-})
-
-
 router.get('/current', restoreUser, (req, res) => {
   if (!isProduction) {
     // In development, allow React server to gain access to the CSRF token
