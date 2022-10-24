@@ -1,7 +1,8 @@
 #main-page {
     width: 80%;
     margin: auto;
-    border: 2px solid blue;
+    border: 2px solid black;
+    box-sizing: border-box;
     height: 800px;
     margin-top: 50px;
     display: flex;
@@ -13,12 +14,13 @@
     height: 100px;
     width: 100px;
     margin: 0.5em;
+    border: 1px solid black;
+    box-sizing: border-box;
 
 }
 
 #main-page-left {
     width: 35em;
-    background-color: darkslateblue;
 }
 
 #main-page-right {
@@ -31,14 +33,12 @@
 
 #main-page-top {
     height: 80%;
-    background-color: chartreuse;
     margin: 0.5%;
     display: flex;
     flex-direction: row;
 }
 
 #main-page-bottom {
-    background-color: coral;
     margin: 00.5%;
     height: 20%;
 }
@@ -46,7 +46,6 @@
 #main-page-top-left {
     height: 100%;
     width: 35em;
-    background-color: darkseagreen;
 }
 
 #main-page-top-right {
@@ -59,28 +58,34 @@
 #navbar-container {
     display: flex;
     flex-direction: row;
-    background-color: darkcyan;
-    margin: 0.5em 0;
-    width: 100%;
+    margin: 0.5em 0.5em;
+    width: calc(100% - 1em);
 
 }
 
 #main-page-top-right-bottom {
     display: flex;
     flex-direction: row;
-    background-color: cornflowerblue;
     height: 100%;
 }
 
 
 #pot-container {
-    background-color: darkgray;
     width: 70%;
     height: calc(100% - 1em);
 }
 
 #shopping-list-container {
     width: 30%;
-    background-color: darksalmon;
     height: calc(100% - 1em);
+}
+
+#cubberd-search-container {
+    height: calc(100% - 1em);
+    width: calc(100% - 1em);
+}
+
+#current-cubberd-container {
+    height: calc(100% - 1em);
+    width: calc(100% - 1em);
 }

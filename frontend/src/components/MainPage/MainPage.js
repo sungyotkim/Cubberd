@@ -7,18 +7,18 @@ function MainPage() {
                 <div id="cubberd-search-container" className="main-page-component"></div>
             </div>
             <div id="main-page-right">
-            <div id="main-page-top">
-                <div id="main-page-top-right">
-                    <div id="navbar-container" className="main-page-component"></div>
-                    <div id="main-page-top-right-bottom">
-                        <div id="pot-container" className="main-page-component"></div>
-                        <div id="shopping-list-container" className="main-page-component"></div>
+                <div id="main-page-top">
+                    <div id="main-page-top-right">
+                        <div id="navbar-container" className="main-page-component"></div>
+                        <div id="main-page-top-right-bottom">
+                            <div id="pot-container" className="main-page-component"></div>
+                            <div id="shopping-list-container" className="main-page-component"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="main-page-bottom">
-                <div id="current-cubberd-container" className="main-page-component"></div>
-            </div>
+                <div id="main-page-bottom">
+                    <div id="current-cubberd-container" className="main-page-component"></div>
+                </div>
 
             </div>
         </div>
