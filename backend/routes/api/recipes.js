@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Recipe = mongoose.model('Recipe')
 
 router.post('/', async (req, res) => {
-    const recipe = new Recipe( {
+    const newRecipe = new Recipe( {
         uri: req.body.uri,
         label: req.body.label,
         image: req.body.image,
@@ -24,5 +24,7 @@ router.post('/', async (req, res) => {
         dishType: req.body.dishType,
         totalNutrients: req.body.totalNutrients
     })
+
+    const recipe = await newRecipe.save();
     return res.json(recipe)
 })
