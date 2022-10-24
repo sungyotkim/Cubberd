@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Ingredient = mongoose.model('Ingredient')
 const { loginUser, restoreUser } = require('../../config/passport');
 const passport = require('passport');
 const validateRegisterInput = require('../../validations/register');
@@ -15,7 +16,6 @@ router.get('/', function(req, res, next) {
     message: "GET /api/users"
   });
 });
-
 
 //POST /api/users/register
 router.post('/register', validateRegisterInput, async (req, res, next) => {
@@ -41,7 +41,7 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
     username: req.body.username,
     email: req.body.email
   });
-
+  newUser.cubberd.push({ObjectId: '6356c1fd72c6fbbe8299905f'})
 
   bcrypt.genSalt(10, (err, salt) => {
     if (err) throw err;
