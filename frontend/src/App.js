@@ -4,7 +4,6 @@ import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
 import MainPage from "./components/MainPage/MainPage";
 import Cubberd from "./components/Cubberd/Cubberd";
-
 import { getCurrentUser } from "./store/session";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -28,9 +27,11 @@ function App() {
     setRecipes((oldArr) => [...oldArr, ...newRecipes]);
   };
 
-  // useEffect(() => {
-  //   getRecipes();
-  // }, [query]);
+
+  useEffect(() => {
+    getRecipes();
+  }, [query]);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

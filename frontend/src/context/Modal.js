@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState, useEffect } from 'react';
-import ReactDOM from 'react-node';
+import ReactDOM from 'react-dom';
 import './Modal.css';
 
 
@@ -7,8 +7,8 @@ import './Modal.css';
 const ModalContext = React.createContext();
 
 
-function ModalProvider({children}) {
-    const modalRed = useRef();
+export function ModalProvider({children}) {
+    const modalRef = useRef();
     const [value, setValue] = useState();
 
     useEffect(() => {
@@ -17,9 +17,9 @@ function ModalProvider({children}) {
 
     return (
         <>
-        <ModalContext.Proivder value={value}>
+        <ModalContext.Provider value={value}>
             {children}
-        </ModalContext.Proivder>
+        </ModalContext.Provider>
         <div ref={modalRef} />
         </>
     )
