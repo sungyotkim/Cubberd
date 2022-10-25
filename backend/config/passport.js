@@ -29,7 +29,7 @@ exports.loginUser = async function(user) {
     email: user.email,
     cubberd: user.cubberd, 
     savedRecipes: user.savedRecipes,
-    pinnedRecipes: user.pinnedRecipes
+    plannedRecipes: user.plannedRecipes
   };
   const token = await jwt.sign(
     userInfo,

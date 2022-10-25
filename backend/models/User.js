@@ -20,7 +20,7 @@ const userSchema = Schema({
     savedRecipes: {
       allSaved: [RecipeSchema]
     },
-    pinnedRecipes: [RecipeSchema]
+    plannedRecipes: [RecipeSchema]
   }, {
     timestamps: true
   });
