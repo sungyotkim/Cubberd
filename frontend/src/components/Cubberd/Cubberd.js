@@ -37,16 +37,41 @@ const Cubberd = () => {
   const allIngredients = useSelector((state) => state.ingredients.all);
   const [searchResults, setSearchResults] = useState([]);
   const [searchResult, setSearchResult] = useState();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [cubberdRows, setCubberdRows] = useState([]);
 
   useEffect(() => {
     dispatch(fetchIngredients());
   }, [dispatch]);
 
-  // console.log(allIngredients);
-
   useEffect(() => {
     dispatch(fetchUserCubberdIngredients(currentUser._id));
   }, [currentUser, dispatch]);
+
+  useEffect(() => {
+    if (userCubberd && userCubberd.length > 0) {
+      let cubberdArr = [];
+      userCubberd.forEach((item) => cubberdArr.push(item));
+      let rowArr = [];
+
+      for (let i = 0; i < cubberdArr.length; i += 2) {
+        if (cubberdArr[i + 1]) {
+          rowArr.push([cubberdArr[i], cubberdArr[i + 1]]);
+        } else {
+          rowArr.push([cubberdArr[i]]);
+        }
+      }
+
+      if (cubberdArr.length < 7) {
+        let num = 7 - cubberdArr.length;
+        for (let i = 0; i < num; i += 2) {
+          rowArr.push([]);
+        }
+      }
+
+      setCubberdRows(rowArr);
+    }
+  }, [userCubberd]);
 
   const searchItem = (query) => {
     setSearchResult();
@@ -54,6 +79,7 @@ const Cubberd = () => {
       setSearchResults([]);
       return;
     }
+    setSearchQuery(query);
     query = query.toLowerCase();
 
     const results = [];
@@ -71,6 +97,7 @@ const Cubberd = () => {
     e.preventDefault();
     setSearchResults([]);
     setSearchResult(result);
+    setSearchQuery("");
   };
 
   const addToUserCubberd = () => {
@@ -99,6 +126,7 @@ const Cubberd = () => {
                   className="cubberd-search-bar"
                   placeholder="Search for ingredients..."
                   onChange={(e) => searchItem(e.target.value)}
+                  value={searchQuery}
                 />
                 <div className="cubberd-search-btn">
                   <BiSearchAlt />
@@ -145,31 +173,39 @@ const Cubberd = () => {
             <div className="cubberd-ingredients-container-wrapper">
               {userCubberd && userCubberd.length > 0 && (
                 <>
-                  {userCubberd.map((ing) => (
+                  {cubberdRows.map((row) => (
                     <div className="cubberd-ingredients-container">
-                      <CustomToolTip title={ing.food} arrow placement="bottom">
-                        <img src={ing.image} alt={ing.food} />
-                      </CustomToolTip>
-                      <div className="search-result-options">
-                        <CustomToolTip
-                          title="Add to pot?"
-                          arrow
-                          placement="top"
-                        >
-                          <div className="cubberd-shelving-option-one">
-                            <GiCookingPot />
+                      {row.map((ing) => (
+                        <>
+                          <CustomToolTip
+                            title={ing.food}
+                            arrow
+                            placement="bottom"
+                          >
+                            <img src={ing.image} alt={ing.food} />
+                          </CustomToolTip>
+                          <div className="search-result-options">
+                            <CustomToolTip
+                              title="Add to pot?"
+                              arrow
+                              placement="top"
+                            >
+                              <div className="cubberd-shelving-option-one">
+                                <GiCookingPot />
+                              </div>
+                            </CustomToolTip>
+                            <CustomToolTip
+                              title="Remove from cubberd?"
+                              arrow
+                              placement="bottom"
+                            >
+                              <div className="cubberd-shelving-option-two">
+                                <MdOutlineRemoveCircle />
+                              </div>
+                            </CustomToolTip>
                           </div>
-                        </CustomToolTip>
-                        <CustomToolTip
-                          title="Remove to cubberd?"
-                          arrow
-                          placement="bottom"
-                        >
-                          <div className="cubberd-shelving-option-two">
-                            <MdOutlineRemoveCircle />
-                          </div>
-                        </CustomToolTip>
-                      </div>
+                        </>
+                      ))}
                       <div className="cubberd-shelving"></div>
                     </div>
                   ))}

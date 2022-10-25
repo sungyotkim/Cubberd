@@ -79,7 +79,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 25%;
+  height: 187px;
   position: relative;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
   padding-bottom: 17px;
@@ -203,9 +203,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 75%;
+  height: 560px;
   overflow-x: visible;
-  overflow-y: scroll;
+  overflow-y: auto;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
@@ -217,10 +217,10 @@
 .cubberd-ingredients-container {
   display: flex;
   width: 100%;
-  height: 25%;
+  height: 140px;
   position: relative;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
-  padding-top: 3px;
+  padding-top: 43px;
   padding-bottom: 17px;
   box-sizing: border-box;
   align-items: flex-end;
