@@ -32,22 +32,12 @@ const Cubberd = () => {
   const currentUser = useSelector((state) => state.session.user);
   const userCubberd = useSelector((state) => state.ingredients.userCubberd);
   const allIngredients = useSelector((state) => state.ingredients.all);
-  const [searchResults, setSearchResults] = useState([
-    "words",
-    "more words",
-    "lots of words",
-    "lots of words",
-    "lots of words",
-    "lots of words",
-    "lots of words",
-    "lots of words",
-  ]);
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     dispatch(fetchIngredients());
   }, [dispatch]);
 
-  console.log(userCubberd);
   console.log(allIngredients);
 
   useEffect(() => {
@@ -56,8 +46,20 @@ const Cubberd = () => {
 
   const searchItem = (query) => {
     if (!query) {
-      setSearchResults();
+      setSearchResults([]);
+      return;
     }
+    query = query.toLowerCase();
+
+    const results = [];
+
+    allIngredients.forEach((ing) => {
+      if (ing.food.toLowerCase().indexOf(query) !== -1) {
+        results.push(ing);
+      }
+    });
+
+    setSearchResults(results);
   };
 
   return (
@@ -87,9 +89,10 @@ const Cubberd = () => {
                 </div>
               </div>
               <div className="search-results">
-                {searchResults.map((result) => {
-                  return <div>{result}</div>;
-                })}
+                {searchResults &&
+                  searchResults.map((result) => {
+                    return <div>{result.food}</div>;
+                  })}
               </div>
               <div className="cubberd-shelving"></div>
             </div>
