@@ -101,7 +101,10 @@ router.get("/current", restoreUser, (req, res) => {
   res.json({
     _id: req.user._id,
     username: req.user.username,
-    email: req.user.email
+    email: req.user.email,
+    cubberd: req.user.cubberd, 
+    savedRecipes: req.user.savedRecipes,
+    plannedRecipes: req.user.plannedRecipes
   });
 });
 
@@ -116,7 +119,7 @@ router.get("/:userId/cubberd", requireUser, async (req, res) => {
 router.post("/:userId/cubberd", restoreUser, requireUser, async (req, res) => {
   const ingredient = req.body;
   const currentUserId = req.params.userId;
-  User.updateOne(
+  User.findAndUpdate(
     { _id: currentUserId },
     { $push: { cubberd: ingredient } }
   );
