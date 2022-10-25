@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const Ingredient = require('./Ingredient');
+const IngredientSchema = require('./Ingredient').schema;
+const RecipeSchema = require('./Recipe').schema;
 const Schema = mongoose.Schema;
 
 const userSchema = Schema({
@@ -15,14 +16,11 @@ const userSchema = Schema({
       type: String,
       required: true
     },
-    cubberd: ['Ingredient']
-    // cubberd: [
-    //   {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Ingredient'
-    //   }
-    // ]
-    // ['Ingredient']
+    cubberd: [IngredientSchema],
+    savedRecipes: {
+      allSaved: [RecipeSchema]
+    },
+    pinnedRecipes: [RecipeSchema]
   }, {
     timestamps: true
   });
