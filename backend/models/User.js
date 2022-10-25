@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ShoppingListItemSchema = require('./ShoppingListItem').schema;
 const IngredientSchema = require('./Ingredient').schema;
 const RecipeSchema = require('./Recipe').schema;
 const Schema = mongoose.Schema;
@@ -20,7 +21,8 @@ const userSchema = Schema({
     savedRecipes: {
       favorited: [RecipeSchema],
       planned: [RecipeSchema]
-    }
+    },
+    shoppingList: [ShoppingListItemSchema]
   }, {
     timestamps: true
   });
