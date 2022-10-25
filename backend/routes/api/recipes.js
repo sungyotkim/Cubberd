@@ -23,15 +23,16 @@ router.get('/ingredients', async(req, res) => {
     let recipesArr; 
     let recipes = []
     while (foods.length >= 1) {
-        ingredientScore = Math.round((foods.length / numIngredients)) * 100
+        ingredientScore = Math.round((foods.length / numIngredients)* 100)
         recipesArr = await Recipe.find ({"ingredients.food": {$all: foods}})
         recipesArr.forEach(recipe => {
             recipes.push({"ingredientScore": ingredientScore, "recipe": recipe})
         })
         foods = foods.slice(0, -1)
+        // console.log(foods)
     }
-    console.log("recipes")
-    console.log(recipes)
+    // console.log("recipes")
+    // console.log(recipes)
     return res.json(recipesArr)
 })
 
