@@ -4,10 +4,14 @@ import { getCurrentUser, logout } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SignupFormModal from "../SessionFormModals/SignupFormModal";
+import RecipeShowModal from "../RecipeShowModal/RecipeShowModal";
 
 function MainPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
+
+    // Temporary placeholder
+    const sampleRecipe = {url: 'google.com', label: 'example recipe', ingredients: ['ingredient1', 'ingredient2', 'ingredient3'], image: 'https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2015/11/shakshuka-11.jpg'}
 
 
 
@@ -28,7 +32,7 @@ function MainPage() {
                         </div>
                         <div id="main-page-top-right-bottom">
                             <div id="pot-container" className="main-page-component"></div>
-                            <div id="shopping-list-container" className="main-page-component"></div>
+                            <div id="shopping-list-container" className="main-page-component"><RecipeShowModal recipe={sampleRecipe}/></div>
                         </div>
                     </div>
                 </div>

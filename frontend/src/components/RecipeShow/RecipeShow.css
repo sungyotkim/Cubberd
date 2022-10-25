@@ -1,0 +1,6 @@
+#recipe {
+    height: 500px;
+    width: 400px;
+    background-color: beige;
+    z-index: 2;
+}
