@@ -18,9 +18,9 @@ const userSchema = Schema({
     },
     cubberd: [IngredientSchema],
     savedRecipes: {
-      allSaved: [RecipeSchema]
-    },
-    plannedRecipes: [RecipeSchema]
+      favorited: [RecipeSchema],
+      planned: [RecipeSchema]
+    }
   }, {
     timestamps: true
   });
