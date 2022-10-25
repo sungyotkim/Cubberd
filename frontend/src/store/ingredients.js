@@ -49,7 +49,7 @@ export const fetchIngredient = (name) => async (dispatch) => {
 export const fetchUserCubberdIngredients = (userId) => async (dispatch) => {
   const res = await jwtFetch(`/api/users/${userId}/cubberd`);
   const ingredients = await res.json();
-  dispatch(receiveUserCubberdIngredients(ingredients));
+  dispatch(receiveUserCubberdIngredients(ingredients.cubberd));
 };
 
 export const composeUserCubberdIngredient =
@@ -73,7 +73,7 @@ export const deleteUserCubberdIngredient =
   };
 
 const ingredientsReducer = (
-  state = { all: {}, user: {}, new: undefined },
+  state = { all: {}, userCubberd: {}, new: undefined },
   action
 ) => {
   switch (action.type) {
@@ -82,14 +82,18 @@ const ingredientsReducer = (
     case RECEIVE_INGREDIENT:
       return { ...state, all: action.ingredient, new: undefined };
     case RECEIVE_USER_CUBBERD_INGREDIENTS:
-      return { ...state, user: action.ingredients, new: undefined };
+      return { ...state, userCubberd: action.ingredients, new: undefined };
     case RECEIVE_NEW_USER_CUBBERD_INGREDIENT:
-      return { ...state, user: action.ingredients, new: action.ingredient };
+      return {
+        ...state,
+        userCubberd: action.ingredients,
+        new: action.ingredient,
+      };
     case REMOVE_USER_CUBBERD_INGREDIENT:
       return {
         ...state,
         new: undefined,
-        user: state.user.ingredients.filter(
+        userCubberd: state.ingredients.userCubberd.filter(
           (ing) => ing._id !== action.payload
         ),
       };
