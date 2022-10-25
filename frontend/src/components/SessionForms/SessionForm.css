@@ -1,16 +1,16 @@
 .session-form {
   width: 450px;
-  min-height: 410px;
+  min-height: 490px;
   background-color: var(--main-lighter-color);
   position: fixed;
   z-index: 1;
   border-radius: 16px;
-  top: calc(50% - 205px);
+  top: calc(50% - 245px);
   left: calc(50% - 225px);
 }
 
 .signup-form {
-  top: calc(50% - 265px);
+  top: calc(50% - 305px);
 }
 
 .session-form-header {
@@ -18,8 +18,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--main-lighter-dark-color);
-  margin-bottom: 36px;
+  /* border-bottom: 1px solid var(--main-lighter-dark-color); */
+  /* margin-bottom: 36px; */
   padding: 0 20px;
 }
 
@@ -50,9 +50,8 @@
 
 .session-form-btn {
   height: 50px;
-  padding: 0 20px;
+  padding: 0 20px 36px;
   border-bottom: 1px solid var(--main-lighter-dark-color);
-  padding-bottom: 36px;
 }
 
 .session-form-btn > input {
@@ -61,7 +60,8 @@
   border-radius: 8px;
   border: none;
   padding: 10px;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 600;
   background-color: var(--main-dark-color);
   cursor: pointer;
   box-sizing: border-box;
@@ -106,4 +106,40 @@
 
 .redirect-to-login-btn:hover {
   text-decoration: underline;
+}
+
+.demo-user-btn {
+  height: 50px;
+  padding: 0 20px;
+}
+
+.demo-user-btn > div {
+  height: 50px;
+  width: 410px;
+  border-radius: 8px;
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+  background-color: var(--main-dark-color);
+  cursor: pointer;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.login-fieldset {
+  border: none;
+  border-top: 1px solid var(--main-lighter-dark-color);
+  margin: 24px 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-fieldset > legend {
+  font-size: 14px;
+  padding: 0 15px;
+  margin: 0 auto;
+  color: var(--main-dark-color);
 }

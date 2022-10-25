@@ -61,6 +61,14 @@ const SignupForm = () => {
         <div className="session-form-header">
           <h2>Sign Up</h2>
         </div>
+        <div className="demo-user-btn">
+          <div>
+            Demo User
+          </div>
+        </div>
+        <fieldset className="login-fieldset">
+          <legend align="center">OR</legend>
+        </fieldset>
         {errors && (
           <div className="errors">
             {errors?.email || errors?.username || errors?.password}
