@@ -55,10 +55,10 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
   newUser.cubberd.push(jasmineRice);
   newUser.cubberd.push(chickenBreast);
 
-  newUser.savedRecipes.allSaved.push(recipe1);
-  newUser.savedRecipes.allSaved.push(recipe2);
-  newUser.plannedRecipes.push(recipe3);
-  newUser.plannedRecipes.push(recipe4);
+  newUser.savedRecipes.favorited.push(recipe1);
+  newUser.savedRecipes.favorited.push(recipe2);
+  newUser.savedRecipes.planned.push(recipe3);
+  newUser.savedRecipes.planned.push(recipe4);
 
   bcrypt.genSalt(10, (err, salt) => {
     if (err) throw err;
