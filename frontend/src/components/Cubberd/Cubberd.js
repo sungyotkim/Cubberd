@@ -43,6 +43,7 @@ const Cubberd = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [cubberdRows, setCubberdRows] = useState([]);
   const [selectedLi, setSelectedLi] = useState(0);
+  const [resultAdded, setResultAdded] = useState(false);
   const ref = useRef();
 
   useEffect(() => {
@@ -104,6 +105,13 @@ const Cubberd = () => {
     setSearchResults([]);
     setSearchResult(result);
     setSearchQuery("");
+
+    let existingArr = userCubberd.filter((ele) => ele._id === result._id);
+    if (existingArr.length > 0) {
+      setResultAdded(true);
+    } else {
+      setResultAdded(false);
+    }
   };
 
   const addToUserCubberd = () => {
@@ -196,18 +204,20 @@ const Cubberd = () => {
                           <GiCookingPot />
                         </div>
                       </CustomToolTip>
-                      <CustomToolTip
-                        title="Save to cubberd?"
-                        arrow
-                        placement="bottom"
-                      >
-                        <div
-                          className="save-to-cubberd-btn"
-                          onClick={addToUserCubberd}
+                      {!resultAdded && (
+                        <CustomToolTip
+                          title="Save to cubberd?"
+                          arrow
+                          placement="bottom"
                         >
-                          <BiSave />
-                        </div>
-                      </CustomToolTip>
+                          <div
+                            className="save-to-cubberd-btn"
+                            onClick={addToUserCubberd}
+                          >
+                            <BiSave />
+                          </div>
+                        </CustomToolTip>
+                      )}
                     </div>
                   </>
                 </div>
