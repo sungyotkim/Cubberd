@@ -54,12 +54,14 @@ export const fetchUserCubberdIngredients = (userId) => async (dispatch) => {
 
 export const composeUserCubberdIngredient =
   (userId, ingredient) => async (dispatch) => {
+    console.log(userId);
     const res = await jwtFetch(`/api/users/${userId}/cubberd`, {
       method: "POST",
       body: JSON.stringify(ingredient),
     });
-    const savedIngredient = await res.json();
-    dispatch(receiveNewUserCubberdIngredient(savedIngredient));
+    const newCubberd = await res.json();
+    console.log(newCubberd);
+    dispatch(receiveNewUserCubberdIngredient(newCubberd));
   };
 
 export const deleteUserCubberdIngredient =
@@ -72,22 +74,18 @@ export const deleteUserCubberdIngredient =
     dispatch(removeUserCubberdIngredient(deletedIngredientId));
   };
 
-const ingredientsReducer = (
-  state = { all: {}, userCubberd: {}, new: undefined },
-  action
-) => {
+const ingredientsReducer = (state = { all: {}, userCubberd: {} }, action) => {
   switch (action.type) {
     case RECEIVE_INGREDIENTS:
-      return { ...state, all: action.ingredients, new: undefined };
+      return { ...state, all: action.ingredients };
     case RECEIVE_INGREDIENT:
-      return { ...state, all: action.ingredient, new: undefined };
+      return { ...state, all: action.ingredient };
     case RECEIVE_USER_CUBBERD_INGREDIENTS:
-      return { ...state, userCubberd: action.ingredients, new: undefined };
+      return { ...state, userCubberd: action.ingredients };
     case RECEIVE_NEW_USER_CUBBERD_INGREDIENT:
       return {
         ...state,
-        userCubberd: action.ingredients,
-        new: action.ingredient,
+        userCubberd: [action.ingredient],
       };
     case REMOVE_USER_CUBBERD_INGREDIENT:
       return {
