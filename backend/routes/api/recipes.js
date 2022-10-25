@@ -2,6 +2,7 @@ const express = require('express');
 const { body } = require('express-validator');
 const router = express.Router();
 const mongoose = require('mongoose');
+const Ingredient = mongoose.model('Ingredient');
 const Recipe = mongoose.model('Recipe')
 
 router.get('/', async (req, res, next) => {
@@ -10,6 +11,11 @@ router.get('/', async (req, res, next) => {
 });
 
 // get by ingredients
+router.get('/ingredients', async(req, res, next) => {
+    const ingredient = await Ingredient.find(req.body);
+    const recipe = await Recipe.find({"ingredients.foodId": `${ingredient.foodId}`});
+    return res.json(recipe)
+})
 // router.get('/', async (req, res, next) => {
 //     let recipes;
 //     try {
