@@ -40,7 +40,7 @@ function MainPage() {
                             <div id="pot-container" className="main-display-component">
                                 <CookingPot />
                             </div>
-                            <div id="shopping-list-container" className="main-display-component"><RecipeShowModal recipe={recipe}/></div>
+                            <div id="shopping-list-container" className="main-display-component"></div>
                         </div>
                     </div>
                 </div>

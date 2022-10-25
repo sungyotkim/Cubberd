@@ -23,21 +23,26 @@ passport.use(new LocalStrategy({
 }));
 
 exports.loginUser = async function(user) {
-  const userInfo = {
+  const allUserInfo = {
     _id: user._id,
     username: user.username,
     email: user.email,
     cubberd: user.cubberd, 
     savedRecipes: user.savedRecipes,
     plannedRecipes: user.plannedRecipes
+  }
+  const tokenUserInfo = {
+    _id: user._id,
+    username: user.username,
+    email: user.email
   };
   const token = await jwt.sign(
-    userInfo,
+    tokenUserInfo,
     secretOrKey,
     { expiresIn: 3600 }
   );
   return {
-    user: userInfo,
+    user: allUserInfo,
     token
   };
 };

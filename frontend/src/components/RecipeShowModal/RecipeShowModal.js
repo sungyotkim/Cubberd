@@ -8,7 +8,7 @@ function RecipeShowModal({recipe}) {
 
     return (
         <>
-        <button onClick={() => setShowModal(true)}>Show Recipe Modal</button>
+        <button onClick={() => setShowModal(true)}>{recipe.label}</button>
         {showModal && (
             <Modal onClose={() => setShowModal(false)}>
                 <RecipeShow recipe={recipe}/>
