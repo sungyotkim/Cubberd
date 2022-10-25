@@ -7,6 +7,7 @@ import SignupFormModal from "../SessionFormModals/SignupFormModal";
 import RecipeShowModal from "../RecipeShowModal/RecipeShowModal";
 import { fetchRecipes } from "../../store/recipes";
 import { useEffect } from "react";
+import CookingPot from "./CookingPot/CookingPot";
 
 function MainPage() {
     const dispatch = useDispatch();
@@ -36,7 +37,9 @@ function MainPage() {
                            <nav>{sessionUser ? <span>Logged in as <Link to="/profile">{sessionUser.username}</Link> <button onClick={handleLogout}>Logout</button> </span> : <span><LoginFormModal /> <SignupFormModal /></span>}</nav>  
                         </div>
                         <div id="main-page-top-right-bottom">
-                            <div id="pot-container" className="main-display-component"></div>
+                            <div id="pot-container" className="main-display-component">
+                                <CookingPot />
+                            </div>
                             <div id="shopping-list-container" className="main-display-component"><RecipeShowModal recipe={recipe}/></div>
                         </div>
                     </div>
