@@ -5,8 +5,8 @@ const mongoose = require('mongoose');
 const Recipe = mongoose.model('Recipe')
 
 router.get('/', async (req, res, next) => {
-    const allRecipes = await Recipe.find()
-    return res.json(allRecipes)
+    const allRecipes = await Recipe.find();
+    return res.json(allRecipes);
 });
 
 // get by ingredients
@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
     })
 
     const recipe = await newRecipe.save();
-    return res.json(recipe)
+    return res.json(recipe);
 })
 
 module.exports = router;

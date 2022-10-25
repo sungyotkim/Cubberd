@@ -10,7 +10,7 @@ const { isProduction } = require("./config/keys");
 require("./models/User");
 require("./config/passport");
 require("./models/Ingredient");
-require("./models/Recipe")
+require("./models/Recipe");
 
 const passport = require("passport");
 
