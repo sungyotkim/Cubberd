@@ -11,7 +11,7 @@ function MainPage() {
     const sessionUser = useSelector(state => state.session.user);
 
     // Temporary placeholder
-    const sampleRecipe = {url: 'google.com', label: 'example recipe', ingredients: ['ingredient1', 'ingredient2', 'ingredient3'], image: 'https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2015/11/shakshuka-11.jpg'}
+    const sampleRecipe = {url: 'google.com', label: 'example recipe', ingredients: [{food: 'ingredient1'}, {food: 'ingredient2'}, {food: 'ingredient3'}], image: 'https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2015/11/shakshuka-11.jpg'}
 
 
 
