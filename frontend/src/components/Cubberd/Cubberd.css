@@ -130,22 +130,27 @@
 
 .search-results {
   margin: 0 5px;
+  min-height: 22px;
   max-height: 147px;
   width: calc(100% - 46px);
   background-color: white;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-}
-
-.search-results > div {
-  width: 100%;
-  cursor: pointer;
-  padding: 0 5px;
+  padding: 0;
   box-sizing: border-box;
 }
 
-.search-results > div:hover {
+.search-results > li {
+  width: 100%;
+  height: 22px;
+  cursor: pointer;
+  padding: 0 5px;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+.search-results > li:hover {
   background-color: #ebebeb;
 }
 
@@ -204,14 +209,28 @@
   flex-direction: column;
   width: 100%;
   height: 560px;
-  overflow-x: visible;
+  box-sizing: border-box;
+  overflow-x: hidden;
   overflow-y: auto;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  margin-top: 10px;
 }
 
-.cubberd-ingredients-container-wrapper::-webkit-scrollbar {
-  display: none;
+::-webkit-scrollbar {
+  width: 10px;
+  margin-right: 2px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--main-dark-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--main-dark-color);
 }
 
 .cubberd-ingredients-container {

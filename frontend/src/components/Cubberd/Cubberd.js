@@ -77,6 +77,7 @@ const Cubberd = () => {
     setSearchResult();
     if (!query) {
       setSearchResults([]);
+      setSearchQuery("");
       return;
     }
     setSearchQuery(query);
@@ -132,16 +133,17 @@ const Cubberd = () => {
                   <BiSearchAlt />
                 </div>
               </div>
-              <div className="search-results">
-                {searchResults &&
-                  searchResults.map((result) => {
+              {searchResults && searchResults.length > 0 && (
+                <ul className="search-results">
+                  {searchResults.map((result) => {
                     return (
-                      <div onClick={(e) => handleResultFoodClick(e, result)}>
+                      <li onClick={(e) => handleResultFoodClick(e, result)}>
                         {result.food}
-                      </div>
+                      </li>
                     );
                   })}
-              </div>
+                </ul>
+              )}
               <div className="search-result-container">
                 {searchResult && (
                   <>
