@@ -30,24 +30,32 @@ nestedRecipes.forEach(nestedRecipe => {
   seedRecipes.push(recipeObject);
 
   recipeObject.ingredients.forEach(ingredient => {
+    const foodNameArr = ingredient.food.split(" ");
+    
+    for (let i = 0; i < foodNameArr.length; i++) {
+      foodNameArr[i] = foodNameArr[i][0].toUpperCase() + foodNameArr[i].substr(1);
+    }    
 
+    const newFoodName = foodNameArr.join(" ");
     const newIngredient = {
-      food: ingredient.food,
+      food: newFoodName,
       foodCategory: ingredient.foodCategory,
       image: ingredient.image,
       foodId: ingredient.foodId
     };
+
    seedIngredientsHash[newIngredient.foodId] = newIngredient;
   })
 })
 
 seedIngredients = Object.values(seedIngredientsHash);
 
+
 const seedDB = async () => {
-  await Ingredient.deleteMany({});
-  await Ingredient.insertMany(seedIngredients);
-  await Recipe.deleteMany({});
-  await Recipe.insertMany(seedRecipes);
+  // await Ingredient.deleteMany({});
+  // await Ingredient.insertMany(seedIngredients);
+  // await Recipe.deleteMany({});
+  // await Recipe.insertMany(seedRecipes);
 };
 
 seedDB().then(() => {
