@@ -12,8 +12,9 @@ router.get('/', async (req, res, next) => {
 
 // get by ingredients
 router.get('/ingredients', async(req, res, next) => {
-    const ingredient = await Ingredient.find(req.body);
-    const recipe = await Recipe.find({"ingredients.foodId": `${ingredient.foodId}`});
+    const ingredient = await Ingredient.findOne(req.body);
+    console.log(ingredient.foodId)
+    const recipe = await Recipe.find({"ingredients.foodId": ingredient.foodId});
     return res.json(recipe)
 })
 // router.get('/', async (req, res, next) => {
