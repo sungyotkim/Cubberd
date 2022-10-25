@@ -1,18 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
-const mongoose = require("mongoose");
-const User = mongoose.model("User");
-const Ingredient = mongoose.model("Ingredient");
-const {
-  loginUser,
-  restoreUser,
-  requireUser,
-} = require("../../config/passport");
-const passport = require("passport");
-const validateRegisterInput = require("../../validations/register");
-const validateLoginInput = require("../../validations/login");
-const { isProduction } = require("../../config/keys");
+const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
+const Ingredient = mongoose.model('Ingredient');
+const { loginUser, restoreUser, requireUser } = require('../../config/passport');
+const passport = require('passport');
+const validateRegisterInput = require('../../validations/register');
+const validateLoginInput = require('../../validations/login');
+const { isProduction } = require('../../config/keys');
+const Recipe = require("../../models/Recipe");
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -43,14 +40,25 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
 
   const newUser = new User({
     username: req.body.username,
-    email: req.body.email,
+    email: req.body.email
   });
+
   const jasmineRice = await Ingredient.findOne({ food: "jasmine rice" }).exec();
   const chickenBreast = await Ingredient.findOne({
     food: "boneless skinless chicken breast",
   }).exec();
+
+  const recipe1 = await Recipe.findOne({label: "Super Bowl Snacks: Loaded Baked Potato Potato Chip Nachos Recipe"}).exec();
+  const recipe2 = await Recipe.findOne({label: "Pasta alla Gricia Recipe"}).exec();
+  const recipe3 = await Recipe.findOne({label: "Crispy Roasted Mushrooms"}).exec();
+  const recipe4 = await Recipe.findOne({label: "Tofu Banana Mousse"}).exec();
   newUser.cubberd.push(jasmineRice);
   newUser.cubberd.push(chickenBreast);
+
+  newUser.savedRecipes.allSaved.push(recipe1);
+  newUser.savedRecipes.allSaved.push(recipe2);
+  newUser.plannedRecipes.push(recipe3);
+  newUser.plannedRecipes.push(recipe4);
 
   bcrypt.genSalt(10, (err, salt) => {
     if (err) throw err;
@@ -108,7 +116,10 @@ router.get("/:userId/cubberd", requireUser, async (req, res) => {
 router.post("/:userId/cubberd", restoreUser, requireUser, async (req, res) => {
   const ingredient = req.body;
   const currentUserId = req.params.userId;
-  User.updateOne({ _id: currentUserId }, { $push: { cubberd: ingredient } });
+  User.updateOne(
+    { _id: currentUserId },
+    { $push: { cubberd: ingredient } }
+  );
   const cubberd = await User.findById(req.params.userId, "cubberd");
   res.json(cubberd);
 });
