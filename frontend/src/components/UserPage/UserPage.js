@@ -25,8 +25,11 @@ function UserPage() {
 
                 </div>
                 <div id="user-page-planned-and-shopping" className="main-display-component user-page-column">
-                    <div id="user-page-shopping-list" className="main-display-componen"></div>
-                    <div id="user-page-planned-recipes-container" className="main-display-componen"></div>
+                    <div id="user-page-shopping-list" className="main-display-component"></div>
+                    <div id="user-page-planned-recipes-container" className="main-display-component">
+                        <div><h3>Planned Recipes</h3></div>
+                        <RecipeList recipes={sessionUser.plannedRecipes} />
+                    </div>
                 </div>
             </div>
 

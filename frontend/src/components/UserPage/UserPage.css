@@ -33,7 +33,7 @@
 }
 
 #user-page-planned-and-shopping div{
-    width: 100%;
+    width: calc(100% - 1em);
     height: 50%;
 }
 
