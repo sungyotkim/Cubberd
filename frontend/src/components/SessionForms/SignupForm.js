@@ -10,6 +10,7 @@ const SignupForm = () => {
   const [password2, setPassword2] = useState("");
   const errors = useSelector((state) => state.errors.session);
   const dispatch = useDispatch();
+  const [passwordError, setPasswordError] = useState("")
 
   useEffect(() => {
     return () => {
@@ -42,13 +43,16 @@ const SignupForm = () => {
 
   const usernameSubmit = (e) => {
     e.preventDefault();
-    const user = {
-      email,
-      username,
-      password,
-    };
-
-    dispatch(signup(user));
+    if (password === password2) {
+      setPasswordError("")
+      const user = {
+        email,
+        username,
+        password,
+      };
+      return dispatch(signup(user));
+    } 
+    return setPasswordError("Passwords do not match")
   };
 
   return (
@@ -62,12 +66,12 @@ const SignupForm = () => {
             {errors?.email || errors?.username || errors?.password}
           </div>
         )}
-        {password !== password2 && (
-          <div className="errors">Confirm Password field must match</div>
+        {passwordError && (
+          <div className="errors">{passwordError}</div>
         )}
         <div className="session-input-container">
           <input
-            type="text"
+            type="email"
             value={email}
             onChange={update("email")}
             placeholder="Email"
@@ -83,12 +87,14 @@ const SignupForm = () => {
             value={password}
             onChange={update("password")}
             placeholder="Password"
+            minLength={6}
           />
           <input
             type="password"
             value={password2}
             onChange={update("password2")}
             placeholder="Confirm Password"
+            minLength={6}
           />
         </div>
         <div className="session-form-btn">
@@ -96,7 +102,7 @@ const SignupForm = () => {
             type="submit"
             value="Sign Up"
             disabled={
-              !email || !username || !password || password !== password2
+              !email || !username || !password || !password2
             }
           />
         </div>

@@ -37,13 +37,14 @@ const LoginForm = () => {
         )}
         <div className="session-input-container">
           <input
-            type="text"
+            type="email"
             value={email}
             onChange={update("email")}
             placeholder="Email"
           />
           <input
             type="password"
+            minLength={6}
             value={password}
             onChange={update("password")}
             placeholder="Password"
