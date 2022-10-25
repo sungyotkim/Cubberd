@@ -24,14 +24,14 @@ const receiveUserCubberdIngredients = (ingredients) => ({
   ingredients,
 });
 
-const receiveNewUserCubberdIngredient = (ingredient) => ({
+const receiveNewUserCubberdIngredient = (ingredients) => ({
   type: RECEIVE_NEW_USER_CUBBERD_INGREDIENT,
-  ingredient,
+  ingredients,
 });
 
-const removeUserCubberdIngredient = (ingredientId) => ({
+const removeUserCubberdIngredient = (ingredients) => ({
   type: REMOVE_USER_CUBBERD_INGREDIENT,
-  ingredientId,
+  ingredients,
 });
 
 export const fetchIngredients = () => async (dispatch) => {
@@ -54,24 +54,23 @@ export const fetchUserCubberdIngredients = (userId) => async (dispatch) => {
 
 export const composeUserCubberdIngredient =
   (userId, ingredient) => async (dispatch) => {
-    console.log(userId);
     const res = await jwtFetch(`/api/users/${userId}/cubberd`, {
       method: "POST",
       body: JSON.stringify(ingredient),
     });
     const newCubberd = await res.json();
-    console.log(newCubberd);
     dispatch(receiveNewUserCubberdIngredient(newCubberd));
   };
 
 export const deleteUserCubberdIngredient =
-  (userId, ingredientId) => async (dispatch) => {
+  (userId, ingredient) => async (dispatch) => {
     const res = await jwtFetch(`/api/users/${userId}/cubberd`, {
       method: "DELETE",
-      body: JSON.stringify(ingredientId),
+      body: JSON.stringify(ingredient),
     });
-    const deletedIngredientId = await res.json();
-    dispatch(removeUserCubberdIngredient(deletedIngredientId));
+    const updatedCubberd = await res.json();
+    console.log(updatedCubberd);
+    dispatch(removeUserCubberdIngredient(updatedCubberd));
   };
 
 const ingredientsReducer = (state = { all: {}, userCubberd: {} }, action) => {
@@ -85,15 +84,12 @@ const ingredientsReducer = (state = { all: {}, userCubberd: {} }, action) => {
     case RECEIVE_NEW_USER_CUBBERD_INGREDIENT:
       return {
         ...state,
-        userCubberd: [action.ingredient],
+        userCubberd: action.ingredients,
       };
     case REMOVE_USER_CUBBERD_INGREDIENT:
       return {
         ...state,
-        new: undefined,
-        userCubberd: state.ingredients.userCubberd.filter(
-          (ing) => ing._id !== action.payload
-        ),
+        userCubberd: action.ingredients,
       };
     default:
       return state;

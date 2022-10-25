@@ -12,7 +12,7 @@ function UserPage() {
     const sessionUser = useSelector(state => state.session.user);
 
     const savedRecipeLists = useSelector(state => state.session.user.savedRecipes);
-    const plannedRecipes = useSelector(state => state.session.user.plannedRecipes);
+    const plannedRecipes = useSelector(state => state.session.user.savedRecipes.planned);
 
     const handleLogout = () => {
         dispatch(logout());
