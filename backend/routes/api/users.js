@@ -150,15 +150,23 @@ router.delete(
   }
 );
 
-router.post("/:userId/shoppingList", requireUser, async(req, res) => {
-  const ingredient = req.body;
-  const defaultQuantity = 1;
-  const currentUserId = req.params(userId);
-  const currentUser = await User.findById(currentUserId);
-  const newShoppingListItem = new ShoppingListItem({
-    quantity: defaultQuantity,
-    ingredient
-  })
-})
+// router.post("/:userId/shoppingList", requireUser, async(req, res) => {
+//   const ingredient = req.body;
+//   const defaultQuantity = 1;
+//   const currentUserId = req.params(userId);
+//   const currentUser = await User.findById(currentUserId);
+//   const newShoppingListItem = new ShoppingListItem({
+//     quantity: defaultQuantity,
+//     ingredient: ingredient
+//   })
+//   const shoppingListItem = newShoppingListItem.save()
+//   res.json(currentUser.shoppingListItem)
+// })
+
+// router.put("/:userId/shoppingList/itemId", requireUser, async (req, res) => {
+//   const itemId = req.params(itemId)
+//   const shoppingListItem = await ShoppingListItem.findById()
+//   const quantity = req.body;
+// })
 
 module.exports = router;
