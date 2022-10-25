@@ -4,6 +4,25 @@ import { fetchUserCubberdIngredients } from "../../store/ingredients";
 import "./Cubberd.css";
 import { BiSearchAlt } from "react-icons/bi";
 import woodBackground from "../../assets/retina_wood.png";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import { styled } from "@mui/material/styles";
+
+const CustomToolTip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(() => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: "#2d2e2f",
+    fontSize: 12,
+    boxShadow: "rgb(0 0 0 / 15%) 0 0 18px",
+    borderRadius: "4px",
+    padding: "12px 16px",
+    position: "relative",
+    top: -8,
+  },
+  [`& .${tooltipClasses.arrow}`]: {
+    color: "#2d2e2f",
+  },
+}));
 
 const Cubberd = () => {
   const dispatch = useDispatch();
@@ -23,12 +42,12 @@ const Cubberd = () => {
           className="cubberd-container"
           style={{ backgroundImage: `url(${woodBackground})` }}
         >
-          <div className="cubberd-door">
+          {/* <div className="cubberd-door">
             <div className="cubberd-door-pattern">
               <div className="cubberd-inner-door-pattern"></div>
             </div>
             <div className="cubberd-door-knob"></div>
-          </div>
+          </div> */}
           <div className="cubberd-content-container">
             <div className="cubberd-search-container">
               <div className="cubberd-search-bar-container">
@@ -42,13 +61,22 @@ const Cubberd = () => {
                 </div>
               </div>
               <div className="search-results"></div>
+              <div className="cubberd-shelving"></div>
             </div>
-            <div className="cubberd-ingredients-container"></div>
-            <div className="cubberd-shelving first-shelf"></div>
-            <div className="cubberd-shelving second-shelf"></div>
-            <div className="cubberd-shelving third-shelf"></div>
-            <div className="cubberd-shelving fourth-shelf"></div>
-            <div className="cubberd-shelving fifth-shelf"></div>
+            <div className="cubberd-ingredients-container-wrapper">
+              {userCubberd.length > 0 && (
+                <>
+                  {userCubberd.map((ing) => (
+                    <div className="cubberd-ingredients-container">
+                      <CustomToolTip title={ing.food} arrow placement="bottom">
+                        <img src={ing.image} alt={ing.food} />
+                      </CustomToolTip>
+                      <div className="cubberd-shelving"></div>
+                    </div>
+                  ))}
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
