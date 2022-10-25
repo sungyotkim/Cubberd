@@ -10,13 +10,48 @@ router.get('/', async (req, res) => {
     return res.json(allRecipes);
 });
 
-//get by multiple ingredients 
-router.get('/ingredients', async(req, res) => {
-    console.log(req.body)
-    const recipes = await Recipe.find({"ingredients.food": {$all: req.body}})
-    console.log(recipes.length)
+router.get('/test', async(req, res, next) => {
+    const recipes = await Recipe.find().limit(5);
     return res.json(recipes)
 })
+
+//get by multiple ingredients 
+
+// const getRecipes = async query => {
+//     await Recipe.find({"ingredients.food": {$all: query}})
+// }
+
+
+router.get('/ingredients', async(req, res) => {
+    let foods = req.body
+    let foodSubsets = []
+    for (let i = 0; i < foods.length; i++) {
+        for (let j = i + 1; j <= foods.length; j++) {
+            let subset = foods.slice(i,j)
+            foodSubsets.push(subset)
+        }
+    }
+
+   foodSubsets.sort((a, b) => a.length > b.length ? -1 : 1);
+ 
+    const numIngredients = foods.length;
+    let ingredientScore;
+    let recipes = []
+    let recipesArr = []
+    for (let i = 0; i < foodSubsets.length; i++) {
+        let query = foodSubsets[i]
+        recipesArr = await Recipe.find({"ingredients.food": {$all: query}})
+        ingredientScore = Math.round((query.length / numIngredients) * 100)
+        recipesArr.forEach(recipe => {
+            if (recipes.length < 3) {
+                recipes.push({"ingredientsScore": ingredientScore, "recipe": recipe})
+            }
+        })
+    }
+
+    return res.json(recipes)
+})
+
 
 router.post('/', async (req, res) => {
     const newRecipe = new Recipe({
