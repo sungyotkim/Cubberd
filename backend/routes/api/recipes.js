@@ -14,6 +14,7 @@ router.get('/', async (req, res) => {
 router.get('/ingredients', async(req, res) => {
     console.log(req.body)
     const recipes = await Recipe.find({"ingredients.food": {$all: req.body}})
+    console.log(recipes.length)
     return res.json(recipes)
 })
 
