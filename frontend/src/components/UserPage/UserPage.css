@@ -33,7 +33,7 @@
 }
 
 #user-page-planned-and-shopping div{
-    width: 100%;
+    width: calc(100% - 1em);
     height: 50%;
 }
 
@@ -44,4 +44,10 @@
     justify-content: flex-end;
     align-items: center;
     padding-right: 1em;
+}
+
+#planned-recipes {
+    height: 100%;
+    width: 100%;
+    background-color: lightskyblue;
 }
