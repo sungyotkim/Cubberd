@@ -17,9 +17,10 @@ router.get('/test', async(req, res, next) => {
     return res.json(recipes)
 })
 
-// get by ingredients
+// get by ingredient
 router.get('/ingredients', async(req, res, next) => {
-    const ingredient = await Ingredient.findOne(req.body);
+    const ingredients = await Ingredient.find({"food": {$in: req.body}});
+    console.log(ingredients)
     const recipe = await Recipe.find({"ingredients.foodId": ingredient.foodId});
     return res.json(recipe)
 })
