@@ -5,31 +5,18 @@ const mongoose = require('mongoose');
 const Ingredient = mongoose.model('Ingredient');
 const Recipe = mongoose.model('Recipe')
 
-router.get('/', async (req, res, next) => {
+router.get('/', async (req, res) => {
     const allRecipes = await Recipe.find();
     return res.json(allRecipes);
 });
 
-
-//get 5 recipes test route
-router.get('/test', async(req, res, next) => {
-    const recipes = await Recipe.find().limit(5);
+//get by multiple ingredients 
+router.get('/ingredients', async(req, res) => {
+    console.log(req.body)
+    const recipes = await Recipe.find({"ingredients.food": {$all: req.body}})
+    console.log(recipes.length)
     return res.json(recipes)
 })
-
-// get by ingredient
-router.get('/ingredients', async(req, res, next) => {
-    const ingredients = await Ingredient.find({"food": {$in: req.body}});
-    console.log(ingredients)
-    const recipe = await Recipe.find({"ingredients.foodId": ingredient.foodId});
-    return res.json(recipe)
-})
-// router.get('/', async (req, res, next) => {
-//     let recipes;
-//     try {
-//         recipes = Recipe.find({"ingredients": {$in: [req.body]}})
-//     }
-// });
 
 router.post('/', async (req, res) => {
     const newRecipe = new Recipe({
