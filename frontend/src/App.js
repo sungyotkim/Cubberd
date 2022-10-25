@@ -8,7 +8,7 @@ import UserPage from "./components/UserPage/UserPage";
 import { getCurrentUser } from "./store/session";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import axios from "axios";
+import Landing from "./components/Landing/Landing";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -17,44 +17,17 @@ function App() {
     dispatch(getCurrentUser()).then(() => setLoaded(true));
   }, [dispatch]);
 
-  const [recipes, setRecipes] = useState([]);
-  const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("");
-
-  const getRecipes = async () => {
-    const res = await axios.get(`http://localhost:5000/api/recipes/${query}`);
-    // console.log(res.data);
-    let newRecipes = res.data;
-    setRecipes((oldArr) => [...oldArr, ...newRecipes]);
-  };
-
-  // useEffect(() => {
-  //   getRecipes();
-  // }, [query]);
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   getRecipes();
-  // };
-
   return (
     loaded && (
       <>
-        {/* <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <input type="submit" value="submit" />
-        </form> */}
         <Switch>
-          <Route exact path="/profile" component={UserPage} />
-          <Route exact path="/" component={MainPage} />
+          <Route exact path="/" component={Landing} />
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />
 
           {/* <ProtectedRoute exact path="/recipe" component={Recipe} /> */}
+          <ProtectedRoute exact path="/main" component={MainPage} />
+          <ProtectedRoute exact path="/profile" component={UserPage} />
           <ProtectedRoute exact path="/cubberd" component={Cubberd} />
         </Switch>
       </>

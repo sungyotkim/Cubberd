@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { signup, clearSessionErrors } from "../../store/session";
+import { Link } from 'react-router-dom';
 
 const SignupForm = () => {
   const [email, setEmail] = useState("");
@@ -52,7 +53,7 @@ const SignupForm = () => {
 
   return (
     <>
-      <form className="session-form" onSubmit={usernameSubmit}>
+      <form className="session-form signup-form" onSubmit={usernameSubmit}>
         <div className="session-form-header">
           <h2>Sign Up</h2>
         </div>
@@ -100,9 +101,9 @@ const SignupForm = () => {
           />
         </div>
         <div className="session-form-redirect-container">
-          <div className="redirect-to-login-btn">
+          <Link to="/login" className="redirect-to-login-btn">
             Already have an account? Log in
-          </div>
+          </Link>
         </div>
       </form>
     </>

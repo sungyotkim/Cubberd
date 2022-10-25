@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { login, clearSessionErrors } from "../../store/session";
 import "./SessionForm.css";
 
@@ -52,9 +53,9 @@ const LoginForm = () => {
           <input type="submit" value="Login" disabled={!email || !password} />
         </div>
         <div className="session-form-redirect-container">
-          <div className="redirect-to-signup-btn">
+          <Link to="/signup" className="redirect-to-signup-btn">
             Don't have an account? Sign up
-          </div>
+          </Link>
         </div>
       </form>
     </>

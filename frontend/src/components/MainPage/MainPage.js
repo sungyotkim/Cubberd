@@ -1,9 +1,7 @@
 import "./MainPage.css";
-import LoginFormModal from "../SessionFormModals/LoginFormModal";
 import { getCurrentUser, logout } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import SignupFormModal from "../SessionFormModals/SignupFormModal";
 import RecipeShowModal from "../RecipeShowModal/RecipeShowModal";
 import { fetchRecipes } from "../../store/recipes";
 import { useEffect } from "react";
@@ -34,7 +32,7 @@ function MainPage() {
                 <div id="main-page-top">
                     <div id="main-page-top-right">
                         <div id="navbar-container" className="main-display-component">
-                           <nav>{sessionUser ? <span>Logged in as <Link to="/profile">{sessionUser.username}</Link> <button onClick={handleLogout}>Logout</button> </span> : <span><LoginFormModal /> <SignupFormModal /></span>}</nav>  
+                           <nav>{sessionUser && <span>Logged in as <Link to="/profile">{sessionUser.username}</Link> <button onClick={handleLogout}>Logout</button> </span>}</nav>  
                         </div>
                         <div id="main-page-top-right-bottom">
                             <div id="pot-container" className="main-display-component">
