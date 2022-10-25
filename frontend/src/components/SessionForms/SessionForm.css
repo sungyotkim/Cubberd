@@ -5,6 +5,12 @@
   position: fixed;
   z-index: 1;
   border-radius: 16px;
+  top: calc(50% - 205px);
+  left: calc(50% - 225px);
+}
+
+.signup-form {
+  top: calc(50% - 265px);
 }
 
 .session-form-header {
@@ -82,6 +88,16 @@
 .session-form-redirect-container {
   cursor: pointer;
   color: var(--main-dark-color);
+}
+
+.redirect-to-login-btn {
+  text-decoration: none;
+  color: inherit;
+}
+
+.redirect-to-signup-btn {
+  text-decoration: none;
+  color: inherit;
 }
 
 .redirect-to-signup-btn:hover {
