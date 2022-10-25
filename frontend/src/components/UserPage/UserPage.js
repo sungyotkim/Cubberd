@@ -10,8 +10,10 @@ import RecipeList from "../RecipeList/RecipeList";
 function UserPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
+    debugger
 
     const savedRecipeLists = useSelector(state => state.session.user.savedRecipes);
+    const plannedRecipes = useSelector(state => state.session.user.plannedRecipes);
 
     const handleLogout = () => {
         dispatch(logout());
@@ -28,7 +30,7 @@ function UserPage() {
                     <div id="user-page-shopping-list" className="main-display-component"></div>
                     <div id="user-page-planned-recipes-container" className="main-display-component">
                         <div><h3>Planned Recipes</h3></div>
-                        <RecipeList recipes={sessionUser.plannedRecipes} />
+                        <RecipeList recipes={plannedRecipes} />
                     </div>
                 </div>
             </div>

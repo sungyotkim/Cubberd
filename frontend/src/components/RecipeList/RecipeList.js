@@ -1,15 +1,26 @@
 import RecipeListItem from '../RecipeListItem/RecipeListItem';
+import RecipeShowModal from '../RecipeShowModal/RecipeShowModal';
 import './RecipeList.css';
 
 
-function RecipeList({recipes}) {
-    const recipeList = recipes.map((recipe) => <RecipeListItem recipe={recipe} />)
+function RecipeList({ recipes }) {
 
-    return (
-        <div className='recipe-list'>
-            {recipeList}
-        </div>
-    )
+    if (recipes) {
+
+        const recipeList = recipes.map((recipe) => <RecipeShowModal recipe={recipe} />)
+
+
+        return (
+            <div className='recipe-list'>
+                {recipeList}
+            </div>
+        )
+
+    } else {
+        return (
+            <></>
+        )
+    }
 
 }
 
