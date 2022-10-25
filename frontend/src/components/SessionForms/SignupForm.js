@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { signup, clearSessionErrors } from "../../store/session";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const SignupForm = () => {
   const [email, setEmail] = useState("");
@@ -11,10 +11,17 @@ const SignupForm = () => {
   const errors = useSelector((state) => state.errors.session);
   const dispatch = useDispatch();
   const [passwordError, setPasswordError] = useState("")
+  const location = useLocation();
 
   useEffect(() => {
+    if (location.state) {
+      setEmail(location.state.email);
+      setPassword(location.state.password);
+      setUsername(location.state.username);
+    }
     return () => {
       dispatch(clearSessionErrors());
+      setPasswordError("")
     };
   }, [dispatch]);
 
@@ -115,7 +122,11 @@ const SignupForm = () => {
           />
         </div>
         <div className="session-form-redirect-container">
-          <Link to="/login" className="redirect-to-login-btn">
+          <Link to={{
+            pathname: "/login",
+            state: { email, password, username }
+          }} 
+          className="redirect-to-login-btn">
             Already have an account? Log in
           </Link>
         </div>

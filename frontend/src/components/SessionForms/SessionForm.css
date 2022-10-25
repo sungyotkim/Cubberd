@@ -18,8 +18,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* border-bottom: 1px solid var(--main-lighter-dark-color); */
-  /* margin-bottom: 36px; */
   padding: 0 20px;
 }
 
