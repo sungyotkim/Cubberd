@@ -10,12 +10,14 @@ const { isProduction } = require("./config/keys");
 require("./models/User");
 require("./config/passport");
 require("./models/Ingredient");
+require("./models/Recipe")
 
 const passport = require("passport");
 
 const usersRouter = require("./routes/api/users");
 const csrfRouter = require("./routes/api/csrf");
 const ingredientsRouter = require("./routes/api/ingredients");
+const recipesRouter = require("./routes/api/recipes");
 
 const app = express();
 
@@ -30,14 +32,6 @@ if (!isProduction) {
   app.use(cors());
 }
 
-// needs to be after cors
-app.get("/recipes/:query", async (req, res) => {
-  const response = await axios.get(
-    `https://api.edamam.com/search?q=${req.params.query}&app_id=${process.env.APP_ID}&app_key=${process.env.APP_KEY}`
-  );
-  res.json(response.data.hits);
-});
-
 app.use(
   csurf({
     cookie: {
@@ -51,6 +45,7 @@ app.use(
 app.use("/api/users", usersRouter);
 app.use("/api/csrf", csrfRouter);
 app.use("/api/ingredients", ingredientsRouter);
+app.use("/api/recipes", recipesRouter);
 
 // Express custom middleware for catching all unmatched requests and formatting
 // a 404 error to be sent as the response.
@@ -73,6 +68,14 @@ app.use((err, req, res, next) => {
     statusCode,
     errors: err.errors,
   });
+});
+
+// needs to be after cors
+app.get("/recipes/:query", async (req, res) => {
+  const response = await axios.get(
+    `https://api.edamam.com/search?q=${req.params.query}&app_id=${process.env.APP_ID}&app_key=${process.env.APP_KEY}`
+  );
+  res.json(response.data.hits);
 });
 
 module.exports = app;
