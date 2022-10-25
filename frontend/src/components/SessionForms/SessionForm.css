@@ -1,7 +1,7 @@
 .session-form {
   width: 450px;
   min-height: 410px;
-  background-color: #eae9f4;
+  background-color: var(--main-lighter-color);
   position: fixed;
   z-index: 1;
   border-radius: 16px;
@@ -12,7 +12,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--main-lighter-dark-color);
   margin-bottom: 36px;
   padding: 0 20px;
 }
@@ -39,12 +39,13 @@
   padding: 10px;
   font-size: 16px;
   font-weight: 500;
+  box-sizing: border-box;
 }
 
 .session-form-btn {
   height: 50px;
   padding: 0 20px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--main-lighter-dark-color);
   padding-bottom: 36px;
 }
 
@@ -55,8 +56,9 @@
   border: none;
   padding: 10px;
   font-size: 16px;
-  background-color: aquamarine;
+  background-color: var(--main-dark-color);
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .session-form-redirect-container {
@@ -77,11 +79,15 @@
   border-radius: 8px;
 }
 
-.redirect-to-signup-btn {
+.session-form-redirect-container {
   cursor: pointer;
-  color: #7c43e3;
+  color: var(--main-dark-color);
 }
 
 .redirect-to-signup-btn:hover {
+  text-decoration: underline;
+}
+
+.redirect-to-login-btn:hover {
   text-decoration: underline;
 }
