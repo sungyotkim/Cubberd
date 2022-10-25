@@ -1,0 +1,47 @@
+#user-page {
+    display: flex;
+    flex-direction: column;
+}
+
+#user-page nav {
+    width: calc(100% - 1em);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#user-page-columns {
+    width: calc(100% - 1em);
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.user-page-column {
+    height: calc(100% - 1em);
+}
+
+#user-page-saved-recipes-container {
+    width: 60%;
+}
+
+#user-page-planned-and-shopping {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+#user-page-planned-and-shopping div{
+    width: 100%;
+    height: 50%;
+}
+
+#user-page-nav-items {
+    display: flex;
+    width: 30%;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 1em;
+}

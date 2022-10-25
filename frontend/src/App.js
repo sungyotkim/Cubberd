@@ -4,6 +4,7 @@ import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
 import MainPage from "./components/MainPage/MainPage";
 import Cubberd from "./components/Cubberd/Cubberd";
+import UserPage from "./components/UserPage/UserPage";
 import { getCurrentUser } from "./store/session";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -48,6 +49,7 @@ function App() {
           <input type="submit" value="submit" />
         </form> */}
         <Switch>
+          <Route exact path="/profile" component={UserPage} />
           <Route exact path="/" component={MainPage} />
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />
