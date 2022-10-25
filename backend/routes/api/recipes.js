@@ -5,17 +5,33 @@ const mongoose = require('mongoose');
 const Ingredient = mongoose.model('Ingredient');
 const Recipe = mongoose.model('Recipe')
 
-router.get('/', async (req, res, next) => {
+router.get('/', async (req, res) => {
     const allRecipes = await Recipe.find();
     return res.json(allRecipes);
 });
 
-// get by ingredients
-router.get('/ingredients', async(req, res, next) => {
+// get by ingredient
+router.get('/ingredient', async(req, res) => {
     const ingredient = await Ingredient.findOne(req.body);
     console.log(ingredient.foodId)
-    const recipe = await Recipe.find({"ingredients.foodId": ingredient.foodId});
-    return res.json(recipe)
+    const recipes = await Recipe.find({"ingredients.foodId": ingredient.foodId});
+    return res.json(recipes)
+})
+
+//get by multiple ingredients 
+router.get('/ingredients', async(req, res) => {
+    console.log(req.body)
+    const ingredients = await Ingredient.find({"food": {$in: req.body }})
+    console.log("ingredients")
+    console.log(ingredients)
+    const foodNames = []
+    ingredients.forEach(ingredient => {
+        foodNames.push(ingredient.food)
+    })
+    console.log("foodNames")
+    console.log(foodNames)
+    const recipes = await Recipe.find({"ingredients.food": {$all: foodNames}})
+    return res.json(recipes)
 })
 // router.get('/', async (req, res, next) => {
 //     let recipes;
