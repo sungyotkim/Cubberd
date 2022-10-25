@@ -3,7 +3,7 @@ const IngredientSchema = require('./Ingredient').schema;
 const RecipeSchema = require('./Recipe').schema;
 const Schema = mongoose.Schema;
 
-const userSchema = Schema({
+const shoppingListSchema = Schema({
     quantity: {
       type: Number,
       required: true
@@ -13,4 +13,4 @@ const userSchema = Schema({
     timestamps: true
   });
 
-  module.exports = mongoose.model('User', userSchema)
+  module.exports = mongoose.model('ShoppingList', shoppingListSchema)
