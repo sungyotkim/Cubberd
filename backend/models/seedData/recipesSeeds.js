@@ -31,7 +31,7 @@ nestedRecipes.forEach(nestedRecipe => {
 
   recipeObject.ingredients.forEach(ingredient => {
     const foodNameArr = ingredient.food.split(" ");
-    
+
     for (let i = 0; i < foodNameArr.length; i++) {
       foodNameArr[i] = foodNameArr[i][0].toUpperCase() + foodNameArr[i].substr(1);
     }    
@@ -52,12 +52,14 @@ seedIngredients = Object.values(seedIngredientsHash);
 
 
 const seedDB = async () => {
-  // await Ingredient.deleteMany({});
-  // await Ingredient.insertMany(seedIngredients);
-  // await Recipe.deleteMany({});
-  // await Recipe.insertMany(seedRecipes);
+  await Ingredient.deleteMany({});
+  await Ingredient.insertMany(seedIngredients);
+  await Recipe.deleteMany({});
+  await Recipe.insertMany(seedRecipes);
 };
 
 seedDB().then(() => {
+  console.log('All ingredients reseeded');
+  console.log('All recipes reseeded');
   mongoose.connection.close();
 });
