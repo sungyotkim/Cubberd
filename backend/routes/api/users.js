@@ -37,11 +37,14 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
     return next(err);
   }
 
-  const newUser = new User ({
+  const newUser = new User({
     username: req.body.username,
     email: req.body.email
   });
-  newUser.cubberd.push({ObjectId: '6356c1fd72c6fbbe8299905f'})
+  const jasmineRice = await Ingredient.findOne({ food: "jasmine rice" }).exec();
+  const chickenBreast = await Ingredient.findOne({ food: "boneless skinless chicken breast" }).exec();
+  newUser.cubberd.push(jasmineRice);
+  newUser.cubberd.push(chickenBreast);
 
   bcrypt.genSalt(10, (err, salt) => {
     if (err) throw err;
