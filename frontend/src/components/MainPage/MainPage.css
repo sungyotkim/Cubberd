@@ -1,23 +1,9 @@
 #main-page {
-    width: 80%;
-    margin: auto;
-    border: 2px solid black;
-    box-sizing: border-box;
-    height: 800px;
-    margin-top: 50px;
     display: flex;
     flex-direction: row;
 }
 
 
-.main-page-component {
-    height: 100px;
-    width: 100px;
-    margin: 0.5em;
-    border: 1px solid black;
-    box-sizing: border-box;
-
-}
 
 #main-page-left {
     width: 35em;
@@ -72,6 +58,7 @@
 #pot-container {
     width: 70%;
     height: calc(100% - 1em);
+    position: relative;
 }
 
 #shopping-list-container {
