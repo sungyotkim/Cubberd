@@ -8,8 +8,10 @@ function UserPage() {
             <nav className="main-display-component"></nav>
             <div id="user-page-columns" className="main-display-component">
                 <div id="user-page-saved-recipes-container"className="main-display-component user-page-column"></div>
-                <div id="user-page-planned-recipes-container" className="main-display-component user-page-column"></div>
-                <div id="user-page-shopping-list" className="main-display-component user-page-column"></div>
+                <div id="user-page-planned-and-shopping" className="main-display-component user-page-column">
+                    <div id="user-page-shopping-list" className="main-display-componen"></div>
+                    <div id="user-page-planned-recipes-container" className="main-display-componen"></div>
+                </div>
             </div>
 
         </div>
