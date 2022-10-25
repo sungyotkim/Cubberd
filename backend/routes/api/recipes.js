@@ -43,3 +43,5 @@ router.post('/', async (req, res) => {
     const recipe = await newRecipe.save();
     return res.json(recipe)
 })
+
+module.exports = router;
