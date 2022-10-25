@@ -44,6 +44,7 @@ const Cubberd = () => {
   const [cubberdRows, setCubberdRows] = useState([]);
   const [selectedLi, setSelectedLi] = useState(0);
   const [resultAdded, setResultAdded] = useState(false);
+  const [openDoor, setOpenDoor] = useState(false);
   const ref = useRef();
 
   useEffect(() => {
@@ -78,6 +79,14 @@ const Cubberd = () => {
       setCubberdRows(rowArr);
     }
   }, [userCubberd]);
+
+  useEffect(() => {
+    setSelectedLi(0);
+
+    return () => {
+      setSelectedLi(0);
+    };
+  }, [searchResults]);
 
   const searchItem = (query) => {
     setSearchResult();
@@ -141,8 +150,7 @@ const Cubberd = () => {
         setSelectedLi(selectedLi + 1);
       }
     } else if (e.key === "Enter") {
-      console.log(ref.current);
-      console.log(searchResults[selectedLi]);
+      handleResultFoodClick(e, searchResults[selectedLi]);
     }
     let selectedEle = document.getElementsByClassName("selected")[0];
     selectedEle.scrollIntoView({
@@ -152,6 +160,14 @@ const Cubberd = () => {
     console.log(document.getElementsByClassName("selected")[0]);
   };
 
+  const handleDoorClick = () => {
+    if (openDoor) {
+      setOpenDoor(false);
+    } else {
+      setOpenDoor(true);
+    }
+  };
+
   return (
     <>
       <div className="outer-container">
@@ -159,12 +175,17 @@ const Cubberd = () => {
           className="cubberd-container"
           style={{ backgroundImage: `url(${woodBackground})` }}
         >
-          {/* <div className="cubberd-door">
+          <div
+            className={
+              openDoor ? "cubberd-door cubberd-door-open" : "cubberd-door"
+            }
+            onClick={handleDoorClick}
+          >
             <div className="cubberd-door-pattern">
               <div className="cubberd-inner-door-pattern"></div>
             </div>
             <div className="cubberd-door-knob"></div>
-          </div> */}
+          </div>
           <div className="cubberd-content-container">
             <div className="cubberd-search-container">
               <div className="cubberd-search-bar-container">

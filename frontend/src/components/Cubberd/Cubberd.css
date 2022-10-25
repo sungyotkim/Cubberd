@@ -24,6 +24,7 @@
   transition: transform 0.5s;
   transform-origin: left;
   z-index: 1;
+  cursor: pointer;
 }
 
 .cubberd-door-pattern {
@@ -52,7 +53,12 @@
   right: 10px;
 }
 
-.cubberd-container:hover .cubberd-door {
+/* .cubberd-container:hover .cubberd-door {
+  transform: rotateY(-100deg); */
+/* transform: rotateY(-90deg); */
+/* } */
+
+.cubberd-door-open {
   transform: rotateY(-100deg);
   /* transform: rotateY(-90deg); */
 }
