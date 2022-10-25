@@ -13,8 +13,6 @@ import { MdOutlineRemoveCircle } from "react-icons/md";
 import woodBackground from "../../assets/retina_wood.png";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
-import ReactDOM from "react-dom";
-import App from "../../App";
 
 const CustomToolTip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -183,7 +181,6 @@ const Cubberd = () => {
       block: "nearest",
       inline: "start",
     });
-    console.log(document.getElementsByClassName("selected")[0]);
   };
 
   return (
