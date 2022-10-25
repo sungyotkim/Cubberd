@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  composeUserCubberdIngredient,
   fetchIngredients,
   fetchUserCubberdIngredients,
 } from "../../store/ingredients";
@@ -68,9 +69,13 @@ const Cubberd = () => {
 
   const handleResultFoodClick = (e, result) => {
     e.preventDefault();
-    console.log(result);
     setSearchResults([]);
     setSearchResult(result);
+  };
+
+  const addToUserCubberd = () => {
+    dispatch(composeUserCubberdIngredient(currentUser._id, searchResult));
+    dispatch(fetchUserCubberdIngredients(currentUser._id));
   };
 
   return (
@@ -124,7 +129,10 @@ const Cubberd = () => {
                         arrow
                         placement="bottom"
                       >
-                        <div className="save-to-cubberd-btn">
+                        <div
+                          className="save-to-cubberd-btn"
+                          onClick={addToUserCubberd}
+                        >
                           <BiSave />
                         </div>
                       </CustomToolTip>
@@ -135,7 +143,7 @@ const Cubberd = () => {
               <div className="cubberd-shelving"></div>
             </div>
             <div className="cubberd-ingredients-container-wrapper">
-              {userCubberd.length > 0 && (
+              {userCubberd && userCubberd.length > 0 && (
                 <>
                   {userCubberd.map((ing) => (
                     <div className="cubberd-ingredients-container">
@@ -148,7 +156,7 @@ const Cubberd = () => {
                           arrow
                           placement="top"
                         >
-                          <div className="add-to-pot-btn">
+                          <div className="cubberd-shelving-option-one">
                             <GiCookingPot />
                           </div>
                         </CustomToolTip>
@@ -157,7 +165,7 @@ const Cubberd = () => {
                           arrow
                           placement="bottom"
                         >
-                          <div className="save-to-cubberd-btn">
+                          <div className="cubberd-shelving-option-two">
                             <MdOutlineRemoveCircle />
                           </div>
                         </CustomToolTip>
