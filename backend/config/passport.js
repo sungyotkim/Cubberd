@@ -28,7 +28,8 @@ exports.loginUser = async function(user) {
     username: user.username,
     email: user.email,
     cubberd: user.cubberd, 
-    savedRecipes: user.savedRecipes
+    savedRecipes: user.savedRecipes,
+    shoppingList: user.shoppingList
   }
   const tokenUserInfo = {
     _id: user._id,
