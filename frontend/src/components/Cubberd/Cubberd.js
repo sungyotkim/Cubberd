@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserCubberdIngredients } from "../../store/ingredients";
 import "./Cubberd.css";
 import { BiSearchAlt } from "react-icons/bi";
+import woodBackground from "../../assets/retina_wood.png";
 
 const Cubberd = () => {
   const dispatch = useDispatch();
@@ -18,13 +19,16 @@ const Cubberd = () => {
   return (
     <>
       <div className="outer-container">
-        <div className="cubberd-container">
-          {/* <div className="cubberd-door">
+        <div
+          className="cubberd-container"
+          style={{ backgroundImage: `url(${woodBackground})` }}
+        >
+          <div className="cubberd-door">
             <div className="cubberd-door-pattern">
               <div className="cubberd-inner-door-pattern"></div>
             </div>
             <div className="cubberd-door-knob"></div>
-          </div> */}
+          </div>
           <div className="cubberd-content-container">
             <div className="cubberd-search-container">
               <div className="cubberd-search-bar-container">
@@ -40,7 +44,11 @@ const Cubberd = () => {
               <div className="search-results"></div>
             </div>
             <div className="cubberd-ingredients-container"></div>
-            <div className="cubberd-shelving"></div>
+            <div className="cubberd-shelving first-shelf"></div>
+            <div className="cubberd-shelving second-shelf"></div>
+            <div className="cubberd-shelving third-shelf"></div>
+            <div className="cubberd-shelving fourth-shelf"></div>
+            <div className="cubberd-shelving fifth-shelf"></div>
           </div>
         </div>
       </div>
