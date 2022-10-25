@@ -32,7 +32,16 @@ const Cubberd = () => {
   const currentUser = useSelector((state) => state.session.user);
   const userCubberd = useSelector((state) => state.ingredients.userCubberd);
   const allIngredients = useSelector((state) => state.ingredients.all);
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState([
+    "words",
+    "more words",
+    "lots of words",
+    "lots of words",
+    "lots of words",
+    "lots of words",
+    "lots of words",
+    "lots of words",
+  ]);
 
   useEffect(() => {
     dispatch(fetchIngredients());
@@ -77,7 +86,11 @@ const Cubberd = () => {
                   <BiSearchAlt />
                 </div>
               </div>
-              <div className="search-results"></div>
+              <div className="search-results">
+                {searchResults.map((result) => {
+                  return <div>{result}</div>;
+                })}
+              </div>
               <div className="cubberd-shelving"></div>
             </div>
             <div className="cubberd-ingredients-container-wrapper">
