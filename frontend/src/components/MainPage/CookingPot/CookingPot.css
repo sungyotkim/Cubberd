@@ -1,0 +1,20 @@
+.cooking-pot-img {
+  width: 250px;
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  cursor: pointer;
+  opacity: 1;
+  transition: 750ms;
+}
+
+#cooking-pot-lid {
+  pointer-events: none;
+}
+
+.hover-lid {
+  transform: translateX(-25px) translateY(-125px) rotate(-30deg);
+  opacity: 0;
+}
