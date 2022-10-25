@@ -5,14 +5,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SignupFormModal from "../SessionFormModals/SignupFormModal";
 import RecipeShowModal from "../RecipeShowModal/RecipeShowModal";
+import { fetchRecipes } from "../../store/recipes";
+import { useEffect } from "react";
 
 function MainPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
+    const recipes = useSelector(state => state.recipes);
+    const recipe = recipes[0];
 
-    // Temporary placeholder
-    const sampleRecipe = {url: 'google.com', label: 'example recipe', ingredients: [{food: 'ingredient1'}, {food: 'ingredient2'}, {food: 'ingredient3'}], image: 'https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2015/11/shakshuka-11.jpg'}
 
+    useEffect(() => {
+        dispatch(fetchRecipes())
+    }, [])
 
 
     const handleLogout = () => {
@@ -32,7 +37,7 @@ function MainPage() {
                         </div>
                         <div id="main-page-top-right-bottom">
                             <div id="pot-container" className="main-page-component"></div>
-                            <div id="shopping-list-container" className="main-page-component"><RecipeShowModal recipe={sampleRecipe}/></div>
+                            <div id="shopping-list-container" className="main-page-component"><RecipeShowModal recipe={recipe}/></div>
                         </div>
                     </div>
                 </div>

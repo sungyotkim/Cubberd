@@ -1,23 +1,11 @@
-// import { fetchRecipes } from "../../store/recipes";
-// import { useSelector } from "react-redux";
 import './RecipeShow.css';
-// import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
 
 function RecipeShow({recipe}) {
-    // const dispatch = useDispatch();
-    // const recipes = useSelector(state => state.recipes)
-    // debugger
 
-    // useEffect(() => {
-    //     dispatch(fetchRecipes())
-    // }, [])
 
     const ingredients = recipe.ingredients.map(
         (ingredient) => <div className='ingredient-list-item'>{ingredient.food}</div>
     )
-
-
 
     return (
         <div id="recipe">
