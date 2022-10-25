@@ -4,11 +4,7 @@ const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const Ingredient = mongoose.model("Ingredient");
-const {
-  loginUser,
-  restoreUser,
-  requireUser,
-} = require("../../config/passport");
+const {loginUser, restoreUser, requireUser} = require("../../config/passport");
 const passport = require("passport");
 const validateRegisterInput = require("../../validations/register");
 const validateLoginInput = require("../../validations/login");
@@ -150,18 +146,18 @@ router.delete(
   }
 );
 
-// router.post("/:userId/shoppingList", requireUser, async(req, res) => {
-//   const ingredient = req.body;
-//   const defaultQuantity = 1;
-//   const currentUserId = req.params(userId);
-//   const currentUser = await User.findById(currentUserId);
-//   const newShoppingListItem = new ShoppingListItem({
-//     quantity: defaultQuantity,
-//     ingredient: ingredient
-//   })
-//   const shoppingListItem = newShoppingListItem.save()
-//   res.json(currentUser.shoppingListItem)
-// })
+router.post("/:userId/shoppingList", requireUser, async(req, res) => {
+  const ingredient = req.body;
+  const defaultQuantity = 1;
+  const currentUserId = req.params(userId);
+  const currentUser = await User.findById(currentUserId);
+  const newShoppingListItem = new ShoppingListItem({
+    quantity: defaultQuantity,
+    ingredient: ingredient
+  })
+  const shoppingListItem = newShoppingListItem.save()
+  res.json(currentUser.shoppingListItem)
+})
 
 // router.put("/:userId/shoppingList/itemId", requireUser, async (req, res) => {
 //   const itemId = req.params(itemId)

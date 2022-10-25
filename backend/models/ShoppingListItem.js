@@ -12,4 +12,4 @@ const shoppingListItemSchema = Schema({
     timestamps: true
   });
 
-  module.exports = mongoose.model('shoppingListItem', shoppingListItemSchema)
+  module.exports = mongoose.model('ShoppingListItem', shoppingListItemSchema)
