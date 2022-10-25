@@ -149,4 +149,12 @@ router.delete(
   }
 );
 
+router.post("/:userId/shoppingList", requireUser, async(req, res) => {
+  const ingredient = req.body;
+  const defaultQuantity = 1;
+  const currentUserId = req.params(userId);
+  const currentUser = await User.findById(currentUserId);
+  const newShoppingList
+})
+
 module.exports = router;
