@@ -28,28 +28,26 @@ function App() {
     setRecipes((oldArr) => [...oldArr, ...newRecipes]);
   };
 
+  // useEffect(() => {
+  //   getRecipes();
+  // }, [query]);
 
-  useEffect(() => {
-    getRecipes();
-  }, [query]);
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    getRecipes();
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   getRecipes();
+  // };
 
   return (
     loaded && (
       <>
-        <form onSubmit={handleSubmit}>
+        {/* <form onSubmit={handleSubmit}>
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
           <input type="submit" value="submit" />
-        </form>
+        </form> */}
         <Switch>
           <Route exact path="/profile" component={UserPage} />
           <Route exact path="/" component={MainPage} />

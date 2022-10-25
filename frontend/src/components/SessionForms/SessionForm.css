@@ -1,0 +1,93 @@
+.session-form {
+  width: 450px;
+  min-height: 410px;
+  background-color: var(--main-lighter-color);
+  position: fixed;
+  z-index: 1;
+  border-radius: 16px;
+}
+
+.session-form-header {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--main-lighter-dark-color);
+  margin-bottom: 36px;
+  padding: 0 20px;
+}
+
+.session-form-header > h2 {
+  margin: 0;
+  vertical-align: center;
+  text-align: center;
+}
+
+.session-input-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 110px;
+  gap: 10px;
+  padding: 0 20px;
+  margin-bottom: 36px;
+}
+
+.session-input-container > input {
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  box-sizing: border-box;
+}
+
+.session-form-btn {
+  height: 50px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--main-lighter-dark-color);
+  padding-bottom: 36px;
+}
+
+.session-form-btn > input {
+  height: 50px;
+  width: 410px;
+  border-radius: 8px;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  background-color: var(--main-dark-color);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.session-form-redirect-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 24px 0;
+}
+
+.errors {
+  padding: 5px 10px;
+  background-color: #fcd6d3;
+  display: flex;
+  align-items: center;
+  margin: 5px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.session-form-redirect-container {
+  cursor: pointer;
+  color: var(--main-dark-color);
+}
+
+.redirect-to-signup-btn:hover {
+  text-decoration: underline;
+}
+
+.redirect-to-login-btn:hover {
+  text-decoration: underline;
+}
