@@ -1,14 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const mongoose = require('mongoose');
-const User = mongoose.model('User');
-const Ingredient = mongoose.model('Ingredient');
-const { loginUser, restoreUser, requireUser } = require('../../config/passport');
-const passport = require('passport');
-const validateRegisterInput = require('../../validations/register');
-const validateLoginInput = require('../../validations/login');
-const { isProduction } = require('../../config/keys');
+const bcrypt = require("bcryptjs");
+const mongoose = require("mongoose");
+const User = mongoose.model("User");
+const Ingredient = mongoose.model("Ingredient");
+const {
+  loginUser,
+  restoreUser,
+  requireUser,
+} = require("../../config/passport");
+const passport = require("passport");
+const validateRegisterInput = require("../../validations/register");
+const validateLoginInput = require("../../validations/login");
+const { isProduction } = require("../../config/keys");
 const Recipe = require("../../models/Recipe");
 
 /* GET users listing. */
@@ -40,7 +44,7 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
 
   const newUser = new User({
     username: req.body.username,
-    email: req.body.email
+    email: req.body.email,
   });
 
   const jasmineRice = await Ingredient.findOne({ food: "jasmine rice" }).exec();
@@ -48,10 +52,16 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
     food: "boneless skinless chicken breast",
   }).exec();
 
-  const recipe1 = await Recipe.findOne({label: "Super Bowl Snacks: Loaded Baked Potato Potato Chip Nachos Recipe"}).exec();
-  const recipe2 = await Recipe.findOne({label: "Pasta alla Gricia Recipe"}).exec();
-  const recipe3 = await Recipe.findOne({label: "Crispy Roasted Mushrooms"}).exec();
-  const recipe4 = await Recipe.findOne({label: "Tofu Banana Mousse"}).exec();
+  const recipe1 = await Recipe.findOne({
+    label: "Super Bowl Snacks: Loaded Baked Potato Potato Chip Nachos Recipe",
+  }).exec();
+  const recipe2 = await Recipe.findOne({
+    label: "Pasta alla Gricia Recipe",
+  }).exec();
+  const recipe3 = await Recipe.findOne({
+    label: "Crispy Roasted Mushrooms",
+  }).exec();
+  const recipe4 = await Recipe.findOne({ label: "Tofu Banana Mousse" }).exec();
   newUser.cubberd.push(jasmineRice);
   newUser.cubberd.push(chickenBreast);
 
@@ -102,9 +112,9 @@ router.get("/current", restoreUser, (req, res) => {
     _id: req.user._id,
     username: req.user.username,
     email: req.user.email,
-    cubberd: req.user.cubberd, 
+    cubberd: req.user.cubberd,
     savedRecipes: req.user.savedRecipes,
-    plannedRecipes: req.user.plannedRecipes
+    plannedRecipes: req.user.plannedRecipes,
   });
 });
 
@@ -125,13 +135,18 @@ router.post("/:userId/cubberd", restoreUser, requireUser, async (req, res) => {
   res.json(currentUser.cubberd);
 });
 
-router.delete("/:userId/cubbered", restoreUser, requireUser, async (req, res) => {
-  const ingredient = req.body;
-  const currentUserId = req.user._id;
-  const currentUser = await User.findById(currentUserId);
-  currentUser.cubberd.pull(ingredient);
-  currentUser.save();
-  res.json(currentUser.cubberd);
-});
+router.delete(
+  "/:userId/cubberd",
+  restoreUser,
+  requireUser,
+  async (req, res) => {
+    const ingredient = req.body;
+    const currentUserId = req.user._id;
+    const currentUser = await User.findById(currentUserId);
+    currentUser.cubberd.pull(ingredient);
+    currentUser.save();
+    res.json(currentUser.cubberd);
+  }
+);
 
 module.exports = router;
