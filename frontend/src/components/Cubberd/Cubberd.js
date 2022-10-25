@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   composeUserCubberdIngredient,
+  deleteUserCubberdIngredient,
   fetchIngredients,
   fetchUserCubberdIngredients,
 } from "../../store/ingredients";
@@ -12,6 +13,8 @@ import { MdOutlineRemoveCircle } from "react-icons/md";
 import woodBackground from "../../assets/retina_wood.png";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
+import ReactDOM from "react-dom";
+import App from "../../App";
 
 const CustomToolTip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -39,6 +42,8 @@ const Cubberd = () => {
   const [searchResult, setSearchResult] = useState();
   const [searchQuery, setSearchQuery] = useState("");
   const [cubberdRows, setCubberdRows] = useState([]);
+  const [selectedLi, setSelectedLi] = useState(0);
+  const ref = useRef();
 
   useEffect(() => {
     dispatch(fetchIngredients());
@@ -103,7 +108,39 @@ const Cubberd = () => {
 
   const addToUserCubberd = () => {
     dispatch(composeUserCubberdIngredient(currentUser._id, searchResult));
-    dispatch(fetchUserCubberdIngredients(currentUser._id));
+  };
+
+  const removeFromUserCubberd = (e, ingredient) => {
+    e.preventDefault();
+    dispatch(deleteUserCubberdIngredient(currentUser._id, ingredient));
+  };
+
+  const handleKeyDown = (e) => {
+    let last = searchResults.length - 1;
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      if (selectedLi === 0) {
+        setSelectedLi(last);
+      } else {
+        setSelectedLi(selectedLi - 1);
+      }
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (selectedLi === last) {
+        setSelectedLi(0);
+      } else {
+        setSelectedLi(selectedLi + 1);
+      }
+    } else if (e.key === "Enter") {
+      console.log(ref.current);
+      console.log(searchResults[selectedLi]);
+    }
+    let selectedEle = document.getElementsByClassName("selected")[0];
+    selectedEle.scrollIntoView({
+      block: "nearest",
+      inline: "start",
+    });
+    console.log(document.getElementsByClassName("selected")[0]);
   };
 
   return (
@@ -128,6 +165,7 @@ const Cubberd = () => {
                   placeholder="Search for ingredients..."
                   onChange={(e) => searchItem(e.target.value)}
                   value={searchQuery}
+                  onKeyDown={(e) => handleKeyDown(e)}
                 />
                 <div className="cubberd-search-btn">
                   <BiSearchAlt />
@@ -135,17 +173,21 @@ const Cubberd = () => {
               </div>
               {searchResults && searchResults.length > 0 && (
                 <ul className="search-results">
-                  {searchResults.map((result) => {
+                  {searchResults.map((result, i) => {
                     return (
-                      <li onClick={(e) => handleResultFoodClick(e, result)}>
+                      <li
+                        onClick={(e) => handleResultFoodClick(e, result)}
+                        ref={i === selectedLi ? ref : null}
+                        className={i === selectedLi ? "selected" : ""}
+                      >
                         {result.food}
                       </li>
                     );
                   })}
                 </ul>
               )}
-              <div className="search-result-container">
-                {searchResult && (
+              {searchResult && (
+                <div className="search-result-container">
                   <>
                     <img src={searchResult.image} alt={searchResult.food} />
                     <div className="search-result-options">
@@ -168,8 +210,8 @@ const Cubberd = () => {
                       </CustomToolTip>
                     </div>
                   </>
-                )}
-              </div>
+                </div>
+              )}
               <div className="cubberd-shelving"></div>
             </div>
             <div className="cubberd-ingredients-container-wrapper">
@@ -201,7 +243,10 @@ const Cubberd = () => {
                               arrow
                               placement="bottom"
                             >
-                              <div className="cubberd-shelving-option-two">
+                              <div
+                                className="cubberd-shelving-option-two"
+                                onClick={(e) => removeFromUserCubberd(e, ing)}
+                              >
                                 <MdOutlineRemoveCircle />
                               </div>
                             </CustomToolTip>
