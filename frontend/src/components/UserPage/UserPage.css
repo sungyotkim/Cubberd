@@ -5,6 +5,10 @@
 
 #user-page nav {
     width: calc(100% - 1em);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #user-page-columns {
@@ -31,4 +35,13 @@
 #user-page-planned-and-shopping div{
     width: 100%;
     height: 50%;
+}
+
+#user-page-nav-items {
+    display: flex;
+    width: 30%;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 1em;
 }
