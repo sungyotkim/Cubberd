@@ -159,10 +159,4 @@ router.post("/:userId/shoppingList", requireUser, async(req, res) => {
   res.json(currentUser.shoppingListItem)
 })
 
-// router.put("/:userId/shoppingList/itemId", requireUser, async (req, res) => {
-//   const itemId = req.params(itemId)
-//   const shoppingListItem = await ShoppingListItem.findById()
-//   const quantity = req.body;
-// })
-
 module.exports = router;
