@@ -1,0 +1,20 @@
+#user-page {
+    display: flex;
+    flex-direction: column;
+}
+
+#user-page nav {
+    width: calc(100% - 1em);
+}
+
+#user-page-columns {
+    width: calc(100% - 1em);
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.user-page-column {
+    flex-grow: 1;
+    height: calc(100% - 1em);
+}
