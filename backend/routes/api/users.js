@@ -44,29 +44,26 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
     email: req.body.email,
   });
 
-  const jasmineRice = await Ingredient.findOne({ food: "jasmine rice" }).exec();
-  const chickenBreast = await Ingredient.findOne({
-    food: "boneless skinless chicken breast",
-  }).exec();
+  const jasmineRice = await Ingredient.findOne({ food: "Jasmine Rice" }).exec();
+  const chickenBreast = await Ingredient.findOne({food: "Boneless Skinless Chicken Breast"}).exec();
 
-  const recipe1 = await Recipe.findOne({
-    label: "Super Bowl Snacks: Loaded Baked Potato Potato Chip Nachos Recipe",
-  }).exec();
-  const recipe2 = await Recipe.findOne({
-    label: "Pasta alla Gricia Recipe",
-  }).exec();
-  const recipe3 = await Recipe.findOne({
-    label: "Crispy Roasted Mushrooms",
-  }).exec();
+  const recipe1 = await Recipe.findOne({ label: "Super Bowl Snacks: Loaded Baked Potato Potato Chip Nachos Recipe" }).exec();
+  const recipe2 = await Recipe.findOne({ label: "Pasta alla Gricia Recipe" }).exec();
+  const recipe3 = await Recipe.findOne({ label: "Crispy Roasted Mushrooms" }).exec();
   const recipe4 = await Recipe.findOne({ label: "Tofu Banana Mousse" }).exec();
+
+  const banana = await Ingredient.findOne({food: "Banana" }).exec();
+  const shoppingListItem = new ShoppingListItem({ quantity: 4, ingredient: banana })
+  await shoppingListItem.save();
+
   newUser.cubberd.push(jasmineRice);
   newUser.cubberd.push(chickenBreast);
-
   newUser.savedRecipes.favorited.push(recipe1);
   newUser.savedRecipes.favorited.push(recipe2);
   newUser.savedRecipes.planned.push(recipe3);
   newUser.savedRecipes.planned.push(recipe4);
-
+  newUser.shoppingList.push(banana);
+  
   bcrypt.genSalt(10, (err, salt) => {
     if (err) throw err;
     bcrypt.hash(req.body.password, salt, async (err, hashedPassword) => {
@@ -105,14 +102,15 @@ router.get("/current", restoreUser, (req, res) => {
     res.cookie("CSRF-TOKEN", csrfToken);
   }
   if (!req.user) return res.json(null);
-  res.json({
+  const allUserInfo = {
     _id: req.user._id,
     username: req.user.username,
     email: req.user.email,
-    cubberd: req.user.cubberd,
+    cubberd: req.user.cubberd, 
     savedRecipes: req.user.savedRecipes,
-    plannedRecipes: req.user.plannedRecipes,
-  });
+    shoppingList: req.user.shoppingList
+  };
+  res.json(allUserInfo);
 });
 
 // Get Cubberd

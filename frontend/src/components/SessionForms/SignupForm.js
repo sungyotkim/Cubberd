@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { signup, clearSessionErrors } from "../../store/session";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const SignupForm = () => {
   const [email, setEmail] = useState("");
@@ -10,10 +10,18 @@ const SignupForm = () => {
   const [password2, setPassword2] = useState("");
   const errors = useSelector((state) => state.errors.session);
   const dispatch = useDispatch();
+  const [passwordError, setPasswordError] = useState("")
+  const location = useLocation();
 
   useEffect(() => {
+    if (location.state) {
+      setEmail(location.state.email);
+      setPassword(location.state.password);
+      setUsername(location.state.username);
+    }
     return () => {
       dispatch(clearSessionErrors());
+      setPasswordError("")
     };
   }, [dispatch]);
 
@@ -42,13 +50,16 @@ const SignupForm = () => {
 
   const usernameSubmit = (e) => {
     e.preventDefault();
-    const user = {
-      email,
-      username,
-      password,
-    };
-
-    dispatch(signup(user));
+    if (password === password2) {
+      setPasswordError("")
+      const user = {
+        email,
+        username,
+        password,
+      };
+      return dispatch(signup(user));
+    } 
+    return setPasswordError("Passwords do not match")
   };
 
   return (
@@ -57,17 +68,25 @@ const SignupForm = () => {
         <div className="session-form-header">
           <h2>Sign Up</h2>
         </div>
+        <div className="demo-user-btn">
+          <div>
+            Demo User
+          </div>
+        </div>
+        <fieldset className="login-fieldset">
+          <legend align="center">OR</legend>
+        </fieldset>
         {errors && (
           <div className="errors">
             {errors?.email || errors?.username || errors?.password}
           </div>
         )}
-        {password !== password2 && (
-          <div className="errors">Confirm Password field must match</div>
+        {passwordError && (
+          <div className="errors">{passwordError}</div>
         )}
         <div className="session-input-container">
           <input
-            type="text"
+            type="email"
             value={email}
             onChange={update("email")}
             placeholder="Email"
@@ -83,12 +102,14 @@ const SignupForm = () => {
             value={password}
             onChange={update("password")}
             placeholder="Password"
+            minLength={6}
           />
           <input
             type="password"
             value={password2}
             onChange={update("password2")}
             placeholder="Confirm Password"
+            minLength={6}
           />
         </div>
         <div className="session-form-btn">
@@ -96,12 +117,16 @@ const SignupForm = () => {
             type="submit"
             value="Sign Up"
             disabled={
-              !email || !username || !password || password !== password2
+              !email || !username || !password || !password2
             }
           />
         </div>
         <div className="session-form-redirect-container">
-          <Link to="/login" className="redirect-to-login-btn">
+          <Link to={{
+            pathname: "/login",
+            state: { email, password, username }
+          }} 
+          className="redirect-to-login-btn">
             Already have an account? Log in
           </Link>
         </div>

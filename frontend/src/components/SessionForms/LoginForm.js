@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { login, clearSessionErrors } from "../../store/session";
 import "./SessionForm.css";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const errors = useSelector((state) => state.errors.session);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
+    if (location.state) {
+      setEmail(location.state.email);
+      setPassword(location.state.password);
+      setUsername(location.state.username);
+    }
     return () => {
       dispatch(clearSessionErrors());
     };
@@ -32,28 +39,41 @@ const LoginForm = () => {
         <div className="session-form-header">
           <h2>Log In</h2>
         </div>
+        <div className="demo-user-btn">
+          <div>
+            Demo User
+          </div>
+        </div>
+        <fieldset className="login-fieldset">
+          <legend align="center">OR</legend>
+        </fieldset>
         {errors && (
           <div className="errors">{errors?.email || errors?.password}</div>
         )}
         <div className="session-input-container">
           <input
-            type="text"
+            type="email"
             value={email}
             onChange={update("email")}
             placeholder="Email"
           />
           <input
             type="password"
+            minLength={6}
             value={password}
             onChange={update("password")}
             placeholder="Password"
           />
         </div>
         <div className="session-form-btn">
-          <input type="submit" value="Login" disabled={!email || !password} />
+          <input type="submit" value="Log In" disabled={!email || !password} />
         </div>
         <div className="session-form-redirect-container">
-          <Link to="/signup" className="redirect-to-signup-btn">
+          <Link to={{
+            pathname: "/signup",
+            state: { email, password, username }
+          }} 
+          className="redirect-to-signup-btn">
             Don't have an account? Sign up
           </Link>
         </div>
