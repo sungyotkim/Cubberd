@@ -21,7 +21,7 @@ function App() {
   const [query, setQuery] = useState("");
 
   const getRecipes = async () => {
-    const res = await axios.get(`http://localhost:5000/recipes/${query}`);
+    const res = await axios.get(`http://localhost:5000/api/recipes/${query}`);
     // console.log(res.data);
     let newRecipes = res.data;
     setRecipes((oldArr) => [...oldArr, ...newRecipes]);

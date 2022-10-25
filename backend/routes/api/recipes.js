@@ -2,14 +2,21 @@ const express = require('express');
 const { body } = require('express-validator');
 const router = express.Router();
 const mongoose = require('mongoose');
+const Ingredient = mongoose.model('Ingredient');
 const Recipe = mongoose.model('Recipe')
 
 router.get('/', async (req, res, next) => {
-    const allRecipes = await Recipe.find()
-    return res.json(allRecipes)
+    const allRecipes = await Recipe.find();
+    return res.json(allRecipes);
 });
 
 // get by ingredients
+router.get('/ingredients', async(req, res, next) => {
+    const ingredient = await Ingredient.findOne(req.body);
+    console.log(ingredient.foodId)
+    const recipe = await Recipe.find({"ingredients.foodId": ingredient.foodId});
+    return res.json(recipe)
+})
 // router.get('/', async (req, res, next) => {
 //     let recipes;
 //     try {
@@ -41,5 +48,7 @@ router.post('/', async (req, res) => {
     })
 
     const recipe = await newRecipe.save();
-    return res.json(recipe)
+    return res.json(recipe);
 })
+
+module.exports = router;
