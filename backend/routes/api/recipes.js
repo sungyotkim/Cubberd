@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
 //get 5 recipes test route
 router.get('/test', async(req, res, next) => {
     const recipes = await Recipe.find().limit(5);
-    return res.json
+    return res.json(recipe)
 })
 
 // get by ingredients
