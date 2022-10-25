@@ -5,7 +5,9 @@ import {
   fetchUserCubberdIngredients,
 } from "../../store/ingredients";
 import "./Cubberd.css";
-import { BiSearchAlt } from "react-icons/bi";
+import { BiSearchAlt, BiSave } from "react-icons/bi";
+import { GiCookingPot } from "react-icons/gi";
+import { MdOutlineRemoveCircle } from "react-icons/md";
 import woodBackground from "../../assets/retina_wood.png";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
@@ -33,18 +35,20 @@ const Cubberd = () => {
   const userCubberd = useSelector((state) => state.ingredients.userCubberd);
   const allIngredients = useSelector((state) => state.ingredients.all);
   const [searchResults, setSearchResults] = useState([]);
+  const [searchResult, setSearchResult] = useState();
 
   useEffect(() => {
     dispatch(fetchIngredients());
   }, [dispatch]);
 
-  console.log(allIngredients);
+  // console.log(allIngredients);
 
   useEffect(() => {
     dispatch(fetchUserCubberdIngredients(currentUser._id));
   }, [currentUser, dispatch]);
 
   const searchItem = (query) => {
+    setSearchResult();
     if (!query) {
       setSearchResults([]);
       return;
@@ -60,6 +64,13 @@ const Cubberd = () => {
     });
 
     setSearchResults(results);
+  };
+
+  const handleResultFoodClick = (e, result) => {
+    e.preventDefault();
+    console.log(result);
+    setSearchResults([]);
+    setSearchResult(result);
   };
 
   return (
@@ -91,8 +102,35 @@ const Cubberd = () => {
               <div className="search-results">
                 {searchResults &&
                   searchResults.map((result) => {
-                    return <div>{result.food}</div>;
+                    return (
+                      <div onClick={(e) => handleResultFoodClick(e, result)}>
+                        {result.food}
+                      </div>
+                    );
                   })}
+              </div>
+              <div className="search-result-container">
+                {searchResult && (
+                  <>
+                    <img src={searchResult.image} alt={searchResult.food} />
+                    <div className="search-result-options">
+                      <CustomToolTip title="Add to pot?" arrow placement="top">
+                        <div className="add-to-pot-btn">
+                          <GiCookingPot />
+                        </div>
+                      </CustomToolTip>
+                      <CustomToolTip
+                        title="Save to cubberd?"
+                        arrow
+                        placement="bottom"
+                      >
+                        <div className="save-to-cubberd-btn">
+                          <BiSave />
+                        </div>
+                      </CustomToolTip>
+                    </div>
+                  </>
+                )}
               </div>
               <div className="cubberd-shelving"></div>
             </div>
@@ -104,6 +142,26 @@ const Cubberd = () => {
                       <CustomToolTip title={ing.food} arrow placement="bottom">
                         <img src={ing.image} alt={ing.food} />
                       </CustomToolTip>
+                      <div className="search-result-options">
+                        <CustomToolTip
+                          title="Add to pot?"
+                          arrow
+                          placement="top"
+                        >
+                          <div className="add-to-pot-btn">
+                            <GiCookingPot />
+                          </div>
+                        </CustomToolTip>
+                        <CustomToolTip
+                          title="Remove to cubberd?"
+                          arrow
+                          placement="bottom"
+                        >
+                          <div className="save-to-cubberd-btn">
+                            <MdOutlineRemoveCircle />
+                          </div>
+                        </CustomToolTip>
+                      </div>
                       <div className="cubberd-shelving"></div>
                     </div>
                   ))}
