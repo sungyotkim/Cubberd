@@ -7,7 +7,7 @@ const shoppingListItemSchema = Schema({
       type: Number,
       required: true
     },
-    ingredients: [IngredientSchema]
+    ingredient: IngredientSchema
   }, {
     timestamps: true
   });

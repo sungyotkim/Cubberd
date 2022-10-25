@@ -10,6 +10,7 @@ const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 const { isProduction } = require('../../config/keys');
 const Recipe = require("../../models/Recipe");
+const ShoppingListItem = mongoose.model('ShoppingListItem')
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -139,7 +140,10 @@ router.post("/:userId/shoppingList", requireUser, async(req, res) => {
   const defaultQuantity = 1;
   const currentUserId = req.params(userId);
   const currentUser = await User.findById(currentUserId);
-  const newShoppingList
+  const newShoppingListItem = new ShoppingListItem({
+    quantity: defaultQuantity,
+    ingredient
+  })
 })
 
 module.exports = router;
