@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserCubberdIngredients } from "../../store/ingredients";
+import {
+  fetchIngredients,
+  fetchUserCubberdIngredients,
+} from "../../store/ingredients";
 import "./Cubberd.css";
 import { BiSearchAlt } from "react-icons/bi";
 import woodBackground from "../../assets/retina_wood.png";
@@ -28,12 +31,25 @@ const Cubberd = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
   const userCubberd = useSelector((state) => state.ingredients.userCubberd);
+  const allIngredients = useSelector((state) => state.ingredients.all);
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    dispatch(fetchIngredients());
+  }, [dispatch]);
 
   console.log(userCubberd);
+  console.log(allIngredients);
 
   useEffect(() => {
     dispatch(fetchUserCubberdIngredients(currentUser._id));
   }, [currentUser, dispatch]);
+
+  const searchItem = (query) => {
+    if (!query) {
+      setSearchResults();
+    }
+  };
 
   return (
     <>
@@ -55,6 +71,7 @@ const Cubberd = () => {
                   type="text"
                   className="cubberd-search-bar"
                   placeholder="Search for ingredients..."
+                  onChange={(e) => searchItem(e.target.value)}
                 />
                 <div className="cubberd-search-btn">
                   <BiSearchAlt />
