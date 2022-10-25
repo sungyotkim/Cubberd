@@ -53,7 +53,10 @@ router.get('/ingredients', async(req, res) => {
         })
     }
 
+    //recipes.push(recipesByIngredientScore)
     recipesByShoppingScore.sort((a, b) => {a.shoppingScore > b.shoppingScore ? -1 : 1})
+    recipes.push(recipesByIngredientScore, recipesByShoppingScore.slice(0,4))
+    console.log(recipes.length)
 
     // for (let i = 0; i < foodSubsets.length; i ++) {
     //     let query = foodSubsets[i]
@@ -67,7 +70,7 @@ router.get('/ingredients', async(req, res) => {
     //     console.log(recipes)
     // }
 
-    return res.json(recipesByIngredientScore)
+    return res.json(recipes)
 })
 
 
