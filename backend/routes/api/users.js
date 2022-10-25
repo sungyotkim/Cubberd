@@ -4,16 +4,13 @@ const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const Ingredient = mongoose.model("Ingredient");
-const {
-  loginUser,
-  restoreUser,
-  requireUser,
-} = require("../../config/passport");
+const {loginUser, restoreUser, requireUser} = require("../../config/passport");
 const passport = require("passport");
 const validateRegisterInput = require("../../validations/register");
 const validateLoginInput = require("../../validations/login");
 const { isProduction } = require("../../config/keys");
 const Recipe = require("../../models/Recipe");
+const ShoppingListItem = mongoose.model('ShoppingListItem')
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -154,7 +151,18 @@ router.post("/:userId/shoppingList", requireUser, async(req, res) => {
   const defaultQuantity = 1;
   const currentUserId = req.params(userId);
   const currentUser = await User.findById(currentUserId);
-  const newShoppingList
+  const newShoppingListItem = new ShoppingListItem({
+    quantity: defaultQuantity,
+    ingredient: ingredient
+  })
+  const shoppingListItem = newShoppingListItem.save()
+  res.json(currentUser.shoppingListItem)
 })
+
+// router.put("/:userId/shoppingList/itemId", requireUser, async (req, res) => {
+//   const itemId = req.params(itemId)
+//   const shoppingListItem = await ShoppingListItem.findById()
+//   const quantity = req.body;
+// })
 
 module.exports = router;

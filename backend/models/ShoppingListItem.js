@@ -7,9 +7,9 @@ const shoppingListItemSchema = Schema({
       type: Number,
       required: true
     },
-    ingredients: [IngredientSchema]
+    ingredient: IngredientSchema
   }, {
     timestamps: true
   });
 
-  module.exports = mongoose.model('shoppingListItem', shoppingListItemSchema)
+  module.exports = mongoose.model('ShoppingListItem', shoppingListItemSchema)

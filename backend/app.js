@@ -11,6 +11,7 @@ require("./models/User");
 require("./config/passport");
 require("./models/Ingredient");
 require("./models/Recipe");
+require("./models/ShoppingListItem")
 
 const passport = require("passport");
 
