@@ -24,9 +24,9 @@ const receiveUserCubberdIngredients = (ingredients) => ({
   ingredients,
 });
 
-const receiveNewUserCubberdIngredient = (ingredient) => ({
+const receiveNewUserCubberdIngredient = (ingredients) => ({
   type: RECEIVE_NEW_USER_CUBBERD_INGREDIENT,
-  ingredient,
+  ingredients,
 });
 
 const removeUserCubberdIngredient = (ingredients) => ({
@@ -84,12 +84,12 @@ const ingredientsReducer = (state = { all: {}, userCubberd: {} }, action) => {
     case RECEIVE_NEW_USER_CUBBERD_INGREDIENT:
       return {
         ...state,
-        userCubberd: action.ingredient,
+        userCubberd: action.ingredients,
       };
     case REMOVE_USER_CUBBERD_INGREDIENT:
       return {
         ...state,
-        userCubberd: action.ingredient,
+        userCubberd: action.ingredients,
       };
     default:
       return state;

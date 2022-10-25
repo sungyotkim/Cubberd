@@ -107,15 +107,16 @@ const Cubberd = () => {
     setSearchQuery("");
 
     let existingArr = userCubberd.filter((ele) => ele._id === result._id);
-    if (existingArr.length > 0) {
-      setResultAdded(true);
-    } else {
+    if (existingArr.length === 0) {
       setResultAdded(false);
+    } else {
+      setResultAdded(true);
     }
   };
 
   const addToUserCubberd = () => {
     dispatch(composeUserCubberdIngredient(currentUser._id, searchResult));
+    setSearchResult();
   };
 
   const removeFromUserCubberd = (e, ingredient) => {
