@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import RecipeShow from '../RecipeShow/RecipeShow';
 
 
-function RecipeShowModal(recipe) {
+function RecipeShowModal({recipe}) {
     const [showModal, setShowModal] = useState(false);
 
     return (

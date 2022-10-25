@@ -10,7 +10,6 @@ import RecipeList from "../RecipeList/RecipeList";
 function UserPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    debugger
 
     const savedRecipeLists = useSelector(state => state.session.user.savedRecipes);
     const plannedRecipes = useSelector(state => state.session.user.plannedRecipes);

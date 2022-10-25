@@ -1,4 +1,3 @@
-import RecipeListItem from '../RecipeListItem/RecipeListItem';
 import RecipeShowModal from '../RecipeShowModal/RecipeShowModal';
 import './RecipeList.css';
 
