@@ -26,26 +26,26 @@ function MainPage() {
     }
 
     return (
-        <div id="main-page">
+        <div id="main-page" className="main-display">
             <div id="main-page-left">
-                <div id="cubberd-search-container" className="main-page-component"></div>
+                <div id="cubberd-search-container" className="main-display-component"></div>
             </div>
             <div id="main-page-right">
                 <div id="main-page-top">
                     <div id="main-page-top-right">
-                        <div id="navbar-container" className="main-page-component">
-                           <nav>{sessionUser ? <span>Logged in as {sessionUser.username} <button onClick={handleLogout}>Logout</button> </span> : <span><LoginFormModal /> <SignupFormModal /></span>}</nav>  
+                        <div id="navbar-container" className="main-display-component">
+                           <nav>{sessionUser ? <span>Logged in as <Link to="/profile">{sessionUser.username}</Link> <button onClick={handleLogout}>Logout</button> </span> : <span><LoginFormModal /> <SignupFormModal /></span>}</nav>  
                         </div>
                         <div id="main-page-top-right-bottom">
-                            <div id="pot-container" className="main-page-component">
+                            <div id="pot-container" className="main-display-component">
                                 <CookingPot />
                             </div>
-                            <div id="shopping-list-container" className="main-page-component"><RecipeShowModal recipe={recipe}/></div>
+                            <div id="shopping-list-container" className="main-display-component"><RecipeShowModal recipe={recipe}/></div>
                         </div>
                     </div>
                 </div>
                 <div id="main-page-bottom">
-                    <div id="current-cubberd-container" className="main-page-component"></div>
+                    <div id="current-cubberd-container" className="main-display-component"></div>
                 </div>
 
             </div>
