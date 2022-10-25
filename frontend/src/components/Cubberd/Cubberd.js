@@ -47,8 +47,34 @@ const Cubberd = () => {
   const [openDoor, setOpenDoor] = useState(false);
   const ref = useRef();
 
+  const handleDoorClick = () => {
+    if (openDoor) {
+      setOpenDoor(false);
+    }
+  };
+
+  const handleDoorKnobClick = () => {
+    if (openDoor) {
+      setOpenDoor(false);
+    } else {
+      setOpenDoor(true);
+    }
+  };
+
   useEffect(() => {
     dispatch(fetchIngredients());
+
+    let doorTimeOut = setTimeout(() => {
+      if (openDoor === false) {
+        setOpenDoor(true);
+      } else if (openDoor === true) {
+        clearTimeout(doorTimeOut);
+      }
+    }, 2000);
+
+    return () => {
+      clearTimeout(doorTimeOut);
+    };
   }, [dispatch]);
 
   useEffect(() => {
@@ -160,14 +186,6 @@ const Cubberd = () => {
     console.log(document.getElementsByClassName("selected")[0]);
   };
 
-  const handleDoorClick = () => {
-    if (openDoor) {
-      setOpenDoor(false);
-    } else {
-      setOpenDoor(true);
-    }
-  };
-
   return (
     <>
       <div className="outer-container">
@@ -184,7 +202,10 @@ const Cubberd = () => {
             <div className="cubberd-door-pattern">
               <div className="cubberd-inner-door-pattern"></div>
             </div>
-            <div className="cubberd-door-knob"></div>
+            <div
+              className="cubberd-door-knob"
+              onClick={handleDoorKnobClick}
+            ></div>
           </div>
           <div className="cubberd-content-container">
             <div className="cubberd-search-container">
