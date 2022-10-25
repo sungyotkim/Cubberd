@@ -119,28 +119,19 @@ router.get("/:userId/cubberd", requireUser, async (req, res) => {
 router.post("/:userId/cubberd", restoreUser, requireUser, async (req, res) => {
   const ingredient = req.body;
   const currentUserId = req.params.userId;
-  User.findAndUpdate(
-    { _id: currentUserId },
-    { $push: { cubberd: ingredient } }
-  );
-  const cubberd = await User.findById(req.params.userId, "cubberd");
-  res.json(cubberd);
+  const currentUser = await User.findById(currentUserId);
+  currentUser.cubberd.push(ingredient);
+  currentUser.save();
+  res.json(currentUser.cubberd);
 });
 
-router.delete(
-  "/:userId/cubbered",
-  restoreUser,
-  requireUser,
-  async (req, res) => {
-    const ingredientId = req.body;
-    const currentUserId = req.user._id;
-    User.updateOne(
-      { _id: currentUserId },
-      { $pull: { cubberd: ingredientId } }
-    );
-    const cubberd = await User.findById(req.params.userId, "cubberd");
-    res.json(cubberd);
-  }
-);
+router.delete("/:userId/cubbered", restoreUser, requireUser, async (req, res) => {
+  const ingredient = req.body;
+  const currentUserId = req.user._id;
+  const currentUser = await User.findById(currentUserId);
+  currentUser.cubberd.pull(ingredient);
+  currentUser.save();
+  res.json(currentUser.cubberd);
+});
 
 module.exports = router;
