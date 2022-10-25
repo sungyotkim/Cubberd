@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 
 const shoppingListItemSchema = Schema({
     quantity: {
-      type: Number,
-      required: true
+      type: Number
     },
     ingredient: IngredientSchema
   }, {
