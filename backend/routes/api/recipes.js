@@ -17,13 +17,12 @@ router.get('/test', async(req, res, next) => {
 
 //get by multiple ingredients 
 
-// const getRecipes = async query => {
-//     await Recipe.find({"ingredients.food": {$all: query}})
-// }
-
+const getRecipes = query => Recipe.find({"ingredients.food": {$all: query}})
 
 router.get('/ingredients', async(req, res) => {
-    let foods = req.body
+    const foods = req.body
+    const numQueryIngredients = foods.length;
+        
     let foodSubsets = []
     for (let i = 0; i < foods.length; i++) {
         for (let j = i + 1; j <= foods.length; j++) {
@@ -31,25 +30,40 @@ router.get('/ingredients', async(req, res) => {
             foodSubsets.push(subset)
         }
     }
-
-   foodSubsets.sort((a, b) => a.length > b.length ? -1 : 1);
- 
-    const numIngredients = foods.length;
+    
+    foodSubsets.sort((a, b) => a.length > b.length ? -1 : 1);
+    
     let ingredientScore;
+    let shoppingScore;
+    let recipesByIngredientScore = []
+    let recipesByShoppingScore = []
+    let recipesQuery = []
     let recipes = []
-    let recipesArr = []
     for (let i = 0; i < foodSubsets.length; i++) {
         let query = foodSubsets[i]
-        recipesArr = await Recipe.find({"ingredients.food": {$all: query}})
-        ingredientScore = Math.round((query.length / numIngredients) * 100)
-        recipesArr.forEach(recipe => {
-            if (recipes.length < 3) {
-                recipes.push({"ingredientsScore": ingredientScore, "recipe": recipe})
+        // recipesArr = await Recipe.find({"ingredients.food": {$all: query}})
+        recipesQuery = await getRecipes(query)
+        ingredientScore = Math.round((query.length / numQueryIngredients) * 100)
+        recipesQuery.forEach(recipe => {
+            if (recipesByIngredientScore.length < 3) {
+                recipesByIngredientScore.push({"ingredientsScore": ingredientScore, "recipe": recipe})
             }
         })
     }
 
-    return res.json(recipes)
+    for (let i = 0; i < foodSubsets.length; i ++) {
+        let query = foodSubsets[i]
+        recipesQuery = await getRecipes(query)
+        recipesQuery.forEach(recipe => {
+            shoppingScore = Math.round((query.length / recipe.ingredients.length) * 100);
+            recipes.push({"shoppingScore": shoppingScore, "recipe": recipe})
+        })
+        recipes.sort((a, b) => a.shoppingScore > b.shoppingScore ? -1 : 1)
+        console.log("sorted recipes")
+        console.log(recipes)
+    }
+
+    return res.json(recipesByIngredientScore)
 })
 
 
