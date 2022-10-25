@@ -32,18 +32,27 @@ const LoginForm = () => {
         <div className="session-form-header">
           <h2>Log In</h2>
         </div>
+        <div className="demo-user-btn">
+          <div>
+            Demo User
+          </div>
+        </div>
+        <fieldset className="login-fieldset">
+          <legend align="center">OR</legend>
+        </fieldset>
         {errors && (
           <div className="errors">{errors?.email || errors?.password}</div>
         )}
         <div className="session-input-container">
           <input
-            type="text"
+            type="email"
             value={email}
             onChange={update("email")}
             placeholder="Email"
           />
           <input
             type="password"
+            minLength={6}
             value={password}
             onChange={update("password")}
             placeholder="Password"
