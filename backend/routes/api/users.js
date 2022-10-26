@@ -160,9 +160,9 @@ router.post("/:userId/shoppingList", requireUser, async(req, res) => {
   return res.json(currentUser.shoppingList)
 })
 
-router.get("/:userId/savedRecipes", async(req, res) => {
-  const currentUser = await User.findById(req.params.userId)
-  const savedRecipes = await Recipe.find()
-})
+// router.get("/:userId/savedRecipes", async(req, res) => {
+//   const currentUser = await User.findById(req.params.userId)
+//   const savedRecipes = await Recipe.find()
+// })
 
 module.exports = router;
