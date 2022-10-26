@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   composeUserCubberdIngredient,
+  deleteUserCubberd,
   deleteUserCubberdIngredient,
   fetchUserCubberdIngredients,
 } from "../../store/session";
@@ -82,13 +83,13 @@ const Cubberd = () => {
       setCubberdIngIds([...idArr]);
     }
 
-    if (loading && userCubberd.length === 0) {
-      setLoading(false)
-      setCompletedAnimation(true)
-      setTimeout(() => {
-          setCompletedAnimation(false);
-      }, 500);
-    }
+    // if (loading && userCubberd.length === 0) {
+    //   setLoading(false)
+    //   setCompletedAnimation(true)
+    //   setTimeout(() => {
+    //       setCompletedAnimation(false);
+    //   }, 500);
+    // }
 
     return () => {
       setCubberdIngIds([]);
@@ -129,11 +130,15 @@ const Cubberd = () => {
     setSearchResults([]);
     setSearchQuery("");
 
-    let existingArr = userCubberd.filter((ele) => ele._id === result._id);
-    if (existingArr.length === 0) {
-      addToUserCubberd(result);
+    if (userCubberd.length > 0) {
+      let existingArr = userCubberd.filter((ele) => ele._id === result._id);
+      if (existingArr.length === 0) {
+        addToUserCubberd(result);
+      } else {
+        return;
+      }
     } else {
-      return;
+      addToUserCubberd(result)
     }
   };
 
@@ -163,37 +168,20 @@ const Cubberd = () => {
       setSearchQuery("");
     }
     let selectedEle = document.getElementsByClassName("selected")[0];
-    selectedEle.scrollIntoView({
-      block: "nearest",
-      inline: "start",
-    });
+    if (selectedEle) {
+      selectedEle.scrollIntoView({
+        block: "nearest",
+        inline: "start",
+      });
+    }
   };
 
   const handleEmptyCubberd = (e) => {
     e.preventDefault();
 
-    setLoading(true)
+    // setLoading(true)
 
-    userCubberd.forEach((ing) => {
-      dispatch(deleteUserCubberdIngredient(currentUser._id, ing));
-    });
-
-    // const dup = userCubberd.slice();
-
-    // for (let i = 0; i < dup.length; i++) {
-    //   let ing = dup[i];
-    //   dispatch(deleteUserCubberdIngredient(currentUser._id, ing))
-
-    //   if (i === dup.length - 1) {
-    //     console.log('hi')
-    //     setLoading(false);
-    //     // setCompletedAnimation(true);
-
-    //     // setTimeout(() => {
-    //     //   setCompletedAnimation(false);
-    //     // }, 500);
-    //   }
-    // }
+    dispatch(deleteUserCubberd(currentUser._id))
 
     setPotContents([]);
   };
