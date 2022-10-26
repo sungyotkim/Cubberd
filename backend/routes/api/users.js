@@ -9,8 +9,7 @@ const passport = require("passport");
 const validateRegisterInput = require("../../validations/register");
 const validateLoginInput = require("../../validations/login");
 const { isProduction } = require("../../config/keys");
-const Recipe = require("../../models/Recipe");
-const ShoppingListItem = mongoose.model('ShoppingListItem')
+const Recipe = mongoose.model("Recipe");
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -155,14 +154,15 @@ router.post("/:userId/shoppingList", requireUser, async(req, res) => {
   const currentUser = await User.findById(req.params.userId)
   const ingredient = await Ingredient.findOne(req.body);
   const defaultQuantity = 1;
-  const newShoppingListItem = new ShoppingListItem({
-    quantity: defaultQuantity,
-    ingredient: ingredient
-  })
-  const shoppingListItem = await newShoppingListItem.save()
+  const shoppingListItem = { quantity: defaultQuantity, ingredient: ingredient }
   currentUser.shoppingList.push(shoppingListItem);
   currentUser.save();
   return res.json(currentUser.shoppingList)
 })
+
+// router.get("/:userId/savedRecipes", async(req, res) => {
+//   const currentUser = await User.findById(req.params.userId)
+//   const savedRecipes = await Recipe.find()
+// })
 
 module.exports = router;
