@@ -38,7 +38,7 @@ export const addToShoppingList = (currentUserId, shoppingListItem) => async (dis
 }
 
 export const editShoppingList = (currentUserId, shoppingListItem) => async (dispatch) => {
-    const res = await jwtFetch(`/api/users/${currentUserId}/shoppingList/${shoppingListItem.id}`, {
+    const res = await jwtFetch(`/api/users/${currentUserId}/shoppingList`, {
         method: "PUT",
         body: JSON.stringify(shoppingListItem)
     })
