@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   composeUserCubberdIngredient,
   deleteUserCubberd,
-  deleteUserCubberdIngredient,
   fetchUserCubberdIngredients,
 } from "../../store/session";
 import "./Cubberd.css";
@@ -31,6 +30,7 @@ const Cubberd = () => {
   const [loading, setLoading] = useState(false);
   const [completedAnimation, setCompletedAnimation] = useState(false);
   const ref = useRef();
+  const node = useRef();
 
   const handleDoorClick = () => {
     if (openDoor) {
@@ -46,6 +46,15 @@ const Cubberd = () => {
     }
   };
 
+  const clickOutside = (e) => {
+    if (node.current) {
+      if (node.current.contains(e.target)) {
+        return
+      } 
+    }
+    setSearchResults(false)
+  }
+
   useEffect(() => {
     dispatch(fetchIngredients());
 
@@ -57,8 +66,11 @@ const Cubberd = () => {
       }
     }, 2000);
 
+    document.addEventListener("mousedown", clickOutside)
+
     return () => {
       clearTimeout(doorTimeOut);
+      document.removeEventListener("mousedown", clickOutside)
     };
   }, [dispatch]);
 
@@ -82,14 +94,6 @@ const Cubberd = () => {
       });
       setCubberdIngIds([...idArr]);
     }
-
-    // if (loading && userCubberd.length === 0) {
-    //   setLoading(false)
-    //   setCompletedAnimation(true)
-    //   setTimeout(() => {
-    //       setCompletedAnimation(false);
-    //   }, 500);
-    // }
 
     return () => {
       setCubberdIngIds([]);
@@ -179,9 +183,18 @@ const Cubberd = () => {
   const handleEmptyCubberd = (e) => {
     e.preventDefault();
 
-    // setLoading(true)
+    setLoading(true)
 
     dispatch(deleteUserCubberd(currentUser._id))
+
+    setTimeout(() => {
+      setLoading(false)
+      setCompletedAnimation(true)
+    }, 500);
+    
+    setTimeout(() => {
+      setCompletedAnimation(false);
+    }, 1200);
 
     setPotContents([]);
   };
@@ -228,13 +241,14 @@ const Cubberd = () => {
           </div>
           <div className="cubberd-ingredients-container-wrapper">
             {searchResults && searchResults.length > 0 && (
-              <ul className="search-results">
+              <ul className="search-results" ref={node}>
                 {searchResults.map((result, i) => {
                   return (
                     <li
                       onClick={(e) => handleResultFoodClick(e, result)}
                       ref={i === selectedLi ? ref : null}
                       className={i === selectedLi ? "selected" : ""}
+                      key={`searchResult ${result} ${i}`}
                     >
                       {result.food}
                     </li>
@@ -254,7 +268,7 @@ const Cubberd = () => {
               ))}
           </div>
           <div className="cubberd-footer">
-            {!loading && !completedAnimation && (
+            {!loading && !completedAnimation && userCubberd.length > 0 && (
               <CustomToolTipTop
                 title="Empty your cubberd?"
                 arrow
