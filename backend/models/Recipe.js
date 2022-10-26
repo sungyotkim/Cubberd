@@ -2,19 +2,19 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const recipeSchema = Schema({
-    uri: {
-        type: String
-    },
     label: {
         type: String
     },
-    image: {
-        type: String
+    ingredients: {
+        type: Array
     },
     source: {
         type: String
     },
     url: {
+        type: String
+    },
+    uri: {
         type: String
     },
     yield: {
@@ -30,9 +30,6 @@ const recipeSchema = Schema({
         type: Array
     },
     ingredientLines: {
-        type: Array
-    },
-    ingredients: {
         type: Array
     },
     calories: {

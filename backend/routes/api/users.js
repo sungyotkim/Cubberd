@@ -4,16 +4,13 @@ const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const Ingredient = mongoose.model("Ingredient");
-const {
-  loginUser,
-  restoreUser,
-  requireUser,
-} = require("../../config/passport");
+const {loginUser, restoreUser, requireUser} = require("../../config/passport");
 const passport = require("passport");
 const validateRegisterInput = require("../../validations/register");
 const validateLoginInput = require("../../validations/login");
 const { isProduction } = require("../../config/keys");
 const Recipe = require("../../models/Recipe");
+const ShoppingListItem = mongoose.model('ShoppingListItem')
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -47,29 +44,26 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
     email: req.body.email,
   });
 
-  const jasmineRice = await Ingredient.findOne({ food: "jasmine rice" }).exec();
-  const chickenBreast = await Ingredient.findOne({
-    food: "boneless skinless chicken breast",
-  }).exec();
+  const jasmineRice = await Ingredient.findOne({ food: "Jasmine Rice" }).exec();
+  const chickenBreast = await Ingredient.findOne({food: "Boneless Skinless Chicken Breast"}).exec();
 
-  const recipe1 = await Recipe.findOne({
-    label: "Super Bowl Snacks: Loaded Baked Potato Potato Chip Nachos Recipe",
-  }).exec();
-  const recipe2 = await Recipe.findOne({
-    label: "Pasta alla Gricia Recipe",
-  }).exec();
-  const recipe3 = await Recipe.findOne({
-    label: "Crispy Roasted Mushrooms",
-  }).exec();
+  const recipe1 = await Recipe.findOne({ label: "Super Bowl Snacks: Loaded Baked Potato Potato Chip Nachos Recipe" }).exec();
+  const recipe2 = await Recipe.findOne({ label: "Pasta alla Gricia Recipe" }).exec();
+  const recipe3 = await Recipe.findOne({ label: "Crispy Roasted Mushrooms" }).exec();
   const recipe4 = await Recipe.findOne({ label: "Tofu Banana Mousse" }).exec();
+
+  const banana = await Ingredient.findOne({food: "Banana" }).exec();
+  const shoppingListItem = new ShoppingListItem({ quantity: 4, ingredient: banana })
+  await shoppingListItem.save();
+
   newUser.cubberd.push(jasmineRice);
   newUser.cubberd.push(chickenBreast);
-
-  newUser.savedRecipes.allSaved.push(recipe1);
-  newUser.savedRecipes.allSaved.push(recipe2);
-  newUser.plannedRecipes.push(recipe3);
-  newUser.plannedRecipes.push(recipe4);
-
+  newUser.savedRecipes.favorited.push(recipe1);
+  newUser.savedRecipes.favorited.push(recipe2);
+  newUser.savedRecipes.planned.push(recipe3);
+  newUser.savedRecipes.planned.push(recipe4);
+  newUser.shoppingList.push(banana);
+  
   bcrypt.genSalt(10, (err, salt) => {
     if (err) throw err;
     bcrypt.hash(req.body.password, salt, async (err, hashedPassword) => {
@@ -108,14 +102,15 @@ router.get("/current", restoreUser, (req, res) => {
     res.cookie("CSRF-TOKEN", csrfToken);
   }
   if (!req.user) return res.json(null);
-  res.json({
+  const allUserInfo = {
     _id: req.user._id,
     username: req.user.username,
     email: req.user.email,
-    cubberd: req.user.cubberd,
+    cubberd: req.user.cubberd, 
     savedRecipes: req.user.savedRecipes,
-    plannedRecipes: req.user.plannedRecipes,
-  });
+    shoppingList: req.user.shoppingList
+  };
+  res.json(allUserInfo);
 });
 
 // Get Cubberd
@@ -135,11 +130,7 @@ router.post("/:userId/cubberd", restoreUser, requireUser, async (req, res) => {
   res.json(currentUser.cubberd);
 });
 
-router.delete(
-  "/:userId/cubberd",
-  restoreUser,
-  requireUser,
-  async (req, res) => {
+router.delete("/:userId/cubberd", restoreUser, requireUser, async (req, res) => {
     const ingredient = req.body;
     const currentUserId = req.user._id;
     const currentUser = await User.findById(currentUserId);
@@ -148,5 +139,26 @@ router.delete(
     res.json(currentUser.cubberd);
   }
 );
+
+//Get a current user's shopping list
+router.get("/:userId/shoppingList", requireUser, async (req, res) => {
+  const shoppingList = await User.findById(req.params.userId, "shoppingList");
+  res.json(shoppingList);
+});
+
+//post a new shopping list item to current user's shopping list
+router.post("/:userId/shoppingList", requireUser, async(req, res) => {
+  const currentUser = await User.findById(req.params.userId)
+  const ingredient = await Ingredient.findOne(req.body);
+  const defaultQuantity = 1;
+  const newShoppingListItem = new ShoppingListItem({
+    quantity: defaultQuantity,
+    ingredient: ingredient
+  })
+  const shoppingListItem = await newShoppingListItem.save()
+  currentUser.shoppingList.push(shoppingListItem);
+  currentUser.save();
+  return res.json(currentUser.shoppingList)
+})
 
 module.exports = router;
