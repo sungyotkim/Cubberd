@@ -61,7 +61,12 @@ const Pot = () => {
         <div onClick={searchForRecipes}>Adina press here</div>
         <div onClick={toggleRecipeScore}>Toggle Recipe Score</div>
         <div className="stove-container">
-          <div className="stove-top"></div>
+          <div className="stove-top">
+            <div className="left-burner-platform"></div>
+            <div className="center-burner-platform"></div>
+            <div className="right-burner-platform"></div>
+            <div className="burner-center"></div>
+          </div>
           <div className="stove-button-container">
             <div className="stove-display">
               {rotate && "Cooking..."}

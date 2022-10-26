@@ -1,13 +1,14 @@
 .cooking-pot-img {
   width: 250px;
   position: absolute;
-  bottom: 5%;
+  bottom: 21%;
   left: 0;
   right: 0;
   margin: auto;
   cursor: pointer;
   opacity: 1;
   transition: transform 750ms;
+  z-index: 40;
 }
 
 #cooking-pot-lid {
