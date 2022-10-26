@@ -30,7 +30,7 @@ const calculateShoppingScore = (cubberdArr, recipe) => {
     return shoppingScore
 }
 
-router.get("/ingredients", async(req, res) => {
+router.post("/ingredients", async(req, res) => {
     console.log("hello")
     const pot = req.body.pot
     const numQueryIngredients = pot.length;
