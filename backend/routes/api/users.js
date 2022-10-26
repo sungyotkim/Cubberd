@@ -153,8 +153,6 @@ router.get("/:userId/shoppingList", requireUser, async (req, res) => {
 router.post("/:userId/shoppingList", requireUser, async(req, res, next) => {
   const currentUser = await User.findById(req.params.userId)
   const ingredient = await Ingredient.findOne(req.body);
-  console.log("ingredient")
-  console.log(ingredient)
   const quantity = req.body.quantity || 1
   const shoppingListItem = { quantity: quantity, ingredient: ingredient }
   const err = new Error("Validation Error")
@@ -172,6 +170,22 @@ router.post("/:userId/shoppingList", requireUser, async(req, res, next) => {
   return res.json(currentUser.shoppingList)
 })
 
+// const res = await fetch('/api/{userId}/shoppingList', {
+//   methid: "PUT",
+//   body: {
+//     shoppingListItem: shoppingListItem,
+//     quantity: 
+//   }
+// })
+
+router.put("/:userId/shoppingList", async (req, res) => {
+  const currentUser = await User.findById(req.params.userId)
+  const shoppingListItem = req.body.shoppingListItem
+  const newQuantity = req.body.quantity
+  shoppingListItem.quantity = newQuantity;
+  currentUser.save()
+  return res.json(currentUser.shoppingList)
+})
 
 router.post("/:userId/savedRecipes", requireUser, async(req, res, next) => {
   const currentUser = await User.findById(req.params.userId)
