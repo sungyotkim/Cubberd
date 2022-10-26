@@ -80,4 +80,13 @@
   z-index: 1;
   top: -10px;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.clear-all-pot-items-btn:hover {
+  color: red;
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  top: -15px;
 }

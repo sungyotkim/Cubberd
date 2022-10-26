@@ -15,23 +15,36 @@ router.get('/:recipeId', async(req, res, next) => {
     return res.json(recipe)
 })
 
-//get by multiple ingredients 
+// get by multiple ingredients 
+//const getRecipes = async query => Recipe.find({"ingredients.food": {$all: query}})
 
-const getRecipes = query => Recipe.find({"ingredients.food": {$all: query}})
+const calculateShoppingScore = (cubberdArr, recipe) => {
+    let shoppingScore;
+    let numIngredientsinCubberd = 0;
+    recipe.ingredients.forEach(ingredient => {
+        if (cubberdArr.includes(ingredient.food)) {
+            numIngredientsinCubberd += 1
+        }
+    })
+    shoppingScore = Math.round((numIngredientsinCubberd / recipe.ingredients.length) * 100);
+    return shoppingScore
+}
 
-router.get('/ingredients', async(req, res) => {
-    const foods = req.body
-    const numQueryIngredients = foods.length;
+router.get("/ingredients", async(req, res) => {
+    console.log("hello")
+    const pot = req.body.pot
+    const numQueryIngredients = pot.length;
+    const cubberd = req.body.cubberd
         
-    let foodSubsets = []
-    for (let i = 0; i < foods.length; i++) {
-        for (let j = i + 1; j <= foods.length; j++) {
-            let subset = foods.slice(i,j)
-            foodSubsets.push(subset)
+    let potSubsets = []
+    for (let i = 0; i < pot.length; i++) {
+        for (let j = i + 1; j <= pot.length; j++) {
+            let subset = pot.slice(i,j)
+            potSubsets.push(subset)
         }
     }
     
-    foodSubsets.sort((a, b) => a.length > b.length ? -1 : 1);
+    potSubsets.sort((a, b) => a.length > b.length ? -1 : 1);
     
     let ingredientScore;
     let shoppingScore;
@@ -39,13 +52,13 @@ router.get('/ingredients', async(req, res) => {
     let recipesByShoppingScore = []
     let recipesQuery = []
     let recipes = []
-    for (let i = 0; i < foodSubsets.length; i++) {
-        let query = foodSubsets[i]
+    for (let i = 0; i < potSubsets.length; i++) {
+        let query = potSubsets[i]
         // recipesArr = await Recipe.find({"ingredients.food": {$all: query}})
         recipesQuery = await getRecipes(query)
         ingredientScore = Math.round((query.length / numQueryIngredients) * 100)
         recipesQuery.forEach(recipe => {
-            shoppingScore = Math.round((query.length / recipe.ingredients.length) * 100);
+            shoppingScore = calculateShoppingScore(cubberd, recipe)
             if (recipesByIngredientScore.length < 3) {
                 recipesByIngredientScore.push({"ingredientsScore": ingredientScore, "shoppingScore": shoppingScore, "recipe": recipe})
             }
@@ -53,22 +66,8 @@ router.get('/ingredients', async(req, res) => {
         })
     }
 
-    //recipes.push(recipesByIngredientScore)
     recipesByShoppingScore.sort((a, b) => {a.shoppingScore > b.shoppingScore ? -1 : 1})
     recipes.push(recipesByIngredientScore, recipesByShoppingScore.slice(0,4))
-    console.log(recipes.length)
-
-    // for (let i = 0; i < foodSubsets.length; i ++) {
-    //     let query = foodSubsets[i]
-    //     recipesQuery = await getRecipes(query)
-    //     recipesQuery.forEach(recipe => {
-    //         shoppingScore = Math.round((query.length / recipe.ingredients.length) * 100);
-    //         recipes.push({"shoppingScore": shoppingScore, "recipe": recipe})
-    //     })
-    //     recipes.sort((a, b) => a.shoppingScore > b.shoppingScore ? -1 : 1)
-    //     console.log("sorted recipes")
-    //     console.log(recipes)
-    // }
 
     return res.json(recipes)
 })
