@@ -15,8 +15,9 @@ router.get('/:recipeId', async(req, res, next) => {
     return res.json(recipe)
 })
 
-//get by multiple ingredients 
-const getRecipes = query => Recipe.find({"ingredients.food": {$all: query}})
+// get by multiple ingredients 
+//const getRecipes = async query => Recipe.find({"ingredients.food": {$all: query}})
+
 const calculateShoppingScore = (cubberdArr, recipe) => {
     let shoppingScore;
     let numIngredientsinCubberd = 0;
@@ -29,7 +30,8 @@ const calculateShoppingScore = (cubberdArr, recipe) => {
     return shoppingScore
 }
 
-router.get('/ingredients', async(req, res) => {
+router.get("/ingredients", async(req, res) => {
+    console.log("hello")
     const pot = req.body.pot
     const numQueryIngredients = pot.length;
     const cubberd = req.body.cubberd
