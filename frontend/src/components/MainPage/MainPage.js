@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 import RecipeShowModal from "../RecipeShowModal/RecipeShowModal";
 import { fetchRecipes } from "../../store/recipes";
 import { useEffect } from "react";
-import CookingPot from "./CookingPot/CookingPot";
 import Cubberd from '../Cubberd/Cubberd';
+import Pot from "../Pot/Pot";
+import PotContents from "../Pot/PotContents/PotContents";
 
 function MainPage() {
     const dispatch = useDispatch();
@@ -14,11 +15,9 @@ function MainPage() {
     const recipes = useSelector(state => state.recipes);
     const recipe = recipes[0];
 
-
     useEffect(() => {
         dispatch(fetchRecipes())
     }, [])
-
 
     const handleLogout = () => {
         dispatch(logout())
@@ -35,20 +34,21 @@ function MainPage() {
                 <div id="main-page-top">
                     <div id="main-page-top-right">
                         <div id="navbar-container" className="main-display-component">
-                           <nav>{sessionUser && <span>Logged in as <Link to="/profile">{sessionUser.username}</Link> <button onClick={handleLogout}>Logout</button> </span>}</nav>  
+                            <nav>{sessionUser && <span>Logged in as <Link to="/profile">{sessionUser.username}</Link> <button onClick={handleLogout}>Logout</button> </span>}</nav>  
                         </div>
                         <div id="main-page-top-right-bottom">
                             <div id="pot-container" className="main-display-component">
-                                <CookingPot />
+                                <Pot />
                             </div>
                             <div id="shopping-list-container" className="main-display-component"></div>
                         </div>
                     </div>
                 </div>
                 <div id="main-page-bottom">
-                    <div id="current-cubberd-container" className="main-display-component"></div>
+                    <div id="current-cubberd-container" className="main-display-component">
+                        <PotContents />
+                    </div>
                 </div>
-
             </div>
         </div>
     );

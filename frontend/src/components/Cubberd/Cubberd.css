@@ -200,7 +200,7 @@
 }
 
 .cubberd-shelving {
-  width: 360px;
+  width: 100%;
   height: 15px;
   background-color: rgba(228, 206, 172, 0.8);
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.4);

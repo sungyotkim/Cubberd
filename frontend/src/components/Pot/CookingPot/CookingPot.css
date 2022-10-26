@@ -15,6 +15,9 @@
 }
 
 .hover-lid {
-  transform: translateX(-25px) translateY(-125px) rotate(-30deg);
-  opacity: 0;
+  /* transform: translateX(-25px) translateY(-125px) rotate(-30deg); */
+  transform: translateX(135px) translateY(-195px) rotate(125deg);
+  transition: all 1.5s;
+  /* transition: y 2s x 3s; */
+  /* opacity: 0; */
 }
