@@ -5,13 +5,15 @@ import errors from "./errors";
 import ingredients from "./ingredients";
 import recipes from './recipes'
 import shoppingList from './shoppingList';
+import recipeResults from "./recipeResults"
 
 const rootReducer = combineReducers({
   session,
   errors,
   ingredients,
   recipes,
-  shoppingList
+  shoppingList,
+  recipeResults
 });
 
 let enhancer;

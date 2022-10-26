@@ -1,4 +1,4 @@
-.pot-component-wrapper {
+.pot-content-component-wrapper {
   width: 100%;
   height: 100%;
   display: flex;
@@ -7,7 +7,7 @@
   box-sizing: border-box;
 }
 
-.pot-component-header {
+.pot-content-component-header {
   font-size: 18px;
   font-weight: 700;
   height: 0px;
@@ -15,7 +15,7 @@
   border-bottom: 2px solid black;
 }
 
-.pot-component-header > div {
+.pot-content-component-header > div {
   width: 188px;
   height: 24px;
   background-color: white;
@@ -63,7 +63,7 @@
   background-color: var(--main-light-color);
 }
 
-.pot-component-footer {
+.pot-content-component-footer {
   height: 0;
   width: 100%;
   font-size: 20px;

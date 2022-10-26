@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PotContext } from "../../context/PotContext";
-import { fetchRecipesFromPot } from "../../store/recipes";
+import { fetchRecipesFromPot } from "../../store/recipeResults";
 import CookingPot from "./CookingPot/CookingPot";
 import "./Pot.css";
 
