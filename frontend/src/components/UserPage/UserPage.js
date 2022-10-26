@@ -6,23 +6,17 @@ import { logout } from "../../store/session";
 import RecipeList from "../RecipeList/RecipeList";
 import { useEffect } from "react";
 import { fetchShoppingList } from "../../store/shoppingList";
+import ShoppingList from "../ShoppingList/ShoppingList";
 
 
 
 function UserPage() {
-    debugger
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
     const favoritedRecipes = useSelector(state => state.session.user.savedRecipes.favorited);
     const plannedRecipes = useSelector(state => state.session.user.savedRecipes.planned);
-    const shoppingList = useSelector(state => state.shoppingList);
-
-    // UseEffect to load shopping list (will need to be updated as crud actions are updated)
-    // useEffect(() => {
-    //     dispatch(fetchShoppingList(sessionUser._id));
-    // }, [])
-
+    const shoppingList = useSelector(state => state.session.user.shoppingList);
 
 
     const handleLogout = () => {
@@ -35,14 +29,15 @@ function UserPage() {
             <div id="user-page-columns" className="main-display-component">
                 <div id="user-page-favorited-recipes-container"className="main-display-component user-page-column">
                     <h3>Favorited Recipes</h3>
+                    
 
                     <RecipeList recipes={favoritedRecipes} />
 
                 </div>
                 <div id="user-page-planned-and-shopping" className="main-display-component user-page-column">
                     <div id="user-page-shopping-list" className="main-display-component">
-                        <h3>Shopping List</h3>
-
+                     <h3>Shopping List</h3>
+                     <ShoppingList items={shoppingList} />   
                     </div>
                     <div id="user-page-planned-recipes-container" className="main-display-component">
                         <h3>Planned Recipes</h3>
