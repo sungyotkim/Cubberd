@@ -49,8 +49,10 @@ const CubberdRow = ({ ing, currentUser }) => {
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseOut}
     >
-      <img src={ing.image} alt={ing.food} />
-      <div className="cubberd-food-name">{ing.food}</div>
+      <img src={ing.image} alt={ing.food} onClick={(e) => addToPot(e, ing)} />
+      <div className="cubberd-food-name" onClick={(e) => addToPot(e, ing)}>
+        {ing.food}
+      </div>
       {showOptions && (
         <>
           <CustomToolTipBottom
