@@ -40,6 +40,9 @@ const CubberdRow = ({ ing, currentUser }) => {
 
   const removeFromUserCubberd = (e, ingredient) => {
     e.preventDefault();
+
+    const removedFromPotArr = potContents.filter(ing => ing._id !== ingredient._id)
+    setPotContents(removedFromPotArr)
     dispatch(deleteUserCubberdIngredient(currentUser._id, ingredient));
   };
 
