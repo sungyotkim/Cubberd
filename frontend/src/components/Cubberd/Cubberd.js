@@ -11,26 +11,8 @@ import { BiSearchAlt, BiSave } from "react-icons/bi";
 import { GiCookingPot } from "react-icons/gi";
 import { MdOutlineRemoveCircle } from "react-icons/md";
 import woodBackground from "../../assets/retina_wood.png";
-import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-import { styled } from "@mui/material/styles";
 import { PotContext } from "../../context/PotContext";
-
-const CustomToolTip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(() => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: "#2d2e2f",
-    fontSize: 12,
-    boxShadow: "rgb(0 0 0 / 15%) 0 0 18px",
-    borderRadius: "4px",
-    padding: "12px 16px",
-    position: "relative",
-    top: -8,
-  },
-  [`& .${tooltipClasses.arrow}`]: {
-    color: "#2d2e2f",
-  },
-}));
+import { CustomToolTipBottom, CustomToolTipTop } from "../ToolTip/ToolTip";
 
 const Cubberd = () => {
   const dispatch = useDispatch();
@@ -45,7 +27,7 @@ const Cubberd = () => {
   const [resultAdded, setResultAdded] = useState(false);
   const [openDoor, setOpenDoor] = useState(false);
   const ref = useRef();
-  const { potContents, setPotContents } = useContext(PotContext)
+  const { potContents, setPotContents } = useContext(PotContext);
 
   const handleDoorClick = () => {
     if (openDoor) {
@@ -188,12 +170,12 @@ const Cubberd = () => {
   const addToPot = (e, ingredient) => {
     e.preventDefault();
 
-    let includedItems = potContents.filter(ele => ele._id === ingredient._id);
+    let includedItems = potContents.filter((ele) => ele._id === ingredient._id);
 
     if (includedItems.length === 0) {
-      setPotContents(old => [...old, ingredient])
+      setPotContents((old) => [...old, ingredient]);
     }
-  }
+  };
 
   return (
     <>
@@ -251,16 +233,20 @@ const Cubberd = () => {
                   <>
                     <img src={searchResult.image} alt={searchResult.food} />
                     <div className="search-result-options">
-                      <CustomToolTip title="Add to pot?" arrow placement="top">
-                        <div 
+                      <CustomToolTipTop
+                        title="Add to pot?"
+                        arrow
+                        placement="top"
+                      >
+                        <div
                           className="add-to-pot-btn"
-                          onClick={e => addToPot(e, searchResult)}
+                          onClick={(e) => addToPot(e, searchResult)}
                         >
                           <GiCookingPot />
                         </div>
-                      </CustomToolTip>
+                      </CustomToolTipTop>
                       {!resultAdded && (
-                        <CustomToolTip
+                        <CustomToolTipBottom
                           title="Save to cubberd?"
                           arrow
                           placement="bottom"
@@ -271,7 +257,7 @@ const Cubberd = () => {
                           >
                             <BiSave />
                           </div>
-                        </CustomToolTip>
+                        </CustomToolTipBottom>
                       )}
                     </div>
                   </>
@@ -286,27 +272,27 @@ const Cubberd = () => {
                     <div className="cubberd-ingredients-container">
                       {row.map((ing) => (
                         <>
-                          <CustomToolTip
+                          <CustomToolTipBottom
                             title={ing.food}
                             arrow
                             placement="bottom"
                           >
                             <img src={ing.image} alt={ing.food} />
-                          </CustomToolTip>
+                          </CustomToolTipBottom>
                           <div className="search-result-options">
-                            <CustomToolTip
+                            <CustomToolTipTop
                               title="Add to pot?"
                               arrow
                               placement="top"
                             >
-                              <div 
+                              <div
                                 className="cubberd-shelving-option-one"
-                                onClick={e => addToPot(e, ing)}
+                                onClick={(e) => addToPot(e, ing)}
                               >
                                 <GiCookingPot />
                               </div>
-                            </CustomToolTip>
-                            <CustomToolTip
+                            </CustomToolTipTop>
+                            <CustomToolTipBottom
                               title="Remove from cubberd?"
                               arrow
                               placement="bottom"
@@ -317,7 +303,7 @@ const Cubberd = () => {
                               >
                                 <MdOutlineRemoveCircle />
                               </div>
-                            </CustomToolTip>
+                            </CustomToolTipBottom>
                           </div>
                         </>
                       ))}

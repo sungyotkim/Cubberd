@@ -1,86 +1,81 @@
 #main-page {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
-
-
 #main-page-left {
-    width: 35em;
+  width: 35em;
 }
 
 #main-page-right {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-
-
 #main-page-top {
-    height: 80%;
-    margin: 0.5%;
-    display: flex;
-    flex-direction: row;
+  height: 80%;
+  margin: 0.5%;
+  display: flex;
+  flex-direction: row;
 }
 
 #main-page-bottom {
-    height: 20%;
+  height: 20%;
 }
 
 #main-page-top-left {
-    height: 100%;
-    width: 35em;
+  height: 100%;
+  width: 35em;
 }
 
 #main-page-top-right {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 #navbar-container {
-    display: flex;
-    flex-direction: row;
-    margin: 0.5em 0.5em;
-    width: calc(100% - 1em);
-
+  display: flex;
+  flex-direction: row;
+  margin: 0.5em 0.5em;
+  width: calc(100% - 1em);
 }
 
 #main-page-top-right-bottom {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
 }
 
-
 #pot-container {
-    width: 70%;
-    height: calc(100% - 1em);
-    position: relative;
+  width: 70%;
+  height: calc(100% - 1em);
+  position: relative;
 }
 
 #shopping-list-container {
-    width: 30%;
-    height: calc(100% - 1em);
+  width: 30%;
+  height: calc(100% - 1em);
 }
 
 #cubberd-search-container {
-    height: calc(100% - 1em);
-    width: calc(100% - 1em);
+  height: calc(100% - 1em);
+  width: calc(100% - 1em);
 }
 
 #current-cubberd-container {
-    height: calc(100% - 1em);
-    width: calc(100% - 1em);
+  height: calc(100% - 1em);
+  width: calc(100% - 1em);
+  border: none;
 }
 
 #navbar-container nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: right;
-    width: 100%;
-    padding: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
+  width: 100%;
+  padding: 1em;
 }
