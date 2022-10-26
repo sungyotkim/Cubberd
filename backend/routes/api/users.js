@@ -205,7 +205,7 @@ router.post("/:userId/savedRecipes", requireUser, async(req, res, next) => {
   return res.json(currentUser.savedRecipes)
 })
 
-router.delete('/:userId/savedRecipes', async (req, res) => {
+router.delete('/:userId/savedRecipes', requireUser, async (req, res) => {
   const currentUser = await User.findById(req.params.userId)
   const recipe = await Recipe.findById(req.body.recipeId)
   const collection = req.body.collection
