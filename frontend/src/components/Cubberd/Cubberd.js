@@ -90,12 +90,14 @@ const Cubberd = () => {
 
     let existingArr = userCubberd.filter((ele) => ele._id === result._id);
     if (existingArr.length === 0) {
+      addToUserCubberd(result);
     } else {
+      return;
     }
   };
 
-  const addToUserCubberd = () => {
-    dispatch(composeUserCubberdIngredient(currentUser._id));
+  const addToUserCubberd = (result) => {
+    dispatch(composeUserCubberdIngredient(currentUser._id, result));
   };
 
   const handleKeyDown = (e) => {
