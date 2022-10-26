@@ -17,11 +17,11 @@ router.get('/:recipeId', async(req, res, next) => {
 
 //get by multiple ingredients 
 const getRecipes = query => Recipe.find({"ingredients.food": {$all: query}})
-const calculateShoppingScore = (cubberdArr, potArr, query, recipe) => {
+const calculateShoppingScore = (cubberdArr, recipe) => {
     let shoppingScore;
     let numIngredientsinCubberd = 0;
-    recipe.ingredients.food.forEach(food => {
-        if (cubberdArr.includes(food)) {
+    recipe.ingredients.forEach(ingredient => {
+        if (cubberdArr.includes(ingredient.food)) {
             numIngredientsinCubberd += 1
         }
     })
@@ -56,7 +56,7 @@ router.get('/ingredients', async(req, res) => {
         recipesQuery = await getRecipes(query)
         ingredientScore = Math.round((query.length / numQueryIngredients) * 100)
         recipesQuery.forEach(recipe => {
-            shoppingScore = calculateShoppingScore(cubberd, pot, query, recipe)
+            shoppingScore = calculateShoppingScore(cubberd, recipe)
             if (recipesByIngredientScore.length < 3) {
                 recipesByIngredientScore.push({"ingredientsScore": ingredientScore, "shoppingScore": shoppingScore, "recipe": recipe})
             }
@@ -64,7 +64,6 @@ router.get('/ingredients', async(req, res) => {
         })
     }
 
-    //recipes.push(recipesByIngredientScore)
     recipesByShoppingScore.sort((a, b) => {a.shoppingScore > b.shoppingScore ? -1 : 1})
     recipes.push(recipesByIngredientScore, recipesByShoppingScore.slice(0,4))
 
