@@ -8,12 +8,14 @@ import { useEffect } from "react";
 import Cubberd from '../Cubberd/Cubberd';
 import Pot from "../Pot/Pot";
 import PotContents from "../Pot/PotContents/PotContents";
+import ShoppingList from "../ShoppingList/ShoppingList";
 
 function MainPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const recipes = useSelector(state => state.recipes);
     const recipe = recipes[0];
+    const shoppingList = useSelector(state => state.session.user.shoppingList);
 
     useEffect(() => {
         dispatch(fetchRecipes())
@@ -40,7 +42,10 @@ function MainPage() {
                             <div id="pot-container" className="main-display-component">
                                 <Pot />
                             </div>
-                            <div id="shopping-list-container" className="main-display-component"></div>
+                            <div id="shopping-list-container" className="main-display-component">
+                                <h3>Shopping List</h3>
+                                <ShoppingList items={shoppingList} />
+                            </div>
                         </div>
                     </div>
                 </div>
