@@ -12,7 +12,12 @@ const Pot = () => {
 
   const searchForRecipes = (e) => {
     e.preventDefault();
-    dispatch(fetchRecipesFromPot(userCubberd, potContents))
+    const cubberd = [];
+    const pot = [];
+
+    userCubberd.forEach(ing => cubberd.push(ing.food))
+    potContents.forEach(ing => pot.push(ing.food))
+    dispatch(fetchRecipesFromPot(cubberd, pot))
   }
 
   const toggleRecipeScore = (e) => {

@@ -28,6 +28,7 @@ const Cubberd = () => {
   const [cubberdIngIds, setCubberdIngIds] = useState([]);
   const { setPotContents } = useContext(PotContext);
   const [loading, setLoading] = useState(false);
+  const [completed, setCompleted] = useState(true);
   const ref = useRef();
 
   const handleDoorClick = () => {
