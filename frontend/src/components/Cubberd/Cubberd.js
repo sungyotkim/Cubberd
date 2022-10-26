@@ -83,14 +83,6 @@ const Cubberd = () => {
       setCubberdIngIds([...idArr]);
     }
 
-    // if (loading && userCubberd.length === 0) {
-    //   setLoading(false)
-    //   setCompletedAnimation(true)
-    //   setTimeout(() => {
-    //       setCompletedAnimation(false);
-    //   }, 500);
-    // }
-
     return () => {
       setCubberdIngIds([]);
     };
@@ -179,9 +171,18 @@ const Cubberd = () => {
   const handleEmptyCubberd = (e) => {
     e.preventDefault();
 
-    // setLoading(true)
+    setLoading(true)
 
     dispatch(deleteUserCubberd(currentUser._id))
+
+    setTimeout(() => {
+      setLoading(false)
+      setCompletedAnimation(true)
+    }, 500);
+    
+    setTimeout(() => {
+      setCompletedAnimation(false);
+    }, 1200);
 
     setPotContents([]);
   };
@@ -254,7 +255,7 @@ const Cubberd = () => {
               ))}
           </div>
           <div className="cubberd-footer">
-            {!loading && !completedAnimation && (
+            {!loading && !completedAnimation && userCubberd.length > 0 && (
               <CustomToolTipTop
                 title="Empty your cubberd?"
                 arrow
