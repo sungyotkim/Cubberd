@@ -5,7 +5,6 @@ import { Link, Redirect } from "react-router-dom";
 import { logout } from "../../store/session";
 import RecipeList from "../RecipeList/RecipeList";
 import { useEffect } from "react";
-import { fetchShoppingList } from "../../store/shoppingList";
 import ShoppingList from "../ShoppingList/ShoppingList";
 
 
