@@ -9,6 +9,7 @@ import { getCurrentUser } from "./store/session";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Landing from "./components/Landing/Landing";
+import RecipeShowPage from "./components/RecipeShowPage/RecipeShowPage";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -22,6 +23,7 @@ function App() {
       <>
         <Switch>
           <Route exact path="/" component={Landing} />
+          <Route path="/recipes/:id" component={RecipeShowPage} />
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />
 
@@ -29,6 +31,7 @@ function App() {
           <ProtectedRoute exact path="/main" component={MainPage} />
           <ProtectedRoute exact path="/profile" component={UserPage} />
           <ProtectedRoute exact path="/cubberd" component={Cubberd} />
+
         </Switch>
       </>
     )
