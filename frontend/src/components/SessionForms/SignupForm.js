@@ -68,11 +68,14 @@ const SignupForm = () => {
         <div className="session-form-header">
           <h2>Sign Up</h2>
         </div>
-        <div className="demo-user-btn">
+        <Link to={{
+            pathname: "/login",
+            state: { email, password, username, fromDemoBtn: true }}}
+          className="demo-user-btn">
           <div>
             Demo User
           </div>
-        </div>
+        </Link>
         <fieldset className="login-fieldset">
           <legend align="center">OR</legend>
         </fieldset>

@@ -12,17 +12,6 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  useEffect(() => {
-    if (location.state) {
-      setEmail(location.state.email);
-      setPassword(location.state.password);
-      setUsername(location.state.username);
-    }
-    return () => {
-      dispatch(clearSessionErrors());
-    };
-  }, [dispatch]);
-
   const update = (field) => {
     const setState = field === "email" ? setEmail : setPassword;
     return (e) => setState(e.currentTarget.value);
@@ -33,13 +22,61 @@ const LoginForm = () => {
     dispatch(login({ email, password }));
   };
 
+  const handleDemoLogin = () => {
+    // e.preventDefault();
+    const demoEmail = Array.from("demo@user.com");
+    const demoPassword = Array.from("password");
+    setEmail("");
+    setPassword("");
+    let tempEmail = "";
+    let tempPassword = "";
+
+    const loginDemoIntervalAnimation = () => {
+      const interval = setInterval(() => {
+        if (demoEmail.length > 0) {
+          tempEmail += demoEmail.shift();
+          setEmail(tempEmail);
+        } else if (demoPassword.length > 0) {
+          tempPassword += demoPassword.shift();
+          setPassword(tempPassword);
+        } else {
+          clearInterval(interval);
+          setEmail(tempEmail);
+          setPassword(tempPassword);
+          return dispatch(login({ email: tempEmail, password: tempPassword }));
+        }
+      }, 100);
+    };
+
+    loginDemoIntervalAnimation();
+  };
+
+  useEffect(() => {
+    if (location.state) {
+      if (location.state.fromDemoBtn) {
+        return handleDemoLogin()
+      }
+    }
+
+    if (location.state) {
+      setEmail(location.state.email);
+      setPassword(location.state.password);
+      setUsername(location.state.username);
+    }
+    return () => {
+      dispatch(clearSessionErrors());
+    };
+  }, [dispatch]);
+
   return (
     <>
       <form className="session-form" onSubmit={handleSubmit}>
         <div className="session-form-header">
           <h2>Log In</h2>
         </div>
-        <div className="demo-user-btn">
+        <div className="demo-user-btn"
+          onClick={handleDemoLogin}
+        >
           <div>
             Demo User
           </div>
