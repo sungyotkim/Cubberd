@@ -1,14 +1,19 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   composeUserCubberdIngredient,
+  deleteUserCubberdIngredient,
   fetchIngredients,
   fetchUserCubberdIngredients,
 } from "../../store/ingredients";
 import "./Cubberd.css";
 import { BiSearchAlt } from "react-icons/bi";
+import { SiCodechef } from "react-icons/si";
+import { TbTrash } from "react-icons/tb";
 import woodBackground from "../../assets/retina_wood.png";
 import CubberdRow from "./CubberdRow";
+import { CustomToolTipTop } from "../ToolTip/ToolTip";
+import { PotContext } from "../../context/PotContext";
 
 const Cubberd = () => {
   const dispatch = useDispatch();
@@ -19,6 +24,10 @@ const Cubberd = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLi, setSelectedLi] = useState(0);
   const [openDoor, setOpenDoor] = useState(false);
+  const [nonCubberdIngredients, setNonCubberdIngredients] = useState([]);
+  const [cubberdIngIds, setCubberdIngIds] = useState([]);
+  const { setPotContents } = useContext(PotContext);
+  const [loading, setLoading] = useState(false);
   const ref = useRef();
 
   const handleDoorClick = () => {
@@ -63,6 +72,29 @@ const Cubberd = () => {
     };
   }, [searchResults]);
 
+  useEffect(() => {
+    if (userCubberd && userCubberd.length > 0) {
+      const idArr = [];
+      userCubberd.forEach((ing) => {
+        idArr.push(ing._id);
+      });
+      setCubberdIngIds([...idArr]);
+    }
+
+    return () => {
+      setCubberdIngIds([]);
+    };
+  }, [userCubberd]);
+
+  useEffect(() => {
+    if (allIngredients.length > 0) {
+      const notInCubberdArr = allIngredients.filter(
+        (ing) => !cubberdIngIds.includes(ing._id)
+      );
+      setNonCubberdIngredients([...notInCubberdArr]);
+    }
+  }, [cubberdIngIds]);
+
   const searchItem = (query) => {
     if (!query) {
       setSearchResults([]);
@@ -74,7 +106,7 @@ const Cubberd = () => {
 
     const results = [];
 
-    allIngredients.forEach((ing) => {
+    nonCubberdIngredients.forEach((ing) => {
       if (ing.food.toLowerCase().indexOf(query) !== -1) {
         results.push(ing);
       }
@@ -90,12 +122,14 @@ const Cubberd = () => {
 
     let existingArr = userCubberd.filter((ele) => ele._id === result._id);
     if (existingArr.length === 0) {
+      addToUserCubberd(result);
     } else {
+      return;
     }
   };
 
-  const addToUserCubberd = () => {
-    dispatch(composeUserCubberdIngredient(currentUser._id));
+  const addToUserCubberd = (result) => {
+    dispatch(composeUserCubberdIngredient(currentUser._id, result));
   };
 
   const handleKeyDown = (e) => {
@@ -115,13 +149,30 @@ const Cubberd = () => {
         setSelectedLi(selectedLi + 1);
       }
     } else if (e.key === "Enter") {
-      handleResultFoodClick(e, searchResults[selectedLi]);
+      addToUserCubberd(searchResults[selectedLi]);
+      setSearchResults([]);
+      setSearchQuery("");
     }
     let selectedEle = document.getElementsByClassName("selected")[0];
     selectedEle.scrollIntoView({
       block: "nearest",
       inline: "start",
     });
+  };
+
+  const handleEmptyCubberd = (e) => {
+    e.preventDefault();
+
+    userCubberd.forEach((ing) => {
+      dispatch(deleteUserCubberdIngredient(currentUser._id, ing));
+    });
+    setPotContents([]);
+  };
+
+  const handleAddAll = (e) => {
+    e.preventDefault();
+
+    setPotContents([...userCubberd]);
   };
 
   return (
@@ -180,9 +231,39 @@ const Cubberd = () => {
                 <CubberdRow
                   ing={ing}
                   currentUser={currentUser}
+                  setNonCubberdIngredients={setNonCubberdIngredients}
                   key={`cubberd ${ing} ${i}`}
                 />
               ))}
+          </div>
+          <div className="cubberd-footer">
+            {!loading && (
+              <CustomToolTipTop
+                title="Empty your cubberd?"
+                arrow
+                placement="top"
+              >
+                <div
+                  className="cubberd-footer-options"
+                  onClick={handleEmptyCubberd}
+                >
+                  <TbTrash />
+                </div>
+              </CustomToolTipTop>
+            )}
+            {loading && (
+              <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            )}
+            <CustomToolTipTop title="Add all to pot?" arrow placement="top-end">
+              <div className="cubberd-footer-options" onClick={handleAddAll}>
+                <SiCodechef />
+              </div>
+            </CustomToolTipTop>
           </div>
         </div>
       </div>

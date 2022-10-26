@@ -10,6 +10,7 @@ import { fetchShoppingList } from "../../store/shoppingList";
 
 
 function UserPage() {
+    debugger
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
@@ -18,9 +19,9 @@ function UserPage() {
     const shoppingList = useSelector(state => state.shoppingList);
 
     // UseEffect to load shopping list (will need to be updated as crud actions are updated)
-    useEffect(() => {
-        dispatch(fetchShoppingList(sessionUser._id));
-    }, [])
+    // useEffect(() => {
+    //     dispatch(fetchShoppingList(sessionUser._id));
+    // }, [])
 
 
 
