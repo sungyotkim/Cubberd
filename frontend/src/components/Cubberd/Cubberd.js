@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   composeUserCubberdIngredient,
@@ -13,6 +13,7 @@ import { MdOutlineRemoveCircle } from "react-icons/md";
 import woodBackground from "../../assets/retina_wood.png";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
+import { PotContext } from "../../context/PotContext";
 
 const CustomToolTip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -44,6 +45,7 @@ const Cubberd = () => {
   const [resultAdded, setResultAdded] = useState(false);
   const [openDoor, setOpenDoor] = useState(false);
   const ref = useRef();
+  const { potContents, setPotContents } = useContext(PotContext)
 
   const handleDoorClick = () => {
     if (openDoor) {
@@ -183,6 +185,16 @@ const Cubberd = () => {
     });
   };
 
+  const addToPot = (e, ingredient) => {
+    e.preventDefault();
+
+    let includedItems = potContents.filter(ele => ele._id === ingredient._id);
+
+    if (includedItems.length === 0) {
+      setPotContents(old => [...old, ingredient])
+    }
+  }
+
   return (
     <>
       <div className="outer-container">
@@ -240,7 +252,10 @@ const Cubberd = () => {
                     <img src={searchResult.image} alt={searchResult.food} />
                     <div className="search-result-options">
                       <CustomToolTip title="Add to pot?" arrow placement="top">
-                        <div className="add-to-pot-btn">
+                        <div 
+                          className="add-to-pot-btn"
+                          onClick={e => addToPot(e, searchResult)}
+                        >
                           <GiCookingPot />
                         </div>
                       </CustomToolTip>
@@ -284,7 +299,10 @@ const Cubberd = () => {
                               arrow
                               placement="top"
                             >
-                              <div className="cubberd-shelving-option-one">
+                              <div 
+                                className="cubberd-shelving-option-one"
+                                onClick={e => addToPot(e, ing)}
+                              >
                                 <GiCookingPot />
                               </div>
                             </CustomToolTip>

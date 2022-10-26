@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import RecipeShowModal from "../RecipeShowModal/RecipeShowModal";
 import { fetchRecipes } from "../../store/recipes";
 import { useEffect } from "react";
-import CookingPot from "./CookingPot/CookingPot";
 import Cubberd from '../Cubberd/Cubberd';
+import Pot from "../Pot/Pot";
 
 function MainPage() {
     const dispatch = useDispatch();
@@ -14,11 +14,9 @@ function MainPage() {
     const recipes = useSelector(state => state.recipes);
     const recipe = recipes[0];
 
-
     useEffect(() => {
         dispatch(fetchRecipes())
     }, [])
-
 
     const handleLogout = () => {
         dispatch(logout())
@@ -39,7 +37,7 @@ function MainPage() {
                         </div>
                         <div id="main-page-top-right-bottom">
                             <div id="pot-container" className="main-display-component">
-                                <CookingPot />
+                                <Pot />
                             </div>
                             <div id="shopping-list-container" className="main-display-component"></div>
                         </div>
