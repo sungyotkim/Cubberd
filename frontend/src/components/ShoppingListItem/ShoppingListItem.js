@@ -14,13 +14,18 @@ function ShoppingListItem({item}) {
         setQuantity(e.target.value);
 
         const editedItem = item.quantity = quantity;
-        dispatch(editShoppingList(sessionUser._id, editedItem))
+        dispatch(editShoppingList(sessionUser._id, item, quantity))
+    }
+
+    const handleDelete = () => {
+
+
     }
 
 
     return (
         <div className="shoppingListItem">
-            <form><input type="number" onChange={handleChange} value={quantity}></input></form>{item.ingredient.food}
+            <form><input type="number" onChange={handleChange} value={quantity}></input></form>{item.ingredient.food} <button ></button>
         </div>
     )
 
