@@ -7,6 +7,7 @@ import { fetchRecipes } from "../../store/recipes";
 import { useEffect } from "react";
 import Cubberd from '../Cubberd/Cubberd';
 import Pot from "../Pot/Pot";
+import PotContents from "../Pot/PotContents/PotContents";
 
 function MainPage() {
     const dispatch = useDispatch();
@@ -33,7 +34,7 @@ function MainPage() {
                 <div id="main-page-top">
                     <div id="main-page-top-right">
                         <div id="navbar-container" className="main-display-component">
-                           <nav>{sessionUser && <span>Logged in as <Link to="/profile">{sessionUser.username}</Link> <button onClick={handleLogout}>Logout</button> </span>}</nav>  
+                            <nav>{sessionUser && <span>Logged in as <Link to="/profile">{sessionUser.username}</Link> <button onClick={handleLogout}>Logout</button> </span>}</nav>  
                         </div>
                         <div id="main-page-top-right-bottom">
                             <div id="pot-container" className="main-display-component">
@@ -44,9 +45,10 @@ function MainPage() {
                     </div>
                 </div>
                 <div id="main-page-bottom">
-                    <div id="current-cubberd-container" className="main-display-component"></div>
+                    <div id="current-cubberd-container" className="main-display-component">
+                        <PotContents />
+                    </div>
                 </div>
-
             </div>
         </div>
     );

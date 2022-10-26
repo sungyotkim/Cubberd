@@ -1,14 +1,12 @@
 import { useContext } from "react";
 import { PotContext } from "../../context/PotContext";
 import CookingPot from "./CookingPot/CookingPot";
-import "./Pot.css"
-
+import "./Pot.css";
 
 const Pot = () => {
-  const { potContents } = useContext(PotContext)
+  const { potContents } = useContext(PotContext);
 
-  console.log(potContents)
-  return ( 
+  return (
     <>
       <div className="pot-component-wrapper">
         <div className="pot-container">
@@ -17,6 +15,6 @@ const Pot = () => {
       </div>
     </>
   );
-}
+};
 
 export default Pot;
