@@ -190,6 +190,14 @@ router.put("/:userId/shoppingList", async (req, res) => {
   return res.json(currentUser.shoppingList)
 })
 
+router.delete("/:userId/shoppingList", async(req, res) => {
+  const currentUser = await User.findById(req.params.userId);
+  const shoppingListItemId = req.body.shoppingListItemId;
+  currentUser.shoppingList.id(shoppingListItemId).remove();
+  currentUser.save();
+  return res.json(currentUser.shoppingList)
+})
+
 router.post("/:userId/savedRecipes", requireUser, async(req, res, next) => {
   const currentUser = await User.findById(req.params.userId)
   const recipe = await Recipe.findById(req.body.recipeId)
