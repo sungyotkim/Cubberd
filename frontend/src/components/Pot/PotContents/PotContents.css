@@ -16,7 +16,7 @@
 }
 
 .pot-component-header > div {
-  width: 128px;
+  width: 188px;
   height: 24px;
   background-color: white;
   position: relative;
@@ -43,7 +43,8 @@
 .pot-ingredient {
   display: flex;
   width: 46%;
-  height: 22px;
+  height: 25%;
+  align-items: center;
   gap: 5px;
   font-weight: 600;
   border-bottom: 2px dashed black;
@@ -71,11 +72,12 @@
   border-bottom: 2px solid black;
 }
 
-.pot-component-footer > div {
+.clear-all-pot-items-btn {
   width: 20px;
   height: 20px;
   background-color: white;
   position: relative;
   z-index: 1;
   top: -10px;
+  cursor: pointer;
 }
