@@ -15,7 +15,7 @@
     width: calc(100% - 1em);
     display: flex;
     flex-direction: row;
-    height: 100%;
+    height: calc(100% - 100px);
 }
 
 .user-page-column {
