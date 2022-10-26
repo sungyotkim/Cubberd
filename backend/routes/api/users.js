@@ -130,11 +130,7 @@ router.post("/:userId/cubberd", restoreUser, requireUser, async (req, res) => {
   res.json(currentUser.cubberd);
 });
 
-router.delete(
-  "/:userId/cubberd",
-  restoreUser,
-  requireUser,
-  async (req, res) => {
+router.delete("/:userId/cubberd", restoreUser, requireUser, async (req, res) => {
     const ingredient = req.body;
     const currentUserId = req.user._id;
     const currentUser = await User.findById(currentUserId);
@@ -143,6 +139,12 @@ router.delete(
     res.json(currentUser.cubberd);
   }
 );
+
+//eventually require user
+router.get("/:userId/shoppingList", async (req, res) => {
+  const shoppingList = await User.findById(req.params.userId, "shoppingList");
+  res.json(shoppingList);
+});
 
 router.post("/:userId/shoppingList", requireUser, async(req, res) => {
   const ingredient = req.body;
