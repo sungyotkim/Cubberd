@@ -49,7 +49,8 @@ const CubberdRow = ({ ing, currentUser }) => {
   const postToShoppingList = (e, ingredientName) => {
     e.preventDefault();
 
-    dispatch(addToShoppingList(currentUser._id, ingredientName))
+    let obj = { food: ingredientName }
+    dispatch(addToShoppingList(currentUser._id, obj))
   }
 
   return (
