@@ -153,8 +153,6 @@ router.get("/:userId/shoppingList", requireUser, async (req, res) => {
 router.post("/:userId/shoppingList", requireUser, async(req, res, next) => {
   const currentUser = await User.findById(req.params.userId)
   const ingredient = await Ingredient.findOne(req.body);
-  console.log("ingredient")
-  console.log(ingredient)
   const quantity = req.body.quantity || 1
   const shoppingListItem = { quantity: quantity, ingredient: ingredient }
   const err = new Error("Validation Error")
@@ -188,7 +186,6 @@ router.post("/:userId/savedRecipes", requireUser, async(req, res, next) => {
         return next(err)
       }
     })
-    console.log("adding recipe to favorites")
     currentUser.savedRecipes.favorited.push(recipe)
   } else if (collection === "planned") {
     currentUser.savedRecipes.planned.forEach(rec => {
