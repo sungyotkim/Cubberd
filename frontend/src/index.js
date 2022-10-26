@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import configureStore from "./store/store";
 import { ModalProvider } from './context/Modal';
+import { PotProvider } from "./context/PotContext";
 
 
 let store = configureStore({});
@@ -14,9 +15,11 @@ function Root() {
   return (
     <ModalProvider>
       <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <PotProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </PotProvider>
       </Provider>
     </ModalProvider>
   );
