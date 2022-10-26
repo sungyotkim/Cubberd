@@ -4,7 +4,7 @@ import { GiCookingPot } from "react-icons/gi";
 import { MdOutlineRemoveCircle } from "react-icons/md";
 import { FaCartPlus } from "react-icons/fa";
 import { PotContext } from "../../context/PotContext";
-import { deleteUserCubberdIngredient } from "../../store/session";
+import { addToShoppingList, deleteUserCubberdIngredient } from "../../store/session";
 import { useDispatch } from "react-redux";
 
 const CubberdRow = ({ ing, currentUser }) => {
@@ -45,6 +45,13 @@ const CubberdRow = ({ ing, currentUser }) => {
     setPotContents(removedFromPotArr)
     dispatch(deleteUserCubberdIngredient(currentUser._id, ingredient));
   };
+
+  const postToShoppingList = (e, ingredientName) => {
+    e.preventDefault();
+
+    let obj = { food: ingredientName }
+    dispatch(addToShoppingList(currentUser._id, obj))
+  }
 
   return (
     <div
@@ -87,7 +94,10 @@ const CubberdRow = ({ ing, currentUser }) => {
             arrow
             placement="bottom-end"
           >
-            <div className="cubberd-shelving-option-two">
+            <div 
+              className="cubberd-shelving-option-two"
+              onClick={(e) => postToShoppingList(e, ing.food)}
+            >
               <FaCartPlus />
             </div>
           </CustomToolTipBottom>
