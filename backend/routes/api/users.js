@@ -146,17 +146,21 @@ router.get("/:userId/shoppingList", async (req, res) => {
   res.json(shoppingList);
 });
 
-router.post("/:userId/shoppingList", requireUser, async(req, res) => {
+//eventually require user
+router.post("/:userId/shoppingList", async(req, res) => {
+  const currentUser = await User.findById(req.params.userId);
   const ingredient = req.body;
+  console.log(ingredient)
   const defaultQuantity = 1;
-  const currentUserId = req.params(userId);
-  const currentUser = await User.findById(currentUserId);
+
   const newShoppingListItem = new ShoppingListItem({
     quantity: defaultQuantity,
     ingredient: ingredient
   })
   const shoppingListItem = newShoppingListItem.save()
-  res.json(currentUser.shoppingListItem)
+  currentUser.shoppingList.push(shoppingListItem);
+  currentUser.save();
+  return res.json(currentUser.shoppingList)
 })
 
 module.exports = router;
