@@ -16,7 +16,7 @@ export const fetchRecipesFromPot = (cubberd, pot) => async (dispatch) => {
   dispatch(receiveRecipeResults(recipes))
 }
 
-const recipesReducer = (state = {}, action) => {
+const recipesReducer = (state = [], action) => {
   switch (action.type) {
       case RECEIVE_RECIPE_RESULTS:
           return action.recipes
