@@ -12,4 +12,12 @@ router.get("/:itemId", async(req, res) => {
     return res.json(shoppingListItem)
 })
 
+router.put("/:itemId", async(req, res) => {
+    const shoppingListItem = await ShoppingListItem.findById(req.params.itemId)
+    const quantity = req.body.quantity;
+    shoppingListItem.quantity = quantity;
+    await shoppingListItem.save();
+    return res.json(shoppingListItem);
+})
+
 module.exports = router;
