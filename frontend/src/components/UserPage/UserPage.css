@@ -34,11 +34,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: center;
 }
 
 #user-page-favorited-recipes-container .recipe-list-item {
-    width: 100px;
+    width: 20%;
     height: 200px;
     border-radius: 5px;
     margin: 1em;
@@ -46,6 +46,10 @@
     display: flex;
     flex-direction: column;
     font-size: medium;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0.5em;
+    padding-top: 0;
 }
 
 #user-page-planned-and-shopping {

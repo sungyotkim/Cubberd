@@ -31,7 +31,7 @@ function UserPage() {
                     <h3>Favorited Recipes</h3>
                     
 
-                    <RecipeList recipes={favoritedRecipes} />
+                    <RecipeList recipes={favoritedRecipes} recipeContext={'favorited'} />
 
                 </div>
                 <div id="user-page-planned-and-shopping" className="main-display-component user-page-column">
@@ -41,7 +41,7 @@ function UserPage() {
                     </div>
                     <div id="user-page-planned-recipes-container" className="main-display-component">
                         <h3>Planned Recipes</h3>
-                        <RecipeList recipes={plannedRecipes} />
+                        <RecipeList recipes={plannedRecipes} recipeContext={'planned'} />
                     </div>
                 </div>
             </div>
