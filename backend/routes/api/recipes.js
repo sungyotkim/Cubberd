@@ -10,9 +10,9 @@ router.get('/', async (req, res) => {
     return res.json(allRecipes);
 });
 
-router.get('/test', async(req, res, next) => {
-    const recipes = await Recipe.find().limit(5);
-    return res.json(recipes)
+router.get('/:recipeId', async(req, res, next) => {
+    const recipe = await Recipe.findById(req.params.recipeId)
+    return res.json(recipe)
 })
 
 //get by multiple ingredients 

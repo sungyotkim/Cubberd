@@ -11,7 +11,6 @@ require("./models/User");
 require("./config/passport");
 require("./models/Ingredient");
 require("./models/Recipe");
-require("./models/ShoppingListItem")
 
 const passport = require("passport");
 
@@ -19,7 +18,6 @@ const usersRouter = require("./routes/api/users");
 const csrfRouter = require("./routes/api/csrf");
 const ingredientsRouter = require("./routes/api/ingredients");
 const recipesRouter = require("./routes/api/recipes");
-const shoppingListsRouter = require("./routes/api/shoppingLists");
 
 
 const app = express();
@@ -49,7 +47,6 @@ app.use("/api/users", usersRouter);
 app.use("/api/csrf", csrfRouter);
 app.use("/api/ingredients", ingredientsRouter);
 app.use("/api/recipes", recipesRouter);
-app.use("/api/shoppingLists", shoppingListsRouter);
 
 // Express custom middleware for catching all unmatched requests and formatting
 // a 404 error to be sent as the response.
