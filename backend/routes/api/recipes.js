@@ -65,11 +65,8 @@ router.post("/ingredients", async(req, res) => {
             recipesByShoppingScore.push({"ingredientsScore": ingredientScore, "shoppingScore": shoppingScore, "recipe": recipe})
         })
     }
-    console.log(recipesByShoppingScore.length)
     recipesByShoppingScore.sort((a, b) => a.shoppingScore > b.shoppingScore ? -1 : 1)
-    console.log(recipesByShoppingScore[0].shoppingScore)
     recipes.push(recipesByIngredientScore, recipesByShoppingScore.slice(0,3))
-    console.log(recipes)
     return res.json(recipes)
 })
 
