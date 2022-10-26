@@ -140,27 +140,22 @@ router.delete("/:userId/cubberd", restoreUser, requireUser, async (req, res) => 
   }
 );
 
-//eventually require user
-router.get("/:userId/shoppingList", async (req, res) => {
+//Get a current user's shopping list
+router.get("/:userId/shoppingList", requireUser, async (req, res) => {
   const shoppingList = await User.findById(req.params.userId, "shoppingList");
   res.json(shoppingList);
 });
 
-//eventually require user
-router.post("/:userId/shoppingList", async(req, res) => {
-  //const currentUserId = req.user._id;
-  console.log(req.params.userId)
+//post a new shopping list item to current user's shopping list
+router.post("/:userId/shoppingList", requireUser, async(req, res) => {
   const currentUser = await User.findById(req.params.userId)
-  console.log("currentuser shopping list")
-  console.log(currentUser.shoppingList)
   const ingredient = await Ingredient.findOne(req.body);
+  const defaultQuantity = 1;
   const newShoppingListItem = new ShoppingListItem({
-    quantity: 1,
+    quantity: defaultQuantity,
     ingredient: ingredient
   })
   const shoppingListItem = await newShoppingListItem.save()
-  console.log("shopping list itme")
-  console.log(shoppingListItem)
   currentUser.shoppingList.push(shoppingListItem);
   currentUser.save();
   return res.json(currentUser.shoppingList)
