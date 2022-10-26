@@ -215,4 +215,18 @@ router.delete('/:userId/savedRecipes', requireUser, async (req, res) => {
   return res.json(currentUser.savedRecipes)
 });
 
+router.get('/:userId/favoritedRecipes', async(req, res) => {
+  const currentUser = await User.findById(req.params.userId)
+  const favoritedRecipes = currentUser.savedRecipes.favorited
+  return res.json(favoritedRecipes)
+});
+
+router.get('/:userId/plannedRecipes', async(req, res) => {
+  const currentUser = await User.findById(req.params.userId)
+  const plannedRecipes = currentUser.savedRecipes.planned
+  return res.json(plannedRecipes)
+});
+
+
+
 module.exports = router;
