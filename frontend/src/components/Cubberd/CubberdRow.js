@@ -7,7 +7,7 @@ import { PotContext } from "../../context/PotContext";
 import { deleteUserCubberdIngredient } from "../../store/ingredients";
 import { useDispatch } from "react-redux";
 
-const CubberdRow = ({ ing, currentUser }) => {
+const CubberdRow = ({ ing, currentUser, setNonCubberdIngredients }) => {
   const [showOptions, setShowOptions] = useState(false);
   const { potContents, setPotContents } = useContext(PotContext);
   const dispatch = useDispatch();
