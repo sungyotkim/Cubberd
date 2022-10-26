@@ -22,7 +22,14 @@ const userSchema = Schema({
       favorited: [RecipeSchema],
       planned: [RecipeSchema]
     },
-    shoppingList: [ShoppingListItemSchema]
+    shoppingList: [
+      {
+        quantity: {
+          type: Number
+        },
+        ingredient: IngredientSchema
+      }
+    ]
   }, {
     timestamps: true
   });
