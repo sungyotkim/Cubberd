@@ -6,6 +6,7 @@ import RecipeShowModal from "../RecipeShowModal/RecipeShowModal";
 import { fetchRecipes } from "../../store/recipes";
 import { useEffect } from "react";
 import CookingPot from "./CookingPot/CookingPot";
+import Cubberd from '../Cubberd/Cubberd';
 
 function MainPage() {
     const dispatch = useDispatch();
@@ -26,7 +27,9 @@ function MainPage() {
     return (
         <div id="main-page" className="main-display">
             <div id="main-page-left">
-                <div id="cubberd-search-container" className="main-display-component"></div>
+                <div id="cubberd-search-container" className="main-display-component">
+                    <Cubberd />
+                </div>
             </div>
             <div id="main-page-right">
                 <div id="main-page-top">
