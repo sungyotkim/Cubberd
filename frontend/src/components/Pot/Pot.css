@@ -4,3 +4,123 @@
   position: relative;
   display: flex;
 }
+
+.stove-knob-container {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 1);
+  border: 1px solid black;
+  border-radius: 50%;
+  display: flex;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 1s;
+  -webkit-box-shadow: 0px 8px 6px 0px rgba(50, 50, 50, 0.62);
+  -moz-box-shadow:    0px 8px 6px 0px rgba(50, 50, 50, 0.62);
+  box-shadow:         0px 8px 6px 0px rgba(50, 50, 50, 0.62);
+  color: white;
+  position: relative;
+  font-size: 10px;
+}
+
+.stove-knob {
+  width: 15px;
+  height: 35px;
+  background-color: rgb(65, 64, 64);
+  border-radius: 4px;
+  -webkit-box-shadow: 8px 0px 16px 0px rgba(247, 247, 247, 0.66);
+  -moz-box-shadow:    8px 0px 16px 0px rgba(247, 247, 247, 0.66); 
+  box-shadow:         8px 0px 16px 0px rgba(247, 247, 247, 0.66);
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: calc(50% - 7.5px);
+}
+
+.knob-on {
+  width: 15px;
+  height: 13px;
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 7.5px);
+  transform: rotate(180deg);
+}
+
+.knob-off {
+  width: 18.6px;
+  height: 13px;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 7.5px);
+}
+
+.rotate {
+  transform: rotate(180deg);
+  -webkit-box-shadow: 0px -8px 6px 0px rgba(50, 50, 50, 0.62);
+  -moz-box-shadow:    0px -8px 6px 0px rgba(50, 50, 50, 0.62);
+  box-shadow:         0px -8px 6px 0px rgba(50, 50, 50, 0.62);
+}
+
+.stove-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: blue;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stove-top {
+  width: 70%;
+  height: 100%;
+  background-color: green;
+}
+
+.stove-button-container {
+  width: 70%;
+  height: 77px;
+  background-color: #a79ba5;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: flex-end;
+  padding: 0 10px 2px;
+  box-sizing: border-box;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom: 5px solid #4e4c46;
+  border-left: 5px solid #4e4c46;
+  border-right: 5px solid #4e4c46;
+}
+
+.stove-on-btn {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 5px 5px, #880e0e, rgb(68, 59, 59));
+  margin-right: 10px;
+  margin-top: 5px;
+  align-self: flex-start;
+  border-radius: 50%;
+  position: relative;
+}
+
+#stove-is-on {
+  background: red;
+  background: radial-gradient(circle at 50% 120%, rgb(247, 131, 131), rgb(253, 63, 63) 10%, rgb(255, 0, 0) 80%, rgb(78, 2, 2) 100%);
+  position: relative;
+  filter: brightness(2);
+}
+
+/* #stove-is-on::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 0px, #ffffff, rgba(255, 255, 255, 0) 20%);
+  filter: blur(5px);
+  z-index: 2;
+} */

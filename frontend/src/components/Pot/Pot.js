@@ -13,6 +13,7 @@ const Pot = () => {
   const recipeResultsTotalArr =  useSelector((state) => state.recipeResults);
   const [displayByShoppingScore, setDisplayByShoppingScore] = useState(false);
   const [recipesObtained, setRecipesObtained] = useState(false)
+  const [rotate, setRotate] = useState(false)
 
   const searchForRecipes = (e) => {
     e.preventDefault();
@@ -36,6 +37,15 @@ const Pot = () => {
     }
   }, [recipeResultsTotalArr])
   
+  const handleKnobClick = (e) => {
+    e.preventDefault();
+
+    if (!rotate) {
+      setRotate(true)
+    } else {
+      setRotate(false)
+    }
+  }
 
   return (
     <>
@@ -50,6 +60,24 @@ const Pot = () => {
         </div>
         <div onClick={searchForRecipes}>Adina press here</div>
         <div onClick={toggleRecipeScore}>Toggle Recipe Score</div>
+        <div className="stove-container">
+          <div className="stove-top"></div>
+          <div className="stove-button-container">
+
+            <div 
+              className="stove-on-btn"
+              id={rotate ? "stove-is-on" : ""}
+            ></div>
+            <div 
+              className={rotate ? "stove-knob-container rotate" : "stove-knob-container"}
+              onClick={handleKnobClick}
+            >
+              <div className="knob-on">ON</div>
+              <div className="knob-off">OFF</div>
+              <div className="stove-knob"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
