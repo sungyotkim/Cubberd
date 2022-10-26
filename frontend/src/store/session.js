@@ -4,6 +4,12 @@ const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
 const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";
 const CLEAR_SESSION_ERRORS = "session/CLEAR_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "session/RECEIVE_USER_LOGOUT";
+const RECEIVE_USER_CUBBERD_INGREDIENTS =
+  "ingredients/RECEIVE_USER_CUBBERD_INGREDIENTS";
+const RECEIVE_NEW_USER_CUBBERD_INGREDIENT =
+  "ingredients/RECEIVE_NEW_USER_CUBBERD_INGREDIENT";
+const REMOVE_USER_CUBBERD_INGREDIENT =
+  "ingredients/REMOVE_USER_CUBBERD_INGREDIENT";
 
 // Dispatch receiveCurrentUser when a user logs in
 const receiveCurrentUser = (currentUser) => ({
@@ -25,6 +31,22 @@ const logoutUser = () => ({
 // Dispatch clearSessionErrors to clear any session errors.
 export const clearSessionErrors = () => ({
   type: CLEAR_SESSION_ERRORS,
+});
+
+// Handle User Cubberd actions
+const receiveUserCubberdIngredients = (ingredients) => ({
+  type: RECEIVE_USER_CUBBERD_INGREDIENTS,
+  ingredients,
+});
+
+const receiveNewUserCubberdIngredient = (ingredients) => ({
+  type: RECEIVE_NEW_USER_CUBBERD_INGREDIENT,
+  ingredients,
+});
+
+const removeUserCubberdIngredient = (ingredients) => ({
+  type: REMOVE_USER_CUBBERD_INGREDIENT,
+  ingredients,
 });
 
 //Because signup also logs in the newly created user,
@@ -62,6 +84,32 @@ export const getCurrentUser = () => async (dispatch) => {
   return dispatch(receiveCurrentUser(user));
 };
 
+export const fetchUserCubberdIngredients = (userId) => async (dispatch) => {
+  const res = await jwtFetch(`/api/users/${userId}/cubberd`);
+  const ingredients = await res.json();
+  dispatch(receiveUserCubberdIngredients(ingredients.cubberd));
+};
+
+export const composeUserCubberdIngredient =
+  (userId, ingredient) => async (dispatch) => {
+    const res = await jwtFetch(`/api/users/${userId}/cubberd`, {
+      method: "POST",
+      body: JSON.stringify(ingredient),
+    });
+    const newCubberd = await res.json();
+    dispatch(receiveNewUserCubberdIngredient(newCubberd));
+  };
+
+export const deleteUserCubberdIngredient =
+  (userId, ingredient) => async (dispatch) => {
+    const res = await jwtFetch(`/api/users/${userId}/cubberd`, {
+      method: "DELETE",
+      body: JSON.stringify(ingredient),
+    });
+    const updatedCubberd = await res.json();
+    dispatch(removeUserCubberdIngredient(updatedCubberd));
+  };
+
 const nullErrors = null;
 
 export const sessionErrorsReducer = (state = nullErrors, action) => {
@@ -86,6 +134,15 @@ const sessionReducer = (state = initialState, action) => {
       return { user: action.currentUser };
     case RECEIVE_USER_LOGOUT:
       return initialState;
+    case RECEIVE_USER_CUBBERD_INGREDIENTS:
+      state.user.cubberd = action.ingredients; 
+      return {...state}
+    case RECEIVE_NEW_USER_CUBBERD_INGREDIENT:
+      state.user.cubberd = action.ingredients; 
+      return {...state};
+    case REMOVE_USER_CUBBERD_INGREDIENT:
+      state.user.cubberd = action.ingredients; 
+      return {...state};
     default:
       return state;
   }

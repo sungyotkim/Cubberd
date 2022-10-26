@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   composeUserCubberdIngredient,
   deleteUserCubberdIngredient,
-  fetchIngredients,
   fetchUserCubberdIngredients,
-} from "../../store/ingredients";
+} from "../../store/session";
 import "./Cubberd.css";
 import { BiSearchAlt } from "react-icons/bi";
 import { SiCodechef } from "react-icons/si";
@@ -14,11 +13,12 @@ import woodBackground from "../../assets/retina_wood.png";
 import CubberdRow from "./CubberdRow";
 import { CustomToolTipTop } from "../ToolTip/ToolTip";
 import { PotContext } from "../../context/PotContext";
+import { fetchIngredients } from "../../store/ingredients";
 
 const Cubberd = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
-  const userCubberd = useSelector((state) => state.ingredients.userCubberd);
+  const userCubberd = useSelector((state) => state.session.user.cubberd);
   const allIngredients = useSelector((state) => state.ingredients.all);
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -28,7 +28,7 @@ const Cubberd = () => {
   const [cubberdIngIds, setCubberdIngIds] = useState([]);
   const { setPotContents } = useContext(PotContext);
   const [loading, setLoading] = useState(false);
-  const [completed, setCompleted] = useState(true);
+  const [completedAnimation, setCompletedAnimation] = useState(false);
   const ref = useRef();
 
   const handleDoorClick = () => {
@@ -80,6 +80,14 @@ const Cubberd = () => {
         idArr.push(ing._id);
       });
       setCubberdIngIds([...idArr]);
+    }
+
+    if (loading && userCubberd.length === 0) {
+      setLoading(false)
+      setCompletedAnimation(true)
+      setTimeout(() => {
+          setCompletedAnimation(false);
+      }, 500);
     }
 
     return () => {
@@ -164,9 +172,29 @@ const Cubberd = () => {
   const handleEmptyCubberd = (e) => {
     e.preventDefault();
 
+    setLoading(true)
+
     userCubberd.forEach((ing) => {
       dispatch(deleteUserCubberdIngredient(currentUser._id, ing));
     });
+
+    // const dup = userCubberd.slice();
+
+    // for (let i = 0; i < dup.length; i++) {
+    //   let ing = dup[i];
+    //   dispatch(deleteUserCubberdIngredient(currentUser._id, ing))
+
+    //   if (i === dup.length - 1) {
+    //     console.log('hi')
+    //     setLoading(false);
+    //     // setCompletedAnimation(true);
+
+    //     // setTimeout(() => {
+    //     //   setCompletedAnimation(false);
+    //     // }, 500);
+    //   }
+    // }
+
     setPotContents([]);
   };
 
@@ -238,7 +266,7 @@ const Cubberd = () => {
               ))}
           </div>
           <div className="cubberd-footer">
-            {!loading && (
+            {!loading && !completedAnimation && (
               <CustomToolTipTop
                 title="Empty your cubberd?"
                 arrow
@@ -259,6 +287,9 @@ const Cubberd = () => {
                 <div></div>
                 <div></div>
               </div>
+            )}
+            {completedAnimation && (
+              <div className="checkmark"></div>
             )}
             <CustomToolTipTop title="Add all to pot?" arrow placement="top-end">
               <div className="cubberd-footer-options" onClick={handleAddAll}>

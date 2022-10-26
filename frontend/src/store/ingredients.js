@@ -2,12 +2,6 @@ import jwtFetch from "./jwt";
 
 const RECEIVE_INGREDIENTS = "ingredients/RECEIVE_INGREDIENTS";
 const RECEIVE_INGREDIENT = "ingredients/RECEIVE_INGREDIENT";
-const RECEIVE_USER_CUBBERD_INGREDIENTS =
-  "ingredients/RECEIVE_USER_CUBBERD_INGREDIENTS";
-const RECEIVE_NEW_USER_CUBBERD_INGREDIENT =
-  "ingredients/RECEIVE_NEW_USER_CUBBERD_INGREDIENT";
-const REMOVE_USER_CUBBERD_INGREDIENT =
-  "ingredients/REMOVE_USER_CUBBERD_INGREDIENT";
 
 const receiveIngredients = (ingredients) => ({
   type: RECEIVE_INGREDIENTS,
@@ -19,20 +13,7 @@ const receiveIngredient = (ingredient) => ({
   ingredient,
 });
 
-const receiveUserCubberdIngredients = (ingredients) => ({
-  type: RECEIVE_USER_CUBBERD_INGREDIENTS,
-  ingredients,
-});
 
-const receiveNewUserCubberdIngredient = (ingredients) => ({
-  type: RECEIVE_NEW_USER_CUBBERD_INGREDIENT,
-  ingredients,
-});
-
-const removeUserCubberdIngredient = (ingredients) => ({
-  type: REMOVE_USER_CUBBERD_INGREDIENT,
-  ingredients,
-});
 
 export const fetchIngredients = () => async (dispatch) => {
   const res = await jwtFetch("/api/ingredients");
@@ -46,51 +27,12 @@ export const fetchIngredient = (name) => async (dispatch) => {
   dispatch(receiveIngredient(ingredient));
 };
 
-export const fetchUserCubberdIngredients = (userId) => async (dispatch) => {
-  const res = await jwtFetch(`/api/users/${userId}/cubberd`);
-  const ingredients = await res.json();
-  dispatch(receiveUserCubberdIngredients(ingredients.cubberd));
-};
-
-export const composeUserCubberdIngredient =
-  (userId, ingredient) => async (dispatch) => {
-    const res = await jwtFetch(`/api/users/${userId}/cubberd`, {
-      method: "POST",
-      body: JSON.stringify(ingredient),
-    });
-    const newCubberd = await res.json();
-    dispatch(receiveNewUserCubberdIngredient(newCubberd));
-  };
-
-export const deleteUserCubberdIngredient =
-  (userId, ingredient) => async (dispatch) => {
-    const res = await jwtFetch(`/api/users/${userId}/cubberd`, {
-      method: "DELETE",
-      body: JSON.stringify(ingredient),
-    });
-    const updatedCubberd = await res.json();
-    console.log(updatedCubberd);
-    dispatch(removeUserCubberdIngredient(updatedCubberd));
-  };
-
-const ingredientsReducer = (state = { all: {}, userCubberd: {} }, action) => {
+const ingredientsReducer = (state = { all: {} }, action) => {
   switch (action.type) {
     case RECEIVE_INGREDIENTS:
       return { ...state, all: action.ingredients };
     case RECEIVE_INGREDIENT:
       return { ...state, all: action.ingredient };
-    case RECEIVE_USER_CUBBERD_INGREDIENTS:
-      return { ...state, userCubberd: action.ingredients };
-    case RECEIVE_NEW_USER_CUBBERD_INGREDIENT:
-      return {
-        ...state,
-        userCubberd: action.ingredients,
-      };
-    case REMOVE_USER_CUBBERD_INGREDIENT:
-      return {
-        ...state,
-        userCubberd: action.ingredients,
-      };
     default:
       return state;
   }

@@ -4,10 +4,10 @@ import { GiCookingPot } from "react-icons/gi";
 import { MdOutlineRemoveCircle } from "react-icons/md";
 import { FaCartPlus } from "react-icons/fa";
 import { PotContext } from "../../context/PotContext";
-import { deleteUserCubberdIngredient } from "../../store/ingredients";
+import { deleteUserCubberdIngredient } from "../../store/session";
 import { useDispatch } from "react-redux";
 
-const CubberdRow = ({ ing, currentUser, setNonCubberdIngredients }) => {
+const CubberdRow = ({ ing, currentUser }) => {
   const [showOptions, setShowOptions] = useState(false);
   const { potContents, setPotContents } = useContext(PotContext);
   const dispatch = useDispatch();
