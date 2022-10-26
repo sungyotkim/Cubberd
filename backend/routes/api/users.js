@@ -150,11 +150,23 @@ router.get("/:userId/shoppingList", requireUser, async (req, res) => {
 });
 
 //post a new shopping list item to current user's shopping list
-router.post("/:userId/shoppingList", requireUser, async(req, res) => {
+router.post("/:userId/shoppingList", async(req, res, next) => {
   const currentUser = await User.findById(req.params.userId)
   const ingredient = await Ingredient.findOne(req.body);
-  const defaultQuantity = 1;
-  const shoppingListItem = { quantity: defaultQuantity, ingredient: ingredient }
+  console.log("ingredient")
+  console.log(ingredient)
+  const quantity = req.body.quantity || 1
+  const shoppingListItem = { quantity: quantity, ingredient: ingredient }
+  const err = new Error("Validation Error")
+  err.statusCode = 400;
+  const errors = {}
+  currentUser.shoppingList.forEach(item => {
+    if (item.ingredient.food === ingredient.food) {
+      errors.shoppingList = "This item is already in your shopping cart. Try updating the quantity instead!"
+      err.errors = errors;
+      return next(err)
+    }
+  })
   currentUser.shoppingList.push(shoppingListItem);
   currentUser.save();
   return res.json(currentUser.shoppingList)
