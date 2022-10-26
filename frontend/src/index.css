@@ -13,18 +13,36 @@ html {
 }
 
 .main-display {
-    width: 80%;
-    margin: auto;
-    border: 2px solid black;
-    box-sizing: border-box;
-    height: 800px;
-    margin-top: 50px;
+  width: 80%;
+  margin: auto;
+  border: 2px solid black;
+  box-sizing: border-box;
+  height: 800px;
+  margin-top: 50px;
 }
 
 .main-display-component {
-    height: 100px;
-    width: 100px;
-    margin: 0.5em;
-    border: 1px solid black;
-    box-sizing: border-box;
+  height: 100px;
+  width: 100px;
+  margin: 0.5em;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  margin-right: 2px;
+}
+
+::-webkit-scrollbar-track {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--main-dark-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--main-dark-color);
 }
