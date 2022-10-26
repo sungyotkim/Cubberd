@@ -23,10 +23,9 @@ function ShoppingListItem({item}) {
 
     return (
         <div className="shoppingListItem">
-            <form>
-                {item.ingredient.food}
-                <input type="number" onChange={handleChange} value={quantity} />
-            </form>
+            {item.ingredient.food}
+            <input type="number" onChange={handleChange} value={quantity} />
+            <div className="update-item">Update Item</div>
         </div>
     )
 

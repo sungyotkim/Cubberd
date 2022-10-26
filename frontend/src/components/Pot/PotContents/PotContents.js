@@ -31,8 +31,8 @@ const PotContents = () => {
 
   return (
     <>
-      <div className="pot-component-wrapper">
-        <div className="pot-component-header">
+      <div className="pot-content-component-wrapper">
+        <div className="pot-content-component-header">
           <div>WHAT'S IN THE POT</div>
         </div>
         <div className="pot-ingredient-container">
@@ -48,7 +48,7 @@ const PotContents = () => {
               );
             })}
         </div>
-        <div className="pot-component-footer">
+        <div className="pot-content-component-footer">
           <CustomToolTipTop
             title="Remove all items in pot?"
             arrow

@@ -2,11 +2,11 @@ import RecipeShowModal from '../RecipeShowModal/RecipeShowModal';
 import './RecipeList.css';
 
 
-function RecipeList({ recipes }) {
+function RecipeList({ recipes, recipeContext }) {
 
     if (recipes) {
 
-        const recipeList = recipes.map((recipe) => <RecipeShowModal recipe={recipe} />)
+        const recipeList = recipes.map((recipe) => <RecipeShowModal recipe={recipe} recipeContext={recipeContext} />)
 
 
         return (
