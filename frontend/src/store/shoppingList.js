@@ -3,7 +3,6 @@ import jwtFetch from "./jwt";
 const RECEIVE_SHOPPING_LIST = "shoppingList/RECEIVE_SHOPPING_LIST";
 const ADD_TO_SHOPPING_LIST = "shoppingList/ADD_TO_SHOPPING_LIST";
 const EDIT_SHOPPING_LIST_ITEM = "shoppingList/EDIT_SHOPPING_LIST_ITEM";
-
 const receiveShoppingList = (shoppingList) => ({
     type: RECEIVE_SHOPPING_LIST,
     shoppingList
@@ -46,7 +45,6 @@ export const editShoppingList = (currentUserId, shoppingListItem) => async (disp
     const newShoppingListItem = await res.json();
     dispatch(editShoppingListItem(newShoppingListItem));
 }
-
 
 const shoppingListReducer = (state = {}, action) => {
     const nextState = {...state}
