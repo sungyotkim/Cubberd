@@ -49,7 +49,7 @@ const CubberdRow = ({ ing, currentUser, setNonCubberdIngredients }) => {
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseOut}
     >
-      <img src={ing.image} alt={ing.food} onClick={(e) => addToPot(e, ing)} />
+      <img src={ing.image} onClick={(e) => addToPot(e, ing)} />
       <div className="cubberd-food-name" onClick={(e) => addToPot(e, ing)}>
         {ing.food}
       </div>
@@ -84,10 +84,7 @@ const CubberdRow = ({ ing, currentUser, setNonCubberdIngredients }) => {
             arrow
             placement="bottom-end"
           >
-            <div
-              className="cubberd-shelving-option-two"
-              onClick={(e) => removeFromUserCubberd(e, ing)}
-            >
+            <div className="cubberd-shelving-option-two">
               <FaCartPlus />
             </div>
           </CustomToolTipBottom>
