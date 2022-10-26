@@ -1,10 +1,13 @@
+import { Link } from 'react-router-dom';
 import './RecipeShow.css';
 
 function RecipeShow({recipe}) {
 
 
     const ingredients = recipe.ingredients.map(
-        (ingredient) => <div className='ingredient-list-item'>{ingredient.food}</div>
+        (ingredient) => <div className='ingredient-list-item'>
+            - {ingredient.text}
+            </div>
     )
 
     return (
@@ -17,13 +20,10 @@ function RecipeShow({recipe}) {
                     <h3>Ingredients</h3>
                     {ingredients}
                 </div>
-                <div id="recipe-image">
-                    <img src={recipe.image} />
-                </div>
             </div>
-            <div id="recipe-scores">
-                <div id='recipe-usage-score' className='recipe-score'>use score 75%</div>
-                <div id='recipe-no-buy-score' className='recipe-score'>no buy score 60%</div>
+            <div id="recipe-show-links">
+                <span><Link to={`/recipes/${recipe._id}`}>Printable page</Link></span>
+                <span><a href={recipe.url}>Source</a></span>
             </div>
 
         </div>
