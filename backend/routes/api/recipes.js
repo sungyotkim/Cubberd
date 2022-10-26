@@ -55,13 +55,11 @@ router.post("/ingredients", async(req, res) => {
         recipesQuery = await getRecipes(query)
 
         const ingredientScore = Math.round((query.length / numQueryIngredients) * 100)
-        // console.log(recipe.label)
         console.log(potSubsets[i])
         console.log(ingredientScore)
         let shoppingScore;
         recipesQuery.forEach(recipe => {
-            console.log(recipe.label)
-            console.log(ingredientScore)
+
             shoppingScore = calculateShoppingScore(cubberd, recipe)
             if (recipesByIngredientScore.length < 3) {
                 recipesByIngredientScore.push({"ingredientsScore": ingredientScore, "shoppingScore": shoppingScore, "recipe": recipe})
