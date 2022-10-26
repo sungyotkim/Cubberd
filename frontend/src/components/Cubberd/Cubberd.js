@@ -19,7 +19,7 @@ const Cubberd = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
   const userCubberd = useSelector((state) => state.session.user.cubberd);
-  const allIngredients = useSelector((state) => state.ingredients.all);
+  const allIngredients = useSelector((state) => state.ingredients);
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLi, setSelectedLi] = useState(0);
