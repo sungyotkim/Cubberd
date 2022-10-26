@@ -7,7 +7,7 @@ import { PotContext } from "../../context/PotContext";
 import { deleteUserCubberdIngredient } from "../../store/ingredients";
 import { useDispatch } from "react-redux";
 
-const CubberdRow = ({ ing, currentUser }) => {
+const CubberdRow = ({ ing, currentUser, setNonCubberdIngredients }) => {
   const [showOptions, setShowOptions] = useState(false);
   const { potContents, setPotContents } = useContext(PotContext);
   const dispatch = useDispatch();
@@ -49,8 +49,10 @@ const CubberdRow = ({ ing, currentUser }) => {
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseOut}
     >
-      <img src={ing.image} alt={ing.food} />
-      <div className="cubberd-food-name">{ing.food}</div>
+      <img src={ing.image} alt={ing.food} onClick={(e) => addToPot(e, ing)} />
+      <div className="cubberd-food-name" onClick={(e) => addToPot(e, ing)}>
+        {ing.food}
+      </div>
       {showOptions && (
         <>
           <CustomToolTipBottom

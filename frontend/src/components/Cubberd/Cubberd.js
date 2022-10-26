@@ -19,6 +19,8 @@ const Cubberd = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLi, setSelectedLi] = useState(0);
   const [openDoor, setOpenDoor] = useState(false);
+  const [nonCubberdIngredients, setNonCubberdIngredients] = useState([]);
+  const [cubberdIngIds, setCubberdIngIds] = useState([]);
   const ref = useRef();
 
   const handleDoorClick = () => {
@@ -63,6 +65,29 @@ const Cubberd = () => {
     };
   }, [searchResults]);
 
+  useEffect(() => {
+    if (userCubberd && userCubberd.length > 0) {
+      const idArr = [];
+      userCubberd.forEach((ing) => {
+        idArr.push(ing._id);
+      });
+      setCubberdIngIds([...idArr]);
+    }
+
+    return () => {
+      setCubberdIngIds([]);
+    };
+  }, [userCubberd]);
+
+  useEffect(() => {
+    if (allIngredients.length > 0) {
+      const notInCubberdArr = allIngredients.filter(
+        (ing) => !cubberdIngIds.includes(ing._id)
+      );
+      setNonCubberdIngredients([...notInCubberdArr]);
+    }
+  }, [cubberdIngIds]);
+
   const searchItem = (query) => {
     if (!query) {
       setSearchResults([]);
@@ -74,7 +99,7 @@ const Cubberd = () => {
 
     const results = [];
 
-    allIngredients.forEach((ing) => {
+    nonCubberdIngredients.forEach((ing) => {
       if (ing.food.toLowerCase().indexOf(query) !== -1) {
         results.push(ing);
       }
@@ -90,12 +115,14 @@ const Cubberd = () => {
 
     let existingArr = userCubberd.filter((ele) => ele._id === result._id);
     if (existingArr.length === 0) {
+      addToUserCubberd(result);
     } else {
+      return;
     }
   };
 
-  const addToUserCubberd = () => {
-    dispatch(composeUserCubberdIngredient(currentUser._id));
+  const addToUserCubberd = (result) => {
+    dispatch(composeUserCubberdIngredient(currentUser._id, result));
   };
 
   const handleKeyDown = (e) => {
@@ -180,6 +207,7 @@ const Cubberd = () => {
                 <CubberdRow
                   ing={ing}
                   currentUser={currentUser}
+                  setNonCubberdIngredients={setNonCubberdIngredients}
                   key={`cubberd ${ing} ${i}`}
                 />
               ))}
