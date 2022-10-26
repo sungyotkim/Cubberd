@@ -68,6 +68,9 @@ const Pot = () => {
             <div className="burner-center"></div>
           </div>
           <div className="stove-button-container">
+            <div className="stove-name-container">
+              Recipe Cooker
+            </div>
             <div className="stove-display">
               {rotate && "Cooking..."}
               {!rotate && "Turn on the stove to cook up your recipes!"}

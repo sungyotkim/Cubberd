@@ -125,6 +125,12 @@
   line-height: 17px;
 }
 
+.stove-name-container {
+  position: absolute;
+  left: 25px;
+  width: 50px;
+}
+
 .stove-top {
   display: flex;
   position: relative;
@@ -152,7 +158,6 @@
   bottom: 0;
   right: calc(30% - 45px);
 }
-
 
 .center-burner-platform {
   width: 90px;
