@@ -65,7 +65,13 @@ const Pot = () => {
             <div className="left-burner-platform"></div>
             <div className="center-burner-platform"></div>
             <div className="right-burner-platform"></div>
-            <div className="burner-center"></div>
+            <div className="burner-center">
+              <div className="flame" id="flame-one"></div>
+              <div className="flame" id="flame-two"></div>
+              <div className="flame" id="flame-three"></div>
+              <div className="flame" id="flame-four"></div>
+              <div className="flame" id="flame-five"></div>
+            </div>
           </div>
           <div className="stove-button-container">
             <div className="stove-name-container">
