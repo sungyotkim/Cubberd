@@ -1,8 +1,6 @@
 .cubberd-container {
   width: 100%;
-  width: 390px;
   height: 100%;
-  height: 778px;
   position: relative;
   border: 5px solid rgba(238, 190, 146, 0.7);
   border: 5px solid #61413d;
@@ -21,7 +19,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  transition: transform 0.5s;
+  transition: transform 1.5s;
   transform-origin: left;
   z-index: 1;
 }
