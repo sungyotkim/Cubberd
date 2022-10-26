@@ -4,12 +4,14 @@ import session from "./session";
 import errors from "./errors";
 import ingredients from "./ingredients";
 import recipes from './recipes'
+import shoppingList from './shoppingList';
 
 const rootReducer = combineReducers({
   session,
   errors,
   ingredients,
-  recipes
+  recipes,
+  shoppingList
 });
 
 let enhancer;

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { logout } from "../../store/session";
 import RecipeList from "../RecipeList/RecipeList";
+import { useEffect } from "react";
+import { fetchShoppingList } from "../../store/shoppingList";
 
 
 
@@ -13,6 +15,14 @@ function UserPage() {
 
     const favoritedRecipes = useSelector(state => state.session.user.savedRecipes.favorited);
     const plannedRecipes = useSelector(state => state.session.user.savedRecipes.planned);
+    const shoppingList = useSelector(state => state.shoppingList);
+
+    // UseEffect to load shopping list (will need to be updated as crud actions are updated)
+    useEffect(() => {
+        dispatch(fetchShoppingList(sessionUser._id));
+    }, [])
+
+
 
     const handleLogout = () => {
         dispatch(logout());
