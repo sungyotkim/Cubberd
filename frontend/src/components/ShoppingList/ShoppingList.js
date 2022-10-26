@@ -8,7 +8,6 @@ function ShoppingList({items}) {
 
     return (
         <div id="shoppingList">
-            <h3>shopping list item placeholder</h3>
             {shoppingListItems}
         
         </div>
