@@ -55,8 +55,6 @@ router.post("/ingredients", async(req, res) => {
         recipesQuery = await getRecipes(query)
 
         const ingredientScore = Math.round((query.length / numQueryIngredients) * 100)
-        console.log(potSubsets[i])
-        console.log(ingredientScore)
         let shoppingScore;
         recipesQuery.forEach(recipe => {
 
@@ -67,9 +65,11 @@ router.post("/ingredients", async(req, res) => {
             recipesByShoppingScore.push({"ingredientsScore": ingredientScore, "shoppingScore": shoppingScore, "recipe": recipe})
         })
     }
-    // console.log(recipesByIngredientScore)
-    recipesByShoppingScore.sort((a, b) => {a.shoppingScore > b.shoppingScore ? 1 : -1})
+    console.log(recipesByShoppingScore.length)
+    recipesByShoppingScore.sort((a, b) => a.shoppingScore > b.shoppingScore ? -1 : 1)
+    console.log(recipesByShoppingScore[0].shoppingScore)
     recipes.push(recipesByIngredientScore, recipesByShoppingScore.slice(0,3))
+    console.log(recipes)
     return res.json(recipes)
 })
 
