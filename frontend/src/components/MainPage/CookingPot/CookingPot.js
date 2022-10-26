@@ -9,12 +9,10 @@ export default function CookingPot() {
 
   const hoverLid = () => {
     setLidUp(true);
-    console.log('hi')
   }
 
   const unhoverLid = () => {
     setLidUp(false);
-    console.log('ho')
   }
 
 return (
