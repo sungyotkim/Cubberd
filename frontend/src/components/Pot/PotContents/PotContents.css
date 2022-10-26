@@ -3,4 +3,79 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.pot-component-header {
+  font-size: 18px;
+  font-weight: 700;
+  height: 0px;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+
+.pot-component-header > div {
+  width: 128px;
+  height: 24px;
+  background-color: white;
+  position: relative;
+  z-index: 1;
+  padding-left: 4px;
+  left: 10px;
+  top: -10px;
+  box-sizing: border-box;
+}
+
+.pot-ingredient-container {
+  width: 100%;
+  height: 100%;
+  padding: 15px 20px 10px;
+  box-sizing: border-box;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.pot-ingredient {
+  display: flex;
+  width: 46%;
+  height: 22px;
+  gap: 5px;
+  font-weight: 600;
+  border-bottom: 2px dashed black;
+}
+
+.pot-ingredient > span {
+  cursor: pointer;
+  font-weight: 800;
+  border-radius: 50%;
+  width: 22px;
+  display: flex;
+  justify-content: center;
+}
+
+.pot-ingredient > span:hover {
+  background-color: var(--main-light-color);
+}
+
+.pot-component-footer {
+  height: 0;
+  width: 100%;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid black;
+}
+
+.pot-component-footer > div {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: relative;
+  z-index: 1;
+  top: -10px;
 }

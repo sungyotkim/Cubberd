@@ -26,7 +26,7 @@ const PotContents = () => {
     <>
       <div className="pot-component-wrapper">
         <div className="pot-component-header">
-          <div>INGREDIENTS:</div>
+          <div>INGREDIENTS</div>
         </div>
         <div className="pot-ingredient-container">
           {potContents &&
@@ -42,7 +42,9 @@ const PotContents = () => {
             })}
         </div>
         <div className="pot-component-footer">
-          <GiKnifeFork />
+          <div>
+            <GiKnifeFork />
+          </div>
         </div>
       </div>
     </>

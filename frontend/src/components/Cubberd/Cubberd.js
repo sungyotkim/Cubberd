@@ -45,7 +45,7 @@ const Cubberd = () => {
   const [resultAdded, setResultAdded] = useState(false);
   const [openDoor, setOpenDoor] = useState(false);
   const ref = useRef();
-  const { potContents, setPotContents } = useContext(PotContext)
+  const { potContents, setPotContents } = useContext(PotContext);
 
   const handleDoorClick = () => {
     if (openDoor) {
@@ -188,12 +188,12 @@ const Cubberd = () => {
   const addToPot = (e, ingredient) => {
     e.preventDefault();
 
-    let includedItems = potContents.filter(ele => ele._id === ingredient._id);
+    let includedItems = potContents.filter((ele) => ele._id === ingredient._id);
 
     if (includedItems.length === 0) {
-      setPotContents(old => [...old, ingredient])
+      setPotContents((old) => [...old, ingredient]);
     }
-  }
+  };
 
   return (
     <>
@@ -252,9 +252,9 @@ const Cubberd = () => {
                     <img src={searchResult.image} alt={searchResult.food} />
                     <div className="search-result-options">
                       <CustomToolTip title="Add to pot?" arrow placement="top">
-                        <div 
+                        <div
                           className="add-to-pot-btn"
-                          onClick={e => addToPot(e, searchResult)}
+                          onClick={(e) => addToPot(e, searchResult)}
                         >
                           <GiCookingPot />
                         </div>
@@ -299,9 +299,9 @@ const Cubberd = () => {
                               arrow
                               placement="top"
                             >
-                              <div 
+                              <div
                                 className="cubberd-shelving-option-one"
-                                onClick={e => addToPot(e, ing)}
+                                onClick={(e) => addToPot(e, ing)}
                               >
                                 <GiCookingPot />
                               </div>
