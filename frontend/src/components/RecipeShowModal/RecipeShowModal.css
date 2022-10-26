@@ -1,0 +1,13 @@
+.menu-items {
+    display: flex;
+    flex-direction: row ;
+    justify-content: space-between;
+}
+
+.favorited {
+    width: 100%;
+}
+
+.planned {
+    width: 40px;
+}

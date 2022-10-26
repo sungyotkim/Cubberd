@@ -4,6 +4,7 @@ const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
 const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";
 const CLEAR_SESSION_ERRORS = "session/CLEAR_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "session/RECEIVE_USER_LOGOUT";
+
 const RECEIVE_USER_CUBBERD_INGREDIENTS =
   "session/RECEIVE_USER_CUBBERD_INGREDIENTS";
 const RECEIVE_NEW_USER_CUBBERD_INGREDIENT =
@@ -11,6 +12,10 @@ const RECEIVE_NEW_USER_CUBBERD_INGREDIENT =
 const REMOVE_USER_CUBBERD_INGREDIENT =
   "session/REMOVE_USER_CUBBERD_INGREDIENT";
 const CLEAR_USER_CUBBERD = "session/CLEAR_USER_CUBBERD"
+
+const RECEIVE_SHOPPING_LIST = "shoppingList/RECEIVE_SHOPPING_LIST";
+const ADD_TO_SHOPPING_LIST = "shoppingList/ADD_TO_SHOPPING_LIST";
+const EDIT_SHOPPING_LIST_ITEM = "shoppingList/EDIT_SHOPPING_LIST_ITEM";
 
 // Dispatch receiveCurrentUser when a user logs in
 const receiveCurrentUser = (currentUser) => ({
@@ -54,6 +59,23 @@ const clearUserCubberd = () => ({
   type: CLEAR_USER_CUBBERD
 })
 
+// Handle Shopping List actions
+const receiveShoppingList = (shoppingList) => ({
+  type: RECEIVE_SHOPPING_LIST,
+  shoppingList
+});
+
+const addShoppingListItem = (shoppingList) => ({
+  type: ADD_TO_SHOPPING_LIST,
+  shoppingList
+});
+
+const editShoppingListItem = (shoppingList) => ({
+  type: EDIT_SHOPPING_LIST_ITEM,
+  shoppingList
+})
+
+
 //Because signup also logs in the newly created user,
 // login and signup essentially differ only in their route and user information sent.
 // You should accordingly be able to abstract their common elements into a helper function.
@@ -89,6 +111,8 @@ export const getCurrentUser = () => async (dispatch) => {
   return dispatch(receiveCurrentUser(user));
 };
 
+
+// Cubbered backend actions
 export const fetchUserCubberdIngredients = (userId) => async (dispatch) => {
   const res = await jwtFetch(`/api/users/${userId}/cubberd`);
   const ingredients = await res.json();
@@ -122,6 +146,35 @@ export const deleteUserCubberd = (userId) => async (dispatch) => {
   dispatch(clearUserCubberd())
 }
 
+// shopping list backend actions
+export const fetchShoppingList = (currentUserId) => async (dispatch) => {
+  const res = await jwtFetch(`/api/users/${currentUserId}/shoppingList`);
+  const shoppingList = await res.json();
+  dispatch(receiveShoppingList(shoppingList));
+};
+
+export const addToShoppingList = (currentUserId, shoppingListItemName) => async (dispatch) => {
+  const res = await jwtFetch(`/api/users/${currentUserId}/shoppingList`, {
+      method: "POST",
+      body: JSON.stringify(shoppingListItemName)
+  })
+
+  const newShoppingList = await res.json();
+  dispatch(addShoppingListItem(newShoppingList));
+}
+
+export const editShoppingList = (currentUserId, shoppingListItem) => async (dispatch) => {
+  const res = await jwtFetch(`/api/users/${currentUserId}/shoppingList`, {
+      method: "PUT",
+      body: JSON.stringify(shoppingListItem)
+  })
+
+  const newShoppingList = await res.json();
+  dispatch(editShoppingListItem(newShoppingList));
+}
+
+// error reducer
+
 const nullErrors = null;
 
 export const sessionErrorsReducer = (state = nullErrors, action) => {
@@ -136,6 +189,8 @@ export const sessionErrorsReducer = (state = nullErrors, action) => {
   }
 };
 
+// session reducer
+
 const initialState = {
   user: undefined,
 };
@@ -146,6 +201,7 @@ const sessionReducer = (state = initialState, action) => {
       return { user: action.currentUser };
     case RECEIVE_USER_LOGOUT:
       return initialState;
+
     case RECEIVE_USER_CUBBERD_INGREDIENTS:
       state.user.cubberd = action.ingredients; 
       return {...state}
@@ -157,6 +213,16 @@ const sessionReducer = (state = initialState, action) => {
       return {...state};
     case CLEAR_USER_CUBBERD:
       state.user.cubberd = {};
+      return {...state}
+
+    case RECEIVE_SHOPPING_LIST:
+      state.user.shoppingList = action.shoppingList
+      return {...state}
+    case ADD_TO_SHOPPING_LIST:
+      state.user.shoppingList = action.shoppingList
+      return {...state}
+    case EDIT_SHOPPING_LIST_ITEM:
+      state.user.shoppingList = action.shoppingList
       return {...state}
     default:
       return state;
