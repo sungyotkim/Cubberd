@@ -150,7 +150,7 @@ router.get("/:userId/shoppingList", requireUser, async (req, res) => {
 });
 
 //post a new shopping list item to current user's shopping list
-router.post("/:userId/shoppingList", async(req, res, next) => {
+router.post("/:userId/shoppingList", requireUser, async(req, res, next) => {
   const currentUser = await User.findById(req.params.userId)
   const ingredient = await Ingredient.findOne(req.body);
   console.log("ingredient")
@@ -172,9 +172,38 @@ router.post("/:userId/shoppingList", async(req, res, next) => {
   return res.json(currentUser.shoppingList)
 })
 
-// router.get("/:userId/savedRecipes", async(req, res) => {
-//   const currentUser = await User.findById(req.params.userId)
-//   const savedRecipes = await Recipe.find()
-// })
+
+router.post("/:userId/savedRecipes", async(req, res, next) => {
+  const currentUser = await User.findById(req.params.userId)
+  const recipe = await Recipe.findById(req.body.recipeId)
+  const collection = req.body.collection
+  const err = new Error("Validation Error")
+  err.statusCode = 400;
+  const errors = {}
+  if (collection === "favorited") {
+    currentUser.savedRecipes.favorited.forEach(rec => {
+      if (rec === recipe) {
+        errors.favorited = "You've already favorited this recipe!"
+        err.errors = errors;
+        return next(err)
+      }
+    })
+    console.log("adding recipe to favorites")
+    currentUser.savedRecipes.favorited.push(recipe)
+  } else if (collection === "planned") {
+    currentUser.savedRecipes.planned.forEach(rec => {
+      if (rec === recipe) {
+        errors.favorited = "You've already saved this recipe to planned collection!"
+        err.errors = errors;
+        return next(err)
+      }
+    })
+    currentUser.savedRecipes.planned.push(recipe)
+  }
+  
+  currentUser.save()
+  return res.json(currentUser.savedRecipes)
+  
+})
 
 module.exports = router;
