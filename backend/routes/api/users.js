@@ -227,6 +227,4 @@ router.get('/:userId/plannedRecipes', async(req, res) => {
   return res.json(plannedRecipes)
 });
 
-
-
 module.exports = router;
