@@ -37,7 +37,6 @@ export const fetchRecipesFromPot = (cubberd, pot) => async (dispatch) => {
         body: JSON.stringify({ cubberd: cubberd, pot: pot })
     })
     const recipes = await res.json();
-    console.log(recipes)
     dispatch(receiveRecipeResults(recipes))
 }
 

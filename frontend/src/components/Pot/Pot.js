@@ -7,7 +7,7 @@ import "./Pot.css";
 
 const Pot = () => {
   const { potContents } = useContext(PotContext);
-  const userCubberd = useSelector((state) => state.ingredients.userCubberd);
+  const userCubberd = useSelector((state) => state.session.user.cubberd);
   const dispatch = useDispatch();
 
   const searchForRecipes = (e) => {
