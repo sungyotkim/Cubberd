@@ -31,7 +31,7 @@ const calculateShoppingScore = (cubberdArr, recipe) => {
 }
 
 router.post("/ingredients", async(req, res) => {
-    console.log("hello")
+    console.log(req.body)
     const pot = req.body.pot
     const numQueryIngredients = pot.length;
     const cubberd = req.body.cubberd
@@ -54,8 +54,8 @@ router.post("/ingredients", async(req, res) => {
     let recipes = []
     for (let i = 0; i < potSubsets.length; i++) {
         let query = potSubsets[i]
-        // recipesArr = await Recipe.find({"ingredients.food": {$all: query}})
-        recipesQuery = await getRecipes(query)
+        recipesArr = await Recipe.find({"ingredients.food": {$all: query}})
+        //recipesQuery = await getRecipes(query)
         ingredientScore = Math.round((query.length / numQueryIngredients) * 100)
         recipesQuery.forEach(recipe => {
             shoppingScore = calculateShoppingScore(cubberd, recipe)
@@ -68,7 +68,7 @@ router.post("/ingredients", async(req, res) => {
 
     recipesByShoppingScore.sort((a, b) => {a.shoppingScore > b.shoppingScore ? -1 : 1})
     recipes.push(recipesByIngredientScore, recipesByShoppingScore.slice(0,4))
-
+    console.log(recipes)
     return res.json(recipes)
 })
 
