@@ -130,11 +130,7 @@ router.post("/:userId/cubberd", restoreUser, requireUser, async (req, res) => {
   res.json(currentUser.cubberd);
 });
 
-router.delete(
-  "/:userId/cubberd",
-  restoreUser,
-  requireUser,
-  async (req, res) => {
+router.delete("/:userId/cubberd", restoreUser, requireUser, async (req, res) => {
     const ingredient = req.body;
     const currentUserId = req.user._id;
     const currentUser = await User.findById(currentUserId);
@@ -143,6 +139,12 @@ router.delete(
     res.json(currentUser.cubberd);
   }
 );
+
+//eventually require user
+router.get("/:userId/shoppingList", async (req, res) => {
+  const shoppingList = await User.findById(req.params.userId, "shoppingList");
+  res.json(shoppingList);
+});
 
 router.post("/:userId/shoppingList", requireUser, async(req, res) => {
   const ingredient = req.body;
@@ -156,11 +158,5 @@ router.post("/:userId/shoppingList", requireUser, async(req, res) => {
   const shoppingListItem = newShoppingListItem.save()
   res.json(currentUser.shoppingListItem)
 })
-
-// router.put("/:userId/shoppingList/itemId", requireUser, async (req, res) => {
-//   const itemId = req.params(itemId)
-//   const shoppingListItem = await ShoppingListItem.findById()
-//   const quantity = req.body;
-// })
 
 module.exports = router;
