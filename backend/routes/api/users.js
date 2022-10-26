@@ -150,11 +150,14 @@ router.get("/:userId/shoppingList", requireUser, async (req, res) => {
 });
 
 //post a new shopping list item to current user's shopping list
-router.post("/:userId/shoppingList", requireUser, async(req, res) => {
+router.post("/:userId/shoppingList", async(req, res, next) => {
   const currentUser = await User.findById(req.params.userId)
   const ingredient = await Ingredient.findOne(req.body);
-  const defaultQuantity = 1;
-  const shoppingListItem = { quantity: defaultQuantity, ingredient: ingredient }
+  const quantity = req.body.quantity || 1
+  const shoppingListItem = { quantity: quantity, ingredient: ingredient }
+  if (currentUser.shoppingList.includes(shoppingListItem)) {
+    return next("This item is already in your shopping cart. Try updating the quantity instead!")
+  }
   currentUser.shoppingList.push(shoppingListItem);
   currentUser.save();
   return res.json(currentUser.shoppingList)
