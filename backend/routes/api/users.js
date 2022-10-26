@@ -173,7 +173,7 @@ router.post("/:userId/shoppingList", requireUser, async(req, res, next) => {
 })
 
 
-router.post("/:userId/savedRecipes", async(req, res, next) => {
+router.post("/:userId/savedRecipes", requireUser, async(req, res, next) => {
   const currentUser = await User.findById(req.params.userId)
   const recipe = await Recipe.findById(req.body.recipeId)
   const collection = req.body.collection
@@ -203,7 +203,19 @@ router.post("/:userId/savedRecipes", async(req, res, next) => {
   
   currentUser.save()
   return res.json(currentUser.savedRecipes)
-  
 })
+
+router.delete('/:userId/savedRecipes', async (req, res) => {
+  const currentUser = await User.findById(req.params.userId)
+  const recipe = await Recipe.findById(req.body.recipeId)
+  const collection = req.body.collection
+  if (collection === "favorited") {
+    currentUser.savedRecipes.favorited.pull(recipe)
+  } else if (collection === "planned") {
+    currentUser.savedRecipes.planned.pull(recipe)
+  }
+  currentUser.save();
+  return res.json(currentUser.savedRecipes)
+});
 
 module.exports = router;
