@@ -44,25 +44,29 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
     email: req.body.email,
   });
 
+  // default cubberd for all users
   const jasmineRice = await Ingredient.findOne({ food: "Jasmine Rice" }).exec();
   const chickenBreast = await Ingredient.findOne({food: "Boneless Skinless Chicken Breast"}).exec();
-
-  const recipe1 = await Recipe.findOne({ label: "Super Bowl Snacks: Loaded Baked Potato Potato Chip Nachos Recipe" }).exec();
-  const recipe2 = await Recipe.findOne({ label: "Pasta alla Gricia Recipe" }).exec();
-  const recipe3 = await Recipe.findOne({ label: "Crispy Roasted Mushrooms" }).exec();
-  const recipe4 = await Recipe.findOne({ label: "Tofu Banana Mousse" }).exec();
-
-  const banana = await Ingredient.findOne({food: "Banana" }).exec();
-  const shoppingListItem = new ShoppingListItem({ quantity: 4, ingredient: banana })
-  await shoppingListItem.save();
+  const pasta = await Ingredient.findOne({ food: "Pasta" }).exec();
 
   newUser.cubberd.push(jasmineRice);
   newUser.cubberd.push(chickenBreast);
-  newUser.savedRecipes.favorited.push(recipe1);
-  newUser.savedRecipes.favorited.push(recipe2);
-  newUser.savedRecipes.planned.push(recipe3);
-  newUser.savedRecipes.planned.push(recipe4);
-  newUser.shoppingList.push(banana);
+  newUser.cubberd.push(pasta);
+
+  // const recipe1 = await Recipe.findOne({ label: "Super Bowl Snacks: Loaded Baked Potato Potato Chip Nachos Recipe" }).exec();
+  // const recipe2 = await Recipe.findOne({ label: "Pasta alla Gricia Recipe" }).exec();
+  // const recipe3 = await Recipe.findOne({ label: "Crispy Roasted Mushrooms" }).exec();
+  // const recipe4 = await Recipe.findOne({ label: "Tofu Banana Mousse" }).exec();
+
+  // newUser.savedRecipes.favorited.push(recipe1);
+  // newUser.savedRecipes.favorited.push(recipe2);
+  // newUser.savedRecipes.planned.push(recipe3);
+  // newUser.savedRecipes.planned.push(recipe4);
+
+  // const banana = await Ingredient.findOne({food: "Banana" }).exec();
+  // const shoppingListItem = new ShoppingListItem({ quantity: 4, ingredient: banana })
+  // await shoppingListItem.save();
+  // newUser.shoppingList.push(banana);
   
   bcrypt.genSalt(10, (err, salt) => {
     if (err) throw err;
