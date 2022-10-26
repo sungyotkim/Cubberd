@@ -179,14 +179,6 @@ router.post("/:userId/shoppingList", requireUser, async(req, res, next) => {
   return res.json(currentUser.shoppingList)
 })
 
-// Incoming: 
-// const res = await jwtFetch(`/api/users/${currentUserId}/shoppingList`, {
-//   method: "PUT",
-//   body: JSON.stringify({
-//       newQuantity,
-//       shoppingListItemId
-//   })
-// })
 router.put("/:userId/shoppingList", async (req, res) => {
   const currentUser = await User.findById(req.params.userId);
   const shoppingListItemId = req.body.shoppingListItemId;
