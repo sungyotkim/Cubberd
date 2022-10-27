@@ -65,6 +65,11 @@
   height: calc(100% - 1em);
 }
 
+#shopping-list-container > h3 {
+  display: flex;
+  justify-content: center; 
+}
+
 #cubberd-search-container {
   height: calc(100% - 1em);
   width: calc(100% - 1em);
