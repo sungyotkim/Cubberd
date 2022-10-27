@@ -5,6 +5,7 @@ import { fetchRecipesFromPot, removeRecipeResults } from "../../store/recipeResu
 import RecipeResults from "../RecipeResults/RecipeResults";
 import CookingPot from "./CookingPot/CookingPot";
 import "./Pot.css";
+import { CustomToolTipBottom } from "../ToolTip/ToolTip";
 
 const Pot = () => {
   const { potContents } = useContext(PotContext);
@@ -232,12 +233,17 @@ const Pot = () => {
             >
               Recipe Clear
             </div>
-            <div 
-              onClick={toggleRecipeScore}
-              className="toggle-btn"
+            <CustomToolTipBottom
+              title="Toggle Recipe Score"
+              arrow
+              placement="bottom"
             >
-              Toggle
-            </div>
+              <div 
+                onClick={toggleRecipeScore}
+                className="toggle-btn-toggled"
+              >
+              </div>
+            </CustomToolTipBottom>
             <div className="stove-display">
               {!rotate && "Turn on the stove to search for recipes!"}
               {rotate && loadingResult && "Searching..."}
