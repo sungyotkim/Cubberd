@@ -270,14 +270,20 @@ const Pot = () => {
               className="stove-on-btn"
               id={rotate ? "stove-is-on" : ""}
             ></div>
-            <div 
-              className={rotate ? "stove-knob-container rotate" : "stove-knob-container"}
-              onClick={handleClick}
+            <CustomToolTipBottom
+              title="Search for recipes?"
+              arrow
+              placement="bottom"
             >
-              <div className="knob-on">ON</div>
-              <div className="knob-off">OFF</div>
-              <div className="stove-knob"></div>
-            </div>
+              <div 
+                className={rotate ? "stove-knob-container rotate" : "stove-knob-container"}
+                onClick={handleClick}
+              >
+                <div className="knob-on">ON</div>
+                <div className="knob-off">OFF</div>
+                <div className="stove-knob"></div>
+              </div>
+            </CustomToolTipBottom>
           </div>
         </div>
       </div>
