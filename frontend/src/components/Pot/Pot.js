@@ -240,7 +240,8 @@ const Pot = () => {
             >
               <div 
                 onClick={toggleRecipeScore}
-                className="toggle-btn-toggled"
+                // className="toggled"
+                className="toggle-btn"
               >
               </div>
             </CustomToolTipBottom>

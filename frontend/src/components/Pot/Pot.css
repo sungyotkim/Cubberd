@@ -137,24 +137,22 @@
 .toggle-btn {
   position: absolute;
   left: 80px;
-  width: 30px;
-  height: 60px;
-  background-color: white;
-  background: #fffaea;
-  /* box-shadow: 0 5px 0 #d0b57b; */
-  box-shadow: 0 10px 10px -5px rgb(233 219 176 / 0%), 0 0 0 1px rgb(0 0 0 / 10%), 0 0 0 4px #fff4d3, 0 0 0 5px rgb(0 0 0 / 10%);
+  width: 25px;
+  height: 54px;
+  background: rgb(160, 160, 160);
+  box-shadow: 0 10px 10px -5px rgb(233 219 176 / 0%), 0 0 0 1px rgb(0 0 0 / 10%), 0 0 0 4px rgb(145, 146, 148), 0 0 0 5px rgb(0 0 0 / 10%);
 }
 
 .toggle-btn::before {
   content: "";
   display: block;
   position: absolute;
-  height: 30px;
+  height: 27px;
   text-align: center;
-  width: 30px;
+  width: 25px;
   top: 5px;
   left: 0;
-  background: #efe0b1;
+  background: rgb(120, 121, 123);
   color: #bfa371;
   border-radius: 5px 5px 0 0;
 }
@@ -163,19 +161,18 @@
   content: "";
   display: block;
   position: absolute;
-  height: 30px;
+  height: 27px;
   text-align: center;
   /* line-height: 75px; */
-  width: 30px;
+  width: 25px;
   bottom: 0;
   left: 0;
-  background: #fff4d3;
-  color: #a4441a;
+  background: rgb(145, 146, 148);
   text-shadow: 0 0 3px #ff4e00;
-  border-radius: 0 0 5px 5px;
+  /* border-radius: 0 0 5px 5px; */
 }
 
-.toggle-btn-toggled {
+.toggled {
   position: absolute;
   left: 80px;
   width: 30px;
@@ -183,10 +180,10 @@
   background-color: white;
   background: #fffaea;
   /* box-shadow: 0 5px 0 #d0b57b; */
-  box-shadow: 0 10px 10px -5px rgb(233 219 176 / 0%), 0 0 0 1px rgb(0 0 0 / 10%), 0 0 0 4px #fff4d3, 0 0 0 5px rgb(0 0 0 / 10%);
+  /* box-shadow: 0 10px 10px -5px rgb(233 219 176 / 0%), 0 0 0 1px rgb(0 0 0 / 10%), 0 0 0 4px #fff4d3, 0 0 0 5px rgb(0 0 0 / 10%); */
 }
 
-.toggle-btn-toggled::before {
+.toggled::before {
   content: "";
   display: block;
   position: absolute;
@@ -199,15 +196,18 @@
   background: #efe0b1;
   color: #bfa371;
   border-radius: 5px 5px 0 0;
+  top: 0px;
+  background: #fff4d3;
+  color: #64bf60;
+  text-shadow: 0 0 3px #38ff2e;
 }
 
-.toggle-btn-toggled::after {
+.toggled::after {
     content: "";
     display: block;
     position: absolute;
     height: 30px;
     text-align: center;
-    /* line-height: 75px; */
     width: 30px;
     bottom: 0;
     left: 0;
@@ -215,6 +215,11 @@
     color: #a4441a;
     text-shadow: 0 0 3px #ff4e00;
     border-radius: 0 0 5px 5px;
+    bottom: 5px;
+    background: #fffaea;
+    box-shadow: 0 5px 0 #d0b57b;
+    color: #d7bf95;
+    text-shadow: 0 0 0px transparent;
 }
 
 .stove-top {
