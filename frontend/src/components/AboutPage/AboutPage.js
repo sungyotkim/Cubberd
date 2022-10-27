@@ -18,7 +18,7 @@ function AboutPage() {
             text = <div>You decide to order in once again. Your wallet takes a hit. The food you had left over goes bad.</div>
             break;
         case 2:
-            text = <div>You add toast and mandarins to the pot on your Cubberd account and get back some delicious recipe options. You might worry, “how do I choose?” Well we at Cubberd say "worry not!" Would you like to see which recipes use the highest percentage of your ingredients? Check out the Ingredient Score. Interested in which recipes require the least shopping for new ingredients? Toggle the Shopping Score. The three recipes for each score will come ranked from highest to lowest. Never again will you see your fridge items as “disconnected and random.” You begin to see them for what they really are: Dinner.</div>
+            text = <div>You add toast and mandarins to the pot on your Cubberd account and get back some delicious recipe options. You might worry, “how do I choose?” Well we at Cubberd say "worry not!" Would you like to see which recipes use the highest percentage of your ingredients? Check out the Ingredient Score. Interested in which recipes require the least shopping for new ingredients? Toggle the Shopping Score. The three recipes for each score will come ranked from highest to lowest. Never again will you see your fridge items as “disconnected and random.” You begin to see them for what they really are: dinner.</div>
             break;
         default:
             text = <div></div>
@@ -46,6 +46,9 @@ function AboutPage() {
 
     return (
         <div id="about-page" className="about-display">
+            <div id="about-page-nav-bar">
+                
+            </div>
             <h2>Choose Your Own Advenure:</h2>
             <h3>Your week is coming to an end and you’ve got some seemingly disconnected and random ingredients left in your kitchen cupboards. The thought of coming up with a dish that both excites you and uses your ingredients exhausts you. You...</h3>
             <div id="about-page-options">
