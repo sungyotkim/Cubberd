@@ -2,9 +2,9 @@ import "./UserPage.css";
 import RecipeShowModal from "../RecipeShowModal/RecipeShowModal";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { logout } from "../../store/session";
+import { getCurrentUser, logout } from "../../store/session";
 import RecipeList from "../RecipeList/RecipeList";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ShoppingList from "../ShoppingList/ShoppingList";
 
 
@@ -12,11 +12,14 @@ import ShoppingList from "../ShoppingList/ShoppingList";
 function UserPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-
+    const [render, setRender] = useState(true);
     const favoritedRecipes = useSelector(state => state.session.user.savedRecipes.favorited);
     const plannedRecipes = useSelector(state => state.session.user.savedRecipes.planned);
     const shoppingList = useSelector(state => state.session.user.shoppingList);
 
+    useEffect(() => {
+        setRender(ren => !ren);
+    }, [favoritedRecipes, shoppingList])
 
     const handleLogout = () => {
         dispatch(logout());
@@ -28,8 +31,6 @@ function UserPage() {
             <div id="user-page-columns" className="main-display-component">
                 <div id="user-page-favorited-recipes-container"className="main-display-component user-page-column">
                     <h3>Favorited Recipes</h3>
-                    
-
                     <RecipeList recipes={favoritedRecipes} recipeContext={'favorited'} />
 
                 </div>

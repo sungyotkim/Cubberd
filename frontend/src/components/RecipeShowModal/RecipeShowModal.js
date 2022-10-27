@@ -2,37 +2,66 @@ import { Modal } from '../../context/Modal';
 import React, { useState } from 'react';
 import RecipeShow from '../RecipeShow/RecipeShow';
 import './RecipeShowModal.css';
-import { BsCalendarPlus } from "react-icons/bs"
-import { TbTrash } from "react-icons/tb";
-import { AiOutlineHeart } from "react-icons/ai"
-
+import { BsCalendarPlus } from 'react-icons/bs';
+import { TbTrash } from 'react-icons/tb';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
+import { addRecipeToFavorited, addRecipeToPlanned, deleteRecipeFromFavorited, deleteRecipeFromPlanned } from '../../store/session';
 
 function RecipeShowModal({ recipe, recipeContext }) {
+    const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
-    if (recipe) {
+    const currentUser = useSelector(state => state.session.user ? state.session.user : {})
+    const currentUserId = currentUser._id;
 
+    let favoritedRecipes;
+    let plannedRecipes;
+    let recipeAlreadyFavorited = false;
+    let recipeAlreadyPlanned = false;
+    if (currentUserId) {
+        favoritedRecipes = currentUser.savedRecipes.favorited;
+        plannedRecipes = currentUser.savedRecipes.planned;
+        recipeAlreadyFavorited = favoritedRecipes.some(rec => rec.url === recipe.url);
+        recipeAlreadyPlanned = plannedRecipes.some(rec => rec.url === recipe.url);
+    }
+
+    const handleClick = (e, action) => {
+        e.stopPropagation();
+        switch (action) {
+            case "plan":
+                dispatch(addRecipeToPlanned(currentUserId, recipe));
+                break;
+            case "unfavorite":
+                dispatch(deleteRecipeFromFavorited(currentUserId, recipe));
+                break;
+            case "favorite":
+                dispatch(addRecipeToFavorited(currentUserId, recipe));
+                break;
+            case "unplan":
+                dispatch(deleteRecipeFromPlanned(currentUserId, recipe));
+                break;
+        }
+    }
+
+    if (recipe) {
         let menuItems;
         if (recipeContext === 'favorited') {
             menuItems = 
                 <div className='menu-items favorited'>
-                    <BsCalendarPlus />
-                    <TbTrash />
+                    <BsCalendarPlus className={recipeAlreadyPlanned ? "recipe-menu-button active" : "recipe-menu-button"} onClick={e => handleClick(e, "plan")} />
+                    <TbTrash className="recipe-menu-button" onClick={e => handleClick(e, "unfavorite")} />
                 </div>
             } else if (recipeContext === 'planned') {
                 menuItems = <div className='menu-items planned'>
-                    <AiOutlineHeart />
-                    <TbTrash />
-
+                    <AiOutlineHeart className={recipeAlreadyFavorited ? "recipe-menu-button active" : "recipe-menu-button"} onClick={e => handleClick(e, "favorite")} />
+                    <TbTrash className="recipe-menu-button" onClick={e => handleClick(e, "unplan")} />
                 </div>
             }
-         
-
         return (
             <>
                 <div className="recipe-list-item" onClick={() => setShowModal(true)}>
                     <h4>{recipe.label}</h4>
                     {menuItems}
-
                 </div>
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
