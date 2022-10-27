@@ -15,9 +15,9 @@ const addShoppingListItem = (shoppingListItem) => ({
     shoppingListItem
 });
 
-const removeFromShoppingList = (shoppingListItem) => ({
+const removeFromShoppingList = (shoppingListItemId) => ({
     type: DELETE_FROM_SHOPPING_LIST,
-    shoppingListItem
+    shoppingListItemId
 })
 
 const setShoppingList = (newShoppingList) => ({
@@ -56,6 +56,16 @@ export const changeItemQuantity = (currentUserId, shoppingListItemId, newQuantit
     dispatch(setShoppingList(newShoppingListItem));
 }
 
+export const deleteItem = (currentUserId, shoppingListItemId) => async dispatch => {
+    const res = await jwtFetch(`/api/users/${currentUserId}/shoppingList`, {
+        method: "DELETE",
+        body: JSON.stringify({
+            shoppingListItemId
+        })
+    })
+    dispatch(removeFromShoppingList(shoppingListItemId))
+}
+
 const shoppingListReducer = (state = {}, action) => {
     const nextState = {...state}
     switch (action.type) {
@@ -65,6 +75,9 @@ const shoppingListReducer = (state = {}, action) => {
             return {...state, ...action.shoppingListItem};
         case SET_SHOPPING_LIST:
             return action.newShoppingList;
+        case DELETE_FROM_SHOPPING_LIST:
+            delete nextState[action.shoppingListItemId]
+            return {...state}
         default:
             return state;
     };
