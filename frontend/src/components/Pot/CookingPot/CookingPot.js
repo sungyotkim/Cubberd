@@ -52,8 +52,6 @@ export default function CookingPot({ loadingResult }) {
 
 return (
     <>
-    <div>
-
       <img
         src={cookingPot}
         alt="black ceramic bowl with lid by Alfonso Escu"
@@ -65,7 +63,6 @@ return (
         className={lidClassName}
         id="cooking-pot-lid"
       />
-    </div>
     </>
   )
 }
