@@ -173,8 +173,53 @@ export const editShoppingList = (currentUserId, shoppingListItem) => async (disp
   dispatch(editShoppingListItem(newShoppingList));
 }
 
-// error reducer
+// add recipe to planned
+export const addRecipeToPlanned = (currentUserId, recipe) => async (dispatch) => {
+  const res = await jwtFetch(`/api/users/${currentUserId}/savedRecipes`, {
+    method: "POST",
+    body: JSON.stringify({
+      recipeId: recipe._id,
+      collection: "planned"
+    })
+  })
+  dispatch(getCurrentUser());
+}
 
+// delete recipe from favorited
+export const deleteRecipeFromFavorited = (currentUserId, recipe) => async (dispatch) => {
+  const res = await jwtFetch(`/api/users/${currentUserId}/savedRecipes`, {
+    method: "DELETE",
+    body: JSON.stringify({
+      recipeId: recipe._id,
+      collection: "favorited"
+    })
+  })
+  dispatch(getCurrentUser());
+}
+
+export const addRecipeToFavorited = (currentUserId, recipe) => async (dispatch) => {
+  const res = await jwtFetch(`/api/users/${currentUserId}/savedRecipes`, {
+    method: "POST",
+    body: JSON.stringify({
+      recipeId: recipe._id,
+      collection: "favorited"
+    })
+  })
+  dispatch(getCurrentUser());
+}
+
+export const deleteRecipeFromPlanned = (currentUserId, recipe) => async (dispatch) => {
+  const res = await jwtFetch(`/api/users/${currentUserId}/savedRecipes`, {
+    method: "DELETE",
+    body: JSON.stringify({
+      recipeId: recipe._id,
+      collection: "planned"
+    })
+  })
+  dispatch(getCurrentUser());
+}
+
+// error reducer
 const nullErrors = null;
 
 export const sessionErrorsReducer = (state = nullErrors, action) => {
