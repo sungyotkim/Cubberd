@@ -61,6 +61,7 @@ function RecipeShowModal({ recipe, recipeContext }) {
             <>
                 <div className="recipe-list-item" onClick={() => setShowModal(true)}>
                     <h4>{recipe.label}</h4>
+                    {recipe.imageUrl ? <img src={recipe.imageUrl} /> : <></>}
                     {menuItems}
                 </div>
                 {showModal && (
