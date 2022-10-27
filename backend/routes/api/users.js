@@ -179,20 +179,22 @@ router.post("/:userId/shoppingList", requireUser, async(req, res, next) => {
   return res.json(currentUser.shoppingList)
 })
 
-// const res = await fetch('/api/{userId}/shoppingList', {
-//   methid: "PUT",
-//   body: {
-//     shoppingListItem: shoppingListItem,
-//     quantity: 
-//   }
-// })
-
 router.put("/:userId/shoppingList", async (req, res) => {
-  const currentUser = await User.findById(req.params.userId)
-  const shoppingListItem = req.body.shoppingListItem
-  const newQuantity = req.body.quantity
-  shoppingListItem.quantity = newQuantity;
-  currentUser.save()
+  const currentUser = await User.findById(req.params.userId);
+  const shoppingListItemId = req.body.shoppingListItemId;
+  const newQuantity = req.body.newQuantity;
+
+  currentUser.shoppingList.id(shoppingListItemId).quantity = newQuantity;
+  currentUser.save();
+
+  return res.json(currentUser.shoppingList)
+})
+
+router.delete("/:userId/shoppingList", async(req, res) => {
+  const currentUser = await User.findById(req.params.userId);
+  const shoppingListItemId = req.body.shoppingListItemId;
+  currentUser.shoppingList.id(shoppingListItemId).remove();
+  currentUser.save();
   return res.json(currentUser.shoppingList)
 })
 
@@ -200,29 +202,28 @@ router.post("/:userId/savedRecipes", requireUser, async(req, res, next) => {
   const currentUser = await User.findById(req.params.userId)
   const recipe = await Recipe.findById(req.body.recipeId)
   const collection = req.body.collection
-  const err = new Error("Validation Error")
-  err.statusCode = 400;
-  const errors = {}
+  // const err = new Error("Validation Error")
+  // err.statusCode = 400;
+  // const errors = {}
   if (collection === "favorited") {
-    currentUser.savedRecipes.favorited.forEach(rec => {
-      if (rec === recipe) {
-        errors.favorited = "You've already favorited this recipe!"
-        err.errors = errors;
-        return next(err)
-      }
-    })
-    currentUser.savedRecipes.favorited.push(recipe)
+    // currentUser.savedRecipes.favorited.forEach(rec => {
+    //   if (rec.url === recipe.url) {
+    //     errors.favorited = "You've already favorited this recipe!"
+    //     err.errors = errors;
+    //     return next(err)
+    //   }
+    // })
+    if (!currentUser.savedRecipes.favorited.some(rec => rec.url === recipe.url)) currentUser.savedRecipes.favorited.push(recipe)
   } else if (collection === "planned") {
-    currentUser.savedRecipes.planned.forEach(rec => {
-      if (rec === recipe) {
-        errors.favorited = "You've already saved this recipe to planned collection!"
-        err.errors = errors;
-        return next(err)
-      }
-    })
-    currentUser.savedRecipes.planned.push(recipe)
+    // currentUser.savedRecipes.planned.forEach(rec => {
+    //   if (rec.url === recipe.url) {
+    //     errors.favorited = "You've already saved this recipe to planned collection!"
+    //     err.errors = errors;
+    //     return next(err)
+    //   }
+    // })
+    if (!currentUser.savedRecipes.planned.some(rec => rec.url === recipe.url)) currentUser.savedRecipes.planned.push(recipe)
   }
-  
   currentUser.save()
   return res.json(currentUser.savedRecipes)
 })

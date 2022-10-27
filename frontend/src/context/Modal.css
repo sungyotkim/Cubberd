@@ -23,6 +23,5 @@
   position: absolute;
   background-color: white;
   z-index: 2;
-  width: 450px;
-  height: 610px;
+  border-radius: 5px;
 }

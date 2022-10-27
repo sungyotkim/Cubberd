@@ -4,7 +4,7 @@ import { GiCookingPot } from "react-icons/gi";
 import { MdOutlineRemoveCircle } from "react-icons/md";
 import { FaCartPlus } from "react-icons/fa";
 import { PotContext } from "../../context/PotContext";
-import { deleteUserCubberdIngredient } from "../../store/session";
+import { addToShoppingList, deleteUserCubberdIngredient } from "../../store/session";
 import { useDispatch } from "react-redux";
 import "./CubberdRow.css"
 
@@ -94,12 +94,20 @@ const CubberdRow = ({ ing, currentUser }) => {
     dispatch(deleteUserCubberdIngredient(currentUser._id, ingredient));
   };
 
+  const postToShoppingList = (e, ingredientName) => {
+    e.preventDefault();
+
+    let obj = { food: ingredientName }
+    dispatch(addToShoppingList(currentUser._id, obj))
+  }
+
   return (
     <div
       className="cubberd-ingredient-row"
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseOut}
     >
+      <div>
       <img src={ing.image} onClick={(e) => addToPot(e, ing)} />
       {animateItemName && 
         <div className={animateItemName}>
@@ -109,8 +117,9 @@ const CubberdRow = ({ ing, currentUser }) => {
       <div className="cubberd-food-name" onClick={(e) => addToPot(e, ing)}>
         {ing.food}
       </div>
+      </div>
       {showOptions && (
-        <>
+        <div id="cubberd-ingredient-row-right">
           <CustomToolTipBottom
             title="Add to pot?"
             arrow
@@ -140,11 +149,14 @@ const CubberdRow = ({ ing, currentUser }) => {
             arrow
             placement="bottom-end"
           >
-            <div className="cubberd-shelving-option-two">
+            <div 
+              className="cubberd-shelving-option-two"
+              onClick={(e) => postToShoppingList(e, ing.food)}
+            >
               <FaCartPlus />
             </div>
           </CustomToolTipBottom>
-        </>
+        </div>
       )}
     </div>
   );

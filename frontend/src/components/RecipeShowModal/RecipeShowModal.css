@@ -1,0 +1,26 @@
+.menu-items {
+    display: flex;
+    flex-direction: row ;
+    justify-content: space-between;
+}
+
+.favorited {
+    width: 100%;
+}
+
+.planned {
+    /* width: 50px; */
+}
+
+.recipe-menu-button {
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.recipe-menu-button:hover {
+    background-color: rgb(0, 0, 0, 0.2);
+}
+
+.recipe-menu-button.active {
+    color: red;
+}

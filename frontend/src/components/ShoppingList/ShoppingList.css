@@ -1,0 +1,26 @@
+#shopping-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.shopping-list-item {
+    border: 2px solid var(--main-dark-color);
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0.25em; 
+    padding: 0.25em;
+    border-radius: 3px;
+    align-items: center;
+}
+
+.shopping-list-item input {
+    width: 35px;
+    margin-right: 0.25em;
+}
+
+.trash-icon {
+    height: 14px;
+}
