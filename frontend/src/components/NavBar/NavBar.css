@@ -397,9 +397,23 @@ span {
 #welcome-user {
   display: flex;
   justify-content: flex-end;
+  padding: 0 4px 4px;
 }
 
 #nav-links-div {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  padding-right: 5px;
+}
+
+.nav-bar-link {
+  text-decoration: none;
+  color: black;
+  transition: .2s;
+}
+
+.nav-bar-link:hover {
+  cursor: pointer;
+  color: var(--secondary-dark-color);
+  transition: .2s;
 }

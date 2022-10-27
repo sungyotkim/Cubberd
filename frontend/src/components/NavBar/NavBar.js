@@ -123,25 +123,22 @@ const NavBar = () => {
 
           {sessionUser && 
             <span id="welcome-user">
-              Hello,
-              <Link to="/profile">
-                {sessionUser.username}!
-              </Link> 
-              <div onClick={handleLogout}>
-                Logout
-              </div> 
+              Hello, {sessionUser.username}!
             </span>
           }
           <div id="nav-links-div">
-            <div id="start-tour-button" onClick={() => setIsOpen(true)}>
-              Open tutorial
-            </div>
             <div id="about">
-              <Link to="/about">About</Link>
+              <Link className="nav-bar-link" to="/about">About</Link>
             </div>
-            <div id="saved-recipes">
-              <Link to="/about">My Recipes</Link>
+            <div className="nav-bar-link" id="saved-recipes">
+              <Link className="nav-bar-link" to="/profile">My Recipes</Link>
             </div>
+            <div className="nav-bar-link" id="start-tour-button" onClick={() => setIsOpen(true)}>
+              Tutorial
+            </div>
+            <div className="nav-bar-link" onClick={handleLogout}>
+                Logout
+            </div> 
           </div>
 
          
