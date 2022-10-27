@@ -98,8 +98,47 @@ span {
   0% {
     left: 40%;
   }
+  25% {
+    left: 15%;
+    transform: rotateZ(20deg)
+  }
+  50% {
+    left: 15%;
+    transform: rotateZ(-20deg)
+  }
+  75% {
+    left: 15%;
+    transform: rotateZ(5deg)
+  }
   100% {
     left: 15%;
+    transform: rotateZ(0deg)
+  }
+}
+
+.pan-one-return {
+  animation: returnPanOne 1s forwards linear; 
+}
+
+@keyframes returnPanOne {
+  0% {
+    left: 15%;
+  }
+  25% {
+    left: 40%;
+    transform: rotateZ(20deg)
+  }
+  50% {
+    left: 40%;
+    transform: rotateZ(-20deg)
+  }
+  75% {
+    left: 40%;
+    transform: rotateZ(5deg)
+  }
+  100% {
+    left: 40%;
+    transform: rotateZ(0deg)
   }
 }
 
@@ -142,8 +181,47 @@ span {
   0% {
     right: 25%; 
   }
+  25% {
+    right: 10%;
+    transform: rotateY(220deg) rotateZ(20deg)
+  }
+  50% {
+    right: 10%;
+    transform: rotateY(220deg) rotateZ(-20deg)
+  }
+  75% {
+    right: 10%;
+    transform: rotateY(220deg) rotateZ(5deg)
+  }
   100% {
     right: 10%;
+    transform: rotateY(220deg) rotateZ(0deg)
+  }
+}
+
+.pan-two-return {
+  animation: returnPanTwo 1s forwards linear; 
+}
+
+@keyframes returnPanTwo {
+  0% {
+    right: 10%;
+  }
+  25% {
+    right: 25%;
+    transform: rotateY(220deg) rotateZ(20deg)
+  }
+  50% {
+    right: 25%;
+    transform: rotateY(220deg) rotateZ(-20deg)
+  }
+  75% {
+    right: 25%;
+    transform: rotateY(220deg) rotateZ(5deg)
+  }
+  100% {
+    right: 25%;
+    transform: rotateY(220deg) rotateZ(0deg)
   }
 }
 
@@ -184,8 +262,47 @@ span {
   0% {
     right: 40%;
   }
+  25% {
+    right: 15%;
+    transform: rotateZ(20deg)
+  }
+  50% {
+    right: 15%;
+    transform: rotateZ(-20deg)
+  }
+  75% {
+    right: 15%;
+    transform: rotateZ(5deg)
+  }
   100% {
     right: 15%;
+    transform: rotateZ(0deg)
+  }
+}
+
+.ladle-hook-return {
+  animation: returnLadle 1s forwards linear; 
+}
+
+@keyframes returnLadle {
+  0% {
+    right: 15%;
+  }
+  25% {
+    right: 40%;
+    transform: rotateZ(20deg)
+  }
+  50% {
+    right: 40%;
+    transform: rotateZ(-20deg)
+  }
+  75% {
+    right: 40%;
+    transform: rotateZ(5deg)
+  }
+  100% {
+    right: 40%;
+    transform: rotateZ(0deg)
   }
 }
 
@@ -227,7 +344,46 @@ span {
   0% {
     left: 25%;
   }
+  25% {
+    left: 10%;
+    transform: rotateZ(20deg)
+  }
+  50% {
+    left: 10%;
+    transform: rotateZ(-20deg)
+  }
+  75% {
+    left: 10%;
+    transform: rotateZ(5deg)
+  }
   100% {
     left: 10%;
+    transform: rotateZ(0deg)
+  }
+}
+
+.spatula-hook-return {
+  animation: returnSpatula 1s forwards linear; 
+}
+
+@keyframes returnSpatula {
+  0% {
+    left: 10%;
+  }
+  25% {
+    left: 25%;
+    transform: rotateZ(20deg)
+  }
+  50% {
+    left: 25%;
+    transform: rotateZ(-20deg)
+  }
+  75% {
+    left: 25%;
+    transform: rotateZ(5deg)
+  }
+  100% {
+    left: 25%;
+    transform: rotateZ(0deg)
   }
 }
