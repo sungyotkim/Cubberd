@@ -6,9 +6,9 @@ const RecipeResults = ({ displayByShoppingScore, recipeResultsTotalArr }) => {
     return ( 
       <>
         <div className="recipe-cards-container">
-          {recipeResultsTotalArr[1].map(recipe => {
+          {recipeResultsTotalArr[1].map((recipe, i) => {
             return (
-              <RecipeResult recipe={recipe} />
+              <RecipeResult recipe={recipe} key={`${recipe._id} ${i} one`} />
             )
           })}
         </div>
@@ -18,9 +18,9 @@ const RecipeResults = ({ displayByShoppingScore, recipeResultsTotalArr }) => {
     return ( 
       <>
         <div className="recipe-cards-container">
-          {recipeResultsTotalArr[0].map(recipe => {
+          {recipeResultsTotalArr[0].map((recipe, i) => {
             return (
-              <RecipeResult recipe={recipe} />
+              <RecipeResult recipe={recipe} key={`${recipe._id} ${i} two`}/>
             )
           })}
         </div>

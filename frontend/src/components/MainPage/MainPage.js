@@ -1,31 +1,20 @@
 import "./MainPage.css";
-import { logout } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { fetchRecipes } from "../../store/recipes";
 import { useEffect } from "react";
 import Cubberd from '../Cubberd/Cubberd';
 import Pot from "../Pot/Pot";
 import PotContents from "../Pot/PotContents/PotContents";
-import { useTour } from '@reactour/tour'
 import ShoppingList from "../ShoppingList/ShoppingList";
+import NavBar from "../NavBar/NavBar";
 
 function MainPage() {
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user);
-    const recipes = useSelector(state => state.recipes);
-    const recipe = recipes[0];
-    const { setIsOpen } = useTour();
     const shoppingList = useSelector(state => state.session.user.shoppingList);
-
 
     useEffect(() => {
         dispatch(fetchRecipes())
     }, [])   
-
-    const handleLogout = () => {
-        dispatch(logout())
-    }
 
     return (
         <div id="main-page" className="main-display">
@@ -38,8 +27,7 @@ function MainPage() {
                 <div id="main-page-top">
                     <div id="main-page-top-right">
                         <div id="navbar-container" className="main-display-component">
-                            <nav>{sessionUser && <span>Logged in as <Link to="/profile">{sessionUser.username}</Link> <button onClick={handleLogout}>Logout</button> </span>}</nav>  
-                            <button id="start-tour-button" onClick={() => setIsOpen(true)}>Open Tour</button>
+                            <NavBar />
                         </div>
                         <div id="main-page-top-right-bottom">
                             <div id="pot-container" className="main-display-component">
