@@ -4,6 +4,7 @@
     width: 100%;
     align-items: center;
     overflow: scroll;
+    height: 85%;
 }
 
 .shopping-list-item {

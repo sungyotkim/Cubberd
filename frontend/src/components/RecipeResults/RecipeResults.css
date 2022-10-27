@@ -15,7 +15,7 @@
   border-radius: 5px;
   width: 210px;
   font-size: small;
-  padding: 0.25em;
+  /* padding: 0.25em; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -24,6 +24,12 @@
   border: 3px solid var(--main-dark-color);
   transition: all 0.1s;
   align-items: center;
+}
+
+.recipe-card .recipe-list-item {
+  background-color: var(--main-light-color);
+  width: 89%;
+
 }
 
 
