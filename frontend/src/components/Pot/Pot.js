@@ -230,12 +230,20 @@ const Pot = () => {
             </div>
           </div>
           <div className="stove-button-container">
-            <div 
-              className="stove-name-container" 
-              onClick={clearRecipes}
+            <CustomToolTipBottom
+              title="Clear Recipe Results?"
+              arrow
+              placement="bottom"
             >
-              Recipe Clear
-            </div>
+              <div 
+                className="recipe-clear-btn" 
+                onClick={clearRecipes}
+              > 
+                <div className="clear-btn-inside"></div>
+                <div className="x-sign"></div>
+                <div className="x-sign alt-sign"></div>
+              </div>
+            </CustomToolTipBottom>
             <CustomToolTipBottom
               title="Toggle Recipe Score"
               arrow

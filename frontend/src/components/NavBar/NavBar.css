@@ -26,6 +26,8 @@ span {
   height: 45px;
   border-radius: 50%;
   background: linear-gradient(to bottom, #c9ced6 0%,#cfd4db 50%,#d6dae0 51%,#cfd4db 100%);
+  -webkit-box-shadow: inset 1px -1px 7px 2px rgba(50, 50, 50, 0.62);
+  -moz-box-shadow: inset 1px -1px 7px 2px rgba(50, 50, 50, 0.62);
   box-shadow: inset 1px -1px 7px 2px rgba(50, 50, 50, 0.62);
   position: absolute;
   left: 30px;
@@ -36,6 +38,8 @@ span {
   height: 45px;
   border-radius: 50%;
   background: linear-gradient(to bottom, #c9ced6 0%,#cfd4db 50%,#d6dae0 51%,#cfd4db 100%);
+  -webkit-box-shadow: inset -1px -1px 7px 1px rgba(50, 50, 50, 0.62);
+  -moz-box-shadow: inset -1px -1px 7px 1px rgba(50, 50, 50, 0.62);
   box-shadow: inset -1px -1px 7px 1px rgba(50, 50, 50, 0.62);
   position: absolute;
   right: 30px;
@@ -45,6 +49,8 @@ span {
   width: 90%;
   height: 15px;
   background: linear-gradient(to bottom, #c9ced6 0%,#ebedf0 50%,#e4e7eb 51%,#dde1e6 100%);
+  -webkit-box-shadow: inset 0px -2px 7px 1px rgba(50, 50, 50, 0.2);
+  -moz-box-shadow: inset 0px -2px 7px 1px rgba(50, 50, 50, 0.2);
   box-shadow: inset 0px -2px 7px 1px rgba(50, 50, 50, 0.2);
   border-radius: 8px;
   position: relative;
