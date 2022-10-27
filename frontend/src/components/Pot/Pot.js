@@ -28,6 +28,7 @@ const Pot = () => {
   const [loadingResult, setLoadingResult] = useState(true)
   const [recipeResults, setRecipeResults] = useState([[], []])
   const { setOpenDoor, setAnimateRack } = useContext(PotContext);
+  const [toggled, setToggled] = useState(false)
 
   const searchForRecipes = () => {
     const cubberd = [];
@@ -74,8 +75,10 @@ const Pot = () => {
     e.preventDefault();
     if (displayByShoppingScore) {
       setDisplayByShoppingScore(false)
+      setToggled(false)
     } else {
       setDisplayByShoppingScore(true)
+      setToggled(true)
     }
   }
   
@@ -239,10 +242,14 @@ const Pot = () => {
               placement="bottom"
             >
               <div 
+                className="toggle-btn-container"
                 onClick={toggleRecipeScore}
-                // className="toggled"
-                className="toggle-btn"
               >
+                <div 
+                  className="toggle-btn-wrap"
+                >
+                  <div className={toggled ? "toggle toggled" : "toggle"}></div>
+                </div>
               </div>
             </CustomToolTipBottom>
             <div className="stove-display">
