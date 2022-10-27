@@ -4,7 +4,7 @@ import { changeItemQuantity, deleteItem, fetchShoppingList } from "../../store/s
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
-function ShoppingListItem({item, setRefresh}) {
+function ShoppingListItem({item}) {
     const sessionUser = useSelector(state => state.session.user);
 
     const dispatch = useDispatch();
@@ -20,7 +20,6 @@ function ShoppingListItem({item, setRefresh}) {
     const handleDelete = (e) => {
         e.preventDefault();
         dispatch(deleteItem(sessionUser._id, item._id))
-        setRefresh(true)
     }
 
     return (

@@ -20,16 +20,9 @@ function MainPage() {
     const { setIsOpen } = useTour();
     const shoppingList = useSelector(state => state.session.user.shoppingList);
 
-    const [refresh, setRefresh] = useState(false)
-
     useEffect(() => {
         dispatch(fetchRecipes())
     }, [])   
-    
-    useEffect(() => {
-        dispatch(fetchShoppingList())
-        return () => {setRefresh(false)}
-    }, [refresh])
 
     const handleLogout = () => {
         dispatch(logout())
@@ -55,7 +48,7 @@ function MainPage() {
                             </div>
                             <div id="shopping-list-container" className="main-display-component">
                                 <h3>Shopping List</h3>
-                                <ShoppingList items={shoppingList} setRefresh={setRefresh}/>
+                                <ShoppingList items={shoppingList} />
                             </div>
                         </div>
                     </div>

@@ -1,10 +1,10 @@
 import ShoppingListItem from "../ShoppingListItem/ShoppingListItem";
 
 
-function ShoppingList({items, setRefresh}) {
+function ShoppingList({items}) {
 
 
-    const shoppingListItems = items.map((item) => <ShoppingListItem item={item} setRefresh={setRefresh}/>);
+    const shoppingListItems = items.map((item) => <ShoppingListItem item={item} />);
 
     return (
         <div id="shoppingList">
