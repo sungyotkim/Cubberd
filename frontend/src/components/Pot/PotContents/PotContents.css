@@ -16,15 +16,17 @@
 }
 
 .pot-content-component-header > div {
-  width: 188px;
+  text-justify: center;
+  width: 195px;
   height: 24px;
-  background-color: white;
+  background-color: var(--main-component-color);
   position: relative;
   z-index: 1;
-  padding-left: 4px;
+  padding: 0 4px;
   left: 10px;
   top: -10px;
   box-sizing: border-box;
+  border-radius: 5px;
 }
 
 .pot-ingredient-container {

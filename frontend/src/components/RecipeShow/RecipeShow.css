@@ -1,11 +1,12 @@
 #recipe {
-    height: 500px;
+    height: 500px; 
     width: 400px;
-    background-color: beige;
+    background-color: var(--secondary-light-color);
+    color: var(--secondary-dark-color);
     z-index: 2;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     padding: 1em;
     border-radius: 5px;
 }
@@ -24,7 +25,8 @@
 
 #recipe-middle-third {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -59,10 +61,18 @@
     text-align: center;
 }
 
-#recipe-usage-score {
-    background-color: lawngreen;
+#recipe-show-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 1em;
 }
 
-#recipe-no-buy-score {
-    background-color: rgb(217, 255, 1);
+#recipe-show-links a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#recipe-show-links a:hover {
+    font-weight: 700;
 }
