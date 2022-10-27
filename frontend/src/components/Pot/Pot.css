@@ -134,6 +134,13 @@
   width: 50px;
 }
 
+.toggle-btn {
+  position: absolute;
+  left: 80px;
+  width: 50px;
+  background-color: white;
+}
+
 .stove-top {
   display: flex;
   position: relative;

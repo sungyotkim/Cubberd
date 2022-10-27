@@ -164,8 +164,6 @@ const Pot = () => {
         <div className="pot-container-clickable">
           <CookingPot loadingResult={loadingResult} />
         </div>
-        <div onClick={searchForRecipes}>Adina press here</div>
-        <div onClick={toggleRecipeScore}>Toggle Recipe Score</div>
         <div className="stove-container">
           <div className="stove-top">
             <div className="left-burner-platform"></div>
@@ -208,6 +206,12 @@ const Pot = () => {
           <div className="stove-button-container">
             <div className="stove-name-container">
               Recipe Finder
+            </div>
+            <div 
+              onClick={toggleRecipeScore}
+              className="toggle-btn"
+            >
+              Toggle
             </div>
             <div className="stove-display">
               {!rotate && "Turn on the stove to search for recipes!"}
