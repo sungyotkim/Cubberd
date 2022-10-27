@@ -52,12 +52,182 @@ span {
 }
 
 .hook {
-  width: 50px;
-  height: 50px;
-  background-color: black;
-  clip-path: polygon(62% 99%, 50% 100%, 51% 98%, 52% 96%, 54% 93%, 54% 90%, 54% 85%, 54% 83%, 54% 79%, 53% 75%, 52% 73%, 50% 70%, 48% 67%, 45% 61%, 42% 58%, 41% 55%, 38% 50%, 37% 45%, 35% 39%, 33% 34%, 33% 27%, 32% 18%, 32% 15%, 32% 13%, 34% 9%, 36% 7%, 38% 3%, 42% 1%, 47% 0%, 53% 1%, 56% 6%, 54% 11%, 49% 11%, 44% 12%, 43% 16%, 42% 22%, 42% 27%, 42% 32%, 43% 37%, 46% 45%, 48% 51%, 50% 53%, 53% 58%, 55% 61%, 58% 66%, 61% 72%, 62% 80%, 62% 83%, 62% 88%, 62% 93%);
+  width: 20px;
+  position: absolute;
+  top: 20%;
+  z-index: 2;
+}
+
+.hook > img {
+  width: 20px;
+}
+
+#pan-one {
+  width: 100px;
+  position: absolute;
+  top: 22px;
+  left: -43px;
+}
+
+#pan-one > img {
+  width: 100px;
+}
+
+#pan-one > a {
+  font-size: 50px;
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+  color: rgba(0, 0, 0, 1);
+  cursor: pointer;
+}
+
+#pan-one > a:hover {
+  color: rgb(255, 255, 255);
+}
+
+#pan-one-hook {
+  left: 40%;
+}
+
+.pan-one-animate {
+  animation: movePanOne 1s forwards linear; 
+}
+
+@keyframes movePanOne {
+  0% {
+    left: 40%;
+  }
+  100% {
+    left: 15%;
+  }
+}
+
+#pan-two {
+  width: 100px;
+  position: absolute;
+  top: 23px;
+  right: -28px;
+}
+
+#pan-two > img {
+  width: 100px;
+  transform: rotateY(180deg);
+}
+
+#pan-two-hook {
+  right: 25%;
+  transform: rotateY(180deg);
+}
+
+#pan-two > a {
+  font-size: 70px;
+  position: absolute;
+  bottom: 5px;
+  left: 15px;
+  color: rgb(68, 67, 67);
+  cursor: pointer;
+  transform: rotateY(220deg);
+}
+
+#pan-two > a:hover {
+  color: rgb(255, 255, 255);
+}
+
+.pan-two-animate {
+  animation: movePanTwo 1s forwards linear; 
+}
+
+@keyframes movePanTwo {
+  0% {
+    right: 25%; 
+  }
+  100% {
+    right: 10%;
+  }
+}
+
+#ladle {
+  width: 70px;
+  position: absolute;
+  top: 33px;
+  right: -20px;
+}
+
+#ladle > img {
+  width: 70px;
+}
+
+#ladle-hook {
+  right: 40%;
+}
+
+#ladle > a {
+  font-size: 40px;
   position: absolute;
   bottom: 0;
-  z-index: 2;
-  top: 20%;
+  left: 17px;
+  color: rgb(71, 71, 71);
+  cursor: pointer;
+  transform: rotateY(-20deg);
+}
+
+#ladle > a:hover {
+  color: rgb(255, 255, 255);
+}
+
+.ladle-hook-animate {
+  animation: moveLadle 1s forwards linear; 
+}
+
+@keyframes moveLadle {
+  0% {
+    right: 40%;
+  }
+  100% {
+    right: 15%;
+  }
+}
+
+#spatula {
+  width: 60px;
+  position: absolute;
+  top: 33px;
+  left: -24px;
+}
+
+#spatula > img {
+  width: 60px;
+}
+
+#spatula > a {
+  font-size: 40px;
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  color: rgb(112, 112, 112);
+  cursor: pointer;
+  transform: rotateY(-20deg);
+}
+
+#spatula > a:hover {
+  color: rgb(255, 255, 255);
+}
+
+
+#spatula-hook {
+  left: 25%;
+}
+
+.spatula-hook-animate {
+  animation: moveSpatula 1s forwards linear; 
+}
+
+@keyframes moveSpatula {
+  0% {
+    left: 25%;
+  }
+  100% {
+    left: 10%;
+  }
 }

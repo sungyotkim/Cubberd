@@ -42,6 +42,8 @@
   flex-direction: row;
   margin: 0.5em 0.5em;
   width: calc(100% - 1em);
+  position: relative;
+  z-index: 3;
 }
 
 #main-page-top-right-bottom {
