@@ -10,6 +10,8 @@ import spatula from "../../assets/spatula.PNG"
 import hook from "../../assets/hook.png"
 import { useContext } from "react";
 import { PotContext } from "../../context/PotContext";
+import { BsGithub } from "react-icons/bs"
+import { CustomToolTipTop, CustomToolTipBottom } from "../ToolTip/ToolTip";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -35,6 +37,19 @@ const NavBar = () => {
             <img src={hook}/>
             <div id="pan-one">
               <img src={panOne}/>
+              <CustomToolTipBottom
+                title="See Adina's Github"
+                arrow
+                placement="bottom"
+              >
+                <a
+                  href="https://github.com/arcoop"
+                  target={"_blank"}
+                  rel="noreferrer"
+                >
+                  <BsGithub />
+                </a>
+              </CustomToolTipBottom>
             </div>
           </div>
           <div 
@@ -44,6 +59,19 @@ const NavBar = () => {
             <img src={hook}/>
             <div id="pan-two">
               <img src={panTwo}/>
+              <CustomToolTipBottom
+                title="See Fred's Github"
+                arrow
+                placement="bottom"
+              >
+                <a
+                  href="https://github.com/fredchien3"
+                  target={"_blank"}
+                  rel="noreferrer"
+                >
+                  <BsGithub />
+                </a>
+              </CustomToolTipBottom>
             </div>
           </div>
           <div 
@@ -53,6 +81,19 @@ const NavBar = () => {
             <img src={hook}/>
             <div id="ladle">
               <img src={ladle}/>
+              <CustomToolTipTop
+                title="See Tommy's Github"
+                arrow
+                placement="top"
+              >
+                <a
+                  href="https://github.com/sungyotkim"
+                  target={"_blank"}
+                  rel="noreferrer"
+                >
+                  <BsGithub />
+                </a>
+              </CustomToolTipTop>
             </div>
           </div>
           <div 
@@ -62,6 +103,19 @@ const NavBar = () => {
             <img src={hook}/>
             <div id="spatula">
               <img src={spatula}/>
+              <CustomToolTipTop
+                title="See Clide's Github"
+                arrow
+                placement="top"
+              >
+                <a
+                  href="https://github.com/Monkwire3"
+                  target={"_blank"}
+                  rel="noreferrer"
+                >
+                  <BsGithub />
+                </a>
+              </CustomToolTipTop>
             </div>
           </div>
         </div>
