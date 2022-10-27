@@ -25,7 +25,7 @@ function ShoppingListItem({item}) {
     return (
         <div className="shopping-list-item">
             <div className="shopping-list-item-left">
-            <input type="number" onChange={handleChange} value={quantity} />
+            <input className="quantity-input" type="number" onChange={handleChange} value={quantity} />
             <h4>{item.ingredient.food}</h4>
             </div>
             <div className="trash-icon">
