@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import RecipeShowModal from "../RecipeShowModal/RecipeShowModal";
 import { fetchRecipes } from "../../store/recipes";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Cubberd from '../Cubberd/Cubberd';
 import Pot from "../Pot/Pot";
 import PotContents from "../Pot/PotContents/PotContents";
 import { useTour } from '@reactour/tour'
 import ShoppingList from "../ShoppingList/ShoppingList";
+import { fetchShoppingList } from "../../store/shoppingList";
 
 function MainPage() {
     const dispatch = useDispatch();
@@ -19,9 +20,16 @@ function MainPage() {
     const { setIsOpen } = useTour();
     const shoppingList = useSelector(state => state.session.user.shoppingList);
 
+    const [refresh, setRefresh] = useState(false)
+
     useEffect(() => {
         dispatch(fetchRecipes())
-    }, [])
+    }, [])   
+    
+    useEffect(() => {
+        dispatch(fetchShoppingList())
+        return () => {setRefresh(false)}
+    }, [refresh])
 
     const handleLogout = () => {
         dispatch(logout())
@@ -47,7 +55,7 @@ function MainPage() {
                             </div>
                             <div id="shopping-list-container" className="main-display-component">
                                 <h3>Shopping List</h3>
-                                <ShoppingList items={shoppingList} />
+                                <ShoppingList items={shoppingList} setRefresh={setRefresh}/>
                             </div>
                         </div>
                     </div>
