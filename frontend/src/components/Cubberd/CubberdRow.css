@@ -1,0 +1,373 @@
+.cubberd-ingredient-row {
+  display: flex;
+  width: 100%;
+  height: 60px;
+  position: relative;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.cubberd-ingredient-row > img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 2px;
+  position: relative;
+}
+
+.cubberd-food-name {
+  width: 175px;
+  box-sizing: border-box;
+  padding-left: 5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cubberd-shelving-option-one {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.cubberd-shelving-option-two {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.cubberd-ingredient-image-item {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  margin-right: 2px;
+  position: absolute;
+}
+
+.cubberd-ingredient-image-item > img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  margin-right: 2px;
+  cursor: pointer;
+} 
+
+.animate-one {
+  position: fixed; 
+  animation: moveOne 1s forwards linear; 
+}
+
+.animate-two {
+  position: fixed; 
+  animation: moveTwo 1s forwards linear; 
+}
+
+.animate-three {
+  position: fixed; 
+  animation: moveThree 1s forwards linear; 
+}
+
+.animate-four {
+  position: fixed; 
+  animation: moveFour 1s forwards linear; 
+}
+
+.animate-five {
+  position: fixed; 
+  animation: moveFive 1s forwards linear; 
+}
+
+.animate-six {
+  position: fixed; 
+  animation: moveSix 1s forwards linear; 
+}
+
+.animate-seven {
+  position: fixed; 
+  animation: moveSeven 1s forwards linear; 
+}
+
+.animate-eight {
+  position: fixed; 
+  animation: moveEight 1s forwards linear; 
+}
+
+.animate-nine {
+  position: fixed; 
+  animation: moveNine 1s forwards linear; 
+}
+
+.animate-ten {
+  position: fixed; 
+  animation: moveTen 1s forwards linear; 
+}
+
+.animate-eleven {
+  position: fixed; 
+  animation: moveEleven 1s forwards linear; 
+}
+/* &.shake {
+animation: shakeCart .4s ease-in-out forwards;
+} */
+
+
+@keyframes moveOne {
+  0% { 
+    left: calc(10% + 2em);
+    top: 117px;
+  }
+  25% {
+    left: 15%;
+    top: 5%;
+  }
+  50% {
+    left: 25%;
+    top: 15%;
+  }
+  75% {
+    left: 35%;
+    top: 25%;
+  }
+  100% {
+    left: 50%;
+    top: 46%;
+  }
+}
+
+@keyframes moveTwo {
+  0% { 
+    left: calc(10% + 2em);
+    top: 177px;
+  }
+  25% {
+    left: 15%;
+    top: 10%;
+  }
+  50% {
+    left: 25%;
+    top: 15%;
+  }
+  75% {
+    left: 35%;
+    top: 25%;
+  }
+  100% {
+    left: 50%;
+    top: 46%;
+  }
+}
+
+@keyframes moveThree {
+  0% { 
+    left: calc(10% + 2em);
+    top: 237px;
+  }
+  25% {
+    left: 15%;
+  }
+  50% {
+    left: 25%;
+    top: 15%;
+  }
+  75% {
+    left: 35%;
+    top: 25%;
+  }
+  100% {
+    left: 50%;
+    top: 46%;
+  }
+}
+
+@keyframes moveFour {
+  0% { 
+    left: calc(10% + 2em);
+    top: 297px;
+  }
+  25% {
+    left: 15%;
+  }
+  50% {
+    left: 25%;
+  }
+  75% {
+    left: 35%;
+    top: 25%;
+  }
+  100% {
+    left: 50%;
+    top: 46%;
+  }
+}
+
+@keyframes moveFive {
+  0% { 
+    left: calc(10% + 2em);
+    top: 357px;
+  }
+  25% {
+    left: 15%;
+  }
+  50% {
+    left: 25%;
+  }
+  75% {
+    left: 35%;
+    top: 25%;
+  }
+  100% {
+    left: 50%;
+    top: 46%;
+  }
+}
+
+@keyframes moveSix {
+  0% { 
+    left: calc(10% + 2em);
+    top: 417px;
+  }
+  25% {
+    left: 15%;
+  }
+  50% {
+    left: 25%;
+  }
+  75% {
+    left: 35%;
+    top: 25%;
+  }
+  100% {
+    left: 50%;
+    top: 46%;
+  }
+}
+
+@keyframes moveSeven {
+  0% { 
+    left: calc(10% + 2em);
+    top: 477px;
+  }
+  25% {
+    left: 15%;
+  }
+  50% {
+    left: 25%;
+  }
+  75% {
+    left: 35%;
+    top: 25%;
+  }
+  100% {
+    left: 50%;
+    top: 46%;
+  }
+}
+
+@keyframes moveEight {
+  0% { 
+    left: calc(10% + 2em);
+    top: 537px;
+  }
+  25% {
+    left: 15%;
+  }
+  50% {
+    left: 25%;
+  }
+  75% {
+    left: 35%;
+    top: 25%;
+  }
+  100% {
+    left: 50%;
+    top: 46%;
+  }
+}
+
+@keyframes moveNine {
+  0% { 
+    left: calc(10% + 2em);
+    top: 597px;
+  }
+  25% {
+    left: 15%;
+  }
+  50% {
+    left: 25%;
+  }
+  75% {
+    left: 35%;
+    top: 25%;
+  }
+  100% {
+    left: 50%;
+    top: 46%;
+  }
+}
+
+@keyframes moveTen {
+  0% { 
+    left: calc(10% + 2em);
+    top: 657px;
+  }
+  25% {
+    left: 15%;
+  }
+  50% {
+    left: 25%;
+  }
+  75% {
+    left: 35%;
+    top: 25%;
+  }
+  100% {
+    left: 50%;
+    top: 46%;
+  }
+}
+
+@keyframes moveEleven {
+  0% { 
+    left: calc(10% + 2em);
+    top: 717px;
+  }
+  25% {
+    left: 15%;
+  }
+  50% {
+    left: 25%;
+  }
+  75% {
+    left: 35%;
+    top: 25%;
+  }
+  100% {
+    left: 50%;
+    top: 46%;
+  }
+}
+
+@keyframes shakeCart {
+25% {
+transform:translateX(6px)
+}
+50% {
+transform:translateX(-4px);
+}
+75% {
+transform:translateX(2px);
+}
+100% {
+transform:translateX(0);
+}
+}

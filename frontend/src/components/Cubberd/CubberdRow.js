@@ -6,10 +6,12 @@ import { FaCartPlus } from "react-icons/fa";
 import { PotContext } from "../../context/PotContext";
 import { deleteUserCubberdIngredient } from "../../store/session";
 import { useDispatch } from "react-redux";
+import "./CubberdRow.css"
 
 const CubberdRow = ({ ing, currentUser }) => {
   const [showOptions, setShowOptions] = useState(false);
   const { potContents, setPotContents, setAddingIngredient } = useContext(PotContext);
+  const [animateItemName, setAnimateItemName] = useState("cubberd-ingredient-image-item");
   const dispatch = useDispatch();
 
   const handleMouseOver = (e) => {
@@ -35,13 +37,53 @@ const CubberdRow = ({ ing, currentUser }) => {
 
     if (includedItems.length === 0) {
       setPotContents((old) => [...old, ingredient]);
+      setAddingIngredient(true);
+  
+      switch (true) {
+        case e.clientY < 170:
+          console.log('hi')
+          setAnimateItemName("cubberd-ingredient-image-item animate-one")
+          break;
+        case e.clientY < 230:
+          setAnimateItemName("cubberd-ingredient-image-item animate-two")
+          break;
+        case e.clientY < 290:
+          setAnimateItemName("cubberd-ingredient-image-item animate-three")
+          break;
+        case e.clientY < 350:
+          setAnimateItemName("cubberd-ingredient-image-item animate-four")
+          break;
+        case e.clientY < 410:
+          setAnimateItemName("cubberd-ingredient-image-item animate-five")
+          break;
+        case e.clientY < 470:
+          setAnimateItemName("cubberd-ingredient-image-item animate-six")
+          break;
+        case e.clientY < 530:
+          setAnimateItemName("cubberd-ingredient-image-item animate-seven")
+          break;
+        case e.clientY < 590:
+          setAnimateItemName("cubberd-ingredient-image-item animate-eight")
+          break;
+        case e.clientY < 650:
+          setAnimateItemName("cubberd-ingredient-image-item animate-nine")
+          break;
+        case e.clientY < 720:
+          setAnimateItemName("cubberd-ingredient-image-item animate-ten")
+          break;
+        case e.clientY < 780:
+          setAnimateItemName("cubberd-ingredient-image-item animate-eleven")
+          break;
+        default:
+          break;
+      }
+  
+      setTimeout(() => {
+        setAnimateItemName("cubberd-ingredient-image-item")
+        setAddingIngredient(false)
+      }, 1000);
     }
 
-    setAddingIngredient(true);
-
-    setTimeout(() => {
-      setAddingIngredient(false)
-    }, 2000);
   };
 
   const removeFromUserCubberd = (e, ingredient) => {
@@ -59,6 +101,11 @@ const CubberdRow = ({ ing, currentUser }) => {
       onMouseLeave={handleMouseOut}
     >
       <img src={ing.image} onClick={(e) => addToPot(e, ing)} />
+      {animateItemName && 
+        <div className={animateItemName}>
+          <img src={ing.image} onClick={(e) => addToPot(e, ing)} />
+        </div>
+      }
       <div className="cubberd-food-name" onClick={(e) => addToPot(e, ing)}>
         {ing.food}
       </div>
