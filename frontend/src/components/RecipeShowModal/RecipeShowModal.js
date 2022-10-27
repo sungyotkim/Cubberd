@@ -85,8 +85,9 @@ function RecipeShowModal({ recipe, recipeContext }) {
             }
         return (
             <>
-                <div className={recipeContext === 'searchResult' ? '' :"recipe-list-item"} onClick={() => setShowModal(true)}>
+                <div className="recipe-list-item" onClick={() => setShowModal(true)}>
                     {title}
+                    {recipe.imageUrl ? <img src={recipe.imageUrl} /> : <></>}
                     {menuItems}
                 </div>
                 {showModal && (
