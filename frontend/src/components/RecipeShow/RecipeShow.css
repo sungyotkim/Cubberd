@@ -1,7 +1,7 @@
 #recipe {
     height: 500px; 
     width: 400px;
-    background-color: var(--secondary-light-color);
+    background-color: white;
     color: var(--secondary-dark-color);
     z-index: 2;
     display: flex;
