@@ -42,7 +42,6 @@ const CubberdRow = ({ ing, currentUser }) => {
   
       switch (true) {
         case e.clientY < 170:
-          console.log('hi')
           setAnimateItemName("cubberd-ingredient-image-item animate-one")
           break;
         case e.clientY < 230:
