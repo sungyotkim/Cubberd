@@ -25,10 +25,10 @@ const Pot = () => {
   const [blueflameFour, setBlueFlameFour] = useState(false)
   const [blueflameFive, setBlueFlameFive] = useState(false)
   const [loadingResult, setLoadingResult] = useState(true)
+  const [recipeResults, setRecipeResults] = useState([[], []])
   const { setOpenDoor } = useContext(PotContext);
 
-  const searchForRecipes = (e) => {
-    e.preventDefault();
+  const searchForRecipes = () => {
     const cubberd = [];
     const pot = [];
 
@@ -36,6 +36,22 @@ const Pot = () => {
     potContents.forEach(ing => pot.push(ing.food))
     dispatch(fetchRecipesFromPot(cubberd, pot))
   }
+
+  useEffect(() => {
+    if (recipeResultsTotalArr.length > 0 ) {
+      if (recipeResultsTotalArr[0].length > 0 && recipeResultsTotalArr[1].length > 0) {
+        setRecipesObtained(true)
+        setRecipeResults([...recipeResultsTotalArr])
+      }
+    } else {
+      setRecipeResults([[], []])
+    }
+  
+    return () => {
+      setRecipeResults([[], []])
+    }
+  }, [recipeResultsTotalArr])
+  
 
   const toggleRecipeScore = (e) => {
     e.preventDefault();
@@ -45,14 +61,6 @@ const Pot = () => {
       setDisplayByShoppingScore(true)
     }
   }
-
-  useEffect(() => {
-    if (recipeResultsTotalArr.length > 0) {
-      if (recipeResultsTotalArr[0].length > 0 && recipeResultsTotalArr[1].length > 0) {
-        setRecipesObtained(true)
-      }
-    }
-  }, [recipeResultsTotalArr])
   
   useEffect(() => {
     if (rotate) {
@@ -126,16 +134,18 @@ const Pot = () => {
   }, [rotate])
   
 
-  const handleKnobClick = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
+    setRecipeResults([[], []])
 
     if (!rotate) {
       setRotate(true)
       setLoadingResult(true)
       setOpenDoor(false)
-
+      
       let loadingResultTimeout = setTimeout(() => {
         setLoadingResult(false);
+        searchForRecipes()
         if (rotate) {
           clearTimeout(loadingResultTimeout)
         }
@@ -148,14 +158,12 @@ const Pot = () => {
       <div className="pot-component-wrapper">
         {recipesObtained && 
           <div className="pot-recipe-results-wrapper">
-            <RecipeResults displayByShoppingScore={displayByShoppingScore} recipeResultsTotalArr={recipeResultsTotalArr} />
+            <RecipeResults displayByShoppingScore={displayByShoppingScore} recipeResultsTotalArr={recipeResults} />
           </div>
         }
-        <div className="pot-container">
+        <div className="pot-container-clickable">
           <CookingPot loadingResult={loadingResult} />
         </div>
-        <div onClick={searchForRecipes}>Adina press here</div>
-        <div onClick={toggleRecipeScore}>Toggle Recipe Score</div>
         <div className="stove-container">
           <div className="stove-top">
             <div className="left-burner-platform"></div>
@@ -199,6 +207,12 @@ const Pot = () => {
             <div className="stove-name-container">
               Recipe Finder
             </div>
+            <div 
+              onClick={toggleRecipeScore}
+              className="toggle-btn"
+            >
+              Toggle
+            </div>
             <div className="stove-display">
               {!rotate && "Turn on the stove to search for recipes!"}
               {rotate && loadingResult && "Searching..."}
@@ -211,7 +225,7 @@ const Pot = () => {
             ></div>
             <div 
               className={rotate ? "stove-knob-container rotate" : "stove-knob-container"}
-              onClick={handleKnobClick}
+              onClick={handleClick}
             >
               <div className="knob-on">ON</div>
               <div className="knob-off">OFF</div>

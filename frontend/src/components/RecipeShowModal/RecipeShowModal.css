@@ -8,8 +8,11 @@
     width: 100%;
 }
 
-.planned {
-    /* width: 50px; */
+
+.menu-items-search-result {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
 }
 
 .recipe-list-item {
