@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import RecipeShowModal from "../RecipeShowModal/RecipeShowModal";
 import { fetchRecipes } from "../../store/recipes";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Cubberd from '../Cubberd/Cubberd';
 import Pot from "../Pot/Pot";
 import PotContents from "../Pot/PotContents/PotContents";
 import { useTour } from '@reactour/tour'
 import ShoppingList from "../ShoppingList/ShoppingList";
+import { fetchShoppingList } from "../../store/shoppingList";
 
 function MainPage() {
     const dispatch = useDispatch();
@@ -21,7 +22,7 @@ function MainPage() {
 
     useEffect(() => {
         dispatch(fetchRecipes())
-    }, [])
+    }, [])   
 
     const handleLogout = () => {
         dispatch(logout())

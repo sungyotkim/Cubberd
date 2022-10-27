@@ -59,12 +59,14 @@ const CubberdRow = ({ ing, currentUser }) => {
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseOut}
     >
+      <div>
       <img src={ing.image} onClick={(e) => addToPot(e, ing)} />
       <div className="cubberd-food-name" onClick={(e) => addToPot(e, ing)}>
         {ing.food}
       </div>
+      </div>
       {showOptions && (
-        <>
+        <div id="cubberd-ingredient-row-right">
           <CustomToolTipBottom
             title="Add to pot?"
             arrow
@@ -101,7 +103,7 @@ const CubberdRow = ({ ing, currentUser }) => {
               <FaCartPlus />
             </div>
           </CustomToolTipBottom>
-        </>
+        </div>
       )}
     </div>
   );

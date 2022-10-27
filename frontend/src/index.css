@@ -9,11 +9,14 @@ html {
   --main-light-color: #9cc8a4;
   --main-lighter-color: #b6d4ae;
   --secondary-dark-color: #285083;
-  --secondary-light-color: #b3d0d8;
   --main-bg-color: #E0E1DD;
   --secondary-bg-color: #FFE19C;
   --main-component-color: #F4F4F8;
   --secondary-component-color: #1B263B;
+  --secondary-light-color: #417db0;
+  --tertiary-light-color: #e2c7d3;
+
+
 }
 
 .main-display {
