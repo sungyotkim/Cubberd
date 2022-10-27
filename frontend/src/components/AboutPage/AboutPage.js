@@ -69,31 +69,37 @@ function AboutPage() {
                 {text}
             </div>
             <h2>About the developers</h2>
-            <div id="about-us">
-                <div id="about-us-left">
-                    <table>
-                        <tbody>
-                            <tr onMouseEnter={() => setAboutUsTab(0)}>
-                                <td>F</td>
-                                <td>red Chien</td>
-                            </tr>
-                            <tr onMouseEnter={() => setAboutUsTab(1)} >
-                                <td>A</td>
-                                <td>dina Cooper</td>
-                            </tr>
-                            <tr onMouseEnter={() => setAboutUsTab(2)}>
-                                <td>C</td>
-                                <td>lide Stefani</td>
-                            </tr>
-                            <tr onMouseEnter={() => setAboutUsTab(3)}>
-                                <td>T</td>
-                                <td>ommy Kim</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div id="about-us-right">
-                    <div>{aboutUsText}</div>
+            <div id="about-us-bottom-container">
+                <div id="about-us">
+                    <div id="about-us-left">
+                        <table>
+                            <tbody>
+                                <tr onMouseEnter={() => setAboutUsTab(0)}>
+                                    <td>F</td>
+                                    <td>red Chien</td>
+                                    <td>Flex</td>
+                                </tr>
+                                <tr onMouseEnter={() => setAboutUsTab(1)} >
+                                    <td>A</td>
+                                    <td>dina Cooper</td>
+                                    <td>Backend Lead</td>
+                                </tr>
+                                <tr onMouseEnter={() => setAboutUsTab(2)}>
+                                    <td>C</td>
+                                    <td>lide Stefani</td>
+                                    <td>Team Lead</td>
+                                </tr>
+                                <tr onMouseEnter={() => setAboutUsTab(3)}>
+                                    <td>T</td>
+                                    <td>ommy Kim</td>
+                                    <td>Frontend Lead</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="about-us-right">
+                        <div>{aboutUsText}</div>
+                    </div>
                 </div>
             </div>
             
