@@ -1,17 +1,17 @@
 .recipe-cards-container {
-  width: 300px;
+  width: 350px;
   display: flex;
   position: relative;
   margin: auto;
-  margin-top: 20%;
+  margin-top: 10%;
   margin-left: calc(50%);
 }
 
 .recipe-card {
   z-index: 0;
-  height: 150px;
+  height: 170px;
   border-radius: 5px;
-  width: 200px;
+  width: 210px;
   font-size: small;
   padding: 0.25em;
   display: flex;
@@ -19,7 +19,14 @@
   justify-content: space-between;
   background-color: var(--main-bg-color);
   color: var(--main-dark-color);
-  border: 3px solid var(--main-dark-color)
+  border: 3px solid var(--main-dark-color);
+  transition: all 0.1s;
+  align-items: center;
+}
+
+
+.recipe-card h4 {
+  width: 130px;
 }
 
 .recipe-card > div {
@@ -64,8 +71,9 @@
   z-index: 1;
   cursor: pointer;
   width: 250px;
-  height: 160px;
+  height: 180px;
 }
+
 
 .recipe-card:first-child {
   transform: rotate(-15deg);
