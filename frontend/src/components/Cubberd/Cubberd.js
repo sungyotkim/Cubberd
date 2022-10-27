@@ -9,7 +9,6 @@ import "./Cubberd.css";
 import { BiSearchAlt } from "react-icons/bi";
 import { SiCodechef } from "react-icons/si";
 import { TbTrash } from "react-icons/tb";
-// import woodBackground from "../../assets/retina_wood.png";
 import CubberdRow from "./CubberdRow";
 import { CustomToolTipTop } from "../ToolTip/ToolTip";
 import { PotContext } from "../../context/PotContext";
@@ -23,7 +22,6 @@ const Cubberd = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLi, setSelectedLi] = useState(0);
-  // const [openDoor, setOpenDoor] = useState(false);
   const [nonCubberdIngredients, setNonCubberdIngredients] = useState([]);
   const [cubberdIngIds, setCubberdIngIds] = useState([]);
   const { setPotContents, openDoor, setOpenDoor } = useContext(PotContext);
@@ -209,7 +207,6 @@ const Cubberd = () => {
     <>
       <div
         className="cubberd-container"
-        // style={{ backgroundImage: `url(${woodBackground})` }}
       >
         <div
           className={
