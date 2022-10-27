@@ -1,6 +1,7 @@
 #user-page {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 #user-page nav {
@@ -12,7 +13,7 @@
 }
 
 #user-page-columns {
-    width: calc(100% - 1em);
+    width: 100%;
     display: flex;
     flex-direction: row;
     height: calc(100% - 100px);
@@ -39,7 +40,6 @@
 
 #user-page-favorited-recipes-container .recipe-list-item {
     width: 20%;
-    height: 200px;
     border-radius: 5px;
     margin: 1em;
     border-bottom: 1px solid black;
@@ -56,6 +56,7 @@
     display: flex;
     flex-direction: column;
     width: 40%;
+    height: 100%;
 }
 
 #user-page-planned-and-shopping > div{

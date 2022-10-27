@@ -1,6 +1,7 @@
 #main-page {
   display: flex;
   flex-direction: row;
+  background-color: var(--main-bg-color);
 }
 
 #main-page-left {

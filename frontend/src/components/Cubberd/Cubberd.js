@@ -9,7 +9,7 @@ import "./Cubberd.css";
 import { BiSearchAlt } from "react-icons/bi";
 import { SiCodechef } from "react-icons/si";
 import { TbTrash } from "react-icons/tb";
-import woodBackground from "../../assets/retina_wood.png";
+// import woodBackground from "../../assets/retina_wood.png";
 import CubberdRow from "./CubberdRow";
 import { CustomToolTipTop } from "../ToolTip/ToolTip";
 import { PotContext } from "../../context/PotContext";
@@ -209,7 +209,7 @@ const Cubberd = () => {
     <>
       <div
         className="cubberd-container"
-        style={{ backgroundImage: `url(${woodBackground})` }}
+        // style={{ backgroundImage: `url(${woodBackground})` }}
       >
         <div
           className={
