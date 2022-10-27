@@ -1,0 +1,24 @@
+#about-page-options {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.option.active {
+    color: red;
+}
+
+#about-page-text {
+    display: flex;
+    justify-content: center;
+}
+
+#about-us {
+    display: flex;
+    justify-content: space-evenly;
+}
