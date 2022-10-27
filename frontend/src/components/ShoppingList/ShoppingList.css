@@ -14,7 +14,25 @@
     padding: 0.25em;
     border-radius: 3px;
     align-items: center;
+    color: var(--secondary-dark-color)
 }
+
+.shopping-list-item-left {
+    display: flex;
+    height: 40px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.shopping-list-item-left h4 {
+    margin-left: 0.25em;
+}
+
+.shopping-list-item:hover {
+    background-color: var(--main-bg-color);
+}
+
+
 
 .shopping-list-item input {
     width: 35px;
@@ -22,6 +40,16 @@
 }
 
 .trash-icon {
-    height: 14px;
+    height: 24px;
+    width: 20px;
     cursor: pointer;
+    border-radius: 3px;
+    padding-top: 5px;
+    padding-left: 5px;
+
+    
+}
+
+.trash-icon:hover {
+    background-color: rgb(0, 0, 0, 0.2);
 }
