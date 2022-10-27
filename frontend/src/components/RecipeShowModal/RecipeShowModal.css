@@ -12,7 +12,6 @@
 .menu-items-search-result {
     display: flex;
     flex-direction: column;
-    background-color: chocolate;
     margin: 0;
 }
 

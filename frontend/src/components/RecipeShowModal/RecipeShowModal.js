@@ -60,14 +60,25 @@ function RecipeShowModal({ recipe, recipeContext }) {
                     <TbTrash className="recipe-menu-button" onClick={e => handleClick(e, "unplan")} />
                 </div>
             } else if (recipeContext === 'searchResult') {
+                function getScoreColor(score) {
+                    let parsedScore = parseInt(score)
+                    if (parsedScore < 40) {
+                            return 'bad'
+                    } else if (parsedScore < 60) {
+                            return 'medium'
+                    } else {
+                            return 'good'
+                    }
+                }
+
                 title = <h4>{recipe.recipe.label}</h4>
                 menuItems = <div className='menu-items-search-result'>
                     <div className='recipe-score'>
                          Ingredient score:
-                        <span>{recipe.ingredientsScore}%</span>
+                        <span className={`${getScoreColor(recipe.ingredientsScore)}-recipe-score`}>{recipe.ingredientsScore}%</span>
                     </div>
                     <div className='recipe-score'>
-                        Shopping score: <span>{recipe.shoppingScore}%</span>
+                        Shopping score: <span className={`${getScoreColor(recipe.shoppingScore)}-recipe-score`}>{recipe.shoppingScore}%</span>
                     </div>
 
                 </div>
