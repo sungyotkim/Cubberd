@@ -5,13 +5,14 @@ import { MdOutlineRemoveCircle } from "react-icons/md";
 import { FaCartPlus } from "react-icons/fa";
 import { PotContext } from "../../context/PotContext";
 import { addToShoppingList, deleteUserCubberdIngredient } from "../../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./CubberdRow.css"
 
 const CubberdRow = ({ ing, currentUser }) => {
   const [showOptions, setShowOptions] = useState(false);
   const { potContents, setPotContents, setAddingIngredient } = useContext(PotContext);
   const [animateItemName, setAnimateItemName] = useState("cubberd-ingredient-image-item");
+  const shoppingList = useSelector(state => state.session.user.shoppingList);
   const dispatch = useDispatch();
 
   const handleMouseOver = (e) => {
@@ -41,7 +42,6 @@ const CubberdRow = ({ ing, currentUser }) => {
   
       switch (true) {
         case e.clientY < 170:
-          console.log('hi')
           setAnimateItemName("cubberd-ingredient-image-item animate-one")
           break;
         case e.clientY < 230:
@@ -94,11 +94,17 @@ const CubberdRow = ({ ing, currentUser }) => {
     dispatch(deleteUserCubberdIngredient(currentUser._id, ingredient));
   };
 
-  const postToShoppingList = (e, ingredientName) => {
+  const postToShoppingList = (e, ing) => {
     e.preventDefault();
 
-    let obj = { food: ingredientName }
-    dispatch(addToShoppingList(currentUser._id, obj))
+    let obj = { food: ing.food }
+    let existingArr = shoppingList.filter((ele) => ele.ingredient._id === ing._id);
+
+    if (existingArr.length === 0) {
+      dispatch(addToShoppingList(currentUser._id, obj))
+    } else {
+      return
+    }
   }
 
   return (
@@ -151,7 +157,7 @@ const CubberdRow = ({ ing, currentUser }) => {
           >
             <div 
               className="cubberd-shelving-option-two"
-              onClick={(e) => postToShoppingList(e, ing.food)}
+              onClick={(e) => postToShoppingList(e, ing)}
             >
               <FaCartPlus />
             </div>

@@ -1,9 +1,8 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux";
-import { changeItemQuantity, deleteItem, fetchShoppingList } from "../../store/shoppingList";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 import { TbTrash } from "react-icons/tb";
+import { deleteItem, changeItemQuantity } from "../../store/session";
 
 function ShoppingListItem({item}) {
     const sessionUser = useSelector(state => state.session.user);

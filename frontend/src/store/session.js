@@ -15,7 +15,8 @@ const CLEAR_USER_CUBBERD = "session/CLEAR_USER_CUBBERD"
 
 const RECEIVE_SHOPPING_LIST = "shoppingList/RECEIVE_SHOPPING_LIST";
 const ADD_TO_SHOPPING_LIST = "shoppingList/ADD_TO_SHOPPING_LIST";
-const EDIT_SHOPPING_LIST_ITEM = "shoppingList/EDIT_SHOPPING_LIST_ITEM";
+const EDIT_SHOPPING_LIST = "shoppingList/EDIT_SHOPPING_LIST";
+const DELETE_FROM_SHOPPING_LIST = "shoppingList/DELETE_FROM_SHOPPING_LIST";
 
 // Dispatch receiveCurrentUser when a user logs in
 const receiveCurrentUser = (currentUser) => ({
@@ -70,8 +71,14 @@ const addShoppingListItem = (shoppingList) => ({
   shoppingList
 });
 
-const editShoppingListItem = (shoppingList) => ({
-  type: EDIT_SHOPPING_LIST_ITEM,
+
+const editShoppingList = (shoppingList) => ({
+  type: EDIT_SHOPPING_LIST,
+  shoppingList
+})
+
+const removeFromShoppingList = (shoppingList) => ({
+  type: DELETE_FROM_SHOPPING_LIST,
   shoppingList
 })
 
@@ -163,15 +170,29 @@ export const addToShoppingList = (currentUserId, shoppingListItemName) => async 
   dispatch(addShoppingListItem(newShoppingList));
 }
 
-export const editShoppingList = (currentUserId, shoppingListItem) => async (dispatch) => {
+export const changeItemQuantity = (currentUserId, shoppingListItemId, newQuantity) => async (dispatch) => {
   const res = await jwtFetch(`/api/users/${currentUserId}/shoppingList`, {
       method: "PUT",
-      body: JSON.stringify(shoppingListItem)
+      body: JSON.stringify({
+          newQuantity,
+          shoppingListItemId
+      })
   })
-
   const newShoppingList = await res.json();
-  dispatch(editShoppingListItem(newShoppingList));
+  dispatch(editShoppingList(newShoppingList));
 }
+
+export const deleteItem = (currentUserId, shoppingListItemId) => async dispatch => {
+  const res = await jwtFetch(`/api/users/${currentUserId}/shoppingList`, {
+      method: "DELETE",
+      body: JSON.stringify({
+          shoppingListItemId
+      })
+  })
+  const shoppingList = await res.json();
+  dispatch(removeFromShoppingList(shoppingList))
+}
+
 
 // add recipe to planned
 export const addRecipeToPlanned = (currentUserId, recipe) => async (dispatch) => {
@@ -266,7 +287,10 @@ const sessionReducer = (state = initialState, action) => {
     case ADD_TO_SHOPPING_LIST:
       state.user.shoppingList = action.shoppingList
       return {...state}
-    case EDIT_SHOPPING_LIST_ITEM:
+    case EDIT_SHOPPING_LIST:
+      state.user.shoppingList = action.shoppingList
+      return {...state}
+    case DELETE_FROM_SHOPPING_LIST:
       state.user.shoppingList = action.shoppingList
       return {...state}
     default:

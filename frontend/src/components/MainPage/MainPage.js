@@ -1,16 +1,14 @@
 import "./MainPage.css";
-import { getCurrentUser, logout } from "../../store/session";
+import { logout } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import RecipeShowModal from "../RecipeShowModal/RecipeShowModal";
 import { fetchRecipes } from "../../store/recipes";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Cubberd from '../Cubberd/Cubberd';
 import Pot from "../Pot/Pot";
 import PotContents from "../Pot/PotContents/PotContents";
 import { useTour } from '@reactour/tour'
 import ShoppingList from "../ShoppingList/ShoppingList";
-import { fetchShoppingList } from "../../store/shoppingList";
 
 function MainPage() {
     const dispatch = useDispatch();
@@ -19,6 +17,7 @@ function MainPage() {
     const recipe = recipes[0];
     const { setIsOpen } = useTour();
     const shoppingList = useSelector(state => state.session.user.shoppingList);
+
 
     useEffect(() => {
         dispatch(fetchRecipes())

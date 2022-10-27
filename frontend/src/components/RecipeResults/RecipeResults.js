@@ -2,8 +2,6 @@ import RecipeResult from "./RecipeResult/RecipeResult";
 import "./RecipeResults.css"
 
 const RecipeResults = ({ displayByShoppingScore, recipeResultsTotalArr }) => {
-  console.log(recipeResultsTotalArr)
-
   if (!displayByShoppingScore) {
     return ( 
       <>
