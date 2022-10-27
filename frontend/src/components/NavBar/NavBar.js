@@ -122,18 +122,18 @@ const NavBar = () => {
         <div className="nav-right">
 
           {sessionUser && 
-            <span id="welcome-user">
+            <span className="welcome-user">
               Hello, {sessionUser.username}!
             </span>
           }
-          <div id="nav-links-div">
-            <div id="about">
+          <div className="nav-links-div">
+            <div className="nav-bar-link">
               <Link className="nav-bar-link" to="/about">About</Link>
             </div>
-            <div className="nav-bar-link" id="saved-recipes">
+            <div className="nav-bar-link">
               <Link className="nav-bar-link" to="/profile">My Recipes</Link>
             </div>
-            <div className="nav-bar-link" id="start-tour-button" onClick={() => setIsOpen(true)}>
+            <div className="nav-bar-link" onClick={() => setIsOpen(true)}>
               Tutorial
             </div>
             <div className="nav-bar-link" onClick={handleLogout}>

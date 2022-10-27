@@ -394,13 +394,13 @@ span {
   flex-direction: column;
 }
 
-#welcome-user {
+.welcome-user {
   display: flex;
   justify-content: flex-end;
   padding: 0 10px 4px;
 }
 
-#nav-links-div {
+.nav-links-div {
   display: flex;
   justify-content: space-between;
   padding-right: 11px;
