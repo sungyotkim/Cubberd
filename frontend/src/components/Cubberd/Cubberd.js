@@ -23,10 +23,10 @@ const Cubberd = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLi, setSelectedLi] = useState(0);
-  const [openDoor, setOpenDoor] = useState(false);
+  // const [openDoor, setOpenDoor] = useState(false);
   const [nonCubberdIngredients, setNonCubberdIngredients] = useState([]);
   const [cubberdIngIds, setCubberdIngIds] = useState([]);
-  const { setPotContents } = useContext(PotContext);
+  const { setPotContents, openDoor, setOpenDoor } = useContext(PotContext);
   const [loading, setLoading] = useState(false);
   const [completedAnimation, setCompletedAnimation] = useState(false);
   const ref = useRef();

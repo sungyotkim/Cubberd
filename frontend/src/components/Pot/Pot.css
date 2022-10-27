@@ -123,6 +123,7 @@
   border-radius: 8px;
   font-size: 16px;
   line-height: 17px;
+  transition: all ease-in-out 0.5s;
 }
 
 .stove-name-container {
@@ -144,7 +145,7 @@
   background-color: rgb(41, 41, 41);
   position: absolute;
   bottom: 0;
-  left: calc(30% - 45px);
+  left: calc(30% - 43px);
 }
 
 .right-burner-platform {
@@ -156,7 +157,7 @@
   background-color: rgb(41, 41, 41);
   position: absolute;
   bottom: 0;
-  right: calc(30% - 45px);
+  right: calc(30% - 35px);
 }
 
 .center-burner-platform {
@@ -198,6 +199,7 @@
 	border-left-width: 2.5px;
 	border-top-width: 2.5px;
   bottom: 0;
+  transition: all ease-out 1s;
 }
 
 .flame::before {
@@ -211,7 +213,7 @@
   border-radius: 10px 10px 0px 10px;
   top:0;
   animation-duration:.09s;
-  transform:scale(.9) rotate(-15deg) translate(1px, 0px);
+  transform:scale(.9) rotate(-25deg) translate(1px, 0px);
 }
 
 .flame::after {
@@ -222,7 +224,7 @@
   position: absolute;
   background: linear-gradient(-45deg, red, orange);
   animation: .2s flame infinite;
-  transform: scale(.8) rotate(20deg);
+  transform: scale(.8) rotate(30deg);
   border-radius: 10px 10px 0px 10px;
   top: 2px;
 }
@@ -251,4 +253,19 @@
 
 #flame-five {
   left: 95px;
+}
+
+.blue-flame {
+	background: linear-gradient(-45deg, blue, rgb(0, 140, 255));
+	background: linear-gradient(-45deg, blue, rgb(0, 183, 255));
+	box-shadow: 1.7px 2px 9px rgb(15, 0, 78);
+}
+
+.blue-flame::before {
+	background: linear-gradient(-45deg, blue, rgb(0, 183, 255));
+}
+
+.blue-flame::after {
+	background: linear-gradient(-45deg, blue, rgb(0, 140, 255));
+	background: linear-gradient(-45deg, blue, rgb(0, 183, 255));
 }

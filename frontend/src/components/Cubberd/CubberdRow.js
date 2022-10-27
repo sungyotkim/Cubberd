@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CustomToolTipBottom } from "../ToolTip/ToolTip";
 import { GiCookingPot } from "react-icons/gi";
 import { MdOutlineRemoveCircle } from "react-icons/md";
@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 
 const CubberdRow = ({ ing, currentUser }) => {
   const [showOptions, setShowOptions] = useState(false);
-  const { potContents, setPotContents } = useContext(PotContext);
+  const { potContents, setPotContents, setAddingIngredient } = useContext(PotContext);
   const dispatch = useDispatch();
 
   const handleMouseOver = (e) => {
@@ -36,6 +36,12 @@ const CubberdRow = ({ ing, currentUser }) => {
     if (includedItems.length === 0) {
       setPotContents((old) => [...old, ingredient]);
     }
+
+    setAddingIngredient(true);
+
+    setTimeout(() => {
+      setAddingIngredient(false)
+    }, 2000);
   };
 
   const removeFromUserCubberd = (e, ingredient) => {
