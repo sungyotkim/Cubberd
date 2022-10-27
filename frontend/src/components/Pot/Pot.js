@@ -5,6 +5,7 @@ import { fetchRecipesFromPot, removeRecipeResults } from "../../store/recipeResu
 import RecipeResults from "../RecipeResults/RecipeResults";
 import CookingPot from "./CookingPot/CookingPot";
 import "./Pot.css";
+import { CustomToolTipBottom } from "../ToolTip/ToolTip";
 
 const Pot = () => {
   const { potContents } = useContext(PotContext);
@@ -27,6 +28,7 @@ const Pot = () => {
   const [loadingResult, setLoadingResult] = useState(true)
   const [recipeResults, setRecipeResults] = useState([[], []])
   const { setOpenDoor, setAnimateRack } = useContext(PotContext);
+  const [toggled, setToggled] = useState(false)
 
   const searchForRecipes = () => {
     const cubberd = [];
@@ -73,8 +75,10 @@ const Pot = () => {
     e.preventDefault();
     if (displayByShoppingScore) {
       setDisplayByShoppingScore(false)
+      setToggled(false)
     } else {
       setDisplayByShoppingScore(true)
+      setToggled(true)
     }
   }
   
@@ -226,18 +230,36 @@ const Pot = () => {
             </div>
           </div>
           <div className="stove-button-container">
-            <div 
-              className="stove-name-container" 
-              onClick={clearRecipes}
+            <CustomToolTipBottom
+              title="Clear Recipe Results?"
+              arrow
+              placement="bottom"
             >
-              Recipe Clear
-            </div>
-            <div 
-              onClick={toggleRecipeScore}
-              className="toggle-btn"
+              <div 
+                className="recipe-clear-btn" 
+                onClick={clearRecipes}
+              > 
+                <div className="clear-btn-inside"></div>
+                <div className="x-sign"></div>
+                <div className="x-sign alt-sign"></div>
+              </div>
+            </CustomToolTipBottom>
+            <CustomToolTipBottom
+              title="Toggle Recipe Score"
+              arrow
+              placement="bottom"
             >
-              Toggle
-            </div>
+              <div 
+                className="toggle-btn-container"
+                onClick={toggleRecipeScore}
+              >
+                <div 
+                  className="toggle-btn-wrap"
+                >
+                  <div className={toggled ? "toggle toggled" : "toggle"}></div>
+                </div>
+              </div>
+            </CustomToolTipBottom>
             <div className="stove-display">
               {!rotate && "Turn on the stove to search for recipes!"}
               {rotate && loadingResult && "Searching..."}
