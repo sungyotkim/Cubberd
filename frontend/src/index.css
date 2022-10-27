@@ -27,6 +27,7 @@ html {
 }
 
 .main-display-component {
+  padding-left: 0.5em;
   height: 100px;
   width: 100px;
   margin: 0.5em;
