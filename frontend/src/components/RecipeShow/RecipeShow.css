@@ -1,7 +1,8 @@
 #recipe {
     height: 500px; 
     width: 400px;
-    background-color: var(--secondary-light-color);
+    background-color: var(--tertiary-light-color);
+    /* background-color: var(--secondary-light-color); */
     color: var(--secondary-dark-color);
     z-index: 2;
     display: flex;
@@ -9,6 +10,7 @@
     justify-content: space-between;
     padding: 1em;
     border-radius: 5px;
+    overflow: scroll;
 }
 
 #recipe-title-container {
