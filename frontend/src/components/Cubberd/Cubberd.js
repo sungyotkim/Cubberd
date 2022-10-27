@@ -27,6 +27,7 @@ const Cubberd = () => {
   const { setPotContents, openDoor, setOpenDoor } = useContext(PotContext);
   const [loading, setLoading] = useState(false);
   const [completedAnimation, setCompletedAnimation] = useState(false);
+  const [addAllAnimation, setAddAllAnimation] = useState(false)
   const ref = useRef();
   const node = useRef();
 
@@ -200,6 +201,11 @@ const Cubberd = () => {
   const handleAddAll = (e) => {
     e.preventDefault();
 
+    setAddAllAnimation(true)
+
+    setTimeout(() => {
+      setAddAllAnimation(false)
+    }, 1000);
     setPotContents([...userCubberd]);
   };
 
@@ -267,6 +273,9 @@ const Cubberd = () => {
                   ing={ing}
                   currentUser={currentUser}
                   setNonCubberdIngredients={setNonCubberdIngredients}
+                  addAllAnimation={addAllAnimation}
+                  i={i}
+                  length={userCubberd.length}
                   key={`cubberd ${ing} ${i}`}
                 />
               ))}

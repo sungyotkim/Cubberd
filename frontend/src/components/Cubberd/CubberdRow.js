@@ -8,12 +8,65 @@ import { addToShoppingList, deleteUserCubberdIngredient } from "../../store/sess
 import { useDispatch, useSelector } from "react-redux";
 import "./CubberdRow.css"
 
-const CubberdRow = ({ ing, currentUser }) => {
+const CubberdRow = ({ ing, currentUser, addAllAnimation, i, length }) => {
   const [showOptions, setShowOptions] = useState(false);
   const { potContents, setPotContents, setAddingIngredient } = useContext(PotContext);
   const [animateItemName, setAnimateItemName] = useState("cubberd-ingredient-image-item");
   const shoppingList = useSelector(state => state.session.user.shoppingList);
   const dispatch = useDispatch();
+  
+  useEffect(() => {
+    if (addAllAnimation) {
+      setAddingIngredient(true);
+
+      let itemIdx = length - 1 - i;
+  
+      switch (itemIdx) {
+        case 0:
+          setAnimateItemName("cubberd-ingredient-image-item animate-one")
+          break;
+        case 1:
+          setAnimateItemName("cubberd-ingredient-image-item animate-two")
+          break;
+        case 2:
+          setAnimateItemName("cubberd-ingredient-image-item animate-three")
+          break;
+        case 3:
+          setAnimateItemName("cubberd-ingredient-image-item animate-four")
+          break;
+        case 4:
+          setAnimateItemName("cubberd-ingredient-image-item animate-five")
+          break;
+        case 5:
+          setAnimateItemName("cubberd-ingredient-image-item animate-six")
+          break;
+        case 6:
+          setAnimateItemName("cubberd-ingredient-image-item animate-seven")
+          break;
+        case 7:
+          setAnimateItemName("cubberd-ingredient-image-item animate-eight")
+          break;
+        case 8:
+          setAnimateItemName("cubberd-ingredient-image-item animate-nine")
+          break;
+        case 9:
+          setAnimateItemName("cubberd-ingredient-image-item animate-ten")
+          break;
+        case 10:
+          setAnimateItemName("cubberd-ingredient-image-item animate-eleven")
+          break;
+        default:
+          setAnimateItemName("cubberd-ingredient-image-item animate-eleven")
+          break;
+      }
+  
+      setTimeout(() => {
+        setAnimateItemName("cubberd-ingredient-image-item")
+        setAddingIngredient(false)
+      }, 1000);
+    }    
+  }, [addAllAnimation])
+  
 
   const handleMouseOver = (e) => {
     e.preventDefault();
