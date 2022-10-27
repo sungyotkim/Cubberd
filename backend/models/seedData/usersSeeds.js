@@ -35,8 +35,8 @@ const seedDB = async () => {
     demoUser.cubberd.push(chickenBreast);
     demoUser.cubberd.push(pasta);
 
-    const firstTwentyRecipes = await Recipe.find().sort({'createdAt': -1}).limit(20);
-    const lastTwentyRecipes = await Recipe.find().sort({'createdAt': 1}).limit(20);
+    const firstTwentyRecipes = await Recipe.find().sort({'createdAt': 1}).limit(20);
+    const lastTwentyRecipes = await Recipe.find().sort({'createdAt': -1}).limit(20);
     demoUser.savedRecipes.favorited = firstTwentyRecipes;
     demoUser.savedRecipes.planned = lastTwentyRecipes;
 
@@ -51,16 +51,10 @@ const seedDB = async () => {
     demoUser.shoppingList.push(shoppingListItem2);
     seedUsers = [demoUser];
 
-    await ShoppingListItem.deleteMany()
+    await ShoppingListItem.deleteMany();
     await User.deleteMany();
     await User.insertMany(seedUsers);
 }
-
-// seedDB
-// create and populate demo user
-// purge all users
-// save demo user
-
 seedDB() 
     .then(() => {
         console.log('All users and ShoppingListItems deleted, demo user created');

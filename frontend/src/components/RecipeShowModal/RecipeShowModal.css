@@ -15,6 +15,17 @@
     margin: 0;
 }
 
+.recipe-list-item {
+    display: flex;
+    overflow: hidden;
+    min-height: 100px;
+}
+
+.recipe-list-item img {
+    width: 150px;
+    object-fit: cover;
+    margin: auto;
+}
 
 .recipe-menu-button {
     padding: 10px;

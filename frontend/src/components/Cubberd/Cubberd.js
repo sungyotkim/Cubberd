@@ -50,7 +50,7 @@ const Cubberd = () => {
         return
       } 
     }
-    setSearchResults(false)
+    setSearchResults([])
   }
 
   useEffect(() => {

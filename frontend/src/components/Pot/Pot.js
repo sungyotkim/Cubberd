@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PotContext } from "../../context/PotContext";
-import { fetchRecipesFromPot } from "../../store/recipeResults";
+import { fetchRecipesFromPot, removeRecipeResults } from "../../store/recipeResults";
 import RecipeResults from "../RecipeResults/RecipeResults";
 import CookingPot from "./CookingPot/CookingPot";
 import "./Pot.css";
@@ -26,7 +26,7 @@ const Pot = () => {
   const [blueflameFive, setBlueFlameFive] = useState(false)
   const [loadingResult, setLoadingResult] = useState(true)
   const [recipeResults, setRecipeResults] = useState([[], []])
-  const { setOpenDoor } = useContext(PotContext);
+  const { setOpenDoor, setAnimateRack } = useContext(PotContext);
 
   const searchForRecipes = () => {
     const cubberd = [];
@@ -51,6 +51,22 @@ const Pot = () => {
       setRecipeResults([[], []])
     }
   }, [recipeResultsTotalArr])
+  
+  useEffect(() => {
+    if (recipeResults && recipeResults.length > 0) {
+      if (recipeResults[0].length > 0 && recipeResults[1].length > 0) {
+        setAnimateRack(true)
+      } else {
+        setAnimateRack(false)
+      }
+    } else {
+      setAnimateRack(false)
+    }
+  
+    return () => {
+      setAnimateRack(false)
+    }
+  }, [recipeResults])
   
 
   const toggleRecipeScore = (e) => {
@@ -145,12 +161,18 @@ const Pot = () => {
       
       let loadingResultTimeout = setTimeout(() => {
         setLoadingResult(false);
-        searchForRecipes()
+        searchForRecipes();
         if (rotate) {
           clearTimeout(loadingResultTimeout)
         }
       }, 1000);
     } 
+  }
+
+  const clearRecipes = (e) => {
+    e.preventDefault();
+
+    dispatch(removeRecipeResults());
   }
 
   return (
@@ -204,8 +226,11 @@ const Pot = () => {
             </div>
           </div>
           <div className="stove-button-container">
-            <div className="stove-name-container">
-              Recipe Finder
+            <div 
+              className="stove-name-container" 
+              onClick={clearRecipes}
+            >
+              Recipe Clear
             </div>
             <div 
               onClick={toggleRecipeScore}

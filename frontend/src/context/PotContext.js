@@ -7,6 +7,7 @@ export const PotProvider = ({children}) => {
   const [potResults, setPotResults] = useState([]);
   const [addingIngredient, setAddingIngredient] = useState(false);
   const [openDoor, setOpenDoor] = useState(false);
+  const [animateRack, setAnimateRack] = useState(false)
 
   return (
     <>
@@ -18,7 +19,9 @@ export const PotProvider = ({children}) => {
         addingIngredient,
         setAddingIngredient,
         openDoor,
-        setOpenDoor
+        setOpenDoor,
+        animateRack,
+        setAnimateRack
       }}>{children}</PotContext.Provider>
     </>
   )

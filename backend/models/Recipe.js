@@ -11,6 +11,9 @@ const recipeSchema = Schema({
     source: {
         type: String
     },
+    imageUrl: {
+        type: String
+    },
     url: {
         type: String
     },
