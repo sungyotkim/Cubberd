@@ -44,28 +44,43 @@ function RecipeShowModal({ recipe, recipeContext }) {
     }
 
     if (recipe) {
+        let title;
         let menuItems;
         if (recipeContext === 'favorited') {
+            title = <h4>{recipe.label}</h4>
             menuItems = 
                 <div className='menu-items favorited'>
                     <BsCalendarPlus className={recipeAlreadyPlanned ? "recipe-menu-button active" : "recipe-menu-button"} onClick={e => handleClick(e, "plan")} />
                     <TbTrash className="recipe-menu-button" onClick={e => handleClick(e, "unfavorite")} />
                 </div>
             } else if (recipeContext === 'planned') {
+                title = <h4>{recipe.label}</h4>
                 menuItems = <div className='menu-items planned'>
                     <AiOutlineHeart className={recipeAlreadyFavorited ? "recipe-menu-button active" : "recipe-menu-button"} onClick={e => handleClick(e, "favorite")} />
                     <TbTrash className="recipe-menu-button" onClick={e => handleClick(e, "unplan")} />
                 </div>
+            } else if (recipeContext === 'searchResult') {
+                title = <h4>{recipe.recipe.label}</h4>
+                menuItems = <div className='menu-items-search-result'>
+                    <div className='recipe-score'>
+                         Ingredient score:
+                        <span>{recipe.ingredientsScore}%</span>
+                    </div>
+                    <div className='recipe-score'>
+                        Shopping score: <span>{recipe.shoppingScore}%</span>
+                    </div>
+
+                </div>
             }
         return (
             <>
-                <div className="recipe-list-item" onClick={() => setShowModal(true)}>
-                    <h4>{recipe.label}</h4>
+                <div className={recipeContext === 'searchResult' ? '' :"recipe-list-item"} onClick={() => setShowModal(true)}>
+                    {title}
                     {menuItems}
                 </div>
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
-                        <RecipeShow recipe={recipe} />
+                        <RecipeShow recipe={recipeContext === 'searchResult' ? recipe.recipe : recipe} />
                     </Modal>
                 )}
             </>
