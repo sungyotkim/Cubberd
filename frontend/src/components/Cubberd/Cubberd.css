@@ -62,6 +62,8 @@
   box-sizing: border-box;
   position: relative;
   flex-direction: column;
+  background-color: var(--main-component-color);
+  background-color: var(--secondary-light-color);
   /* border: 5px solid black; */
 }
 
