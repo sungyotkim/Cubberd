@@ -203,6 +203,12 @@ const Cubberd = () => {
     setPotContents([...userCubberd]);
   };
 
+  const handleFocus = (e) => {
+    e.preventDefault();
+
+    searchItem(searchQuery)
+  }
+
   return (
     <>
       <div
@@ -231,6 +237,7 @@ const Cubberd = () => {
               onChange={(e) => searchItem(e.target.value)}
               value={searchQuery}
               onKeyDown={(e) => handleKeyDown(e)}
+              onFocus={handleFocus}
             />
             <div className="cubberd-search-btn">
               <BiSearchAlt />
