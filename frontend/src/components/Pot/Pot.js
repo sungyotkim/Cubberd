@@ -26,7 +26,7 @@ const Pot = () => {
   const [blueflameFive, setBlueFlameFive] = useState(false)
   const [loadingResult, setLoadingResult] = useState(true)
   const [recipeResults, setRecipeResults] = useState([[], []])
-  const { setOpenDoor } = useContext(PotContext);
+  const { setOpenDoor, setAnimateRack } = useContext(PotContext);
 
   const searchForRecipes = () => {
     const cubberd = [];
@@ -51,6 +51,22 @@ const Pot = () => {
       setRecipeResults([[], []])
     }
   }, [recipeResultsTotalArr])
+  
+  useEffect(() => {
+    if (recipeResults && recipeResults.length > 0) {
+      if (recipeResults[0].length > 0 && recipeResults[1].length > 0) {
+        setAnimateRack(true)
+      } else {
+        setAnimateRack(false)
+      }
+    } else {
+      setAnimateRack(false)
+    }
+  
+    return () => {
+      setAnimateRack(false)
+    }
+  }, [recipeResults])
   
 
   const toggleRecipeScore = (e) => {
@@ -145,7 +161,7 @@ const Pot = () => {
       
       let loadingResultTimeout = setTimeout(() => {
         setLoadingResult(false);
-        searchForRecipes()
+        searchForRecipes();
         if (rotate) {
           clearTimeout(loadingResultTimeout)
         }
