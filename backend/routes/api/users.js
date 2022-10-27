@@ -241,7 +241,7 @@ router.delete('/:userId/savedRecipes', requireUser, async (req, res) => {
     currentUser.savedRecipes.planned.pull(recipe)
   }
   currentUser.save();
-  return res.json(currentUser.savedRecipes)
+  return res.json(currentUser)
 });
 
 router.get('/:userId/favoritedRecipes', async(req, res) => {
