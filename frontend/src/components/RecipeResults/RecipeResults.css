@@ -1,10 +1,11 @@
 .recipe-cards-container {
   width: 350px;
+  width: 33%;
   display: flex;
   position: relative;
   margin: auto;
   margin-top: 10%;
-  margin-left: calc(50%);
+  margin-left: calc(50% - (350 / 2)px);
 }
 
 .recipe-card {
