@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { changeItemQuantity, deleteItem, fetchShoppingList } from "../../store/shoppingList";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { TbTrash } from "react-icons/tb";
 
 function ShoppingListItem({item}) {
     const sessionUser = useSelector(state => state.session.user);
@@ -23,11 +24,14 @@ function ShoppingListItem({item}) {
     }
 
     return (
-        <div className="shoppingListItem">
-            {item.ingredient.food}
+        <div className="shopping-list-item">
+            <div>
             <input type="number" onChange={handleChange} value={quantity} />
-            <div className="update-item">Update Item</div>
-            <button onClick={handleDelete}>Delete item</button>
+            {item.ingredient.food}
+            </div>
+            <div className="trash-icon">
+                <TbTrash onClick={handleDelete} />
+            </div>
         </div>
     )
 
