@@ -18,23 +18,39 @@ const steps = [
   },
   {
     selector: '.cubberd-content-container',
-    content: 'This is your Cubberd. It should represent the ingredients that you have on hand in real life. To that end...'
-  },
-  {
-    selector: '.cubberd-search-bar',
-    content: '...you can add or remove ingredients until it is accurate and up-to-date.'
+    content: 'This is your Cubberd. It should represent the ingredients that you have on hand in real life. To that end, you can add or remove ingredients until it is accurate and up-to-date.'
   },
   {
     selector: '.cubberd-ingredient-row:first-of-type',
-    content: 'Ingredients can be added to your shopping list, removed from your Cubberd, or added to the Pot.'
+    content: 'Cubberd ingredients can be added to your shopping list, removed from your Cubberd, or added to the Pot.'
   },
   {
     selector: '.pot-ingredient-container',
-    content: 'Here are the current contents of the Pot. You can remove each ingredient from the Pot by clicking the X by its name.'
+    content: 'Your selected ingredients are displayed here. These ingredients will be used when you execute the recipe search!'
   },
   {
-    selector: '.clear-all-pot-items-btn',
-    content: 'You can also clear all items from the Pot by clicking this button.'
+    selector: '.pot-component-wrapper',
+    content: 'Turn the knob and watch the Pot work its magic. Our revolutionary algorithm will work hard to return recipes containing your selected ingredients, ranked by Ingredient Score and Shopping Score.'
+  },
+  {
+    selector: '.pot-component-wrapper',
+    content: 'By default, recipes are ranked by Ingredient Score: this allows you to maximize use of your already owned ingredients, even if you have to grocery shop to fill in the gaps.'
+  },
+  {
+    selector: '.toggle-btn',
+    content: 'If you want to minimize the grocery shopping instead, you can toggle to rank recipes by Shopping Score. The higher this score, the fewer ingredients you have to go out and buy.'
+  },
+  {
+    selector: '#shopping-list-container',
+    content: 'This handy shopping list will help you keep track of what ingredients to pick up during your next grocery trip.'
+  },
+  {
+    selector: '.user-profile-link',
+    content: 'But wait, there\'s more! You can click this link to navigate to the User Page, where you can find all your saved recipes.'
+  },
+  {
+    selector: '#main-page',
+    content: 'This has been the main page of Cubberd. Happy cooking!'
   }
 ]
 
