@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PotContext } from "../../context/PotContext";
-import { fetchRecipesFromPot } from "../../store/recipeResults";
+import { fetchRecipesFromPot, removeRecipeResults } from "../../store/recipeResults";
 import RecipeResults from "../RecipeResults/RecipeResults";
 import CookingPot from "./CookingPot/CookingPot";
 import "./Pot.css";
@@ -169,6 +169,12 @@ const Pot = () => {
     } 
   }
 
+  const clearRecipes = (e) => {
+    e.preventDefault();
+
+    dispatch(removeRecipeResults());
+  }
+
   return (
     <>
       <div className="pot-component-wrapper">
@@ -220,8 +226,11 @@ const Pot = () => {
             </div>
           </div>
           <div className="stove-button-container">
-            <div className="stove-name-container">
-              Recipe Finder
+            <div 
+              className="stove-name-container" 
+              onClick={clearRecipes}
+            >
+              Recipe Clear
             </div>
             <div 
               onClick={toggleRecipeScore}

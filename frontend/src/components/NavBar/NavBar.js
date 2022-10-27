@@ -31,7 +31,7 @@ const NavBar = () => {
           <div className="rack-bar"></div>
           <div className="rack-right-circle"></div>
           <div 
-            className={ animateRack ? "hook pan-one-animate" : "hook"} 
+            className={ animateRack ? "hook pan-one-animate" : "hook pan-one-return"} 
             id="pan-one-hook"
           >
             <img src={hook}/>
@@ -53,7 +53,7 @@ const NavBar = () => {
             </div>
           </div>
           <div 
-            className={ animateRack ? "hook pan-two-animate" : "hook"} 
+            className={ animateRack ? "hook pan-two-animate" : "hook pan-two-return"} 
             id="pan-two-hook"
           >
             <img src={hook}/>
@@ -75,7 +75,7 @@ const NavBar = () => {
             </div>
           </div>
           <div 
-            className={ animateRack ? "hook ladle-hook-animate" : "hook"} 
+            className={ animateRack ? "hook ladle-hook-animate" : "hook ladle-hook-return"} 
             id="ladle-hook"
           >
             <img src={hook}/>
@@ -97,7 +97,7 @@ const NavBar = () => {
             </div>
           </div>
           <div 
-            className={ animateRack ? "hook spatula-hook-animate" : "hook"} 
+            className={ animateRack ? "hook spatula-hook-animate" : "hook spatula-hook-return"} 
             id="spatula-hook"
           >
             <img src={hook}/>
