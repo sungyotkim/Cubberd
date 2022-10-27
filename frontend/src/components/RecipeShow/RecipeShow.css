@@ -1,6 +1,6 @@
 #recipe {
-    height: 500px; 
-    width: 400px;
+    height: 800px; 
+    width: 600px;
     background-color: var(--tertiary-light-color);
     /* background-color: var(--secondary-light-color); */
     color: var(--secondary-dark-color);
@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1em;
+    padding: 1em 1em 0 1em;
     border-radius: 5px;
     overflow: scroll;
 }
@@ -33,13 +33,8 @@
 }
 
 #recipe-image {
-    width: 200px;
+    width: 400px;
     object-fit: contain;
-}
-
-#recipe-image img{
-    width: inherit;
-    height: auto;
 }
 
 #recipe-scores {
@@ -64,7 +59,8 @@
 #recipe-show-links {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
     padding: 0 1em;
 }
 

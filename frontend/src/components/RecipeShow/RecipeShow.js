@@ -21,15 +21,15 @@ function RecipeShow({recipe, favorited, planned, addToPlannedButton, addToFavori
                 <h3><a href={recipe.url}>{recipe.label}</a></h3>
             </div>
             <div id="recipe-middle-third">
+                <img id="recipe-image" src={recipe.imageUrl} />
                 <div id="recipe-ingredients-list">
                     <h3>Ingredients</h3>
                     {ingredients}
                 </div>
             </div>
             <div id="recipe-show-links">
-                <span><Link to={`/recipes/${recipe._id}`}>Printable page</Link></span>
-                <span>{favorited ? "" : addToFavoritedButton}</span>
-                <span>{planned ? "" : addToPlannedButton}</span>
+                {favorited ? "" : <span>{addToFavoritedButton}</span>}
+                {planned ? "" : <span>{addToPlannedButton}</span>}
                 <span><a href={recipe.url}>Source</a></span>
             </div>
 
