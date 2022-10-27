@@ -117,7 +117,7 @@
   height: 662px;
   box-sizing: border-box;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
   position: relative;
   padding: 0 5px;
   justify-content: flex-end;
@@ -332,3 +332,4 @@
     opacity: 1;
   }
 }
+

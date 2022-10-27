@@ -1,7 +1,7 @@
 .cooking-pot-img {
   width: 250px;
   position: absolute;
-  bottom: 21%;
+  bottom: 20.5%;
   left: 0;
   right: 0;
   margin: auto;
@@ -15,8 +15,13 @@
   pointer-events: none;
 }
 
+.remove-lid {
+  transform: translateX(55px) translateY(-95px) rotate(40deg);
+  opacity: 0;
+  transition: all 0.8s;
+}
+
 .hover-lid {
-  /* transform: translateX(-25px) translateY(-125px) rotate(-30deg); */
-  transform: translateX(135px) translateY(-195px) rotate(125deg);
-  transition: all 1.5s;
+  transform: translateX(55px) translateY(-95px) rotate(40deg);
+  transition: all 0.8s;
 }

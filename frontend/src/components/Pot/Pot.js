@@ -14,6 +14,18 @@ const Pot = () => {
   const [displayByShoppingScore, setDisplayByShoppingScore] = useState(false);
   const [recipesObtained, setRecipesObtained] = useState(false)
   const [rotate, setRotate] = useState(false)
+  const [flameOne, setFlameOne] = useState(false)
+  const [flameTwo, setFlameTwo] = useState(false)
+  const [flameThree, setFlameThree] = useState(false)
+  const [flameFour, setFlameFour] = useState(false)
+  const [flameFive, setFlameFive] = useState(false)
+  const [blueflameOne, setBlueFlameOne] = useState(false)
+  const [blueflameTwo, setBlueFlameTwo] = useState(false)
+  const [blueflameThree, setBlueFlameThree] = useState(false)
+  const [blueflameFour, setBlueFlameFour] = useState(false)
+  const [blueflameFive, setBlueFlameFive] = useState(false)
+  const [loadingResult, setLoadingResult] = useState(true)
+  const { setOpenDoor } = useContext(PotContext);
 
   const searchForRecipes = (e) => {
     e.preventDefault();
@@ -27,6 +39,11 @@ const Pot = () => {
 
   const toggleRecipeScore = (e) => {
     e.preventDefault();
+    if (displayByShoppingScore) {
+      setDisplayByShoppingScore(false)
+    } else {
+      setDisplayByShoppingScore(true)
+    }
   }
 
   useEffect(() => {
@@ -37,14 +54,93 @@ const Pot = () => {
     }
   }, [recipeResultsTotalArr])
   
+  useEffect(() => {
+    if (rotate) {
+      let flameOneTimeout = setTimeout(() => {
+        setFlameOne(true);
+        if (!rotate) {
+          clearTimeout(flameOneTimeout);
+        }
+      }, 100);
+  
+      let flameTwoTimeout = setTimeout(() => {
+        setFlameTwo(true);
+        if (!rotate) {
+          clearTimeout(flameTwoTimeout);
+        }
+      }, 200);
+  
+      let flameThreeTimeout = setTimeout(() => {
+        setFlameThree(true);
+        setBlueFlameOne(true);
+        if (!rotate) {
+          clearTimeout(flameThreeTimeout);
+        }
+      }, 300);
+  
+      let flameFourTimeout = setTimeout(() => {
+        setFlameFour(true);
+        setBlueFlameTwo(true);
+        if (!rotate) {
+          clearTimeout(flameFourTimeout);
+        }
+      }, 400);
+  
+      let flameFiveTimeout = setTimeout(() => {
+        setFlameFive(true);
+        setBlueFlameThree(true)
+        if (!rotate) {
+          clearTimeout(flameFiveTimeout);
+        }
+      }, 500);
+
+      let blueFlameLastTimeout = setTimeout(() => {
+        setBlueFlameFour(true)
+        setBlueFlameFive(true)
+        if (!rotate) {
+          clearTimeout(blueFlameLastTimeout);
+        }
+      }, 500);
+
+      let knobTimeout = setTimeout(() => {
+        setRotate(false);
+        setLoadingResult(true);
+        setOpenDoor(true)
+        if (!rotate) {
+          clearTimeout(knobTimeout)
+        }
+      }, 3000);
+    } else {
+      setFlameOne(false)
+      setFlameTwo(false)
+      setFlameThree(false)
+      setFlameFour(false)
+      setFlameFive(false)
+      setBlueFlameOne(false)
+      setBlueFlameTwo(false)
+      setBlueFlameThree(false)
+      setBlueFlameFour(false)
+      setBlueFlameFive(false)
+    }
+  
+  }, [rotate])
+  
+
   const handleKnobClick = (e) => {
     e.preventDefault();
 
     if (!rotate) {
       setRotate(true)
-    } else {
-      setRotate(false)
-    }
+      setLoadingResult(true)
+      setOpenDoor(false)
+
+      let loadingResultTimeout = setTimeout(() => {
+        setLoadingResult(false);
+        if (rotate) {
+          clearTimeout(loadingResultTimeout)
+        }
+      }, 1000);
+    } 
   }
 
   return (
@@ -56,7 +152,7 @@ const Pot = () => {
           </div>
         }
         <div className="pot-container">
-          <CookingPot />
+          <CookingPot loadingResult={loadingResult} />
         </div>
         <div onClick={searchForRecipes}>Adina press here</div>
         <div onClick={toggleRecipeScore}>Toggle Recipe Score</div>
@@ -66,11 +162,37 @@ const Pot = () => {
             <div className="center-burner-platform"></div>
             <div className="right-burner-platform"></div>
             <div className="burner-center">
-              <div className="flame" id="flame-one"></div>
-              <div className="flame" id="flame-two"></div>
-              <div className="flame" id="flame-three"></div>
-              <div className="flame" id="flame-four"></div>
-              <div className="flame" id="flame-five"></div>
+              {flameOne && !blueflameOne && 
+                <div className="flame" id="flame-one"></div>
+              }
+              {flameTwo && !blueflameTwo && 
+                <div className="flame" id="flame-two"></div>
+              }
+              {flameThree && !blueflameThree && 
+                <div className="flame" id="flame-three"></div>
+              }
+              {flameFour && !blueflameFour && 
+                <div className="flame" id="flame-four"></div>
+              }
+              {flameFive && !blueflameFive && 
+                <div className="flame" id="flame-five"></div>
+              }
+
+              {flameOne && blueflameOne && 
+                <div className="flame blue-flame" id="flame-one"></div>
+              }
+              {flameTwo && blueflameTwo && 
+                <div className="flame blue-flame" id="flame-two"></div>
+              }
+              {flameThree && blueflameThree && 
+                <div className="flame blue-flame" id="flame-three"></div>
+              }
+              {flameFour && blueflameFour && 
+                <div className="flame blue-flame" id="flame-four"></div>
+              }
+              {flameFive && blueflameFive && 
+                <div className="flame blue-flame" id="flame-five"></div>
+              }
             </div>
           </div>
           <div className="stove-button-container">
@@ -78,8 +200,9 @@ const Pot = () => {
               Recipe Cooker
             </div>
             <div className="stove-display">
-              {rotate && "Cooking..."}
               {!rotate && "Turn on the stove to cook up your recipes!"}
+              {rotate && loadingResult && "Cooking..."}
+              {rotate && !loadingResult && "Done!"}
             </div>
 
             <div 
