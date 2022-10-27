@@ -387,3 +387,19 @@ span {
     transform: rotateZ(0deg)
   }
 }
+
+.nav-right {
+  width: calc(100% - (70% - 1em));
+  display: flex;
+  flex-direction: column;
+}
+
+#welcome-user {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#nav-links-div {
+  display: flex;
+  justify-content: space-evenly;
+}
