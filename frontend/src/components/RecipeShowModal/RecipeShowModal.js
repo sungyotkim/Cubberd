@@ -53,14 +53,14 @@ function RecipeShowModal({ recipe, recipeContext }) {
             image = recipe.imageUrl ? <img src={recipe.imageUrl} /> : <></>
             menuItems = 
                 <div className='menu-items favorited'>
-                    <BsCalendarPlus className={recipeAlreadyPlanned ? "recipe-menu-button active" : "recipe-menu-button"} onClick={e => handleClick(e, "plan")} />
+                    {addToPlannedButton}
                     <TbTrash className="recipe-menu-button" onClick={e => handleClick(e, "unfavorite")} />
                 </div>
             } else if (recipeContext === 'planned') {
                 title = <h4>{recipe.label}</h4>
                 
                 menuItems = <div className='menu-items planned'>
-                    <AiOutlineHeart className={recipeAlreadyFavorited ? "recipe-menu-button active" : "recipe-menu-button"} onClick={e => handleClick(e, "favorite")} />
+                    {addToFavoritedButton}
                     <TbTrash className="recipe-menu-button" onClick={e => handleClick(e, "unplan")} />
                 </div>
             } else if (recipeContext === 'searchResult') {
