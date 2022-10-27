@@ -76,23 +76,19 @@ function AboutPage() {
                         <table>
                             <tbody>
                                 <tr onMouseEnter={() => setAboutUsTab(0)}>
-                                    <td>F</td>
-                                    <td>red Chien</td>
+                                    <td>Fred Chien</td>
                                     <td>Flex</td>
                                 </tr>
                                 <tr onMouseEnter={() => setAboutUsTab(1)} >
-                                    <td>A</td>
-                                    <td>dina Cooper</td>
+                                    <td>Adina Cooper</td>
                                     <td>Backend Lead</td>
                                 </tr>
                                 <tr onMouseEnter={() => setAboutUsTab(2)}>
-                                    <td>C</td>
-                                    <td>lide Stefani</td>
+                                    <td>Clide Stefani</td>
                                     <td>Team Lead</td>
                                 </tr>
                                 <tr onMouseEnter={() => setAboutUsTab(3)}>
-                                    <td>T</td>
-                                    <td>ommy Kim</td>
+                                    <td>Tommy Kim</td>
                                     <td>Frontend Lead</td>
                                 </tr>
                             </tbody>
