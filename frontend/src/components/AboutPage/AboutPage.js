@@ -68,32 +68,40 @@ function AboutPage() {
             <div id="about-page-text">
                 {text}
             </div>
-            <h2>About the developers</h2>
-            <div id="about-us">
+          
+            <div id="about-us-bottom-container">
                 <div id="about-us-left">
-                    <table>
-                        <tbody>
-                            <tr onMouseEnter={() => setAboutUsTab(0)}>
-                                <td>F</td>
-                                <td>red Chien</td>
-                            </tr>
-                            <tr onMouseEnter={() => setAboutUsTab(1)} >
-                                <td>A</td>
-                                <td>dina Cooper</td>
-                            </tr>
-                            <tr onMouseEnter={() => setAboutUsTab(2)}>
-                                <td>C</td>
-                                <td>lide Stefani</td>
-                            </tr>
-                            <tr onMouseEnter={() => setAboutUsTab(3)}>
-                                <td>T</td>
-                                <td>ommy Kim</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <h2>About the developers</h2>
+                    <div id="about-us-table-left">
+                        <table>
+                            <tbody>
+                                <tr onMouseEnter={() => setAboutUsTab(0)}>
+                                    <td>Fred Chien</td>
+                                    <td>Flex</td>
+                                </tr>
+                                <tr onMouseEnter={() => setAboutUsTab(1)} >
+                                    <td>Adina Cooper</td>
+                                    <td>Backend Lead</td>
+                                </tr>
+                                <tr onMouseEnter={() => setAboutUsTab(2)}>
+                                    <td>Clide Stefani</td>
+                                    <td>Team Lead</td>
+                                </tr>
+                                <tr onMouseEnter={() => setAboutUsTab(3)}>
+                                    <td>Tommy Kim</td>
+                                    <td>Frontend Lead</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div id="about-us-info-right">
+                            <div>{aboutUsText}</div>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div id="about-us-right">
-                    <div>{aboutUsText}</div>
+                    <h2>How it Works</h2>
+                    <p>Recipes are fetched from Edamam API. Our list of Cubberd ingredients is constructed based on every ingredient included in the fetched recipes. When a user inputs any number of ingredients, the backend will return two lists of three recipes. The first list will be ranked in ascending order by “Ingredient Score,” based on how many of the ingredients in the user’s pot are in the recipe. The second list will be ranked in ascending order by “Shopping Score.” This score is determined by how many ingredients in the recipe are already in the user’s Cubberd. The higher the score, the fewer ingredients the user needs to buy. Both sets of recipes are returned to the user, and the user can toggle which score they’d like to use. </p>
                 </div>
             </div>
             

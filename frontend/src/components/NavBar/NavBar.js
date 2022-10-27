@@ -119,19 +119,30 @@ const NavBar = () => {
             </div>
           </div>
         </div>
-        {sessionUser && 
-          <span>
-            Logged in as 
-            <Link to="/profile">
-              {sessionUser.username}
-            </Link> 
-            <div onClick={handleLogout}>
-              Logout
+        <div className="nav-right">
+
+          {sessionUser && 
+            <span className="welcome-user">
+              Hello, {sessionUser.username}!
+            </span>
+          }
+          <div className="nav-links-div">
+            <div className="nav-bar-link">
+              <Link className="nav-bar-link" to="/about">About</Link>
+            </div>
+            <div className="nav-bar-link">
+              <Link className="nav-bar-link" to="/profile">My Recipes</Link>
+            </div>
+            <div className="nav-bar-link" onClick={() => setIsOpen(true)}>
+              Tutorial
+            </div>
+            <div className="nav-bar-link" onClick={handleLogout}>
+                Logout
             </div> 
-          </span>}
-      <div id="start-tour-button" onClick={() => setIsOpen(true)}>
-        Open Tour
-      </div>
+          </div>
+
+         
+        </div>
       </div>  
     </>
   );

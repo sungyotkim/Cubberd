@@ -18,7 +18,12 @@
     width: 80%;
     margin: 0.25em;
     border-radius: 3px;
+}
 
+.recipe-list-item img {
+    height: 00px;
+    width: auto;
+    margin: 0;
 }
 
 

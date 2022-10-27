@@ -18,7 +18,16 @@
     justify-content: center;
 }
 
-#about-us {
+#about-us-bottom-container{
     display: flex;
     justify-content: space-evenly;
+}
+
+#about-us-table-left {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#about-us-right {
+    width: 500px;
 }
