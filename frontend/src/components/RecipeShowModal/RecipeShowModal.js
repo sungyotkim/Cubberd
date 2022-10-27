@@ -42,7 +42,8 @@ function RecipeShowModal({ recipe, recipeContext }) {
                 break;
         }
     }
-
+    const addToPlannedButton = <BsCalendarPlus className={recipeAlreadyPlanned ? "recipe-menu-button active" : "recipe-menu-button"} onClick={e => handleClick(e, "plan")} />
+    const addToFavoritedButton = <AiOutlineHeart className={recipeAlreadyFavorited ? "recipe-menu-button active" : "recipe-menu-button"} onClick={e => handleClick(e, "favorite")} />
     if (recipe) {
         let title;
         let image
@@ -95,7 +96,13 @@ function RecipeShowModal({ recipe, recipeContext }) {
                 </div>
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
-                        <RecipeShow recipe={recipeContext === 'searchResult' ? recipe.recipe : recipe} />
+                        <RecipeShow 
+                        favorited={recipeAlreadyFavorited} 
+                        planned={recipeAlreadyPlanned} 
+                        addToPlannedButton={addToPlannedButton}
+                        addToFavoritedButton={addToFavoritedButton}
+                        recipe={recipeContext === 'searchResult' ? recipe.recipe : recipe}
+                        />
                     </Modal>
                 )}
             </>

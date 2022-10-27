@@ -203,7 +203,8 @@ export const addRecipeToPlanned = (currentUserId, recipe) => async (dispatch) =>
       collection: "planned"
     })
   })
-  dispatch(getCurrentUser());
+  const user = await res.json()
+  dispatch(receiveCurrentUser(user));
 }
 
 // delete recipe from favorited
@@ -227,7 +228,8 @@ export const addRecipeToFavorited = (currentUserId, recipe) => async (dispatch) 
       collection: "favorited"
     })
   })
-  dispatch(getCurrentUser());
+  const user = await res.json()
+  dispatch(receiveCurrentUser(user));
 }
 
 export const deleteRecipeFromPlanned = (currentUserId, recipe) => async (dispatch) => {
