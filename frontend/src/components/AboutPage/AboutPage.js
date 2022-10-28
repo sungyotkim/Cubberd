@@ -6,9 +6,8 @@ import "./AboutPage.css"
 import tommyPic from '../../assets/tommy.png';
 import fredPic from '../../assets/fred.jfif';
 import adinaPic from "../../assets/adina.png";
-// import clidePic from '../../assets/clide.png';
+import clidePic from '../../assets/clide.jfif';
 import { logout } from "../../store/session";
-const clidePic = "";
 
 function AboutPage() {
     const dispatch = useDispatch()
