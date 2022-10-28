@@ -1,6 +1,12 @@
 import { useState } from "react"
 import "./AboutPage.css"
 import { Link } from "react-router-dom";
+import tommyPic from '../../assets/tommy.png';
+import fredPic from '../../assets/fred.jfif';
+import adinaPic from "../../assets/adina.png";
+import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
+// import clidePic from '../../assets/clide.png';
+const clidePic = "";
 
 function AboutPage() {
 
@@ -72,7 +78,70 @@ function AboutPage() {
             </div>
             <div id="about-page-developers" className="main-display-component">
                 <h2>About the developers</h2>
-
+                <div className="teammate-cards-wrapper">
+                    <div className="teammate-card">
+                        <h1>Fred Chien</h1>
+                        <img src={fredPic} />
+                        <div className="teammate-card-role">
+                            Flex
+                        </div>
+                        <div className="teammate-card-links">
+                            <a href="https://github.com/fredchien3/">
+                                <FaGithubSquare />
+                            </a>
+                            <a href="https://www.linkedin.com/in/fchien/">
+                                <FaLinkedin />
+                            </a>
+                        </div>
+                    </div>
+                    <div className="teammate-card">
+                        <h1>Adina Cooper</h1>
+                        <img src={adinaPic} />
+                        <div className="teammate-card-role">
+                            Backend Lead
+                        </div>
+                        <div className="teammate-card-links">
+                            <a href="https://github.com/arcoop/">
+                                <FaGithubSquare />
+                            </a>
+                            <a href="https://www.linkedin.com/in/adina-cooper/">
+                                <FaLinkedin />
+                            </a>
+                        </div>
+                    </div>
+                    <div className="teammate-card">
+                        <h1>Tommy Kim</h1>
+                        <img src={tommyPic} alt="Tommy Kim" />
+                        <div className="teammate-card-role">
+                            Frontend Lead
+                            <span>API handling</span>
+                        </div>
+                        <div className="teammate-card-links">
+                            <a href="https://github.com/sungyotkim">
+                                <FaGithubSquare />
+                            </a>
+                            <a href="https://www.linkedin.com/in/sungyo-kim-ab7a30163">
+                                <FaLinkedin />
+                            </a>
+                        </div>
+                    </div>
+                    <div className="teammate-card">
+                        <h1>Clide Stefani</h1>
+                        <img src={clidePic} />
+                        <div className="teammate-card-role">
+                            Team Lead
+                        </div>
+                        <div className="teammate-card-links">
+                            <a href="https://github.com/Monkwire3/">
+                                <FaGithubSquare />
+                            </a>
+                            <a href="https://www.linkedin.com/in/clide-stefani-5772431a7/">
+                                <FaLinkedin />
+                            </a>
+                        
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
