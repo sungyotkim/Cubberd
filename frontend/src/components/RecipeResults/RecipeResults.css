@@ -1,17 +1,18 @@
 .recipe-cards-container {
-  width: 350px;
-  width: 33%;
+  width: 400px;
+  width: 55%;
   display: flex;
   position: relative;
   margin: auto;
   margin-top: 10%;
   justify-content: center;
   z-index: 3;
+  left: -8px;
 }
 
 .recipe-card {
   z-index: 0;
-  height: 170px;
+  height: 180px;
   border-radius: 5px;
   width: 210px;
   font-size: small;
@@ -29,9 +30,11 @@
 .recipe-card .recipe-list-item {
   background-color: var(--main-light-color);
   width: 89%;
-
 }
 
+.recipe-list-item {
+  text-align: center;
+}
 
 .recipe-card h4 {
   width: 130px;
