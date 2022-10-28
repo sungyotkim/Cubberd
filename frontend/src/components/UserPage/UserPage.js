@@ -30,16 +30,15 @@ function UserPage() {
             <nav className="main-display-component">
                 <div id="user-page-search-container"></div>
                 <div id="user-nav-bar" className="nav-right">
-                    <div className="welcome-user">{sessionUser ? <div className="nav-bar-link" onClick={handleLogout}>Log out</div> : <Redirect to="/login" />}
-                    </div>
-                    <div className="nav-links-div">
+                    {/* <div className="nav-links-div"> */}
                         <div className="nav-bar-link">
                             <Link className="nav-bar-link" to="/about">About</Link>
                         </div>
                         <div className="nav-bar-link">
                             <Link className="nav-bar-link" to="/">Back to Cubberd</Link>
                         </div>
-                    </div>
+                        {sessionUser ? <div className="nav-bar-link" onClick={handleLogout}>Log out</div> : <Redirect to="/login" />}
+                    {/* </div> */}
                 </div>
             </nav>
             <div id="user-page-columns">

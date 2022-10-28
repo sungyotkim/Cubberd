@@ -28,6 +28,7 @@ const Cubberd = () => {
   const [loading, setLoading] = useState(false);
   const [completedAnimation, setCompletedAnimation] = useState(false);
   const [addAllAnimation, setAddAllAnimation] = useState(false)
+  const [userCubberdReversed, setUserCubberdReversed] = useState([])
   const ref = useRef();
   const node = useRef();
 
@@ -92,10 +93,17 @@ const Cubberd = () => {
         idArr.push(ing._id);
       });
       setCubberdIngIds([...idArr]);
+
+      const reversed = [];
+      userCubberd.forEach((ing) => {
+        reversed.unshift(ing);
+      });
+      setUserCubberdReversed([...reversed]);
     }
 
     return () => {
       setCubberdIngIds([]);
+      setUserCubberdReversed([])
     };
   }, [userCubberd]);
 
@@ -166,7 +174,11 @@ const Cubberd = () => {
         setSelectedLi(selectedLi + 1);
       }
     } else if (e.key === "Enter") {
-      addToUserCubberd(searchResults[selectedLi]);
+      if (searchResults[selectedLi]) {
+        if (searchResults[selectedLi]._id) {
+          addToUserCubberd(searchResults[selectedLi]);
+        }
+      }
       setSearchResults([]);
       setSearchQuery("");
     }
@@ -179,6 +191,18 @@ const Cubberd = () => {
     }
   };
 
+  const handleSearchBtn = (e) => {
+    e.preventDefault();
+    console.log(searchResults[selectedLi])
+    if (searchResults[selectedLi]) {
+      if (searchResults[selectedLi]._id) {
+        addToUserCubberd(searchResults[selectedLi]);
+      }
+    }
+    setSearchResults([]);
+    setSearchQuery("");
+  }
+
   const handleEmptyCubberd = (e) => {
     e.preventDefault();
 
@@ -189,11 +213,11 @@ const Cubberd = () => {
     setTimeout(() => {
       setLoading(false)
       setCompletedAnimation(true)
-    }, 500);
+    }, 800);
     
     setTimeout(() => {
       setCompletedAnimation(false);
-    }, 1200);
+    }, 1500);
 
     setPotContents([]);
   };
@@ -245,11 +269,9 @@ const Cubberd = () => {
               onKeyDown={(e) => handleKeyDown(e)}
               onFocus={handleFocus}
             />
-            <div className="cubberd-search-btn">
+            <div className="cubberd-search-btn" onClick={handleSearchBtn}>
               <BiSearchAlt />
             </div>
-          </div>
-          <div className="cubberd-ingredients-container-wrapper">
             {searchResults && searchResults.length > 0 && (
               <ul className="search-results" ref={node}>
                 {searchResults.map((result, i) => {
@@ -266,16 +288,18 @@ const Cubberd = () => {
                 })}
               </ul>
             )}
+          </div>
+          <div className="cubberd-ingredients-container-wrapper">
             {userCubberd &&
               userCubberd.length > 0 &&
-              userCubberd.map((ing, i) => (
+              userCubberdReversed.map((ing, i) => (
                 <CubberdRow
                   ing={ing}
                   currentUser={currentUser}
                   setNonCubberdIngredients={setNonCubberdIngredients}
                   addAllAnimation={addAllAnimation}
                   i={i}
-                  length={userCubberd.length}
+                  length={userCubberdReversed.length}
                   key={`cubberd ${ing} ${i}`}
                 />
               ))}
@@ -306,11 +330,18 @@ const Cubberd = () => {
             {completedAnimation && (
               <div className="checkmark"></div>
             )}
-            <CustomToolTipTop title="Add all to pot?" arrow placement="top-end">
-              <div className="cubberd-footer-options" onClick={handleAddAll}>
-                <SiCodechef />
+            {userCubberd.length > 0 && 
+              <CustomToolTipTop title="Add all to pot?" arrow placement="top-end">
+                <div className="cubberd-footer-options" onClick={handleAddAll}>
+                  <SiCodechef />
+                </div>
+              </CustomToolTipTop>
+            }
+            {userCubberd.length === 0 &&
+              <div className="cubberd-footer-text">
+                  Your cubberd is empty, please add ingredients you own in your kitchen.
               </div>
-            </CustomToolTipTop>
+            }
           </div>
         </div>
       </div>
