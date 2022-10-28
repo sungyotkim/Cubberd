@@ -166,7 +166,11 @@ const Cubberd = () => {
         setSelectedLi(selectedLi + 1);
       }
     } else if (e.key === "Enter") {
-      addToUserCubberd(searchResults[selectedLi]);
+      if (searchResults[selectedLi]) {
+        if (searchResults[selectedLi]._id) {
+          addToUserCubberd(searchResults[selectedLi]);
+        }
+      }
       setSearchResults([]);
       setSearchQuery("");
     }

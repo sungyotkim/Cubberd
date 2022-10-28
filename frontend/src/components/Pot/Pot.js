@@ -29,6 +29,7 @@ const Pot = () => {
   const [recipeResults, setRecipeResults] = useState([[], []])
   const { setOpenDoor, setAnimateRack } = useContext(PotContext);
   const [toggled, setToggled] = useState(false)
+  const [showRecipes, setShowRecipes] = useState(false)
 
   const searchForRecipes = () => {
     const cubberd = [];
@@ -55,7 +56,7 @@ const Pot = () => {
   }, [recipeResultsTotalArr])
   
   useEffect(() => {
-    if (recipeResults && recipeResults.length > 0) {
+    if (recipeResults && recipeResults.length > 0 && showRecipes) {
       if (recipeResults[0].length > 0 && recipeResults[1].length > 0) {
         setAnimateRack(true)
       } else {
@@ -68,17 +69,17 @@ const Pot = () => {
     return () => {
       setAnimateRack(false)
     }
-  }, [recipeResults])
+  }, [recipeResults, showRecipes])
   
 
   const toggleRecipeScore = (e) => {
     e.preventDefault();
     if (displayByShoppingScore) {
       setDisplayByShoppingScore(false)
-      setToggled(false)
+      setToggled(true)
     } else {
       setDisplayByShoppingScore(true)
-      setToggled(true)
+      setToggled(false)
     }
   }
   
@@ -133,7 +134,8 @@ const Pot = () => {
       let knobTimeout = setTimeout(() => {
         setRotate(false);
         setLoadingResult(true);
-        setOpenDoor(true)
+        setOpenDoor(true);
+        setShowRecipes(true);
         if (!rotate) {
           clearTimeout(knobTimeout)
         }
@@ -162,10 +164,12 @@ const Pot = () => {
       setRotate(true)
       setLoadingResult(true)
       setOpenDoor(false)
+      setToggled(false)
+      searchForRecipes();
+      setShowRecipes(false);
       
       let loadingResultTimeout = setTimeout(() => {
         setLoadingResult(false);
-        searchForRecipes();
         if (rotate) {
           clearTimeout(loadingResultTimeout)
         }
@@ -182,7 +186,7 @@ const Pot = () => {
   return (
     <>
       <div className="pot-component-wrapper">
-        {recipesObtained && 
+        {recipesObtained && showRecipes &&
           <div className="pot-recipe-results-wrapper">
             <RecipeResults displayByShoppingScore={displayByShoppingScore} recipeResultsTotalArr={recipeResults} />
           </div>
