@@ -201,11 +201,11 @@ const Cubberd = () => {
     setTimeout(() => {
       setLoading(false)
       setCompletedAnimation(true)
-    }, 500);
+    }, 800);
     
     setTimeout(() => {
       setCompletedAnimation(false);
-    }, 1200);
+    }, 1500);
 
     setPotContents([]);
   };
