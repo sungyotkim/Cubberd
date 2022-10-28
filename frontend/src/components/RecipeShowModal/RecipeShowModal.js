@@ -1,5 +1,5 @@
 import { Modal } from '../../context/Modal';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import RecipeShow from '../RecipeShow/RecipeShow';
 import './RecipeShowModal.css';
 import { BsCalendarPlus } from 'react-icons/bs';
@@ -13,6 +13,16 @@ function RecipeShowModal({ recipe, recipeContext }) {
     const [showModal, setShowModal] = useState(false);
     const currentUser = useSelector(state => state.session.user ? state.session.user : {})
     const currentUserId = currentUser._id;
+    const [resultRecipe, setResultRecipe] = useState()
+
+    useEffect(() => {
+        if (recipe.recipe) {
+            setResultRecipe(recipe.recipe);
+        } else {
+            setResultRecipe(recipe)
+        }
+    }, [recipe])
+    
 
     let favoritedRecipes;
     let plannedRecipes;
@@ -29,16 +39,16 @@ function RecipeShowModal({ recipe, recipeContext }) {
         e.stopPropagation();
         switch (action) {
             case "plan":
-                dispatch(addRecipeToPlanned(currentUserId, recipe));
+                dispatch(addRecipeToPlanned(currentUserId, resultRecipe));
                 break;
             case "unfavorite":
-                dispatch(deleteRecipeFromFavorited(currentUserId, recipe));
+                dispatch(deleteRecipeFromFavorited(currentUserId, resultRecipe));
                 break;
             case "favorite":
-                dispatch(addRecipeToFavorited(currentUserId, recipe));
+                dispatch(addRecipeToFavorited(currentUserId, resultRecipe));
                 break;
             case "unplan":
-                dispatch(deleteRecipeFromPlanned(currentUserId, recipe));
+                dispatch(deleteRecipeFromPlanned(currentUserId, resultRecipe));
                 break;
         }
     }

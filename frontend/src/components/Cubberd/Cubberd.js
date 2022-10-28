@@ -191,6 +191,18 @@ const Cubberd = () => {
     }
   };
 
+  const handleSearchBtn = (e) => {
+    e.preventDefault();
+    console.log(searchResults[selectedLi])
+    if (searchResults[selectedLi]) {
+      if (searchResults[selectedLi]._id) {
+        addToUserCubberd(searchResults[selectedLi]);
+      }
+    }
+    setSearchResults([]);
+    setSearchQuery("");
+  }
+
   const handleEmptyCubberd = (e) => {
     e.preventDefault();
 
@@ -257,7 +269,7 @@ const Cubberd = () => {
               onKeyDown={(e) => handleKeyDown(e)}
               onFocus={handleFocus}
             />
-            <div className="cubberd-search-btn">
+            <div className="cubberd-search-btn" onClick={handleSearchBtn}>
               <BiSearchAlt />
             </div>
             {searchResults && searchResults.length > 0 && (
