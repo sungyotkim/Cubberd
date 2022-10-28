@@ -37,7 +37,7 @@ const steps = [
     content: 'By default, recipes are ranked by Ingredient Score: this allows you to maximize use of your already owned ingredients, even if you have to grocery shop to fill in the gaps.'
   },
   {
-    selector: '.toggle-btn',
+    selector: '.toggle-btn-container',
     content: 'If you want to minimize the grocery shopping instead, you can toggle to rank recipes by Shopping Score. The higher this score, the fewer ingredients you have to go out and buy.'
   },
   {
@@ -45,7 +45,7 @@ const steps = [
     content: 'This handy shopping list will help you keep track of what ingredients to pick up during your next grocery trip.'
   },
   {
-    selector: '.user-profile-link',
+    selector: '#my-recipes-link',
     content: 'But wait, there\'s more! You can click this link to navigate to the User Page, where you can find all your saved recipes.'
   },
   {
