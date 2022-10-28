@@ -131,7 +131,7 @@ const NavBar = () => {
               <Link className="nav-bar-link" to="/about">About</Link>
             </div>
             <div className="nav-bar-link">
-              <Link className="nav-bar-link" to="/profile">My Recipes</Link>
+              <Link id="my-recipes-link" className="nav-bar-link" to="/profile">My Recipes</Link>
             </div>
             <div className="nav-bar-link" onClick={() => setIsOpen(true)}>
               Tutorial
