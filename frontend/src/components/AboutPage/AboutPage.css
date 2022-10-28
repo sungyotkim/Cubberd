@@ -1,11 +1,14 @@
 #about-page-nav-bar {
     width: calc(100% - 1em);
-    height: 5%;
+    /* height: 5%; */
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
+#about-page-nav-links {
+    width: 100%;
+}
 
 #about-page {
     display: flex;

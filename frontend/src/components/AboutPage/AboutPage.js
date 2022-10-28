@@ -1,5 +1,6 @@
 import { useState } from "react"
 import "./AboutPage.css"
+import { Link } from "react-router-dom";
 
 function AboutPage() {
 
@@ -27,9 +28,21 @@ function AboutPage() {
 
         return (
         <div id="about-page" className="about-display main-display">
-            <nav id="about-page-nav-bar" className="main-display-component">
+            {/* <nav id="about-page-nav-bar" className="main-display-component">
                 <a href='/'>Home</a>
                 <a href='/profile'>Profile</a>
+            </nav> */}
+            <nav id="about-page-nav-bar" className="main-display-component">
+                <div id="about-page-nav-links" className="nav-links-div">
+                    <div className="nav-bar-link">
+                        <Link className="nav-bar-link" to="/">Back to Cubberd</Link>
+                    </div>
+                    <div className="nav-bar-link">
+                        <Link className="nav-bar-link" to="/profile">My Recipes</Link>
+                    </div>
+                    <div className="nav-bar-link">Logout
+                    </div>
+                </div>
             </nav>
 
             <div id="about-page-content-top">
