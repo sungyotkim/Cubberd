@@ -9,10 +9,10 @@ const recipeArr = require('./recipeArr');
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true})
   .then (() => {
-      console.log("Connected to mongoDB successfully")
+      // console.log("Connected to mongoDB successfully")
       })
   .catch (err => {
-      console.log(err)
+      // console.log(err)
   }) 
 
 const nestedRecipes = recipeArr;
@@ -201,7 +201,7 @@ const seedDB = async () => {
 };
 
 seedDB().then(() => {
-  console.log('All ingredients reseeded');
-  console.log('All recipes reseeded');
+  // console.log('All ingredients reseeded');
+  // console.log('All recipes reseeded');
   mongoose.connection.close();
 });

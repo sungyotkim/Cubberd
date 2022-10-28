@@ -193,7 +193,6 @@ const Cubberd = () => {
 
   const handleSearchBtn = (e) => {
     e.preventDefault();
-    console.log(searchResults[selectedLi])
     if (searchResults[selectedLi]) {
       if (searchResults[selectedLi]._id) {
         addToUserCubberd(searchResults[selectedLi]);
