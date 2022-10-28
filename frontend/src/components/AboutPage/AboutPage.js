@@ -89,7 +89,8 @@ function AboutPage() {
                         <h1>Fred Chien</h1>
                         <img src={fredPic} />
                         <div className="teammate-card-role">
-                            Flex
+                            Flex Developer
+                            <span>Bug exterminator</span>
                         </div>
                         <div className="teammate-card-links">
                             <a href="https://github.com/fredchien3/">
@@ -105,6 +106,7 @@ function AboutPage() {
                         <img src={adinaPic} />
                         <div className="teammate-card-role">
                             Backend Lead
+                            <span>Algorithm expert</span>
                         </div>
                         <div className="teammate-card-links">
                             <a href="https://github.com/arcoop/">
@@ -120,7 +122,7 @@ function AboutPage() {
                         <img src={tommyPic} alt="Tommy Kim" />
                         <div className="teammate-card-role">
                             Frontend Lead
-                            <span>API handling</span>
+                            <span>API handler</span>
                         </div>
                         <div className="teammate-card-links">
                             <a href="https://github.com/sungyotkim">
@@ -136,6 +138,7 @@ function AboutPage() {
                         <img src={clidePic} />
                         <div className="teammate-card-role">
                             Team Lead
+                            <span>Flex developer</span>
                         </div>
                         <div className="teammate-card-links">
                             <a href="https://github.com/Monkwire3/">
