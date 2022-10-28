@@ -112,12 +112,12 @@ const Pot = () => {
       return;
     }
 
-    if (displayByShoppingScore) {
-      setDisplayByShoppingScore(false)
+    if (!displayByShoppingScore) {
+      setDisplayByShoppingScore(true)
       setToggled(true)
       setDisplayNotification([displayNotifications[4]]);
     } else {
-      setDisplayByShoppingScore(true)
+      setDisplayByShoppingScore(false)
       setToggled(false)
       setDisplayNotification([displayNotifications[2]]);
     }

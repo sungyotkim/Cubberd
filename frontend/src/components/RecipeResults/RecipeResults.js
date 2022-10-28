@@ -2,7 +2,8 @@ import RecipeResult from "./RecipeResult/RecipeResult";
 import "./RecipeResults.css"
 
 const RecipeResults = ({ displayByShoppingScore, recipeResultsTotalArr }) => {
-  if (!displayByShoppingScore) {
+  console.log(displayByShoppingScore)
+  if (displayByShoppingScore) {
     return ( 
       <>
         <div className="recipe-cards-container">
