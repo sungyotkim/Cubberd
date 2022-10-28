@@ -228,7 +228,7 @@ router.post("/:userId/savedRecipes", requireUser, async(req, res, next) => {
     if (!currentUser.savedRecipes.planned.some(rec => rec.url === recipe.url)) currentUser.savedRecipes.planned.push(recipe)
   }
   currentUser.save()
-  return res.json(currentUser.savedRecipes)
+  return res.json(currentUser)
 })
 
 router.delete('/:userId/savedRecipes', requireUser, async (req, res) => {
