@@ -33,7 +33,7 @@ function AboutPage() {
                 <a href='/profile'>Profile</a>
             </nav> */}
             <nav id="about-page-nav-bar" className="main-display-component">
-                <div className="nav-links-div">
+                <div id="about-page-nav-links" className="nav-links-div">
                     <div className="nav-bar-link">
                         <Link className="nav-bar-link" to="/">Back to Cubberd</Link>
                     </div>

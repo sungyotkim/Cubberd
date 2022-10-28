@@ -6,6 +6,9 @@
     align-items: center;
 }
 
+#about-page-nav-links {
+    width: 100%;
+}
 
 #about-page {
     display: flex;
