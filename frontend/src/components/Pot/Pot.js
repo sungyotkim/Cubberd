@@ -48,7 +48,7 @@ const Pot = () => {
       setDisplayNotification([displayNotifications[3]]);
     } else if ( rotate && loadingResult) {
       setDisplayNotification([displayNotifications[1]]);
-    } else if ( !rotate && !loadingResult && recipeResults[0].length === 0) {
+    } else if ( !rotate && !loadingResult && recipeResults[0].length === 0 && showRecipes) {
       setDisplayNotification([displayNotifications[5]]);
     } else if ( !rotate && !loadingResult && recipeResults[0].length > 0) {
       setDisplayNotification([displayNotifications[2]]);
@@ -59,7 +59,7 @@ const Pot = () => {
     return () => {
       setDisplayNotification([displayNotifications[0]])
     }
-  }, [rotate, potIsEmpty, loadingResult, recipeResults])
+  }, [rotate, potIsEmpty, loadingResult, recipeResults, showRecipes])
   
 
   const searchForRecipes = () => {
@@ -219,6 +219,10 @@ const Pot = () => {
 
   const clearRecipes = (e) => {
     e.preventDefault();
+
+    if (recipeResults[0].length === 0) {
+      return;
+    }
 
     setDisplayNotification([displayNotifications[0]]);
     dispatch(removeRecipeResults());
