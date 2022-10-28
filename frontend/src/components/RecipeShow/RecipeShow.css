@@ -1,6 +1,6 @@
 #recipe {
-    /* height: 800px; 
-    width: 600px; */
+    /* height: 800px; */
+    width: 600px;
     background-color: var(--tertiary-light-color);
     /* background-color: var(--secondary-light-color); */
     color: var(--secondary-dark-color);
