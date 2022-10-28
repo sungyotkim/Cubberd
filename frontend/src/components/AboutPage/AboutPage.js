@@ -1,15 +1,14 @@
 import { useState } from "react"
+import { Link, Redirect, useHistory } from "react-router-dom";
+import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import "./AboutPage.css"
-import { Link } from "react-router-dom";
 import tommyPic from '../../assets/tommy.png';
 import fredPic from '../../assets/fred.jfif';
 import adinaPic from "../../assets/adina.png";
-import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
 // import clidePic from '../../assets/clide.png';
-const clidePic = "";
-import { Link, Redirect, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
+const clidePic = "";
 
 function AboutPage() {
     const dispatch = useDispatch()
