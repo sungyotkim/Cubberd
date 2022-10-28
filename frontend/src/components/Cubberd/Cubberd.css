@@ -242,6 +242,7 @@
   justify-content: flex-end;
   gap: 10px;
   transition: all 0.3s ease-in-out;
+  position: relative;
 }
 
 .cubberd-footer-options {
@@ -255,7 +256,10 @@
   display: flex;
   font-weight: 700;
   width: 100%;
+  width: calc(100% - 125px);
+  padding: 2px 0;
   text-align: center;
+  line-height: 15px;
 }
 
 
@@ -343,3 +347,9 @@
   }
 }
 
+.user-cubberd-text {
+  position: absolute;
+  left: 5px;
+  width: 125px;
+  font-weight: bold;
+}

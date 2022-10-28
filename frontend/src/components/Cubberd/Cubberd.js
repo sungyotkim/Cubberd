@@ -305,6 +305,9 @@ const Cubberd = () => {
               ))}
           </div>
           <div className="cubberd-footer">
+            <div className="user-cubberd-text">
+              {currentUser.username}'s Cubberd
+            </div>
             {!loading && !completedAnimation && userCubberd.length > 0 && (
               <CustomToolTipTop
                 title="Empty your cubberd?"
