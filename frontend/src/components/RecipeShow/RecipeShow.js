@@ -30,7 +30,7 @@ function RecipeShow({recipe, favorited, planned, addToPlannedButton, addToFavori
             <div id="recipe-show-links">
                 {favorited ? "" : <span>{addToFavoritedButton}</span>}
                 {planned ? "" : <span>{addToPlannedButton}</span>}
-                <span><a href={recipe.url}>Source</a></span>
+                <span><a href={recipe.url} target={"_blank"} rel="noreferrer">Source</a></span>
             </div>
 
         </div>

@@ -13,22 +13,54 @@ const Pot = () => {
   const dispatch = useDispatch();
   const recipeResultsTotalArr =  useSelector((state) => state.recipeResults);
   const [displayByShoppingScore, setDisplayByShoppingScore] = useState(false);
-  const [recipesObtained, setRecipesObtained] = useState(false)
-  const [rotate, setRotate] = useState(false)
-  const [flameOne, setFlameOne] = useState(false)
-  const [flameTwo, setFlameTwo] = useState(false)
-  const [flameThree, setFlameThree] = useState(false)
-  const [flameFour, setFlameFour] = useState(false)
-  const [flameFive, setFlameFive] = useState(false)
-  const [blueflameOne, setBlueFlameOne] = useState(false)
-  const [blueflameTwo, setBlueFlameTwo] = useState(false)
-  const [blueflameThree, setBlueFlameThree] = useState(false)
-  const [blueflameFour, setBlueFlameFour] = useState(false)
-  const [blueflameFive, setBlueFlameFive] = useState(false)
-  const [loadingResult, setLoadingResult] = useState(true)
-  const [recipeResults, setRecipeResults] = useState([[], []])
+  const [recipesObtained, setRecipesObtained] = useState(false);
+  const [rotate, setRotate] = useState(false);
+  const [flameOne, setFlameOne] = useState(false);
+  const [flameTwo, setFlameTwo] = useState(false);
+  const [flameThree, setFlameThree] = useState(false);
+  const [flameFour, setFlameFour] = useState(false);
+  const [flameFive, setFlameFive] = useState(false);
+  const [blueflameOne, setBlueFlameOne] = useState(false);
+  const [blueflameTwo, setBlueFlameTwo] = useState(false);
+  const [blueflameThree, setBlueFlameThree] = useState(false);
+  const [blueflameFour, setBlueFlameFour] = useState(false);
+  const [blueflameFive, setBlueFlameFive] = useState(false);
+  const [loadingResult, setLoadingResult] = useState(true);
+  const [recipeResults, setRecipeResults] = useState([[], []]);
   const { setOpenDoor, setAnimateRack } = useContext(PotContext);
-  const [toggled, setToggled] = useState(false)
+  const [toggled, setToggled] = useState(false);
+  const [showRecipes, setShowRecipes] = useState(false);
+  const [potIsEmpty, setPotIsEmpty] = useState(false);
+  
+  const displayNotifications = [
+    "Turn on the stove to search for recipes!",
+    "Searching...",
+    "Done! Ranked by ingredient score.",
+    "Please add an item to the pot before searching!",
+    "Done! Ranked by shopping score.",
+    "Please wait a little longer..."
+  ]
+
+  const [displayNotification, setDisplayNotification] = useState([displayNotifications[0]])
+
+  useEffect(() => {
+    if (potIsEmpty) {
+      setDisplayNotification([displayNotifications[3]]);
+    } else if ( rotate && loadingResult) {
+      setDisplayNotification([displayNotifications[1]]);
+    } else if ( !rotate && !loadingResult && recipeResults[0].length === 0 && showRecipes) {
+      setDisplayNotification([displayNotifications[5]]);
+    } else if ( !rotate && !loadingResult && recipeResults[0].length > 0) {
+      setDisplayNotification([displayNotifications[2]]);
+    } else {
+      setDisplayNotification([displayNotifications[0]]);
+    }
+  
+    return () => {
+      setDisplayNotification([displayNotifications[0]])
+    }
+  }, [rotate, potIsEmpty, loadingResult, recipeResults, showRecipes])
+  
 
   const searchForRecipes = () => {
     const cubberd = [];
@@ -55,7 +87,7 @@ const Pot = () => {
   }, [recipeResultsTotalArr])
   
   useEffect(() => {
-    if (recipeResults && recipeResults.length > 0) {
+    if (recipeResults && recipeResults.length > 0 && showRecipes) {
       if (recipeResults[0].length > 0 && recipeResults[1].length > 0) {
         setAnimateRack(true)
       } else {
@@ -68,17 +100,26 @@ const Pot = () => {
     return () => {
       setAnimateRack(false)
     }
-  }, [recipeResults])
+  }, [recipeResults, showRecipes])
   
 
   const toggleRecipeScore = (e) => {
     e.preventDefault();
+
+    if (!showRecipes) {
+      return;
+    } else if (recipeResults[0].length === 0) {
+      return;
+    }
+
     if (displayByShoppingScore) {
       setDisplayByShoppingScore(false)
-      setToggled(false)
+      setToggled(true)
+      setDisplayNotification([displayNotifications[4]]);
     } else {
       setDisplayByShoppingScore(true)
-      setToggled(true)
+      setToggled(false)
+      setDisplayNotification([displayNotifications[2]]);
     }
   }
   
@@ -132,8 +173,9 @@ const Pot = () => {
 
       let knobTimeout = setTimeout(() => {
         setRotate(false);
-        setLoadingResult(true);
-        setOpenDoor(true)
+        setLoadingResult(false);
+        setOpenDoor(true);
+        setShowRecipes(true);
         if (!rotate) {
           clearTimeout(knobTimeout)
         }
@@ -158,31 +200,39 @@ const Pot = () => {
     e.preventDefault();
     setRecipeResults([[], []])
 
+    if (potContents.length === 0) {
+      setPotIsEmpty(true);
+      return
+    } else {
+      setPotIsEmpty(false);
+    }
+
     if (!rotate) {
       setRotate(true)
       setLoadingResult(true)
       setOpenDoor(false)
-      
-      let loadingResultTimeout = setTimeout(() => {
-        setLoadingResult(false);
-        searchForRecipes();
-        if (rotate) {
-          clearTimeout(loadingResultTimeout)
-        }
-      }, 1000);
+      setToggled(false)
+      searchForRecipes();
+      setShowRecipes(false);
     } 
   }
 
   const clearRecipes = (e) => {
     e.preventDefault();
 
+    if (recipeResults[0].length === 0) {
+      return;
+    }
+
+    setDisplayNotification([displayNotifications[0]]);
     dispatch(removeRecipeResults());
+    setShowRecipes(false);
   }
 
   return (
     <>
       <div className="pot-component-wrapper">
-        {recipesObtained && 
+        {recipesObtained && showRecipes &&
           <div className="pot-recipe-results-wrapper">
             <RecipeResults displayByShoppingScore={displayByShoppingScore} recipeResultsTotalArr={recipeResults} />
           </div>
@@ -261,9 +311,7 @@ const Pot = () => {
               </div>
             </CustomToolTipBottom>
             <div className="stove-display">
-              {!rotate && "Turn on the stove to search for recipes!"}
-              {rotate && loadingResult && "Searching..."}
-              {rotate && !loadingResult && "Done!"}
+              {displayNotification}
             </div>
 
             <div 

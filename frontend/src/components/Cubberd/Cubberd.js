@@ -28,6 +28,7 @@ const Cubberd = () => {
   const [loading, setLoading] = useState(false);
   const [completedAnimation, setCompletedAnimation] = useState(false);
   const [addAllAnimation, setAddAllAnimation] = useState(false)
+  const [userCubberdReversed, setUserCubberdReversed] = useState([])
   const ref = useRef();
   const node = useRef();
 
@@ -92,10 +93,17 @@ const Cubberd = () => {
         idArr.push(ing._id);
       });
       setCubberdIngIds([...idArr]);
+
+      const reversed = [];
+      userCubberd.forEach((ing) => {
+        reversed.unshift(ing);
+      });
+      setUserCubberdReversed([...reversed]);
     }
 
     return () => {
       setCubberdIngIds([]);
+      setUserCubberdReversed([])
     };
   }, [userCubberd]);
 
@@ -166,7 +174,11 @@ const Cubberd = () => {
         setSelectedLi(selectedLi + 1);
       }
     } else if (e.key === "Enter") {
-      addToUserCubberd(searchResults[selectedLi]);
+      if (searchResults[selectedLi]) {
+        if (searchResults[selectedLi]._id) {
+          addToUserCubberd(searchResults[selectedLi]);
+        }
+      }
       setSearchResults([]);
       setSearchQuery("");
     }
@@ -248,8 +260,6 @@ const Cubberd = () => {
             <div className="cubberd-search-btn">
               <BiSearchAlt />
             </div>
-          </div>
-          <div className="cubberd-ingredients-container-wrapper">
             {searchResults && searchResults.length > 0 && (
               <ul className="search-results" ref={node}>
                 {searchResults.map((result, i) => {
@@ -266,16 +276,18 @@ const Cubberd = () => {
                 })}
               </ul>
             )}
+          </div>
+          <div className="cubberd-ingredients-container-wrapper">
             {userCubberd &&
               userCubberd.length > 0 &&
-              userCubberd.map((ing, i) => (
+              userCubberdReversed.map((ing, i) => (
                 <CubberdRow
                   ing={ing}
                   currentUser={currentUser}
                   setNonCubberdIngredients={setNonCubberdIngredients}
                   addAllAnimation={addAllAnimation}
                   i={i}
-                  length={userCubberd.length}
+                  length={userCubberdReversed.length}
                   key={`cubberd ${ing} ${i}`}
                 />
               ))}
