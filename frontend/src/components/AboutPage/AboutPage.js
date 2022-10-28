@@ -1,11 +1,18 @@
 import { useState } from "react"
 import "./AboutPage.css"
-import { Link } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/session";
 
 function AboutPage() {
-
+    const dispatch = useDispatch()
+    const history = useHistory()
     const [index, setIndex] = useState();
     const [aboutUsTab, setAboutUsTab] = useState()
+    const handleLogout = () => {
+        dispatch(logout())
+        history.push('/')
+    }
 
     // const optionA = <div id="optionA" ></div>
     // const optionB = <div id="optionB" >Still no cubberd. You order in once again. Your wallet takes the hit. Your food goes bad.</div>
@@ -40,7 +47,7 @@ function AboutPage() {
                     <div className="nav-bar-link">
                         <Link className="nav-bar-link" to="/profile">My Recipes</Link>
                     </div>
-                    <div className="nav-bar-link">Logout
+                    <div onClick={handleLogout} className="nav-bar-link">Logout
                     </div>
                 </div>
             </nav>
