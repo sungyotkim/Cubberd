@@ -250,6 +250,14 @@
   cursor: pointer;
 }
 
+.cubberd-footer-text {
+  display: flex;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+}
+
+
 /* Loading animation from loading.io */
 .lds-ring {
   display: inline-block;

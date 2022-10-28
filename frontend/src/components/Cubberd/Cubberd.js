@@ -318,11 +318,18 @@ const Cubberd = () => {
             {completedAnimation && (
               <div className="checkmark"></div>
             )}
-            <CustomToolTipTop title="Add all to pot?" arrow placement="top-end">
-              <div className="cubberd-footer-options" onClick={handleAddAll}>
-                <SiCodechef />
+            {userCubberd.length > 0 && 
+              <CustomToolTipTop title="Add all to pot?" arrow placement="top-end">
+                <div className="cubberd-footer-options" onClick={handleAddAll}>
+                  <SiCodechef />
+                </div>
+              </CustomToolTipTop>
+            }
+            {userCubberd.length === 0 &&
+              <div className="cubberd-footer-text">
+                  Your cubberd is empty, please add ingredients you own in your kitchen.
               </div>
-            </CustomToolTipTop>
+            }
           </div>
         </div>
       </div>
