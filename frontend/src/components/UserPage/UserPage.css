@@ -43,7 +43,7 @@
     width: 20%;
     border-radius: 5px;
     margin: 1em;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
     display: flex;
     flex-direction: column;
     font-size: medium;
