@@ -101,5 +101,8 @@
 }
 
 #user-nav-bar {
-    width: 200px;
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
