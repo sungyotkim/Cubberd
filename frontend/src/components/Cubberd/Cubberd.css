@@ -20,7 +20,7 @@
   align-items: center;
   transition: transform 1.5s;
   transform-origin: left;
-  z-index: 1;
+  z-index: 3;
 }
 
 .cubberd-door-pattern {
@@ -68,8 +68,6 @@
   position: relative;
   flex-direction: column;
   background-color: var(--main-component-color);
-  /* background-color: var(--secondary-light-color); */
-  /* border: 5px solid black; */
 }
 
 .cubberd-search-bar-container {
@@ -117,15 +115,15 @@
 
 .cubberd-ingredients-container-wrapper {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   width: calc(100% - 5px);
   height: 662px;
-  box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: scroll;
   position: relative;
   padding: 0 5px;
-  justify-content: flex-end;
+  box-sizing: border-box;
+  justify-content: flex-start;
 }
 
 .search-results {
@@ -140,7 +138,7 @@
   padding: 0;
   box-sizing: border-box;
   position: absolute;
-  top: 0;
+  top: 40px;
   left: 0;
   z-index: 10;
 }
