@@ -191,6 +191,18 @@ const Cubberd = () => {
     }
   };
 
+  const handleSearchBtn = (e) => {
+    e.preventDefault();
+    console.log(searchResults[selectedLi])
+    if (searchResults[selectedLi]) {
+      if (searchResults[selectedLi]._id) {
+        addToUserCubberd(searchResults[selectedLi]);
+      }
+    }
+    setSearchResults([]);
+    setSearchQuery("");
+  }
+
   const handleEmptyCubberd = (e) => {
     e.preventDefault();
 
@@ -201,11 +213,11 @@ const Cubberd = () => {
     setTimeout(() => {
       setLoading(false)
       setCompletedAnimation(true)
-    }, 500);
+    }, 800);
     
     setTimeout(() => {
       setCompletedAnimation(false);
-    }, 1200);
+    }, 1500);
 
     setPotContents([]);
   };
@@ -257,7 +269,7 @@ const Cubberd = () => {
               onKeyDown={(e) => handleKeyDown(e)}
               onFocus={handleFocus}
             />
-            <div className="cubberd-search-btn">
+            <div className="cubberd-search-btn" onClick={handleSearchBtn}>
               <BiSearchAlt />
             </div>
             {searchResults && searchResults.length > 0 && (
@@ -318,11 +330,18 @@ const Cubberd = () => {
             {completedAnimation && (
               <div className="checkmark"></div>
             )}
-            <CustomToolTipTop title="Add all to pot?" arrow placement="top-end">
-              <div className="cubberd-footer-options" onClick={handleAddAll}>
-                <SiCodechef />
+            {userCubberd.length > 0 && 
+              <CustomToolTipTop title="Add all to pot?" arrow placement="top-end">
+                <div className="cubberd-footer-options" onClick={handleAddAll}>
+                  <SiCodechef />
+                </div>
+              </CustomToolTipTop>
+            }
+            {userCubberd.length === 0 &&
+              <div className="cubberd-footer-text">
+                  Your cubberd is empty, please add ingredients you own in your kitchen.
               </div>
-            </CustomToolTipTop>
+            }
           </div>
         </div>
       </div>
