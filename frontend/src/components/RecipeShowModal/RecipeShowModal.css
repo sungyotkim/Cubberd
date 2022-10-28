@@ -1,0 +1,42 @@
+.menu-items {
+    display: flex;
+    flex-direction: row ;
+    justify-content: space-between;
+}
+
+.favorited {
+    width: 100%;
+}
+
+
+.menu-items-search-result {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.recipe-list-item {
+    display: flex;
+    overflow: hidden;
+    min-height: 100px;
+}
+
+.recipe-list-item img {
+    width: 150px;
+    object-fit: cover;
+    margin: auto;
+}
+
+.recipe-menu-button {
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.recipe-menu-button:hover {
+    background-color: rgb(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.recipe-menu-button.active {
+    color: red;
+}

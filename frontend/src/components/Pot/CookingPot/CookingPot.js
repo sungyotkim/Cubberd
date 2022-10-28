@@ -1,19 +1,54 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import cookingPot from "../../../assets/cooking-pot.png";
 import cookingPotLid from "../../../assets/cooking-pot-lid.png";
 import "./CookingPot.css";
+import { PotContext } from "../../../context/PotContext";
 
-export default function CookingPot() {
+export default function CookingPot({ loadingResult }) {
   const [lidUp, setLidUp] = useState(false);
+  const [removeLid, setRemoveLid] = useState(false);
+  const [lidClassName, setLidClassName] = useState("cooking-pot-img")
+  const { addingIngredient } = useContext(PotContext)
 
+  useEffect(() => {
+    if (loadingResult) {
+      setRemoveLid(false)
+    } else if (!loadingResult) {
+      setRemoveLid(true)
+    }
 
-  const hoverLid = () => {
-    setLidUp(true);
-  }
+    return () => {
+      setRemoveLid(false)
+    }
+  }, [loadingResult])
 
-  const unhoverLid = () => {
-    setLidUp(false);
-  }
+  useEffect(() => {
+    if (addingIngredient) {
+      setLidUp(true)
+    } else {
+      setLidUp(false)
+    }
+
+    return () => {
+      setLidUp(false)
+    }
+  }, [addingIngredient])
+  
+
+  useEffect(() => {
+    if (lidUp) {
+      setLidClassName("cooking-pot-img hover-lid")
+    } else if (removeLid) {
+      setLidClassName("cooking-pot-img remove-lid")
+    } else {
+      setLidClassName("cooking-pot-img")
+    }
+  
+    return () => {
+      setLidClassName("cooking-pot-img")
+    }
+  }, [lidUp, removeLid])
+  
 
 return (
     <>
@@ -21,13 +56,11 @@ return (
         src={cookingPot}
         alt="black ceramic bowl with lid by Alfonso Escu"
         className="cooking-pot-img"
-        onMouseEnter={hoverLid}
-        onMouseLeave={unhoverLid}
       />
       <img
         src={cookingPotLid}
         alt="black ceramic bowl with lid by Alfonso Escu"
-        className={lidUp ? "cooking-pot-img hover-lid" : "cooking-pot-img"}
+        className={lidClassName}
         id="cooking-pot-lid"
       />
     </>

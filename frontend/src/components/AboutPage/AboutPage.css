@@ -1,0 +1,71 @@
+#about-page-nav-bar {
+    width: calc(100% - 1em);
+    /* height: 5%; */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#about-page-nav-links {
+    width: 100%;
+}
+
+#about-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--main-bg-color);
+}
+
+#about-page-content-top {
+    display: flex;
+    flex-direction: row;
+    height: 50%;
+    width: 100%;
+}
+
+#about-page-adventure {
+    width: 65%;
+    height: 100%;
+}
+
+#about-page-how-it-works {
+    width: 35%;
+    height: 100%;
+}
+
+#about-page-developers {
+    width: calc(100% - 1em);
+    height: calc(45% - 3em);
+}
+
+#about-page-options {
+    display: flex;
+    justify-content: space-around;
+}
+
+.option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 270px;
+    height: 50px;
+}
+
+.option p {
+    padding: 0.25em;
+    border-radius: 8px;
+    background-color: var(--tertiary-light-color);
+    box-sizing: border-box;
+}
+
+.option p:hover {
+    cursor: pointer;
+    border: 1px solid var(--main-dark-color)
+}
+
+.active p {
+    font-weight: bolder;
+    background-color: var(--main-lighter-color);
+}
+

@@ -45,7 +45,7 @@ const LoginForm = () => {
           setPassword(tempPassword);
           return dispatch(login({ email: tempEmail, password: tempPassword }));
         }
-      }, 100);
+      }, 50);
     };
 
     loginDemoIntervalAnimation();

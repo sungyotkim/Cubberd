@@ -2,10 +2,9 @@
   width: 100%;
   height: 100%;
   position: relative;
-  border: 5px solid rgba(238, 190, 146, 0.7);
-  border: 5px solid #61413d;
   border: 5px solid var(--main-dark-color);
   box-sizing: border-box;
+  z-index: 1;
 }
 
 .cubberd-door {
@@ -21,7 +20,7 @@
   align-items: center;
   transition: transform 1.5s;
   transform-origin: left;
-  z-index: 1;
+  z-index: 3;
 }
 
 .cubberd-door-pattern {
@@ -31,6 +30,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  -webkit-box-shadow: inset 0 2px 20px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: inset 0 2px 20px rgba(0, 0, 0, 0.25);
   box-shadow: inset 0 2px 20px rgba(0, 0, 0, 0.25);
 }
 
@@ -38,17 +39,20 @@
   border: 4px solid rgba(124, 184, 150, 0.3);
   width: 90%;
   height: 95%;
+  -webkit-box-shadow: inset 0 2px 20px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: inset 0 2px 20px rgba(0, 0, 0, 0.25);
   box-shadow: inset 0 2px 20px rgba(0, 0, 0, 0.25);
 }
 
 .cubberd-door-knob {
-  background-color: silver;
+  background-color: var(--main-lighter-color);
   width: 10px;
   height: 120px;
   position: absolute;
   bottom: 10%;
   right: 10px;
   cursor: pointer;
+  border-radius: 3px;
 }
 
 .cubberd-door-open {
@@ -63,7 +67,7 @@
   box-sizing: border-box;
   position: relative;
   flex-direction: column;
-  border: 5px solid black;
+  background-color: var(--main-component-color);
 }
 
 .cubberd-search-bar-container {
@@ -86,6 +90,8 @@
   box-sizing: border-box;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
+  background-color: var(--main-component-color);
+  background-color: var(--main-lighter-color);
 }
 
 .cubberd-search-bar:focus {
@@ -98,14 +104,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(238, 190, 146, 0.7);
+  background-color: var(--main-lighter-dark-color);
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
   cursor: pointer;
 }
 
 .cubberd-search-btn:hover {
-  background-color: rgb(207, 165, 126);
+  background-color: var(--main-light-color);
 }
 
 .cubberd-ingredients-container-wrapper {
@@ -113,11 +119,12 @@
   flex-direction: column;
   width: calc(100% - 5px);
   height: 662px;
-  box-sizing: border-box;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
   position: relative;
   padding: 0 5px;
+  box-sizing: border-box;
+  justify-content: flex-start;
 }
 
 .search-results {
@@ -125,14 +132,14 @@
   min-height: 22px;
   max-height: 130px;
   width: calc(100% - 42px);
-  background-color: white;
+  background-color: var(--main-light-color);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   padding: 0;
   box-sizing: border-box;
   position: absolute;
-  top: 0;
+  top: 40px;
   left: 0;
   z-index: 10;
 }
@@ -147,11 +154,13 @@
 }
 
 .search-results > li:hover {
-  background-color: #ebebeb;
+  background-color: var(--main-lighter-color);
 }
 
 .selected {
-  background-color: yellow;
+  border: 1px solid var(--main-dark-color);
+  box-sizing: border-box;
+  padding: 1em;
 }
 
 .search-result-options {
@@ -164,13 +173,26 @@
   width: 100%;
   height: 60px;
   position: relative;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
   align-items: center;
-  padding: 5px 0;
+  padding: 5px;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
-.cubberd-ingredient-row > img {
+.cubberd-ingredient-row > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+
+.cubberd-ingredient-row:hover {
+  width: 100%;
+  background-color: var(--main-light-color);
+}
+
+.cubberd-ingredient-row img {
   width: 50px;
   height: 50px;
   border-radius: 8px;
@@ -178,8 +200,11 @@
   margin-right: 2px;
 }
 
+#cubberd-ingredient-row-right {
+  padding-right: 0.5em;
+}
+
 .cubberd-food-name {
-  width: 175px;
   box-sizing: border-box;
   padding-left: 5px;
   font-weight: 700;
@@ -187,8 +212,8 @@
 }
 
 .cubberd-shelving-option-one {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -197,8 +222,8 @@
 }
 
 .cubberd-shelving-option-two {
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -225,6 +250,14 @@
   font-size: 40px;
   cursor: pointer;
 }
+
+.cubberd-footer-text {
+  display: flex;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+}
+
 
 /* Loading animation from loading.io */
 .lds-ring {
@@ -309,3 +342,4 @@
     opacity: 1;
   }
 }
+

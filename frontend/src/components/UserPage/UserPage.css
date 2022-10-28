@@ -1,6 +1,8 @@
 #user-page {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    background-color: var(--main-bg-color);
 }
 
 #user-page nav {
@@ -12,7 +14,7 @@
 }
 
 #user-page-columns {
-    width: calc(100% - 1em);
+    width: 100%;
     display: flex;
     flex-direction: row;
     height: calc(100% - 100px);
@@ -34,24 +36,40 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: center;
 }
 
 #user-page-favorited-recipes-container .recipe-list-item {
-    width: 100px;
-    height: 200px;
+    width: 20%;
     border-radius: 5px;
     margin: 1em;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
     display: flex;
     flex-direction: column;
     font-size: medium;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em;
+    padding-top: 0em;
+    height: 200px;
 }
+
+#user-page-favorited-recipes-container .recipe-list-item h4 {
+    display: flex;
+    height: 20%;
+    overflow: hidden;
+    font-size: medium;
+    width: 100%;
+}
+
+
+
 
 #user-page-planned-and-shopping {
     display: flex;
     flex-direction: column;
     width: 40%;
+    height: calc(100% - 2em);
 }
 
 #user-page-planned-and-shopping > div{
@@ -80,4 +98,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#user-nav-bar {
+    width: 200px;
 }

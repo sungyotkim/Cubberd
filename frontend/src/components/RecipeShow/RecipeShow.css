@@ -1,13 +1,16 @@
 #recipe {
-    height: 500px;
-    width: 400px;
-    background-color: beige;
+    /* height: 800px; */
+    width: 600px;
+    background-color: var(--tertiary-light-color);
+    /* background-color: var(--secondary-light-color); */
+    color: var(--secondary-dark-color);
     z-index: 2;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    padding: 1em;
+    justify-content: space-between;
+    padding: 1em 1em 0 1em;
     border-radius: 5px;
+    overflow: scroll;
 }
 
 #recipe-title-container {
@@ -24,18 +27,14 @@
 
 #recipe-middle-third {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
 }
 
 #recipe-image {
-    width: 200px;
+    width: 400px;
     object-fit: contain;
-}
-
-#recipe-image img{
-    width: inherit;
-    height: auto;
 }
 
 #recipe-scores {
@@ -46,23 +45,30 @@
 }
 
 .recipe-score {
-    width: 5em;
-    height: 5em;
     border-radius: 5em;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
     font-size: 10px;
     font-weight: bolder;
-    padding: 1em;
     text-align: center;
 }
 
-#recipe-usage-score {
-    background-color: lawngreen;
+#recipe-show-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 1em;
 }
 
-#recipe-no-buy-score {
-    background-color: rgb(217, 255, 1);
+#recipe-show-links a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#recipe-show-links a:hover {
+    font-weight: 700;
 }

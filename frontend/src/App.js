@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Landing from "./components/Landing/Landing";
 import RecipeShowPage from "./components/RecipeShowPage/RecipeShowPage";
+import AboutPage from "./components/AboutPage/AboutPage";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -23,6 +24,7 @@ function App() {
       <>
         <Switch>
           <Route exact path="/" component={Landing} />
+          <Route exact path="/about" component={AboutPage}/>
           <Route path="/recipes/:id" component={RecipeShowPage} />
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />

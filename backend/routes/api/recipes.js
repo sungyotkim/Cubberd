@@ -60,9 +60,9 @@ router.post("/ingredients", async(req, res) => {
 
             shoppingScore = calculateShoppingScore(cubberd, recipe)
             if (recipesByIngredientScore.length < 3) {
-                recipesByIngredientScore.push({"ingredientsScore": ingredientScore, "shoppingScore": shoppingScore, "recipe": recipe})
+                if (!recipesByIngredientScore.some(bundle => bundle.recipe.url === recipe.url)) recipesByIngredientScore.push({"ingredientsScore": ingredientScore, "shoppingScore": shoppingScore, "recipe": recipe})
             }
-            recipesByShoppingScore.push({"ingredientsScore": ingredientScore, "shoppingScore": shoppingScore, "recipe": recipe})
+            if (!recipesByShoppingScore.some(bundle => bundle.recipe.url === recipe.url)) recipesByShoppingScore.push({"ingredientsScore": ingredientScore, "shoppingScore": shoppingScore, "recipe": recipe})
         })
     }
     recipesByShoppingScore.sort((a, b) => a.shoppingScore > b.shoppingScore ? -1 : 1)

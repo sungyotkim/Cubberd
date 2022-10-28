@@ -9,7 +9,6 @@ import "./Cubberd.css";
 import { BiSearchAlt } from "react-icons/bi";
 import { SiCodechef } from "react-icons/si";
 import { TbTrash } from "react-icons/tb";
-import woodBackground from "../../assets/retina_wood.png";
 import CubberdRow from "./CubberdRow";
 import { CustomToolTipTop } from "../ToolTip/ToolTip";
 import { PotContext } from "../../context/PotContext";
@@ -23,12 +22,13 @@ const Cubberd = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLi, setSelectedLi] = useState(0);
-  const [openDoor, setOpenDoor] = useState(false);
   const [nonCubberdIngredients, setNonCubberdIngredients] = useState([]);
   const [cubberdIngIds, setCubberdIngIds] = useState([]);
-  const { setPotContents } = useContext(PotContext);
+  const { setPotContents, openDoor, setOpenDoor } = useContext(PotContext);
   const [loading, setLoading] = useState(false);
   const [completedAnimation, setCompletedAnimation] = useState(false);
+  const [addAllAnimation, setAddAllAnimation] = useState(false)
+  const [userCubberdReversed, setUserCubberdReversed] = useState([])
   const ref = useRef();
   const node = useRef();
 
@@ -52,7 +52,7 @@ const Cubberd = () => {
         return
       } 
     }
-    setSearchResults(false)
+    setSearchResults([])
   }
 
   useEffect(() => {
@@ -93,10 +93,17 @@ const Cubberd = () => {
         idArr.push(ing._id);
       });
       setCubberdIngIds([...idArr]);
+
+      const reversed = [];
+      userCubberd.forEach((ing) => {
+        reversed.unshift(ing);
+      });
+      setUserCubberdReversed([...reversed]);
     }
 
     return () => {
       setCubberdIngIds([]);
+      setUserCubberdReversed([])
     };
   }, [userCubberd]);
 
@@ -167,7 +174,11 @@ const Cubberd = () => {
         setSelectedLi(selectedLi + 1);
       }
     } else if (e.key === "Enter") {
-      addToUserCubberd(searchResults[selectedLi]);
+      if (searchResults[selectedLi]) {
+        if (searchResults[selectedLi]._id) {
+          addToUserCubberd(searchResults[selectedLi]);
+        }
+      }
       setSearchResults([]);
       setSearchQuery("");
     }
@@ -180,6 +191,18 @@ const Cubberd = () => {
     }
   };
 
+  const handleSearchBtn = (e) => {
+    e.preventDefault();
+    console.log(searchResults[selectedLi])
+    if (searchResults[selectedLi]) {
+      if (searchResults[selectedLi]._id) {
+        addToUserCubberd(searchResults[selectedLi]);
+      }
+    }
+    setSearchResults([]);
+    setSearchQuery("");
+  }
+
   const handleEmptyCubberd = (e) => {
     e.preventDefault();
 
@@ -190,11 +213,11 @@ const Cubberd = () => {
     setTimeout(() => {
       setLoading(false)
       setCompletedAnimation(true)
-    }, 500);
+    }, 800);
     
     setTimeout(() => {
       setCompletedAnimation(false);
-    }, 1200);
+    }, 1500);
 
     setPotContents([]);
   };
@@ -202,14 +225,24 @@ const Cubberd = () => {
   const handleAddAll = (e) => {
     e.preventDefault();
 
+    setAddAllAnimation(true)
+
+    setTimeout(() => {
+      setAddAllAnimation(false)
+    }, 1000);
     setPotContents([...userCubberd]);
   };
+
+  const handleFocus = (e) => {
+    e.preventDefault();
+
+    searchItem(searchQuery)
+  }
 
   return (
     <>
       <div
         className="cubberd-container"
-        style={{ backgroundImage: `url(${woodBackground})` }}
       >
         <div
           className={
@@ -234,12 +267,11 @@ const Cubberd = () => {
               onChange={(e) => searchItem(e.target.value)}
               value={searchQuery}
               onKeyDown={(e) => handleKeyDown(e)}
+              onFocus={handleFocus}
             />
-            <div className="cubberd-search-btn">
+            <div className="cubberd-search-btn" onClick={handleSearchBtn}>
               <BiSearchAlt />
             </div>
-          </div>
-          <div className="cubberd-ingredients-container-wrapper">
             {searchResults && searchResults.length > 0 && (
               <ul className="search-results" ref={node}>
                 {searchResults.map((result, i) => {
@@ -256,13 +288,18 @@ const Cubberd = () => {
                 })}
               </ul>
             )}
+          </div>
+          <div className="cubberd-ingredients-container-wrapper">
             {userCubberd &&
               userCubberd.length > 0 &&
-              userCubberd.map((ing, i) => (
+              userCubberdReversed.map((ing, i) => (
                 <CubberdRow
                   ing={ing}
                   currentUser={currentUser}
                   setNonCubberdIngredients={setNonCubberdIngredients}
+                  addAllAnimation={addAllAnimation}
+                  i={i}
+                  length={userCubberdReversed.length}
                   key={`cubberd ${ing} ${i}`}
                 />
               ))}
@@ -293,11 +330,18 @@ const Cubberd = () => {
             {completedAnimation && (
               <div className="checkmark"></div>
             )}
-            <CustomToolTipTop title="Add all to pot?" arrow placement="top-end">
-              <div className="cubberd-footer-options" onClick={handleAddAll}>
-                <SiCodechef />
+            {userCubberd.length > 0 && 
+              <CustomToolTipTop title="Add all to pot?" arrow placement="top-end">
+                <div className="cubberd-footer-options" onClick={handleAddAll}>
+                  <SiCodechef />
+                </div>
+              </CustomToolTipTop>
+            }
+            {userCubberd.length === 0 &&
+              <div className="cubberd-footer-text">
+                  Your cubberd is empty, please add ingredients you own in your kitchen.
               </div>
-            </CustomToolTipTop>
+            }
           </div>
         </div>
       </div>

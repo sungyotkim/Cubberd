@@ -1,0 +1,75 @@
+#shopping-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    overflow: scroll;
+    height: 85%;
+}
+
+.shopping-list-item {
+    border: 2px solid var(--main-dark-color);
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0.25em; 
+    padding: 0.25em;
+    border-radius: 3px;
+    align-items: center;
+    color: var(--secondary-dark-color)
+}
+
+.shopping-list-item-left {
+    display: flex;
+    height: 40px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.shopping-list-item-left h4 {
+    margin-left: 0.25em;
+}
+
+.shopping-list-item:hover {
+    background-color: var(--main-bg-color);
+}
+
+
+
+.shopping-list-item input {
+    width: 35px;
+    margin-right: 0.25em;
+}
+
+.trash-icon {
+    height: 24px;
+    width: 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    padding-top: 5px;
+    padding-left: 5px;
+
+    
+}
+
+.trash-icon:hover {
+    background-color: rgb(0, 0, 0, 0.2);
+}
+
+.quantity-input {
+    /* background-color: var(--main-lighter-color); */
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: var(--secondary-dark-color);
+    font-weight: bold;
+    text-align: center;
+}
+
+.quantity-input:hover {
+    background-color: var(--main-light-color);
+}
+.quantity-input:focus {
+    outline: 1px solid transparent;
+
+}

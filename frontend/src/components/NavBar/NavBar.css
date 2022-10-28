@@ -1,0 +1,425 @@
+.navbar {
+  display: flex;
+  padding: 16px 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+span {
+  display: flex;
+}
+
+.info-rack-bar {
+  width: calc(70% - 1em);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.rack-left-circle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #c9ced6 0%,#cfd4db 50%,#d6dae0 51%,#cfd4db 100%);
+  -webkit-box-shadow: inset 1px -1px 7px 2px rgba(50, 50, 50, 0.62);
+  -moz-box-shadow: inset 1px -1px 7px 2px rgba(50, 50, 50, 0.62);
+  box-shadow: inset 1px -1px 7px 2px rgba(50, 50, 50, 0.62);
+  position: absolute;
+  left: 30px;
+}
+
+.rack-right-circle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #c9ced6 0%,#cfd4db 50%,#d6dae0 51%,#cfd4db 100%);
+  -webkit-box-shadow: inset -1px -1px 7px 1px rgba(50, 50, 50, 0.62);
+  -moz-box-shadow: inset -1px -1px 7px 1px rgba(50, 50, 50, 0.62);
+  box-shadow: inset -1px -1px 7px 1px rgba(50, 50, 50, 0.62);
+  position: absolute;
+  right: 30px;
+}
+
+.rack-bar {
+  width: 90%;
+  height: 15px;
+  background: linear-gradient(to bottom, #c9ced6 0%,#ebedf0 50%,#e4e7eb 51%,#dde1e6 100%);
+  -webkit-box-shadow: inset 0px -2px 7px 1px rgba(50, 50, 50, 0.2);
+  -moz-box-shadow: inset 0px -2px 7px 1px rgba(50, 50, 50, 0.2);
+  box-shadow: inset 0px -2px 7px 1px rgba(50, 50, 50, 0.2);
+  border-radius: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.hook {
+  width: 20px;
+  position: absolute;
+  top: 20%;
+  z-index: 2;
+}
+
+.hook > img {
+  width: 20px;
+}
+
+#pan-one {
+  width: 100px;
+  position: absolute;
+  top: 22px;
+  left: -43px;
+}
+
+#pan-one > img {
+  width: 100px;
+}
+
+#pan-one > a {
+  font-size: 50px;
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+  color: rgba(0, 0, 0, 1);
+  cursor: pointer;
+}
+
+#pan-one > a:hover {
+  color: rgb(255, 255, 255);
+}
+
+#pan-one-hook {
+  left: 40%;
+}
+
+.pan-one-animate {
+  animation: movePanOne 1s forwards linear; 
+}
+
+@keyframes movePanOne {
+  0% {
+    left: 40%;
+  }
+  25% {
+    left: 15%;
+    transform: rotateZ(20deg)
+  }
+  50% {
+    left: 15%;
+    transform: rotateZ(-20deg)
+  }
+  75% {
+    left: 15%;
+    transform: rotateZ(5deg)
+  }
+  100% {
+    left: 15%;
+    transform: rotateZ(0deg)
+  }
+}
+
+.pan-one-return {
+  animation: returnPanOne 1s forwards linear; 
+}
+
+@keyframes returnPanOne {
+  0% {
+    left: 15%;
+  }
+  25% {
+    left: 40%;
+    transform: rotateZ(20deg)
+  }
+  50% {
+    left: 40%;
+    transform: rotateZ(-20deg)
+  }
+  75% {
+    left: 40%;
+    transform: rotateZ(5deg)
+  }
+  100% {
+    left: 40%;
+    transform: rotateZ(0deg)
+  }
+}
+
+#pan-two {
+  width: 100px;
+  position: absolute;
+  top: 23px;
+  right: -28px;
+}
+
+#pan-two > img {
+  width: 100px;
+  transform: rotateY(180deg);
+}
+
+#pan-two-hook {
+  right: 25%;
+  transform: rotateY(180deg);
+}
+
+#pan-two > a {
+  font-size: 70px;
+  position: absolute;
+  bottom: 5px;
+  left: 15px;
+  color: rgb(68, 67, 67);
+  cursor: pointer;
+  transform: rotateY(220deg);
+}
+
+#pan-two > a:hover {
+  color: rgb(255, 255, 255);
+}
+
+.pan-two-animate {
+  animation: movePanTwo 1s forwards linear; 
+}
+
+@keyframes movePanTwo {
+  0% {
+    right: 25%; 
+  }
+  25% {
+    right: 10%;
+    transform: rotateY(220deg) rotateZ(20deg)
+  }
+  50% {
+    right: 10%;
+    transform: rotateY(220deg) rotateZ(-20deg)
+  }
+  75% {
+    right: 10%;
+    transform: rotateY(220deg) rotateZ(5deg)
+  }
+  100% {
+    right: 10%;
+    transform: rotateY(220deg) rotateZ(0deg)
+  }
+}
+
+.pan-two-return {
+  animation: returnPanTwo 1s forwards linear; 
+}
+
+@keyframes returnPanTwo {
+  0% {
+    right: 10%;
+  }
+  25% {
+    right: 25%;
+    transform: rotateY(220deg) rotateZ(20deg)
+  }
+  50% {
+    right: 25%;
+    transform: rotateY(220deg) rotateZ(-20deg)
+  }
+  75% {
+    right: 25%;
+    transform: rotateY(220deg) rotateZ(5deg)
+  }
+  100% {
+    right: 25%;
+    transform: rotateY(220deg) rotateZ(0deg)
+  }
+}
+
+#ladle {
+  width: 70px;
+  position: absolute;
+  top: 33px;
+  right: -20px;
+}
+
+#ladle > img {
+  width: 70px;
+}
+
+#ladle-hook {
+  right: 40%;
+}
+
+#ladle > a {
+  font-size: 40px;
+  position: absolute;
+  bottom: 0;
+  left: 17px;
+  color: rgb(71, 71, 71);
+  cursor: pointer;
+  transform: rotateY(-20deg);
+}
+
+#ladle > a:hover {
+  color: rgb(255, 255, 255);
+}
+
+.ladle-hook-animate {
+  animation: moveLadle 1s forwards linear; 
+}
+
+@keyframes moveLadle {
+  0% {
+    right: 40%;
+  }
+  25% {
+    right: 15%;
+    transform: rotateZ(20deg)
+  }
+  50% {
+    right: 15%;
+    transform: rotateZ(-20deg)
+  }
+  75% {
+    right: 15%;
+    transform: rotateZ(5deg)
+  }
+  100% {
+    right: 15%;
+    transform: rotateZ(0deg)
+  }
+}
+
+.ladle-hook-return {
+  animation: returnLadle 1s forwards linear; 
+}
+
+@keyframes returnLadle {
+  0% {
+    right: 15%;
+  }
+  25% {
+    right: 40%;
+    transform: rotateZ(20deg)
+  }
+  50% {
+    right: 40%;
+    transform: rotateZ(-20deg)
+  }
+  75% {
+    right: 40%;
+    transform: rotateZ(5deg)
+  }
+  100% {
+    right: 40%;
+    transform: rotateZ(0deg)
+  }
+}
+
+#spatula {
+  width: 60px;
+  position: absolute;
+  top: 33px;
+  left: -24px;
+}
+
+#spatula > img {
+  width: 60px;
+}
+
+#spatula > a {
+  font-size: 40px;
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  color: rgb(112, 112, 112);
+  cursor: pointer;
+  transform: rotateY(-20deg);
+}
+
+#spatula > a:hover {
+  color: rgb(255, 255, 255);
+}
+
+
+#spatula-hook {
+  left: 25%;
+}
+
+.spatula-hook-animate {
+  animation: moveSpatula 1s forwards linear; 
+}
+
+@keyframes moveSpatula {
+  0% {
+    left: 25%;
+  }
+  25% {
+    left: 10%;
+    transform: rotateZ(20deg)
+  }
+  50% {
+    left: 10%;
+    transform: rotateZ(-20deg)
+  }
+  75% {
+    left: 10%;
+    transform: rotateZ(5deg)
+  }
+  100% {
+    left: 10%;
+    transform: rotateZ(0deg)
+  }
+}
+
+.spatula-hook-return {
+  animation: returnSpatula 1s forwards linear; 
+}
+
+@keyframes returnSpatula {
+  0% {
+    left: 10%;
+  }
+  25% {
+    left: 25%;
+    transform: rotateZ(20deg)
+  }
+  50% {
+    left: 25%;
+    transform: rotateZ(-20deg)
+  }
+  75% {
+    left: 25%;
+    transform: rotateZ(5deg)
+  }
+  100% {
+    left: 25%;
+    transform: rotateZ(0deg)
+  }
+}
+
+.nav-right {
+  width: calc(100% - (70% - 1em));
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome-user {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 10px 4px;
+}
+
+.nav-links-div {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 11px;
+}
+
+.nav-bar-link {
+  text-decoration: none;
+  color: black;
+  transition: .2s;
+}
+
+.nav-bar-link:hover {
+  cursor: pointer;
+  color: var(--secondary-dark-color);
+  transition: .2s;
+}
