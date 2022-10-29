@@ -67,7 +67,8 @@
 
 #shopping-list-container > h3 {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
+  margin: 10px 0 5px;
 }
 
 #cubberd-search-container {
