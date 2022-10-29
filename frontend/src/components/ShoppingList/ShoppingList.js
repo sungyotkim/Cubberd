@@ -8,10 +8,12 @@ function ShoppingList({items}) {
     const shoppingListItems = items.map((item) => <ShoppingListItem item={item} />);
 
     return (
-        <div id="shopping-list">
-            {shoppingListItems}
-        
-        </div>
+        <>
+            <div>hi</div>
+            <div id="shopping-list">
+                {shoppingListItems}
+            </div>
+        </>
     )
 
 }

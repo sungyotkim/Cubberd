@@ -31,6 +31,8 @@ const Cubberd = () => {
   const [userCubberdReversed, setUserCubberdReversed] = useState([])
   const ref = useRef();
   const node = useRef();
+  const node2 = useRef();
+  const searchRef = useRef();
 
   const handleDoorClick = () => {
     if (openDoor) {
@@ -48,7 +50,7 @@ const Cubberd = () => {
 
   const clickOutside = (e) => {
     if (node.current) {
-      if (node.current.contains(e.target)) {
+      if (node.current.contains(e.target) || (node2.current.contains(e.target))) {
         return
       } 
     }
@@ -193,10 +195,13 @@ const Cubberd = () => {
 
   const handleSearchBtn = (e) => {
     e.preventDefault();
+    console.log(searchResults)
     if (searchResults[selectedLi]) {
       if (searchResults[selectedLi]._id) {
         addToUserCubberd(searchResults[selectedLi]);
       }
+    } else {
+      searchRef.current.focus();
     }
     setSearchResults([]);
     setSearchQuery("");
@@ -267,8 +272,9 @@ const Cubberd = () => {
               value={searchQuery}
               onKeyDown={(e) => handleKeyDown(e)}
               onFocus={handleFocus}
+              ref={searchRef}
             />
-            <div className="cubberd-search-btn" onClick={handleSearchBtn}>
+            <div className="cubberd-search-btn" onClick={handleSearchBtn} ref={node2}>
               <BiSearchAlt />
             </div>
             {searchResults && searchResults.length > 0 && (
