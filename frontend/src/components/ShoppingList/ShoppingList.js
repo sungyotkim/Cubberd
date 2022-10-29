@@ -173,6 +173,7 @@ function ShoppingList({ items }) {
             value={shoppingSearchQuery}
             onKeyDown={(e) => handleKeyDown(e)}
             onFocus={handleFocus}
+            ref={searchRef}
           />
           <div
             className="shopping-list-search-btn"
