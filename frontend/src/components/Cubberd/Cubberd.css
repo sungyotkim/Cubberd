@@ -163,11 +163,6 @@
   padding: 1em;
 }
 
-.search-result-options {
-  display: flex;
-  flex-direction: column;
-}
-
 .cubberd-ingredient-row {
   display: flex;
   width: 100%;
@@ -184,8 +179,6 @@
   flex-direction: row;
   align-items: center;
 }
-
-
 
 .cubberd-ingredient-row:hover {
   width: 100%;
@@ -262,7 +255,6 @@
   line-height: 15px;
 }
 
-
 /* Loading animation from loading.io */
 .lds-ring {
   display: inline-block;
@@ -319,7 +311,7 @@
   transform-origin: left top;
   border-right: 5px solid var(--main-dark-color);
   border-top: 5px solid var(--main-dark-color);
-  content: '';
+  content: "";
   position: absolute;
   top: 20px;
 }

@@ -1,75 +1,166 @@
 #shopping-list {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    overflow: scroll;
-    height: 85%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  overflow: scroll;
+  height: 85%;
+}
+
+.shopping-list-search-container {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.shopping-list-search-bar-container {
+  width: calc(80% + 4px);
+  height: 40px;
+  border: none;
+  display: flex;
+  box-sizing: border-box;
+  border-radius: 3px;
+  position: relative;
+  left: -5px;
+}
+
+.shopping-list-search-bar {
+  height: 30px;
+  line-height: 20px;
+  font-size: 17px;
+  width: 100%;
+  padding: 0 5px;
+  margin: 0;
+  border: 2px solid var(--main-dark-color);
+  border-right: none;
+  box-sizing: border-box;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  color: var(--secondary-dark-color);
+  position: relative;
+}
+
+.shopping-list-search-bar::placeholder {
+  color: var(--secondary-dark-color);
+}
+
+.shopping-list-search-btn {
+  height: 30px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary-dark-color);
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  cursor: pointer;
+  color: white;
+}
+
+.shopping-list-search-btn:hover {
+  background-color: var(--secondary-light-color);
+}
+
+.shopping-list-search-results {
+  margin: 0 5px;
+  min-height: 22px;
+  max-height: 130px;
+  width: calc(100% - 25px);
+  background-color: var(--secondary-light-color);
+  color: var(--main-bg-color);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 0;
+  box-sizing: border-box;
+  position: absolute;
+  top: 35px;
+  left: -5px;
+  z-index: 10;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.shopping-list-search-results > li {
+  width: 100%;
+  height: 22px;
+  cursor: pointer;
+  padding: 0 5px;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+.shopping-list-search-results > li:hover {
+  background-color: var(--main-lighter-color);
+  background-color: var(--secondary-dark-color);
+}
+
+.shopping-list-search-selected {
+  border: 1px solid var(--main-dark-color);
+  box-sizing: border-box;
+  padding: 1em;
 }
 
 .shopping-list-item {
-    border: 2px solid var(--main-dark-color);
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    margin: 0.25em; 
-    padding: 0.25em;
-    border-radius: 3px;
-    align-items: center;
-    color: var(--secondary-dark-color)
+  border: 2px solid var(--main-dark-color);
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0.25em;
+  padding: 0.25em;
+  border-radius: 3px;
+  align-items: center;
+  color: var(--secondary-dark-color);
 }
 
 .shopping-list-item-left {
-    display: flex;
-    height: 40px;
-    justify-content: flex-start;
-    align-items: center;
+  display: flex;
+  height: 40px;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .shopping-list-item-left h4 {
-    margin-left: 0.25em;
+  margin-left: 0.25em;
 }
 
 .shopping-list-item:hover {
-    background-color: var(--main-bg-color);
+  background-color: var(--main-bg-color);
 }
 
-
-
 .shopping-list-item input {
-    width: 35px;
-    margin-right: 0.25em;
+  width: 35px;
+  margin-right: 0.25em;
 }
 
 .trash-icon {
-    height: 24px;
-    width: 20px;
-    cursor: pointer;
-    border-radius: 3px;
-    padding-top: 5px;
-    padding-left: 5px;
-
-    
+  height: 24px;
+  width: 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  padding-top: 5px;
+  padding-left: 5px;
 }
 
 .trash-icon:hover {
-    background-color: rgb(0, 0, 0, 0.2);
+  background-color: rgb(0, 0, 0, 0.2);
 }
 
 .quantity-input {
-    /* background-color: var(--main-lighter-color); */
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    color: var(--secondary-dark-color);
-    font-weight: bold;
-    text-align: center;
+  /* background-color: var(--main-lighter-color); */
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: var(--secondary-dark-color);
+  font-weight: bold;
+  text-align: center;
 }
 
 .quantity-input:hover {
-    background-color: var(--main-light-color);
+  background-color: var(--main-light-color);
 }
 .quantity-input:focus {
-    outline: 1px solid transparent;
-
+  outline: 1px solid transparent;
 }
