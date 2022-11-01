@@ -1,6 +1,6 @@
 # Cubberd
 
-![Project-demo align="center"](https://github.com/sungyotkim/Cubberd/blob/main/github-assets/cubberd-demo.gif)
+![Project-demo](https://github.com/sungyotkim/Cubberd/blob/main/github-assets/cubberd-demo.gif)
 
 ## [Live Link](https://cubberd.herokuapp.com/)
 
