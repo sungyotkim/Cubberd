@@ -1,9 +1,8 @@
 # Cubberd
 
 Project demo
-![project-demo](https://github.com/sungyotkim/Cubberd/blob/main/github-assets/cubberdDemo.gif)
+[project-demo](https://github.com/sungyotkim/Cubberd/blob/main/github-assets/cubberdDemo.gif)
 
-Want to see more?
 ## [Live Link](https://cubberd.herokuapp.com/)
 
 ## Technologies/APis used
@@ -87,7 +86,7 @@ const addToPot = (e, ingredient) => {
   // sample css:
   
   
-  .animate-one {
+.animate-one {
   position: fixed; 
   animation: moveOne 1s forwards linear; 
 }
