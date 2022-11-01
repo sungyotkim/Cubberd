@@ -116,6 +116,60 @@ const addToPot = (e, ingredient) => {
 
 ```
 
+**Implemnting a fuzzy search functionality**
+<br>
+For this project, I approached the search functionality (searching through the database of ingredients) with the fuzzy search method. For the cubberd component, I first obtained a list of all ingredients that are not already in the cubberd. Since javascript doesn't allow you to compare two objects, I created an array of object id values of the existing cubberd ingredients array then checked each ingredient array to filter out any ingredients of matching ids. The new array was then used to see if the item's name (lowercased) contained all of the query (also lowercased). If so, that ingredient was added to the list of results which was then saved in a use state upon the completion of the loop.
+
+```javascript
+
+//Obtaining list of ingredient ids of the cubberd ingredients
+  useEffect(() => {
+    if (userCubberd && userCubberd.length > 0) {
+      const idArr = [];
+      userCubberd.forEach((ing) => {
+        idArr.push(ing._id);
+      });
+      setCubberdIngIds([...idArr]);
+
+    return () => {
+      setCubberdIngIds([]);
+    };
+  }, [userCubberd]);
+  
+// Once the above was done, an array of ingredients not in the cubberd was obtained 
+  useEffect(() => {
+    if (allIngredients.length > 0) {
+      const notInCubberdArr = allIngredients.filter(
+        (ing) => !cubberdIngIds.includes(ing._id)
+      );
+      setNonCubberdIngredients([...notInCubberdArr]);
+    }
+  }, [cubberdIngIds]);
+
+// then the search functionality that triggered on input change
+  const searchItem = (query) => {
+    if (!query) {
+      setSearchResults([]);
+      setSearchQuery("");
+      return;
+    }
+    setSearchQuery(query);
+    query = query.toLowerCase();
+
+    const results = [];
+
+    nonCubberdIngredients.forEach((ing) => {
+      if (ing.food.toLowerCase().indexOf(query) !== -1) {
+        results.push(ing);
+      }
+    });
+
+    setSearchResults(results);
+  };
+  ```
+
+The shopping list component handled the search in a similar manner.
+
 ## Future Features
 - Mobile compatibility 
 - Default/multiple cubberds for users to choose from
