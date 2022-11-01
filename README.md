@@ -22,7 +22,7 @@
 ## Development
 Cubberd was a group project made by a team of four developers (including myself) in a span of five days. For this project, I took on the role of the frontend developer. One of the biggest challenges I faced was creating an interactive userface that would keep the user engaged. To tackle this, I created a custom cupboard and stove created entirely from HTML/CSS to provide myself with the greatest flexiblity in animating such components. 
 
-** Animating the ingredients to be "thrown" into the pot **
+**Animating the ingredients to be "thrown" into the pot**
 The most difficult aspect of this feature was determining from where the ingredient first started upon the user's click. At first, I planned to utilize which row the ingredient lies in (since it's structured in an array) as the starting point. However, I realized that if there sufficient ingredients in the cubberd, the user can vertically scroll within the component which would alter the starting position. Though this would only work in specific viewports, I used calculations of the cursor's pointer to determine the start of each ingredient animation for all 11 possibilities. Eventually, this would require some modifications to work in mobile devies/smaller viewports. Upon a mouse click event, the Y position was calculated and the div was given the appropriate animation class to trigger the animation. A timeout function then served to remove the animation class to reset the image. Additionally, a check was performed prior to the animation to prevent the user from adding multiples of the same ingredient into the pot.
 
 ```javascript
