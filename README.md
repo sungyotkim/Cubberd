@@ -4,7 +4,7 @@
 
 ## [Live Link](https://cubberd.herokuapp.com/)
 
-## Technologies/APis used
+## Technologies/APIs used
 - MongoDB
 - Express.Js
 - React.Js
@@ -116,7 +116,7 @@ const addToPot = (e, ingredient) => {
 
 ```
 
-**Implemnting a fuzzy search functionality**
+**Implementing a fuzzy search functionality**
 <br>
 For this project, I approached the search functionality (searching through the database of ingredients) with the fuzzy search method. For the cubberd component, I first obtained a list of all ingredients that are not already in the cubberd. Since javascript doesn't allow you to compare two objects, I created an array of object id values of the existing cubberd ingredients array then checked each ingredient array to filter out any ingredients of matching ids. The new array was then used to see if the item's name (lowercased) contained all of the query (also lowercased). If so, that ingredient was added to the list of results which was then saved in a use state upon the completion of the loop.
 
