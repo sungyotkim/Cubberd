@@ -1,146 +1,168 @@
 #about-page-nav-bar {
-    width: calc(100% - 1em);
-    /* height: 5%; */
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  width: calc(100% - 1em);
+  /* height: 5%; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 #about-page-nav-links {
-    width: 100%;
+  width: 100%;
 }
 
 #about-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: var(--main-bg-color);
-    height: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--main-bg-color);
+  height: 1200px;
 }
 
 #about-page-content-top {
-    display: flex;
-    flex-direction: row;
-    height: 50%;
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 50%;
+  width: 100%;
 }
 
 #about-page-adventure {
-    width: 65%;
-    height: 100%;
+  width: 65%;
+  height: 100%;
 }
 
 #about-page-how-it-works {
-    width: 35%;
-    height: 100%;
+  width: 35%;
+  height: 100%;
 }
 
 #about-page-developers {
-    width: calc(100% - 1em);
-    height: calc(45% - 3em);
+  width: calc(100% - 1em);
+  height: calc(45% - 3em);
 }
 
 #about-page-options {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .option {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 270px;
-    height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 270px;
+  height: 50px;
 }
 
 .option p {
-    padding: 0.25em;
-    border-radius: 8px;
-    background-color: var(--tertiary-light-color);
-    box-sizing: border-box;
+  padding: 0.25em;
+  border-radius: 8px;
+  background-color: var(--tertiary-light-color);
+  box-sizing: border-box;
 }
 
 .option p:hover {
-    cursor: pointer;
-    border: 1px solid var(--main-dark-color)
+  cursor: pointer;
+  border: 1px solid var(--main-dark-color);
 }
 
 .active p {
-    font-weight: bolder;
-    background-color: var(--main-lighter-color);
+  font-weight: bolder;
+  background-color: var(--main-lighter-color);
 }
 
 .teammate-cards-wrapper {
-    width: 100%;
-    height: 1000px;
-    display: flex;
-    justify-content: space-around;
+  width: 100%;
+  height: 1000px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .teammate-card {
-    width: 15%;
-    height: 350px;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 3px solid black;
-    font-size: 1.5em;
-    font-weight: bold;
-    background-color: var(--main-lighter-color);
-    transition: 100ms;
-    position: relative;
-    box-shadow: 0 0 10px black;
+  width: 15%;
+  height: 350px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid black;
+  font-size: 1.5em;
+  font-weight: bold;
+  background-color: var(--main-lighter-color);
+  transition: 100ms;
+  position: relative;
+  box-shadow: 0 0 10px black;
 }
 
 .teammate-card:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-    box-shadow: 0 0 5px black;
+  transform: scale(1.05);
+  cursor: pointer;
+  box-shadow: 0 0 5px black;
 }
 
 .teammate-card h1 {
-    margin-top: 20px;
-    font-size: 26px;
+  margin-top: 20px;
+  font-size: 26px;
 }
 
 .teammate-card img {
-    height: 40%;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 0 10px 2px black;
+  height: 40%;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 10px 2px black;
 }
 
 .teammate-card-role {
-    font-size: 0.85em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 44px;
-    margin-top: 30px;
-    margin-bottom: 60px;
+  font-size: 0.85em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 44px;
+  margin-top: 30px;
+  margin-bottom: 60px;
 }
 
 .teammate-card-role span {
-    font-size: 0.85em
+  font-size: 0.85em;
 }
 
 .teammate-card-links {
-    width: 95%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    font-size: 50px;
-    position: absolute;
-    bottom: 0;
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 50px;
+  position: absolute;
+  bottom: 0;
 }
 
 .teammate-card-links a {
-    color: black;
-    height: 50px;
+  color: black;
+  height: 50px;
 }
 
 .teammate-card-links a:hover {
-    color: var(--secondary-dark-color)
+  color: var(--secondary-dark-color);
+}
+
+#website-logo-tommy {
+  width: 50px;
+  height: 45px;
+  position: relative;
+  bottom: 1px;
+  border-radius: 4px;
+  background-image: url("../../assets/website-logo-tommy.PNG");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+#website-logo-tommy:hover {
+  background-color: var(--secondary-dark-color);
+}
+
+.angel-list {
+  font-size: 40px;
+  display: flex;
+  align-items: center;
 }
