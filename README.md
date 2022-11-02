@@ -19,7 +19,7 @@
 - Have a unique cubberd per user
 - Save recipes to planned or favorited lists
 
-## Development
+## Development -- my contributions to the project
 Cubberd was a group project made by a team of four developers (including myself) in a span of five days. For this project, I took on the role of the frontend developer. One of the biggest challenges I faced was creating an interactive userface that would keep the user engaged. To tackle this, I created a custom cupboard and stove created entirely from HTML/CSS to provide myself with the greatest flexiblity in animating such components. 
 
 **Animating the ingredients to be "thrown" into the pot**
